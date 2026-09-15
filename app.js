@@ -421,8 +421,8 @@ class HyroxApp {
 
     const hintPleadingMessages = [
       "Psst: There's only one right answer, Bhondu! 😉",
-      "Wait, why are you hovering over NO?! 🥺",
-      "Dora is watching your cursor very closely... 👀",
+      "Wait, why are you tapping NO?! 🥺",
+      "Dora is watching your fingers very closely... 👀",
       "The YES button is looking greener and juicier! 💖",
       "Smoothies, cuddles, and cheerleading at stake! 🥤",
       "Resistance is futile, you love Dora too much! 🥰"
@@ -459,8 +459,8 @@ class HyroxApp {
       this.playSound('boing');
       this.triggerHaptic(25);
 
-      // If she pressed it 6+ times, trigger the Gangster Cat meme
-      if (noAttempts >= 6) {
+      // If she tapped it 5+ times, trigger the Gangster Cat meme
+      if (noAttempts >= 5) {
         showDareCard();
         return;
       }
@@ -498,19 +498,11 @@ class HyroxApp {
     };
 
     if (giftNoBtn) {
-      // Evasion on pointer/hover
-      giftNoBtn.addEventListener('mouseenter', dodgeNoButton);
-      // Evasion on mobile touch / tap
-      giftNoBtn.addEventListener('pointerdown', (e) => {
-        if (noAttempts < 5) {
-          dodgeNoButton(e);
-        } else {
-          showDareCard();
-        }
-      });
+      // Mobile-optimized: reacts strictly on intentional tap / click (never on hover!)
       giftNoBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        showDareCard();
+        e.stopPropagation();
+        dodgeNoButton(e);
       });
     }
 
