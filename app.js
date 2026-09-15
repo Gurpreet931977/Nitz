@@ -162,35 +162,133 @@ class HyroxApp {
   }
 
   // Acoustic Sub-Bass Physical Rumble Engine (Physically vibrates mobile phone bodies on iPhone + Android)
-  playHapticRumble(intensity = 1.0, duration = 0.28, freq = 52) {
+  playHapticRumble(intensity = 1.0, duration = 0.35, freq = 65) {
     if (!this.soundEnabled || !this.audioCtx) return;
     this.resumeAudio();
 
     try {
       const now = this.audioCtx.currentTime;
-      const osc = this.audioCtx.createOscillator();
+      const osc1 = this.audioCtx.createOscillator();
+      const osc2 = this.audioCtx.createOscillator();
       const gain = this.audioCtx.createGain();
       const filter = this.audioCtx.createBiquadFilter();
 
       filter.type = 'lowpass';
-      filter.frequency.setValueAtTime(110, now);
+      filter.frequency.setValueAtTime(180, now);
 
-      osc.type = 'sine';
-      // Low sub-bass frequency that physically resonates the mobile phone chassis
-      osc.frequency.setValueAtTime(freq, now);
-      osc.frequency.exponentialRampToValueAtTime(Math.max(35, freq * 0.75), now + duration);
+      osc1.type = 'triangle';
+      osc1.frequency.setValueAtTime(freq, now);
+      osc1.frequency.exponentialRampToValueAtTime(Math.max(38, freq * 0.65), now + duration);
 
-      const peak = Math.min(0.95, 0.45 * intensity);
+      osc2.type = 'sine';
+      osc2.frequency.setValueAtTime(freq * 1.08, now);
+      osc2.frequency.exponentialRampToValueAtTime(Math.max(35, freq * 0.60), now + duration);
+
+      const peak = Math.min(1.0, 0.75 * intensity);
       gain.gain.setValueAtTime(0.001, now);
-      gain.gain.linearRampToValueAtTime(peak, now + 0.03);
+      gain.gain.linearRampToValueAtTime(peak, now + 0.02);
       gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
 
-      osc.connect(filter);
+      osc1.connect(filter);
+      osc2.connect(filter);
       filter.connect(gain);
       gain.connect(this.audioCtx.destination);
 
-      osc.start(now);
-      osc.stop(now + duration);
+      osc1.start(now);
+      osc2.start(now);
+      osc1.stop(now + duration);
+      osc2.stop(now + duration);
+    } catch (e) {}
+  }
+
+  // Continuous Sustained Hug Rumble Engine (Runs continuously while button is held)
+  startContinuousHugRumble() {
+    if (!this.soundEnabled || !this.audioCtx) return;
+    this.resumeAudio();
+
+    try {
+      this.stopContinuousHugRumble();
+
+      const now = this.audioCtx.currentTime;
+      this.hugRumbleMasterGain = this.audioCtx.createGain();
+      this.hugRumbleMasterGain.gain.setValueAtTime(0.001, now);
+      this.hugRumbleMasterGain.gain.linearRampToValueAtTime(0.55, now + 0.06);
+
+      // Sub-bass oscillator 1 (68Hz triangle for heavy physical speaker resonance)
+      this.hugOsc1 = this.audioCtx.createOscillator();
+      this.hugOsc1.type = 'triangle';
+      this.hugOsc1.frequency.setValueAtTime(68, now);
+
+      // Sub-bass oscillator 2 (74Hz - creates acoustic mechanical beating)
+      this.hugOsc2 = this.audioCtx.createOscillator();
+      this.hugOsc2.type = 'sine';
+      this.hugOsc2.frequency.setValueAtTime(74, now);
+
+      // Tremolo LFO modulator (15Hz fast motor flutter)
+      this.hugLFO = this.audioCtx.createOscillator();
+      this.hugLFOGain = this.audioCtx.createGain();
+      this.hugLFO.frequency.setValueAtTime(15, now);
+      this.hugLFOGain.gain.setValueAtTime(0.35, now);
+
+      const filter = this.audioCtx.createBiquadFilter();
+      filter.type = 'lowpass';
+      filter.frequency.setValueAtTime(170, now);
+
+      const tremorGain = this.audioCtx.createGain();
+      tremorGain.gain.setValueAtTime(0.65, now);
+      this.hugLFO.connect(this.hugLFOGain);
+      this.hugLFOGain.connect(tremorGain.gain);
+
+      this.hugOsc1.connect(filter);
+      this.hugOsc2.connect(filter);
+      filter.connect(tremorGain);
+      tremorGain.connect(this.hugRumbleMasterGain);
+      this.hugRumbleMasterGain.connect(this.audioCtx.destination);
+
+      this.hugOsc1.start(now);
+      this.hugOsc2.start(now);
+      this.hugLFO.start(now);
+    } catch (e) {
+      console.warn("Continuous rumble start failed", e);
+    }
+  }
+
+  setHugRumbleIntensity(pct) {
+    if (!this.hugRumbleMasterGain || !this.audioCtx) return;
+    try {
+      const now = this.audioCtx.currentTime;
+      const targetGain = Math.min(1.0, 0.55 + (pct / 100) * 0.45);
+      this.hugRumbleMasterGain.gain.cancelScheduledValues(now);
+      this.hugRumbleMasterGain.gain.linearRampToValueAtTime(targetGain, now + 0.04);
+
+      if (this.hugOsc1) {
+        this.hugOsc1.frequency.setValueAtTime(68 + (pct / 100) * 16, now);
+      }
+      if (this.hugOsc2) {
+        this.hugOsc2.frequency.setValueAtTime(74 + (pct / 100) * 18, now);
+      }
+      if (this.hugLFO) {
+        this.hugLFO.frequency.setValueAtTime(15 + (pct / 100) * 10, now);
+      }
+    } catch (e) {}
+  }
+
+  stopContinuousHugRumble() {
+    if (!this.audioCtx) return;
+    try {
+      const now = this.audioCtx.currentTime;
+      if (this.hugRumbleMasterGain) {
+        this.hugRumbleMasterGain.gain.cancelScheduledValues(now);
+        this.hugRumbleMasterGain.gain.linearRampToValueAtTime(0.001, now + 0.05);
+      }
+      setTimeout(() => {
+        try {
+          if (this.hugOsc1) { this.hugOsc1.stop(); this.hugOsc1.disconnect(); this.hugOsc1 = null; }
+          if (this.hugOsc2) { this.hugOsc2.stop(); this.hugOsc2.disconnect(); this.hugOsc2 = null; }
+          if (this.hugLFO) { this.hugLFO.stop(); this.hugLFO.disconnect(); this.hugLFO = null; }
+          if (this.hugRumbleMasterGain) { this.hugRumbleMasterGain.disconnect(); this.hugRumbleMasterGain = null; }
+        } catch (e) {}
+      }, 60);
     } catch (e) {}
   }
 
@@ -208,30 +306,30 @@ class HyroxApp {
     if ('vibrate' in navigator) {
       try {
         if (level === 1) {
-          // Contact / initial charge pulse
-          navigator.vibrate([120, 70, 180]);
+          // Contact impact
+          navigator.vibrate([140, 50, 160]);
         } else if (level === 2) {
-          // Building warmth heartbeat
-          navigator.vibrate([160, 60, 240]);
+          // Deep pulse
+          navigator.vibrate([180, 50, 220]);
         } else if (level === 3) {
           // High intensity charging heartbeat
-          navigator.vibrate([220, 50, 320]);
+          navigator.vibrate([240, 40, 300]);
         } else if (level >= 4) {
-          // HUGE CELEBRATORY WARM HUG IMPACT (extra powerful & long)
-          navigator.vibrate([260, 70, 380, 80, 520, 90, 750]);
+          // Full celebratory warm hug explosion
+          navigator.vibrate([350, 60, 450, 70, 600, 80, 950]);
         }
       } catch (e) {}
     }
 
     // 2) Acoustic Speaker Transducer Physical Rumble (Works on iPhone + Android)
     if (level === 1) {
-      this.playHapticRumble(0.7, 0.22, 54);
+      this.playHapticRumble(0.85, 0.25, 68);
     } else if (level === 2) {
-      this.playHapticRumble(0.9, 0.28, 50);
+      this.playHapticRumble(1.0, 0.32, 62);
     } else if (level === 3) {
-      this.playHapticRumble(1.1, 0.36, 46);
+      this.playHapticRumble(1.2, 0.40, 56);
     } else if (level >= 4) {
-      this.playHapticRumble(1.3, 0.65, 42);
+      this.playHapticRumble(1.5, 0.75, 48);
     }
   }
 
@@ -517,21 +615,47 @@ class HyroxApp {
         clearInterval(this.hugPulseInterval);
         clearTimeout(this.hugResetTimer);
 
-        hugBtn.classList.remove('shaking', 'blooming');
+        hugBtn.classList.remove('shaking', 'blooming', 'fully-charged');
         hugBtn.classList.add('squeezing');
         if (warmthOverlay) warmthOverlay.classList.add('warmth-holding');
 
-        // Immediate strong physical actuator + speaker thump on contact
+        // 1) Start continuous acoustic physical rumble through speakers (buzzes phone chassis)
+        this.startContinuousHugRumble();
+
+        // 2) Immediate strong physical actuator impact on contact
         this.triggerHeartbeatHaptic(1);
 
+        let lastVibrateTime = Date.now();
         let lastBeatTier = 0;
 
-        // Smoothly charge the hug progress and escalate heartbeats
+        // Smoothly charge the hug progress and escalate vibrations continuously
         this.hugPulseInterval = setInterval(() => {
           if (!this.holdPressActive) return;
           const elapsed = Date.now() - this.holdStartTime;
           const pct = Math.min(100, Math.round((elapsed / HUG_FULL_MS) * 100));
           if (hugFill) hugFill.style.width = `${pct}%`;
+
+          // Dynamically ramp the acoustic rumble motor volume and frequency
+          this.setHugRumbleIntensity(pct);
+
+          // Continuous escalating hardware vibration pulses throughout hold!
+          // As pct increases, pulses become faster, longer, and more forceful
+          const nowTime = Date.now();
+          const pulseIntervalMs = Math.max(105, 230 - (pct * 1.25)); // 230ms down to 105ms
+          const pulseDurationMs = Math.min(170, 70 + (pct * 1.0));    // 70ms up to 170ms
+
+          if (nowTime - lastVibrateTime >= pulseIntervalMs) {
+            lastVibrateTime = nowTime;
+            if ('vibrate' in navigator) {
+              try {
+                if (pct >= 100) {
+                  navigator.vibrate([220, 30, 220]);
+                } else {
+                  navigator.vibrate(pulseDurationMs);
+                }
+              } catch (err) {}
+            }
+          }
 
           // Progressive phase feedback
           if (pct < 25) {
@@ -556,6 +680,7 @@ class HyroxApp {
             }
           } else {
             // 100% Fully Powered Warm Hug!
+            hugBtn.classList.add('fully-charged');
             if (hugBtnText) hugBtnText.textContent = '100% WARMTH! Release now! 💖✨';
             if (lastBeatTier < 4) {
               lastBeatTier = 4;
@@ -571,7 +696,7 @@ class HyroxApp {
             rect.top + 10,
             holdEmojis[Math.floor(Math.random() * holdEmojis.length)]
           );
-        }, 60);
+        }, 50);
       });
 
       const handleRelease = () => {
@@ -579,8 +704,9 @@ class HyroxApp {
         this.holdPressActive = false;
 
         clearInterval(this.hugPulseInterval);
+        this.stopContinuousHugRumble();
 
-        hugBtn.classList.remove('squeezing');
+        hugBtn.classList.remove('squeezing', 'fully-charged');
         if (warmthOverlay) warmthOverlay.classList.remove('warmth-holding');
 
         const elapsed = Date.now() - this.holdStartTime;
@@ -593,7 +719,7 @@ class HyroxApp {
 
           if (hugBtnText) hugBtnText.textContent = 'Hold longer for a real hug! 🫂';
           if ('vibrate' in navigator) {
-            try { navigator.vibrate([100, 60, 100]); } catch (e) {}
+            try { navigator.vibrate([120, 60, 120]); } catch (e) {}
           }
           this.playSound('boing');
 
@@ -620,7 +746,7 @@ class HyroxApp {
 
         if (hugBtnText) hugBtnText.textContent = 'Warm Hug Sent with All My Love! 💖';
 
-        // EXTRA IMPACTFUL VIBRATION SEQUENCE (Heavy Actuator + Sub-bass acoustic rumble)
+        // MASSIVE CELEBRATORY VIBRATION SEQUENCE (Heavy Actuator Blast + Sub-bass acoustic thump)
         this.triggerHeartbeatHaptic(4);
         this.playSound('warmHug');
         triggerHugGlow(true);
@@ -629,8 +755,8 @@ class HyroxApp {
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
 
-        this.burstHearts(centerX, centerY, 16);
-        this.triggerConfetti(45);
+        this.burstHearts(centerX, centerY, 18);
+        this.triggerConfetti(50);
         updateWhisper();
 
         clearTimeout(this.hugResetTimer);

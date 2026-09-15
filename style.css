@@ -975,8 +975,24 @@ body {
 
 /* Hug Button Animations */
 .hug-button.squeezing {
-  transform: translate(3px, 3px) scale(0.98);
+  transform: translate(2px, 2px) scale(0.98);
   box-shadow: var(--shadow-hard-pressed);
+  animation: hugSqueezeTremor 0.08s infinite alternate ease-in-out;
+}
+
+@keyframes hugSqueezeTremor {
+  0% { transform: translate(1.5px, 2.5px) scale(0.978); }
+  100% { transform: translate(2.5px, 1.5px) scale(0.982); }
+}
+
+.hug-button.fully-charged {
+  animation: hugChargedPowerTremor 0.05s infinite alternate ease-in-out;
+  box-shadow: 0 0 28px rgba(255, 208, 0, 0.95), 1px 2px 0px var(--ink-dark);
+}
+
+@keyframes hugChargedPowerTremor {
+  0% { transform: translate(1px, 2px) scale(0.985); filter: brightness(1.08); }
+  100% { transform: translate(3px, 1px) scale(1.015); filter: brightness(1.15); }
 }
 
 .hug-button.shaking {
