@@ -41,6 +41,10 @@
 
   <!-- First Page: Portal Hub with Surprise Button -->
   <div class="portal-view" id="portal-view">
+    <div class="portal-sparkle ps-1">✨</div>
+    <div class="portal-sparkle ps-2">⭐</div>
+    <div class="portal-sparkle ps-3">💖</div>
+    <div class="portal-sparkle ps-4">🐾</div>
     <div class="portal-card">
       <div class="portal-tag">
         <span>💖</span> FROM DORA TO BHONDU
@@ -63,81 +67,98 @@
     </div>
   </div>
 
-  <!-- Main Mobile Container (HYROX Quest View) -->
-  <main class="mobile-container" id="quest-view" style="display: none;">
+  <!-- Main Container (HYROX Quest View) -->
+  <main class="quest-view-wrap" id="quest-view" style="display: none;">
     
-    <!-- Hero Section: Runner Bib -->
-    <section class="hero-section">
-      <div class="doodle-sparkle sparkle-1">✨</div>
-      <div class="doodle-sparkle sparkle-2">💖</div>
-      <div class="doodle-sparkle sparkle-3">⭐</div>
+    <!-- TOP BUBBLEGUM PINK HERO ZONE -->
+    <div class="pink-hero-canvas">
+      <div class="content-container">
+        <!-- Hero Section: Runner Bib -->
+        <section class="hero-section">
+          <div class="doodle-sparkle sparkle-1">✨</div>
+          <div class="doodle-sparkle sparkle-2">💖</div>
+          <div class="doodle-sparkle sparkle-3">⭐</div>
+          <div class="doodle-sparkle sparkle-4">🐾</div>
 
-      <div class="runner-bib">
-        <div class="bib-pin pin-left">📌</div>
-        <div class="bib-pin pin-right">📌</div>
+          <div class="runner-bib">
+            <div class="bib-pin pin-left">📌</div>
+            <div class="bib-pin pin-right">📌</div>
 
-        <div class="bib-header">
-          <span class="bib-event">HYROX FIRST TIMER EDITION</span>
-          <span class="bib-badge">★ PRO ATHLETE</span>
-        </div>
+            <div class="bib-header">
+              <span class="bib-event">HYROX FIRST TIMER EDITION</span>
+              <span class="bib-badge">★ PRO ATHLETE</span>
+            </div>
 
-        <div class="bib-number">#01</div>
-        <h1 class="bib-name">SUPER NITZ</h1>
-        <p class="bib-sub">aka <em>"Meri Pyaari Bhondu"</em> 🐾</p>
+            <div class="bib-number">#01</div>
+            <h1 class="bib-name">SUPER NITZ</h1>
+            <p class="bib-sub">aka <em>"Meri Pyaari Bhondu"</em> 🐾</p>
 
-        <div class="bib-stats">
-          <div class="stat-item">
-            <span class="stat-label">HEART</span>
-            <span class="stat-val">1000% ❤️</span>
+            <div class="bib-stats">
+              <div class="stat-item">
+                <span class="stat-label">HEART</span>
+                <span class="stat-val">1000% ❤️</span>
+              </div>
+              <div class="stat-divider">•</div>
+              <div class="stat-item">
+                <span class="stat-label">BEAST MODE</span>
+                <span class="stat-val">ACTIVE 🔥</span>
+              </div>
+              <div class="stat-divider">•</div>
+              <div class="stat-item">
+                <span class="stat-label">CUTENESS</span>
+                <span class="stat-val">MAX 🐰</span>
+              </div>
+            </div>
           </div>
-          <div class="stat-divider">•</div>
-          <div class="stat-item">
-            <span class="stat-label">BEAST MODE</span>
-            <span class="stat-val">ACTIVE 🔥</span>
+
+          <!-- Real Warm Hug Experience (Hold to Hug) -->
+          <div class="hug-zone">
+            <button class="hug-button" id="hug-btn" role="button" aria-label="Hold for a Warm Hug from Dora">
+              <span class="hug-star-sticker" aria-hidden="true">⭐</span>
+              <div class="hug-progress-fill" id="hug-hold-fill"></div>
+              <span class="btn-icon">🫂</span>
+              <span class="btn-text" id="hug-btn-text">Press &amp; Hold for a Warm Hug!</span>
+              <span class="hug-counter-badge" id="hug-counter">0 warm hugs sent</span>
+            </button>
+            <div class="hug-whisper" id="hug-whisper">
+              <span>💖</span>
+              <span id="hug-whisper-text">Press &amp; hold anytime you need Dora's warm squeeze!</span>
+            </div>
+            <p class="hug-hint">Press and hold to charge Dora's warm embrace 💖</p>
           </div>
-          <div class="stat-divider">•</div>
-          <div class="stat-item">
-            <span class="stat-label">CUTENESS</span>
-            <span class="stat-val">MAX 🐰</span>
+        </section>
+
+        <!-- Race Day Affirmation Card -->
+        <section class="scrapbook-card affirmation-card">
+          <div class="pin-tack">📌</div>
+          <div class="card-tag">A Note From Your Biggest Fan 📌</div>
+          <h2 class="card-title">Hey Bhondu, You Got This! ⭐</h2>
+          <p class="card-text">
+            Today is your very first HYROX, and I couldn't be prouder of you! You've put in the sweat, the laughs, and all the hard work. Remember: it’s not about anyone else. It’s just you having fun, kicking butt, and showing the race course what a rockstar you are.
+          </p>
+          <div class="handwritten-sign">
+            Forever cheering loudest for you, always ❤️
           </div>
-        </div>
+        </section>
       </div>
+    </div>
 
-      <!-- Real Warm Hug Experience (Hold to Hug) -->
-      <div class="hug-zone">
-        <button class="hug-button" id="hug-btn" role="button" aria-label="Hold for a Warm Hug from Dora">
-          <div class="hug-progress-fill" id="hug-hold-fill"></div>
-          <span class="btn-icon">🫂</span>
-          <span class="btn-text" id="hug-btn-text">Press &amp; Hold for a Warm Hug!</span>
-          <span class="hug-counter-badge" id="hug-counter">0 warm hugs sent</span>
-        </button>
-        <div class="hug-whisper" id="hug-whisper">
-          <span>💖</span>
-          <span id="hug-whisper-text">Press &amp; hold anytime you need Dora's warm squeeze!</span>
-        </div>
-        <p class="hug-hint">Press and hold to charge Dora's warm embrace 💖</p>
-      </div>
-    </section>
+    <!-- ORGANIC WAVY SCALLOPED DIVIDER (Connecting Pink Hero to Marigold Yellow Quest) -->
+    <div class="wavy-divider-wrap" aria-hidden="true">
+      <svg class="wavy-divider-svg" viewBox="0 0 1440 90" preserveAspectRatio="none">
+        <path d="M0,0 C240,75 480,-25 720,55 C960,115 1200,10 1440,50 L1440,90 L0,90 Z" fill="#FFCF36"></path>
+      </svg>
+    </div>
 
-    <!-- Race Day Affirmation Card -->
-    <section class="scrapbook-card affirmation-card">
-      <div class="pin-tack">📌</div>
-      <div class="card-tag">A Note From Your Biggest Fan 📌</div>
-      <h2 class="card-title">Hey Bhondu, You Got This! ⭐</h2>
-      <p class="card-text">
-        Today is your very first HYROX, and I couldn't be prouder of you! You've put in the sweat, the laughs, and all the hard work. Remember: it’s not about anyone else. It’s just you having fun, kicking butt, and showing the race course what a rockstar you are.
-      </p>
-      <div class="handwritten-sign">
-        Forever cheering loudest for you, always ❤️
-      </div>
-    </section>
-
-    <!-- Morning Checklist -->
-    <section class="scrapbook-card checklist-card">
-      <h2 class="section-title">
-        <span>📋</span> Bhondu's Race Day Checklist
-      </h2>
-      <p class="section-subtitle">Tap each one to check off your superpowers!</p>
+    <!-- BOTTOM SUNSHINE YELLOW ZONE -->
+    <div class="yellow-quest-canvas">
+      <div class="content-container">
+        <!-- Morning Checklist -->
+        <section class="scrapbook-card checklist-card">
+          <h2 class="section-title">
+            <span>📋</span> Bhondu's Race Day Checklist
+          </h2>
+          <p class="section-subtitle">Tap each one to check off your superpowers!</p>
       
       <div class="checklist-items">
         <label class="check-item">
@@ -512,13 +533,15 @@
 
     </section>
 
-    <!-- Footer Loving Note -->
-    <footer class="app-footer">
-      <div class="footer-doodle">🐾 • 💖 • 👟 • ⏱️ • ✨</div>
-      <p class="footer-text">Handcrafted with infinite love by Dora for <strong>Nitz</strong> on her HYROX debut.</p>
-      <p class="footer-sub">"You are stronger than you know, braver than you feel, and loved more than you can imagine."</p>
-    </footer>
+      <!-- Footer Loving Note -->
+      <footer class="app-footer">
+        <div class="footer-doodle">🐾 • 💖 • 👟 • ⏱️ • ✨</div>
+        <p class="footer-text">Handcrafted with infinite love by Dora for <strong>Nitz</strong> on her HYROX debut.</p>
+        <p class="footer-sub">"You are stronger than you know, braver than you feel, and loved more than you can imagine."</p>
+      </footer>
 
+      </div> <!-- /.content-container -->
+    </div> <!-- /.yellow-quest-canvas -->
   </main>
 
   <!-- Sticky Floating "Emergency Pep-Talk / Hug" Button -->
