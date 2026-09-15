@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#FAF8F5">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <title>Super Nitz & The HYROX Quest | Pro Athlete Edition</title>
+  
+  <!-- Modern Google Fonts: Plus Jakarta Sans, Outfit, & Caveat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Custom Cute SVG Icons Sprite -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none;">
+    <defs>
+      <!-- Sound On -->
+      <symbol id="icon-sound-on" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M14 3.23v17.54a1 1 0 0 1-1.63.77L7.54 18H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3.54l4.83-3.54A1 1 0 0 1 14 3.23z"/>
+        <path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M17.5 7.5a6.5 6.5 0 0 1 0 9M20.5 4.5a10.5 10.5 0 0 1 0 15"/>
+      </symbol>
+      
+      <!-- Sound Off -->
+      <symbol id="icon-sound-off" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M14 3.23v17.54a1 1 0 0 1-1.63.77L7.54 18H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3.54l4.83-3.54A1 1 0 0 1 14 3.23z"/>
+        <line x1="17" y1="9" x2="23" y2="15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+        <line x1="23" y1="9" x2="17" y2="15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+      </symbol>
+
+      <!-- Puffy Glossy Heart -->
+      <symbol id="icon-heart" viewBox="0 0 24 24">
+        <defs>
+          <linearGradient id="grad-heart-symbol" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FF5376"/>
+            <stop offset="100%" stop-color="#E11D48"/>
+          </linearGradient>
+        </defs>
+        <path fill="url(#grad-heart-symbol)" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        <ellipse cx="7.5" cy="7" rx="2.5" ry="1.2" fill="#FFFFFF" opacity="0.4" transform="rotate(-30 7.5 7)"/>
+      </symbol>
+
+      <!-- 4-Point Sparkle -->
+      <symbol id="icon-sparkle" viewBox="0 0 24 24">
+        <path fill="#FFD000" d="M12 2c.4 5 4.5 9.1 9.5 9.5-.4 5-4.5 9.1-9.5 9.5-.4-5-4.5-9.1-9.5-9.5.4-5 4.5-9.1 9.5-9.5z"/>
+      </symbol>
+
+      <!-- Cute 5-Point Star -->
+      <symbol id="icon-star" viewBox="0 0 24 24">
+        <path fill="#F59E0B" d="M12 2.5l2.75 6.28 6.75.64-5.08 4.47 1.48 6.61L12 17.06 6.1 20.5l1.48-6.61-5.08-4.47 6.75-.64L12 2.5z"/>
+        <circle cx="10" cy="11" r="0.8" fill="#78350F"/>
+        <circle cx="14" cy="11" r="0.8" fill="#78350F"/>
+        <path fill="none" stroke="#78350F" stroke-width="0.8" stroke-linecap="round" d="M11 13.5c.5.5 1.5.5 2 0"/>
+      </symbol>
+
+      <!-- Pushpin -->
+      <symbol id="icon-pin" viewBox="0 0 24 24">
+        <path fill="#FF4D6D" d="M18.5 13l-2.8-2.8V4h.8a1 1 0 0 0 0-2H7.5a1 1 0 0 0 0 2h.8v6.2L5.5 13a1 1 0 0 0 .7 1.7h5v6.5a1 1 0 0 0 2 0v-6.5h5a1 1 0 0 0 .7-1.7z"/>
+      </symbol>
+
+      <!-- Puppy/Cat Paw -->
+      <symbol id="icon-paw" viewBox="0 0 24 24">
+        <path fill="#FF758F" d="M12 11c-2.76 0-5 2-5 4.5 0 2.2 2.24 4.5 5 4.5s5-2.3 5-4.5c0-2.5-2.24-4.5-5-4.5z"/>
+        <ellipse cx="6" cy="9.5" rx="1.8" ry="2.6" fill="#FF758F"/>
+        <ellipse cx="10" cy="6.5" rx="1.8" ry="2.6" fill="#FF758F"/>
+        <ellipse cx="14" cy="6.5" rx="1.8" ry="2.6" fill="#FF758F"/>
+        <ellipse cx="18" cy="9.5" rx="1.8" ry="2.6" fill="#FF758F"/>
+      </symbol>
+
+      <!-- Beast Mode Flame -->
+      <symbol id="icon-fire" viewBox="0 0 24 24">
+        <path fill="#F97316" d="M12 2c-.5 2.5-2.5 4.5-4 6-2 2-3 4.5-3 7a7 7 0 0 0 14 0c0-3.5-2-6-4.5-8-.5 2-2 3.5-3.5 3.5 1-2.5 1.5-5.5 1-8.5z"/>
+        <path fill="#FDE047" d="M12 13c-.5 1-1.5 2-2.5 2.5-1 1-1.5 2-1.5 3.5a4 4 0 0 0 8 0c0-1.8-1-3.2-2.5-4-.2 1-.7 1.8-1.5 1.8.5-1.2.7-2.5 0-3.8z"/>
+      </symbol>
+
+      <!-- Cuteness Bunny -->
+      <symbol id="icon-bunny" viewBox="0 0 24 24">
+        <ellipse cx="8" cy="7" rx="2.5" ry="6" fill="#FDA4AF"/>
+        <ellipse cx="16" cy="7" rx="2.5" ry="6" fill="#FDA4AF"/>
+        <ellipse cx="8" cy="7" rx="1.2" ry="4" fill="#FFF1F2"/>
+        <ellipse cx="16" cy="7" rx="1.2" ry="4" fill="#FFF1F2"/>
+        <circle cx="12" cy="16" r="6" fill="#FDA4AF"/>
+        <circle cx="10" cy="15" r="1" fill="#18181B"/>
+        <circle cx="14" cy="15" r="1" fill="#18181B"/>
+        <ellipse cx="12" cy="17" rx="1" ry="0.7" fill="#E11D48"/>
+        <circle cx="8" cy="16.5" r="1" fill="#F43F5E" opacity="0.5"/>
+        <circle cx="16" cy="16.5" r="1" fill="#F43F5E" opacity="0.5"/>
+      </symbol>
+
+      <!-- Warm Embrace Hug -->
+      <symbol id="icon-hug" viewBox="0 0 24 24">
+        <circle cx="12" cy="7" r="3.5" fill="#FB923C"/>
+        <path fill="#F97316" d="M5 21v-4c0-2.2 1.8-4 4-4h6c2.2 0 4 1.8 4 4v4H5z"/>
+        <path fill="#FF4D6D" d="M12 16.5l-1.2-1.1c-2.3-2-3.8-3.4-3.8-5.1 0-1.4 1.1-2.4 2.5-2.4.8 0 1.5.4 2 1 .5-.6 1.2-1 2-1 1.4 0 2.5 1 2.5 2.4 0 1.7-1.5 3.1-3.8 5.1L12 16.5z"/>
+      </symbol>
+
+      <!-- Modern Checklist Clipboard -->
+      <symbol id="icon-checklist" viewBox="0 0 24 24">
+        <rect x="4" y="4" width="16" height="18" rx="3" fill="#EEF2FF" stroke="#6366F1" stroke-width="2"/>
+        <rect x="8" y="2" width="8" height="4" rx="1.5" fill="#6366F1"/>
+        <path fill="none" stroke="#6366F1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M8 11l2.5 2.5 5.5-5.5M8 17h8"/>
+      </symbol>
+
+      <!-- Running Sneaker -->
+      <symbol id="icon-shoe" viewBox="0 0 24 24">
+        <path fill="#3B82F6" d="M21 15c-1-2-3.5-3.5-6-3.5-1.5 0-3 .5-4.5 1.5l-2-2.5c-.8-.9-2-1.5-3.2-1.5H3v6h18v-.5z"/>
+        <path fill="#1D4ED8" d="M2 17h20v2.5a1.5 1.5 0 0 1-1.5 1.5H3.5A1.5 1.5 0 0 1 2 19.5V17z"/>
+        <circle cx="6" cy="18.5" r="1" fill="#93C5FD"/>
+        <circle cx="10" cy="18.5" r="1" fill="#93C5FD"/>
+        <circle cx="14" cy="18.5" r="1" fill="#93C5FD"/>
+        <circle cx="18" cy="18.5" r="1" fill="#93C5FD"/>
+        <path fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" d="M10 11.5l2 2M12 10.5l2 2"/>
+      </symbol>
+
+      <!-- Water Drop Hydration -->
+      <symbol id="icon-water" viewBox="0 0 24 24">
+        <path fill="#38BDF8" d="M12 2.5c-4 5.5-7 9.5-7 13.5a7 7 0 0 0 14 0c0-4-3-8-7-13.5z"/>
+        <ellipse cx="9.5" cy="14" rx="2" ry="3.5" fill="#FFFFFF" opacity="0.4" transform="rotate(-25 9.5 14)"/>
+      </symbol>
+
+      <!-- Cheerful Face -->
+      <symbol id="icon-smile" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" fill="#FDE047"/>
+        <circle cx="8.5" cy="10" r="1.5" fill="#713F12"/>
+        <circle cx="15.5" cy="10" r="1.5" fill="#713F12"/>
+        <ellipse cx="6.5" cy="12.5" rx="1.5" ry="0.8" fill="#F87171" opacity="0.6"/>
+        <ellipse cx="17.5" cy="12.5" rx="1.5" ry="0.8" fill="#F87171" opacity="0.6"/>
+        <path fill="none" stroke="#713F12" stroke-width="1.8" stroke-linecap="round" d="M8 14.5c1 2 7 2 8 0"/>
+      </symbol>
+
+      <!-- Rocket Booster -->
+      <symbol id="icon-rocket" viewBox="0 0 24 24">
+        <path fill="#EC4899" d="M14.5 2.5c-4 1-7.5 4.5-8.5 8.5L13 18c4-1 7.5-4.5 8.5-8.5-1-4.5-3-6-7-7z"/>
+        <circle cx="14.5" cy="9.5" r="2.2" fill="#FFFFFF"/>
+        <path fill="#F43F5E" d="M6 11l-3.5 2 1.5 3.5L7 15l-1-4zM13 18l2 3.5 3.5-1.5-1.5-3-4 1z"/>
+        <path fill="#F59E0B" d="M4 19l2-2-1-1-3 1.5L4 19z"/>
+      </symbol>
+
+      <!-- Quest Map -->
+      <symbol id="icon-map" viewBox="0 0 24 24">
+        <polygon points="2 5 8 2 16 6 22 3 22 19 16 22 8 18 2 21" fill="#E2E8F0" stroke="#64748B" stroke-width="1.5" stroke-linejoin="round"/>
+        <polyline points="8 2 8 18" stroke="#64748B" stroke-width="1.5"/>
+        <polyline points="16 6 16 22" stroke="#64748B" stroke-width="1.5"/>
+        <circle cx="12" cy="11" r="2.5" fill="#EF4444"/>
+      </symbol>
+
+      <!-- Energy Bolt -->
+      <symbol id="icon-bolt" viewBox="0 0 24 24">
+        <path fill="#F59E0B" d="M13 2L4 13.5h6.5L9 22l11-12.5h-7L13 2z"/>
+      </symbol>
+
+      <!-- Station 1: SkiErg -->
+      <symbol id="icon-skierg" viewBox="0 0 24 24">
+        <line x1="5" y1="3" x2="8.5" y2="21" stroke="#0284C7" stroke-width="2.2" stroke-linecap="round"/>
+        <line x1="19" y1="3" x2="15.5" y2="21" stroke="#0284C7" stroke-width="2.2" stroke-linecap="round"/>
+        <rect x="3.5" y="2" width="3" height="6" rx="1.5" fill="#0369A1"/>
+        <rect x="17.5" y="2" width="3" height="6" rx="1.5" fill="#0369A1"/>
+        <circle cx="12" cy="6" r="3" fill="#38BDF8"/>
+      </symbol>
+
+      <!-- Station 2: Sled Push -->
+      <symbol id="icon-sled" viewBox="0 0 24 24">
+        <path fill="#DC2626" d="M3 19h18v2.5a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V19z"/>
+        <line x1="6" y1="19" x2="6" y2="7" stroke="#991B1B" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="10" y1="19" x2="10" y2="7" stroke="#991B1B" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="5" y1="7" x2="11" y2="7" stroke="#991B1B" stroke-width="2" stroke-linecap="round"/>
+        <rect x="12" y="11" width="7" height="8" rx="1" fill="#475569"/>
+        <circle cx="15.5" cy="15" r="2" fill="#94A3B8"/>
+      </symbol>
+
+      <!-- Station 3: Sled Pull Rope -->
+      <symbol id="icon-rope" viewBox="0 0 24 24">
+        <path fill="none" stroke="#D97706" stroke-width="3" stroke-linecap="round" d="M3 17c3 0 3-8 7-8s4 8 7 8 3-8 4-8"/>
+        <rect x="2" y="15" width="3" height="4" rx="1" fill="#78350F"/>
+        <rect x="19" y="7" width="3" height="4" rx="1" fill="#78350F"/>
+      </symbol>
+
+      <!-- Station 4: Burpee Frog -->
+      <symbol id="icon-frog" viewBox="0 0 24 24">
+        <circle cx="7" cy="8" r="3.5" fill="#22C55E"/>
+        <circle cx="17" cy="8" r="3.5" fill="#22C55E"/>
+        <circle cx="7" cy="7.5" r="1.5" fill="#FFFFFF"/>
+        <circle cx="17" cy="7.5" r="1.5" fill="#FFFFFF"/>
+        <circle cx="7" cy="7.5" r="0.8" fill="#14532D"/>
+        <circle cx="17" cy="7.5" r="0.8" fill="#14532D"/>
+        <ellipse cx="12" cy="14" rx="9" ry="7" fill="#22C55E"/>
+        <ellipse cx="12" cy="15.5" rx="6" ry="4.5" fill="#86EFAC"/>
+        <circle cx="6" cy="14" r="1.2" fill="#F43F5E" opacity="0.6"/>
+        <circle cx="18" cy="14" r="1.2" fill="#F43F5E" opacity="0.6"/>
+        <path fill="none" stroke="#14532D" stroke-width="1.5" stroke-linecap="round" d="M9.5 13.5c1 1.5 4 1.5 5 0"/>
+      </symbol>
+
+      <!-- Roxzone Smoothie -->
+      <symbol id="icon-smoothie" viewBox="0 0 24 24">
+        <rect x="7" y="7" width="10" height="14" rx="3" fill="#A855F7"/>
+        <rect x="6" y="5" width="12" height="3" rx="1" fill="#7E22CE"/>
+        <line x1="12" y1="1" x2="15" y2="7" stroke="#F43F5E" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="12" cy="13" r="2.5" fill="#F472B6"/>
+        <path fill="none" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" d="M9 10h6"/>
+      </symbol>
+
+      <!-- Station 5: Rowing -->
+      <symbol id="icon-rowing" viewBox="0 0 24 24">
+        <circle cx="19" cy="8" r="3" fill="#3B82F6"/>
+        <path fill="none" stroke="#1D4ED8" stroke-width="2.2" stroke-linecap="round" d="M2 19h18M5 19l4-6 5 2 3-5M11 11l4 5"/>
+        <circle cx="7" cy="8" r="2.5" fill="#60A5FA"/>
+      </symbol>
+
+      <!-- Station 6: Farmers Carry Kettlebells -->
+      <symbol id="icon-kettlebell" viewBox="0 0 24 24">
+        <circle cx="8" cy="15" r="5" fill="#475569"/>
+        <circle cx="16" cy="15" r="5" fill="#334155"/>
+        <path fill="none" stroke="#1E293B" stroke-width="2" stroke-linecap="round" d="M5.5 11V6a2.5 2.5 0 0 1 5 0v5M13.5 11V6a2.5 2.5 0 0 1 5 0v5"/>
+        <circle cx="8" cy="15" r="1.5" fill="#94A3B8"/>
+        <circle cx="16" cy="15" r="1.5" fill="#94A3B8"/>
+      </symbol>
+
+      <!-- Station 7: Sandbag Lunges -->
+      <symbol id="icon-sandbag" viewBox="0 0 24 24">
+        <rect x="3" y="8" width="18" height="10" rx="5" fill="#78350F"/>
+        <line x1="6" y1="8" x2="6" y2="18" stroke="#451A03" stroke-width="1.5"/>
+        <line x1="18" y1="8" x2="18" y2="18" stroke="#451A03" stroke-width="1.5"/>
+        <path fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" d="M9 8V5a1.5 1.5 0 0 1 3 0v3M12 8V5a1.5 1.5 0 0 1 3 0v3"/>
+      </symbol>
+
+      <!-- Station 8: Wall Ball Target -->
+      <symbol id="icon-target" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" fill="#EF4444"/>
+        <circle cx="12" cy="12" r="7" fill="#FFFFFF"/>
+        <circle cx="12" cy="12" r="4" fill="#EF4444"/>
+        <circle cx="12" cy="12" r="1.5" fill="#FDE047"/>
+      </symbol>
+
+      <!-- Wall Ball Projectile -->
+      <symbol id="icon-ball" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" fill="#EA580C"/>
+        <path fill="none" stroke="#431407" stroke-width="1.8" d="M2 12h20M12 2v20M5 5c3.5 3.5 3.5 10.5 0 14M19 5c-3.5 3.5-3.5 10.5 0 14"/>
+      </symbol>
+
+      <!-- Finish Trophy -->
+      <symbol id="icon-trophy" viewBox="0 0 24 24">
+        <path fill="#F59E0B" d="M6 3h12v7a6 6 0 0 1-12 0V3z"/>
+        <path fill="none" stroke="#D97706" stroke-width="2" stroke-linecap="round" d="M6 5H3a2 2 0 0 0-2 2v1a4 4 0 0 0 4 4h1M18 5h3a2 2 0 0 1 2 2v1a4 4 0 0 1-4 4h-1"/>
+        <rect x="10" y="15" width="4" height="4" fill="#D97706"/>
+        <rect x="7" y="19" width="10" height="3" rx="1.5" fill="#B45309"/>
+        <polygon points="12,5.5 13,8 15.5,8 13.5,9.5 14.5,12 12,10.5 9.5,12 10.5,9.5 8.5,8 11,8" fill="#FEF08A"/>
+      </symbol>
+
+      <!-- Race Stopwatch / Timer -->
+      <symbol id="icon-timer" viewBox="0 0 24 24">
+        <circle cx="12" cy="13" r="8" fill="#F0FDF4" stroke="#10B981" stroke-width="2"/>
+        <polyline points="12 9 12 13 15 13" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round"/>
+        <line x1="10" y1="2" x2="14" y2="2" stroke="#18181B" stroke-width="2" stroke-linecap="round"/>
+        <line x1="12" y1="2" x2="12" y2="5" stroke="#18181B" stroke-width="2" stroke-linecap="round"/>
+        <line x1="18.5" y1="6.5" x2="19.8" y2="5.2" stroke="#18181B" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+
+      <!-- Padlock Secret -->
+      <symbol id="icon-lock" viewBox="0 0 24 24">
+        <path fill="none" stroke="#F59E0B" stroke-width="2.5" stroke-linecap="round" d="M7 10V6a5 5 0 0 1 10 0v4"/>
+        <rect x="4" y="10" width="16" height="12" rx="3" fill="#F59E0B"/>
+        <path fill="#78350F" d="M12 14a1.8 1.8 0 0 0-1 1.6c0 .8.6 1.4 1 1.4s1-.6 1-1.4c0-.7-.4-1.3-1-1.6z"/>
+      </symbol>
+
+      <!-- Love Letter Envelope -->
+      <symbol id="icon-envelope" viewBox="0 0 24 24">
+        <rect x="2" y="4" width="20" height="16" rx="3" fill="#FCE7F3" stroke="#F472B6" stroke-width="1.8"/>
+        <polyline points="2,5 12,13 22,5" fill="none" stroke="#F472B6" stroke-width="1.8"/>
+        <circle cx="12" cy="13" r="3" fill="#EC4899"/>
+        <path fill="#FFFFFF" d="M12 14.5l-.5-.5c-1-.8-1.5-1.3-1.5-2 0-.6.4-1 1-1 .4 0 .7.2.9.5.2-.3.5-.5.9-.5.6 0 1 .4 1 1 0 .7-.5 1.2-1.5 2l-.4.5z"/>
+      </symbol>
+
+      <!-- Party Popper Confetti -->
+      <symbol id="icon-confetti" viewBox="0 0 24 24">
+        <polygon points="3,21 5,14 10,19" fill="#F59E0B"/>
+        <path fill="#EC4899" d="M5 14l5 5 8-8-5-5-8 8z"/>
+        <circle cx="16" cy="4" r="1.5" fill="#3B82F6"/>
+        <circle cx="21" cy="8" r="1.5" fill="#10B981"/>
+        <circle cx="20" cy="15" r="1.2" fill="#F59E0B"/>
+        <path fill="none" stroke="#8B5CF6" stroke-width="1.5" stroke-linecap="round" d="M13 3c2 0 4 2 5 5"/>
+      </symbol>
+
+      <!-- Game Dice -->
+      <symbol id="icon-dice" viewBox="0 0 24 24">
+        <rect x="3" y="3" width="18" height="18" rx="4" fill="#6366F1"/>
+        <circle cx="7.5" cy="7.5" r="1.5" fill="#FFFFFF"/>
+        <circle cx="12" cy="12" r="1.5" fill="#FFFFFF"/>
+        <circle cx="16.5" cy="16.5" r="1.5" fill="#FFFFFF"/>
+        <circle cx="7.5" cy="16.5" r="1.5" fill="#FFFFFF"/>
+        <circle cx="16.5" cy="7.5" r="1.5" fill="#FFFFFF"/>
+      </symbol>
+
+      <!-- Flying Kiss Lips -->
+      <symbol id="icon-kiss" viewBox="0 0 24 24">
+        <path fill="#E11D48" d="M12 15.5c-2.5 0-5-.5-7-2 1.5-.5 3.5-.8 5-.8s3 .5 4 .5 2.5-.5 4-.5 3.5.3 5 .8c-2 1.5-4.5 2-11 2z"/>
+        <path fill="#F43F5E" d="M12 11c-2 0-3.5-1.5-5.5-1.5-2.5 0-4.5 1-4.5 2.5 2 1.5 4.5 2 7 2s5-.5 7-2c0-1.5-2-2.5-4.5-2.5-2 0-3.5 1.5-5.5 1.5z"/>
+        <path fill="#BE123C" d="M12 14c-1.5 0-3 .2-4.5.6 1.5 1.5 3 2.4 4.5 2.4s3-.9 4.5-2.4c-1.5-.4-3-.6-4.5-.6z"/>
+      </symbol>
+
+      <!-- Verified Stamp Seal -->
+      <symbol id="icon-stamp" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" fill="none" stroke="#10B981" stroke-width="2" stroke-dasharray="3 1.5"/>
+        <circle cx="12" cy="12" r="7.5" fill="#D1FAE5"/>
+        <path fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M8 12l2.5 2.5 5.5-5.5"/>
+      </symbol>
+
+      <!-- Race Finish Flag -->
+      <symbol id="icon-flag" viewBox="0 0 24 24">
+        <line x1="4" y1="2" x2="4" y2="22" stroke="#475569" stroke-width="2.5" stroke-linecap="round"/>
+        <rect x="5" y="3" width="5" height="4.5" fill="#1E293B"/>
+        <rect x="10" y="3" width="5" height="4.5" fill="#F1F5F9"/>
+        <rect x="15" y="3" width="5" height="4.5" fill="#1E293B"/>
+        <rect x="5" y="7.5" width="5" height="4.5" fill="#F1F5F9"/>
+        <rect x="10" y="7.5" width="5" height="4.5" fill="#1E293B"/>
+        <rect x="15" y="7.5" width="5" height="4.5" fill="#F1F5F9"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- Canvas Confetti Container -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Top Floating Controls -->
+  <header class="top-nav">
+    <button class="hub-back-btn" id="back-to-portal-btn" aria-label="Back to Hub" style="display: none;">
+      <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M15 18l-6-6 6-6"/></svg>
+      <span>Back</span>
+    </button>
+    <div class="sound-toggle-badge" id="sound-toggle" role="button" aria-label="Toggle Sound Effects">
+      <span class="sound-icon" id="sound-icon">
+        <svg class="c-icon"><use href="#icon-sound-on"></use></svg>
+      </span>
+      <span class="sound-label">Sound: <strong id="sound-state">ON</strong></span>
+    </div>
+    <div class="love-badge">
+      <span>Built with</span>
+      <svg class="c-icon text-coral"><use href="#icon-heart"></use></svg>
+      <span>for Bhondu</span>
+    </div>
+  </header>
+
+  <!-- First Page: Portal Hub with Surprise Button -->
+  <div class="portal-view" id="portal-view">
+    <div class="portal-card">
+      <div class="portal-tag">
+        <svg class="c-icon c-icon-sm text-coral"><use href="#icon-heart"></use></svg>
+        FROM DORA TO BHONDU
+      </div>
+      <h1 class="portal-title">Something Special Awaits</h1>
+      <p class="portal-desc">A little universe built just for you. Tap below to unlock your mission!</p>
+      
+      <div class="portal-actions">
+        <button class="portal-quest-btn" id="open-quest-btn">
+          <svg class="c-icon c-icon-lg text-gold"><use href="#icon-sparkle"></use></svg>
+          <span class="portal-btn-text">Secret Quest</span>
+          <svg class="c-icon c-icon-md text-coral"><use href="#icon-heart"></use></svg>
+        </button>
+      </div>
+
+      <div class="portal-footer-hint">
+        <svg class="c-icon c-icon-sm text-pink"><use href="#icon-paw"></use></svg>
+        <span>Handcrafted with love by Dora</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Mobile Container (HYROX Quest View) -->
+  <main class="mobile-container" id="quest-view" style="display: none;">
+    
+    <!-- Hero Section: Runner Bib -->
+    <section class="hero-section">
+      <div class="doodle-sparkle sparkle-1">
+        <svg class="c-icon c-icon-lg text-gold"><use href="#icon-sparkle"></use></svg>
+      </div>
+      <div class="doodle-sparkle sparkle-2">
+        <svg class="c-icon c-icon-lg text-coral"><use href="#icon-heart"></use></svg>
+      </div>
+      <div class="doodle-sparkle sparkle-3">
+        <svg class="c-icon c-icon-lg text-gold"><use href="#icon-star"></use></svg>
+      </div>
+
+      <div class="runner-bib">
+        <div class="bib-pin pin-left">
+          <svg class="c-icon c-icon-md"><use href="#icon-pin"></use></svg>
+        </div>
+        <div class="bib-pin pin-right">
+          <svg class="c-icon c-icon-md"><use href="#icon-pin"></use></svg>
+        </div>
+
+        <div class="bib-header">
+          <span class="bib-event">HYROX FIRST TIMER EDITION</span>
+          <span class="bib-badge">
+            <svg class="c-icon c-icon-sm"><use href="#icon-star"></use></svg>
+            PRO ATHLETE
+          </span>
+        </div>
+
+        <div class="bib-number">#01</div>
+        <h1 class="bib-name">SUPER NITZ</h1>
+        <p class="bib-sub">
+          aka <em>"Meri Pyaari Bhondu"</em>
+          <svg class="c-icon text-pink"><use href="#icon-paw"></use></svg>
+        </p>
+
+        <div class="bib-stats">
+          <div class="stat-item">
+            <span class="stat-label">HEART</span>
+            <span class="stat-val">
+              1000%
+              <svg class="c-icon c-icon-sm text-coral"><use href="#icon-heart"></use></svg>
+            </span>
+          </div>
+          <div class="stat-divider">•</div>
+          <div class="stat-item">
+            <span class="stat-label">BEAST MODE</span>
+            <span class="stat-val">
+              ACTIVE
+              <svg class="c-icon c-icon-sm text-gold"><use href="#icon-fire"></use></svg>
+            </span>
+          </div>
+          <div class="stat-divider">•</div>
+          <div class="stat-item">
+            <span class="stat-label">CUTENESS</span>
+            <span class="stat-val">
+              MAX
+              <svg class="c-icon c-icon-sm text-pink"><use href="#icon-bunny"></use></svg>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Love Button -->
+      <button class="hug-button" id="hug-btn">
+        <span class="btn-icon">
+          <svg class="c-icon c-icon-lg"><use href="#icon-hug"></use></svg>
+        </span>
+        <span class="btn-text">Tap for an Instant Bhondu Hug!</span>
+        <span class="hug-counter-badge" id="hug-counter">0 hugs sent</span>
+      </button>
+      <p class="hug-hint">
+        Tap anytime you feel nervous or need a boost!
+        <svg class="c-icon c-icon-sm text-coral"><use href="#icon-heart"></use></svg>
+      </p>
+    </section>
+
+    <!-- Race Day Affirmation Card -->
+    <section class="scrapbook-card affirmation-card">
+      <div class="pin-tack">
+        <svg class="c-icon c-icon-md"><use href="#icon-pin"></use></svg>
+      </div>
+      <div class="card-tag">
+        <svg class="c-icon c-icon-sm"><use href="#icon-heart"></use></svg>
+        A Note From Your Biggest Fan
+      </div>
+      <h2 class="card-title">
+        Hey Bhondu, You Got This!
+        <svg class="c-icon text-gold"><use href="#icon-star"></use></svg>
+      </h2>
+      <p class="card-text">
+        Today is your very first HYROX, and I couldn't be prouder of you! You've put in the sweat, the laughs, and all the hard work. Remember: it’s not about anyone else. It’s just you having fun, kicking butt, and showing the race course what a rockstar you are.
+      </p>
+      <div class="handwritten-sign">
+        Forever cheering loudest for you, always
+        <svg class="c-icon text-coral"><use href="#icon-heart"></use></svg>
+      </div>
+    </section>
+
+    <!-- Morning Checklist -->
+    <section class="scrapbook-card checklist-card">
+      <h2 class="section-title">
+        <svg class="c-icon text-violet"><use href="#icon-checklist"></use></svg>
+        Bhondu's Race Day Checklist
+      </h2>
+      <p class="section-subtitle">Tap each one to check off your superpowers!</p>
+      
+      <div class="checklist-items">
+        <label class="check-item">
+          <input type="checkbox" class="doodle-checkbox" checked>
+          <span class="checkmark"></span>
+          <span class="check-label">
+            Double-knotted shoelaces
+            <svg class="c-icon c-icon-sm"><use href="#icon-shoe"></use></svg>
+          </span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" class="doodle-checkbox" checked>
+          <span class="checkmark"></span>
+          <span class="check-label">
+            Electrolytes & happy hydration
+            <svg class="c-icon c-icon-sm"><use href="#icon-water"></use></svg>
+          </span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" class="doodle-checkbox">
+          <span class="checkmark"></span>
+          <span class="check-label">
+            Signature Bhondu cheeky smile
+            <svg class="c-icon c-icon-sm"><use href="#icon-smile"></use></svg>
+          </span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" class="doodle-checkbox">
+          <span class="checkmark"></span>
+          <span class="check-label">
+            Pacing strategy: steady & strong
+            <svg class="c-icon c-icon-sm"><use href="#icon-rocket"></use></svg>
+          </span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" class="doodle-checkbox">
+          <span class="checkmark"></span>
+          <span class="check-label">
+            Remembering that you are SO loved
+            <svg class="c-icon c-icon-sm text-coral"><use href="#icon-heart"></use></svg>
+          </span>
+        </label>
+      </div>
+      <div class="checklist-status" id="checklist-status">
+        <svg class="c-icon c-icon-sm"><use href="#icon-bolt"></use></svg>
+        Keep ticking, champ!
+      </div>
+    </section>
+
+    <!-- The Quest Trail: 8 HYROX Stations -->
+    <section class="quest-section">
+      <div class="quest-header">
+        <span class="quest-badge">THE 8 STATIONS</span>
+        <h2 class="quest-title">
+          Mission: Conquer HYROX!
+          <svg class="c-icon text-coral"><use href="#icon-map"></use></svg>
+        </h2>
+        <p class="quest-desc">
+          8 runs, 8 stations, infinite glory! Tap through your journey and play the station mini-games to collect energy!
+        </p>
+      </div>
+
+      <!-- Station Progress Bar -->
+      <div class="quest-progress-wrap">
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="quest-progress-fill" style="width: 12%;"></div>
+        </div>
+        <div class="progress-label">
+          <span id="progress-station-count">Station 1 of 8</span>
+          <span id="energy-count">100 Energy Points</span>
+        </div>
+      </div>
+
+      <!-- Stations Accordion / Cards -->
+      <div class="stations-list">
+
+        <!-- Station 1: SkiErg -->
+        <article class="station-card completed" id="st-1" data-station="1">
+          <div class="station-header">
+            <div class="station-badge">1</div>
+            <div class="station-info">
+              <span class="run-marker">
+                <svg class="c-icon c-icon-sm"><use href="#icon-shoe"></use></svg>
+                1km Run +
+              </span>
+              <h3 class="station-name">
+                1,000m SkiErg
+                <svg class="c-icon text-sky"><use href="#icon-skierg"></use></svg>
+              </h3>
+            </div>
+            <span class="station-status-pill">
+              <svg class="c-icon c-icon-sm text-emerald"><use href="#icon-stamp"></use></svg>
+              Unlocked
+            </span>
+          </div>
+          <div class="station-body">
+            <div class="doodle-tip">
+              <strong>Bhondu Secret Tip:</strong> <em>"Use your core and pull with rhythm like you're pulling Santa's sleigh! Don't blow all your fuel in the first 300 meters, pace it out softly."</em>
+            </div>
+            <div class="station-action">
+              <button class="stamp-btn" onclick="app.stampStation(1)">
+                <svg class="c-icon"><use href="#icon-stamp"></use></svg>
+                Collect Station 1 Stamp
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Station 2: Sled Push (Mini-Game 1) -->
+        <article class="station-card" id="st-2" data-station="2">
+          <div class="station-header">
+            <div class="station-badge">2</div>
+            <div class="station-info">
+              <span class="run-marker">
+                <svg class="c-icon c-icon-sm"><use href="#icon-shoe"></use></svg>
+                1km Run +
+              </span>
+              <h3 class="station-name">
+                50m Sled Push
+                <svg class="c-icon text-coral"><use href="#icon-sled"></use></svg>
+              </h3>
+            </div>
+            <span class="station-status-pill">Mini Game</span>
+          </div>
+          <div class="station-body">
+            <div class="doodle-tip">
+              <strong>Bhondu Secret Tip:</strong> <em>"Stay low, stay grounded, and push with your legs! It's heavy, but your determination is heavier!"</em>
+            </div>
+            <!-- Mini Game: Tap to Push Sled -->
+            <div class="mini-game-box" id="sled-game">
+              <div class="game-header">
+                <span class="game-tag">MINI-GAME</span>
+                <span class="game-title">Help Bhondu Push The Sled!</span>
+              </div>
+              <div class="sled-track">
+                <div class="sled-runner" id="sled-runner">
+                  <svg class="c-icon c-icon-lg text-gold"><use href="#icon-sled"></use></svg>
+                </div>
+                <div class="sled-finish-flag">
+                  <svg class="c-icon c-icon-md"><use href="#icon-flag"></use></svg>
+                </div>
+              </div>
+              <div class="sled-progress-bar">
+                <div class="sled-fill" id="sled-fill" style="width: 0%;"></div>
+              </div>
+              <button class="game-tap-btn" id="sled-push-btn">
+                <svg class="c-icon"><use href="#icon-fire"></use></svg>
+                TAP FAST TO PUSH! (<span id="sled-taps">0</span>/10)
+              </button>
+              <div class="game-reward-msg" id="sled-msg">Tap the button quickly to push the sled across!</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Station 3: Sled Pull -->
+        <article class="station-card" id="st-3" data-station="3">
+          <div class="station-header">
+            <div class="station-badge">3</div>
+            <div class="station-info">
+              <span class="run-marker">
+                <svg class="c-icon c-icon-sm"><use href="#icon-shoe"></use></svg>
+                1km Run +
+              </span>
+              <h3 class="station-name">
+                50m Sled Pull
+                <svg class="c-icon text-gold"><use href="#icon-rope"></use></svg>
+              </h3>
+            </div>
+            <span class="station-status-pill">Ready</span>
+          </div>
+          <div class="station-body">
+            <div class="doodle-tip">
+              <strong>Bhondu Secret Tip:</strong> <em>"Plant your feet firm in the box, pull hand over hand! Every inch you pull brings you closer to victory!"</em>
+            </div>
+            <div class="station-action">
+              <button class="stamp-btn" onclick="app.stampStation(3)">
+                <svg class="c-icon"><use href="#icon-stamp"></use></svg>
+                Collect Station 3 Stamp
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Station 4: Burpee Broad Jumps (Mini-Game 2) -->
+        <article class="station-card" id="st-4" data-station="4">
+          <div class="station-header">
+            <div class="station-badge">4</div>
+            <div class="station-info">
+              <span class="run-marker">
+                <svg class="c-icon c-icon-sm"><use href="#icon-shoe"></use></svg>
+                1km Run +
+              </span>
+              <h3 class="station-name">
+                80m Burpee Broad Jumps
+                <svg class="c-icon text-emerald"><use href="#icon-frog"></use></svg>
+              </h3>
+            </div>
+            <span class="station-status-pill">Mini Game</span>
+          </div>
+          <div class="station-body">
+            <div class="doodle-tip">
+              <strong>Bhondu Secret Tip:</strong> <em>"This is the famous mental hump of HYROX! Don't rush; just hit the floor, bounce up, and hop like a happy little froggy!"</em>
+            </div>
+            <!-- Mini Game: Burpee Jumps -->
+            <div class="mini-game-box" id="burpee-game">
+              <div class="game-header">
+                <span class="game-tag">JUMP GAME</span>
+                <span class="game-title">Bhondu's Froggy Leap!</span>
+              </div>
+              <div class="burpee-stage">
+                <div class="burpee-jumper" id="burpee-jumper">
+                  <svg class="c-icon c-icon-xl"><use href="#icon-frog"></use></svg>
+                </div>
+                <div class="burpee-ground">
+                  <span class="burpee-step step-1">Step 1</span>
+                  <span class="burpee-step step-2">Step 2</span>
+                  <span class="burpee-step step-3">Step 3</span>
+                  <span class="burpee-step step-4">80m!</span>
+                </div>
+              </div>
+              <button class="game-tap-btn" id="burpee-jump-btn">
+                <svg class="c-icon"><use href="#icon-sparkle"></use></svg>
+                TAP TO LEAP! (<span id="burpee-jumps">0</span>/4)
+              </button>
+              <div class="game-reward-msg" id="burpee-msg">Tap to launch Bhondu forward with high spirits!</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ROXZONE BREATHER CARD -->
+        <div class="roxzone-lounge">
+          <div class="roxzone-tape">ROXZONE CHILL ZONE</div>
+          <div class="roxzone-content">
+            <div class="roxzone-icon">
+              <svg class="c-icon c-icon-xl text-violet"><use href="#icon-smoothie"></use></svg>
+              <svg class="c-icon c-icon-md text-gold"><use href="#icon-sparkle"></use></svg>
+            </div>
+            <h4>You're Halfway There, Superhero!</h4>
+            <p>The Roxzone is where champions breathe, hydrate, and recalibrate. Shake your hands, take two deep belly breaths, and smile!</p>
+            <div class="roxzone-quote">
+              "Thakna mana hai, smile karna zaroori hai!"
+              <svg class="c-icon text-coral"><use href="#icon-heart"></use></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Station 5: Rowing -->
+        <article class="station-card" id="st-5" data-station="5">
+          <div class="station-header">
+            <div class="station-badge">5</div>
+            <div class="station-info">
+              <span class="run-marker">
+                <svg class="c-icon c-icon-sm"><use href="#icon-shoe"></use></svg>
+                1km Run +
+              </span>
+              <h3 class="station-name">
+                1,000m Rowing
+                <svg class="c-icon text-sky"><use href="#icon-rowing"></use></svg>
+              </h3>
+            </div>
+            <span class="station-status-pill">Ready</span>
+          </div>
+          <div class="station-body">
+            <div class="doodle-tip">
+              <strong>Bhondu Secret Tip:</strong> <em>"Legs, body, arms, then arms, body, legs. Find a sweet rhythm like a gentle song in your head!"</em>
+            </div>
+            <div class="station-action">
+              <button class="stamp-btn" onclick="app.stampStation(5)">
+                <svg class="c-icon"><use href="#icon-stamp"></use></svg>
+                Collect Station 5 Stamp
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Station 6: Farmers Carry -->
+        <article class="station-card" id="st-6" data-station="6">
+          <div class="station-header">
+            <div class="station-badge">6</div>
+            <div class="station-info">
+              <span class="run-marker">
+                <svg class="c-icon c-icon-sm"><use href="#icon-shoe"></use></svg>
+                1km Run +
+              </span>
+              <h3 class="station-name">
+                200m Farmers Carry
+                <svg class="c-icon text-ink"><use href="#icon-kettlebell"></use></svg>
+              </h3>
+            </div>
+            <span class="station-status-pill">Ready</span>
+          </div>
+          <div class="station-body">
+            <div class="doodle-tip">
+              <strong>Bhondu Secret Tip:</strong> <em>"Pretend you're carrying all the shopping bags from the mall in a single trip because you refuse to make two trips! You've got iron grip!"</em>
+            </div>
+            <div class="station-action">
+              <button class="stamp-btn" onclick="app.stampStation(6)">
+                <svg class="c-icon"><use href="#icon-stamp"></use></svg>
+                Collect Station 6 Stamp
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Station 7: Sandbag Lunges -->
+        <article class="station-card" id="st-7" data-station="7">
+          <div class="station-header">
+            <div class="station-badge">7</div>
+            <div class="station-info">
+              <span class="run-marker">
+                <svg class="c-icon c-icon-sm"><use href="#icon-shoe"></use></svg>
+                1km Run +
+              </span>
+              <h3 class="station-name">
+                100m Sandbag Lunges
+                <svg class="c-icon text-gold"><use href="#icon-sandbag"></use></svg>
+              </h3>
+            </div>
+            <span class="station-status-pill">Ready</span>
+          </div>
+          <div class="station-body">
+            <div class="doodle-tip">
+              <strong>Bhondu Secret Tip:</strong> <em>"Chest proud, knee kisses the turf gently, and step forward! Penultimate station: you can practically smell the finish line!"</em>
+            </div>
+            <div class="station-action">
+              <button class="stamp-btn" onclick="app.stampStation(7)">
+                <svg class="c-icon"><use href="#icon-stamp"></use></svg>
+                Collect Station 7 Stamp
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Station 8: Wall Balls (Mini-Game 3) -->
+        <article class="station-card" id="st-8" data-station="8">
+          <div class="station-header">
+            <div class="station-badge">8</div>
+            <div class="station-info">
+              <span class="run-marker">
+                <svg class="c-icon c-icon-sm"><use href="#icon-shoe"></use></svg>
+                1km Run +
+              </span>
+              <h3 class="station-name">
+                75/100 Wall Balls
+                <svg class="c-icon text-coral"><use href="#icon-target"></use></svg>
+              </h3>
+            </div>
+            <span class="station-status-pill">Final Boss</span>
+          </div>
+          <div class="station-body">
+            <div class="doodle-tip">
+              <strong>Bhondu Secret Tip:</strong> <em>"The Final Boss! Deep squat, explosive hips, throw it right into the target! Break it into sets of 10. Every ball you hit brings you to the Red Carpet!"</em>
+            </div>
+            <!-- Mini Game: Wall Balls Target -->
+            <div class="mini-game-box" id="wallball-game">
+              <div class="game-header">
+                <span class="game-tag">FINAL BOSS</span>
+                <span class="game-title">Wall Ball Target Toss!</span>
+              </div>
+              <div class="wallball-arena">
+                <div class="wallball-target" id="wallball-target">
+                  <span class="target-ring">
+                    <svg class="c-icon c-icon-sm"><use href="#icon-target"></use></svg>
+                    TARGET
+                  </span>
+                </div>
+                <div class="wallball-projectile" id="wallball-ball">
+                  <svg class="c-icon c-icon-lg text-gold"><use href="#icon-ball"></use></svg>
+                </div>
+              </div>
+              <button class="game-tap-btn" id="wallball-toss-btn">
+                <svg class="c-icon"><use href="#icon-target"></use></svg>
+                TAP TO THROW TO TARGET! (<span id="wb-hits">0</span>/3)
+              </button>
+              <div class="game-reward-msg" id="wb-msg">Hit the target 3 times to unlock the Red Carpet & Secret Surprise!</div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- THE FINISH ARCH & RED CARPET CELEBRATION -->
+    <section class="finish-section" id="finish-section">
+      <div class="finish-arch-wrap">
+        <div class="arch-banner">
+          <div class="arch-icon">
+            <svg class="c-icon c-icon-2xl text-gold"><use href="#icon-trophy"></use></svg>
+          </div>
+          <h2 class="arch-title">HYROX FINISH ARCH</h2>
+          <span class="arch-subtitle">WELCOME HOME, CHAMPION!</span>
+        </div>
+      </div>
+
+      <!-- Official HYROX Race Timing Target Card -->
+      <div class="timing-card">
+        <div class="timing-header-badge">
+          <svg class="c-icon c-icon-sm text-emerald"><use href="#icon-timer"></use></svg>
+          OFFICIAL RACE TIME GOAL
+        </div>
+        <div class="timing-display">
+          <span class="timing-sub-tag">TARGET TIME</span>
+          <div class="timing-clock">&lt; 01:30:00</div>
+          <span class="timing-label">SUB 1.5 HOURS (UNDER 90 MINUTES)</span>
+        </div>
+        <h3 class="timing-title">THE SUB-1.5 CLUB MISSION</h3>
+        <p class="timing-athlete">Locked in for <strong>Nitz</strong> by Dora</p>
+        <p class="timing-sub">8km of steady running and 8 ruthless stations. Smooth pacing, quick transitions in the Roxzone, and breaking that 1h 30m barrier like the true champion you are!</p>
+        <div class="timing-ribbon">
+          <svg class="c-icon c-icon-sm"><use href="#icon-bolt"></use></svg>
+          GOAL: SUB 1.5 HOURS
+          <svg class="c-icon c-icon-sm"><use href="#icon-star"></use></svg>
+        </div>
+      </div>
+
+      <!-- THE SECRET SEALED ENVELOPE SURPRISE -->
+      <div class="secret-letter-section">
+        <div class="letter-intro">
+          <span class="secret-tag">
+            <svg class="c-icon c-icon-sm"><use href="#icon-lock"></use></svg>
+            TOP SECRET & JUST FOR YOU
+          </span>
+          <h3 class="secret-heading">
+            A Sealed Letter For Your Heart
+            <svg class="c-icon text-coral"><use href="#icon-envelope"></use></svg>
+          </h3>
+          <p class="secret-desc">Tap the wax seal to break it open and read what I wrote for you...</p>
+        </div>
+
+        <div class="envelope-container" id="envelope-wrap">
+          <div class="envelope-pocket">
+            <div class="wax-seal" id="wax-seal" role="button" aria-label="Open Love Letter">
+              <span class="seal-heart">
+                <svg class="c-icon c-icon-lg"><use href="#icon-heart"></use></svg>
+              </span>
+              <span class="seal-text">OPEN</span>
+            </div>
+          </div>
+          
+          <!-- Hidden Unfolded Letter -->
+          <div class="unfolded-letter" id="unfolded-letter">
+            <div class="letter-paper">
+              <div class="letter-washi"></div>
+              <div class="letter-header">
+                <span class="letter-date">Race Day • Always & Forever</span>
+                <h4 class="letter-to">Dearest Nitz (Meri Bhondu),</h4>
+              </div>
+              <div class="letter-body">
+                <p>
+                  Tujhe pehli baar HYROX jaise race arena mein utarte dekh kar mujhe itna proud feel ho raha hai ki words kam pad jayein! Yeh koi normal workout nahi tha, tune 8 kilometers running, heavy sleds, burpees aur wall balls ke toofan ko boldly challenge kiya hai!
+                </p>
+                <p>
+                  Mujhe pata hai training ke dauran kitne din body pain hua, muscle soreness hui, self-doubt aaya aur pet mein butterflies bhi baji. Par jab bhi main tujhe dekhta hoon, mujhe bas ek fearless champion aur meri sabse favorite human ka pyaara sa dil dikhta hai.
+                </p>
+                <p>
+                  Finish line par clock time chahe jo bhi bole, bas ek baat hamesha yaad rakhna: <strong>mere liye tu sab kuch pehle hi jeet chuki hai</strong>. Tu itni inspiring hai, itni brave hai, aur ye sab karte hue itni zyada cute lagti hai ki kya bataun!
+                </p>
+                <p>
+                  Ab mast proud feel kar, yummy smoothies pi, tere saare heavy bags (aur tujhe bhi!) uthana ab mera kaam hai, aur chal milke teri is shaandar jeet ko celebrate karte hain!
+                </p>
+              </div>
+              <div class="letter-sign">
+                <p>Bhot bhot pyaar ke saath,</p>
+                <h5>
+                  Your Dora
+                  <svg class="c-icon text-coral"><use href="#icon-heart"></use></svg>
+                  <svg class="c-icon text-pink"><use href="#icon-paw"></use></svg>
+                </h5>
+              </div>
+              <div class="letter-footer-doodle">
+                <span>(Ab ja aur sub 1.5 hrs ka timing tod ke aa, Bhondu!</span>
+                <svg class="c-icon text-emerald"><use href="#icon-timer"></use></svg>
+                <span>)</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <button class="replay-confetti-btn" id="confetti-btn">
+          <svg class="c-icon text-coral"><use href="#icon-confetti"></use></svg>
+          Tap for Victory Confetti!
+        </button>
+      </div>
+
+    </section>
+
+    <!-- Footer Loving Note -->
+    <footer class="app-footer">
+      <div class="footer-doodle">
+        <svg class="c-icon text-pink"><use href="#icon-paw"></use></svg>
+        <svg class="c-icon text-coral"><use href="#icon-heart"></use></svg>
+        <svg class="c-icon text-sky"><use href="#icon-shoe"></use></svg>
+        <svg class="c-icon text-emerald"><use href="#icon-timer"></use></svg>
+        <svg class="c-icon text-gold"><use href="#icon-sparkle"></use></svg>
+      </div>
+      <p class="footer-text">Handcrafted with infinite love for <strong>Nitz</strong> on her HYROX debut.</p>
+      <p class="footer-sub">"You are stronger than you know, braver than you feel, and loved more than you can imagine."</p>
+    </footer>
+
+  </main>
+
+  <!-- Sticky Floating "Emergency Pep-Talk / Hug" Button -->
+  <aside class="floating-pep-wrap" id="floating-pep-wrap" style="display: none;">
+    <button class="floating-pep-btn" id="pep-talk-trigger" aria-label="Emergency Pep Talk">
+      <span class="pep-btn-icon">
+        <svg class="c-icon"><use href="#icon-envelope"></use></svg>
+      </span>
+      <span class="pep-btn-text">Need Love? Tap Here!</span>
+      <span class="pep-btn-ping"></span>
+    </button>
+  </aside>
+
+  <!-- Pep-Talk Modal / Bottom Sheet -->
+  <div class="pep-modal-backdrop" id="pep-modal">
+    <div class="pep-sheet">
+      <div class="sheet-handle"></div>
+      <div class="sheet-header">
+        <span class="sheet-badge">
+          <svg class="c-icon c-icon-sm text-coral"><use href="#icon-heart"></use></svg>
+          EMERGENCY BHONDU PEP-TALK
+        </span>
+        <button class="sheet-close" id="pep-close" aria-label="Close Pep Talk">
+          <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      
+      <div class="pep-content-box">
+        <div class="pep-card-doodle">
+          <svg class="c-icon c-icon-xl text-gold"><use href="#icon-sparkle"></use></svg>
+        </div>
+        <p class="pep-message" id="pep-message-text">
+          "Bhondu, remember how hard you trained for this! Take a deep breath, keep that cute chin up, and conquer the next kilometer!"
+        </p>
+        <span class="pep-author">Dora, cheering from the depths of his heart</span>
+      </div>
+
+      <div class="pep-actions">
+        <button class="new-pep-btn" id="new-pep-btn">
+          <svg class="c-icon text-violet"><use href="#icon-dice"></use></svg>
+          Gimme Another Pep-Talk!
+        </button>
+        <button class="pep-virtual-kiss-btn" id="pep-kiss-btn">
+          <svg class="c-icon"><use href="#icon-kiss"></use></svg>
+          Get flying kisses from Dora
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
