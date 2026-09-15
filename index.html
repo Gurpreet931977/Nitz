@@ -745,6 +745,19 @@
         </button>
       </div>
 
+      <!-- HYROX PENALTY BIBLE: DOS & DON'TS POPUP TRIGGER BUTTON -->
+      <div class="rules-vault-trigger-wrap">
+        <button class="rules-vault-btn" id="rules-vault-trigger" aria-label="Open Official HYROX Penalties, Dos and Donts Bible">
+          <span class="vault-btn-icon">📜</span>
+          <div class="vault-btn-content">
+            <span class="vault-badge">OFFICIAL HYROX RULEBOOK &amp; PENALTIES 🚨</span>
+            <span class="vault-title">HYROX PENALTY BIBLE: ALL DOS &amp; DON'TS</span>
+            <span class="vault-desc">Tap to view judge warning traps, time additions &amp; movement standards!</span>
+          </div>
+          <span class="vault-arrow">➔</span>
+        </button>
+      </div>
+
     </section>
 
       <!-- Footer Loving Note -->
@@ -794,6 +807,392 @@
       </div>
     </div>
   </div>
+
+  <!-- HYROX PENALTY BIBLE: DOS & DON'TS POPUP MODAL -->
+  <div class="rules-modal-backdrop" id="rules-modal" role="dialog" aria-modal="true" aria-labelledby="rules-modal-title">
+    <div class="rules-modal-sheet">
+      <!-- Modal Header -->
+      <div class="rules-modal-header">
+        <div class="rules-modal-top-row">
+          <div class="rules-modal-badges">
+            <span class="rules-badge-alert">🚨 REAL HYROX RULES</span>
+            <span class="rules-badge-sub">SUB-1.5H DEFENSE BIBLE</span>
+          </div>
+          <button class="rules-modal-close" id="rules-modal-close" aria-label="Close Rules Modal">✕</button>
+        </div>
+        
+        <h2 class="rules-modal-title" id="rules-modal-title">Official HYROX DOs, DON'Ts &amp; Penalties</h2>
+        <p class="rules-modal-subtitle">
+          Super simple, easy-to-read rules so you never get a judge penalty and smash your sub-1.5 hour finish! ⏱️⚡
+        </p>
+
+        <!-- Category Tabs -->
+        <div class="rules-tabs-bar" role="tablist">
+          <button class="rules-tab-btn active" data-tab="all" role="tab" aria-selected="true">⭐ All Rules</button>
+          <button class="rules-tab-btn" data-tab="track" role="tab" aria-selected="false">🏃 Track &amp; Roxzone</button>
+          <button class="rules-tab-btn" data-tab="stations-1-4" role="tab" aria-selected="false">🚜 Stations 1-4</button>
+          <button class="rules-tab-btn" data-tab="stations-5-8" role="tab" aria-selected="false">🎯 Stations 5-8</button>
+          <button class="rules-tab-btn" data-tab="penalties" role="tab" aria-selected="false">⏱️ Penalty Time Matrix</button>
+        </div>
+      </div>
+
+      <!-- Modal Body (Scrollable Cards) -->
+      <div class="rules-modal-body" id="rules-modal-body">
+        
+        <!-- CARD 1: RUNNING TRACK -->
+        <article class="rule-bible-card" data-category="track">
+          <div class="bible-card-header">
+            <span class="bible-card-badge">🏃 GENERAL TRACK</span>
+            <h3 class="bible-card-title">1km Running Laps (8 Times Total)</h3>
+          </div>
+          <div class="bible-split-grid">
+            <div class="bible-box do-box">
+              <span class="box-tag do-tag">✓ DO (The Simple Rule)</span>
+              <p>Run counter-clockwise in your lane. Look at the big electronic screen on every lap to count your laps (usually 2 to 3 laps = 1km). Only head into the Roxzone when your bib confirms all laps are done!</p>
+            </div>
+            <div class="bible-box dont-box">
+              <span class="box-tag dont-tag">❌ DON'T (The Trap)</span>
+              <p>Never guess your lap count! Never cut track corners, and never run across the workout station floor to take a shortcut.</p>
+            </div>
+          </div>
+          <div class="bible-penalty-banner">
+            <span class="penalty-icon">🚨</span>
+            <div class="penalty-text">
+              <strong>PENALTY IF BROKEN:</strong> Missing 1 lap adds a brutal <strong>+3:00 to +5:00 minutes</strong> penalty to your official time. Missing multiple laps gets you disqualified!
+            </div>
+          </div>
+          <div class="bible-dora-tip">
+            <strong>Dora's Easy Tip:</strong> <em>"Bhondu, just glance at the big screen every time you pass it. If in doubt, ask a track marshal before running into the Roxzone!"</em>
+          </div>
+        </article>
+
+        <!-- CARD 2: ROXZONE ARCHES -->
+        <article class="rule-bible-card" data-category="track">
+          <div class="bible-card-header">
+            <span class="bible-card-badge">🥤 ROXZONE TRANSITIONS</span>
+            <h3 class="bible-card-title">The IN and OUT Arch Rule</h3>
+          </div>
+          <div class="bible-split-grid">
+            <div class="bible-box do-box">
+              <span class="box-tag do-tag">✓ DO (The Simple Rule)</span>
+              <p>Always enter the Roxzone under the giant arch marked <strong>"IN"</strong>. When you finish your station and run back out, always exit under the arch marked <strong>"OUT"</strong>.</p>
+            </div>
+            <div class="bible-box dont-box">
+              <span class="box-tag dont-tag">❌ DON'T (The Trap)</span>
+              <p>Never exit through the IN arch, and never enter through the OUT arch! Also, do not take water bottles or snacks from friends outside the race boundary.</p>
+            </div>
+          </div>
+          <div class="bible-penalty-banner">
+            <span class="penalty-icon">🚨</span>
+            <div class="penalty-text">
+              <strong>PENALTY IF BROKEN:</strong> Going through the wrong arch triggers an automatic <strong>+2:00 MINUTE TIME PENALTY</strong>! Outside pacing or personal drinks can get you disqualified.
+            </div>
+          </div>
+          <div class="bible-dora-tip">
+            <strong>Dora's Easy Tip:</strong> <em>"Just remember this rhyme: 'IN for the gym, OUT for the run!' Look up at the signs before your feet cross the timing mats!"</em>
+          </div>
+        </article>
+
+        <!-- CARD 3: SKIERG -->
+        <article class="rule-bible-card" data-category="stations-1-4">
+          <div class="bible-card-header">
+            <span class="bible-card-badge">🎿 STATION 1</span>
+            <h3 class="bible-card-title">1,000m SkiErg</h3>
+          </div>
+          <div class="bible-split-grid">
+            <div class="bible-box do-box">
+              <span class="box-tag do-tag">✓ DO (The Simple Rule)</span>
+              <p>Keep both feet firmly on the black base plate the whole time. Keep pulling until the screen says 1,000m, then wait for the judge's thumbs-up.</p>
+            </div>
+            <div class="bible-box dont-box">
+              <span class="box-tag dont-tag">❌ DON'T (The Trap)</span>
+              <p>Do not step off onto the floor while pulling. Do not drop the handles or unhook them before the judge confirms 1,000m.</p>
+            </div>
+          </div>
+          <div class="bible-penalty-banner">
+            <span class="penalty-icon">⚠️</span>
+            <div class="penalty-text">
+              <strong>PENALTY IF BROKEN:</strong> Stepping onto the gym floor triggers a <strong>+15-second penalty</strong>. Dropping handles early means uncounted meters and you must pull more!
+            </div>
+          </div>
+          <div class="bible-dora-tip">
+            <strong>Dora's Easy Tip:</strong> <em>"Bend knees, hinge at the waist, and pull with your core and back muscles. Don't blow your legs out here, keep a smooth 2:10 to 2:15 pace!"</em>
+          </div>
+        </article>
+
+        <!-- CARD 4: SLED PUSH -->
+        <article class="rule-bible-card" data-category="stations-1-4">
+          <div class="bible-card-header">
+            <span class="bible-card-badge">🚜 STATION 2</span>
+            <h3 class="bible-card-title">50m Sled Push (4x 12.5m)</h3>
+          </div>
+          <div class="bible-split-grid">
+            <div class="bible-box do-box">
+              <span class="box-tag do-tag">✓ DO (The Simple Rule)</span>
+              <p>Push with your hands on the vertical poles in your lane. Push the sled until ALL FOUR metal skids completely clear the white line at the end of the 12.5m lane.</p>
+            </div>
+            <div class="bible-box dont-box">
+              <span class="box-tag dont-tag">❌ DON'T (The Trap)</span>
+              <p>Never turn the sled around early! If the back skids are still touching the white tape, do NOT turn around. Never lean your chest or knees on top of the sled.</p>
+            </div>
+          </div>
+          <div class="bible-penalty-banner">
+            <span class="penalty-icon">⚠️</span>
+            <div class="penalty-text">
+              <strong>PENALTY IF BROKEN:</strong> Instant <strong>NO REP!</strong> The judge will make you push the sled back behind the line before you are allowed to turn it around, wasting huge energy!
+            </div>
+          </div>
+          <div class="bible-dora-tip">
+            <strong>Dora's Easy Tip:</strong> <em>"Lock arms straight, look down at the carpet, and take small powerful steps. When you reach the line, give one extra big shove to be 100% safe before turning!"</em>
+          </div>
+        </article>
+
+        <!-- CARD 5: SLED PULL -->
+        <article class="rule-bible-card" data-category="stations-1-4">
+          <div class="bible-card-header">
+            <span class="bible-card-badge">🪢 STATION 3</span>
+            <h3 class="bible-card-title">50m Sled Pull (4x 12.5m)</h3>
+          </div>
+          <div class="bible-split-grid">
+            <div class="bible-box do-box">
+              <span class="box-tag do-tag">✓ DO (The Simple Rule)</span>
+              <p>Stand completely inside your taped athlete box on the floor. Pull the rope hand-over-hand until the sled crosses the line. Feed the slack rope neatly between your legs.</p>
+            </div>
+            <div class="bible-box dont-box">
+              <span class="box-tag dont-tag">❌ DON'T (The Trap)</span>
+              <p>Do not let your shoes step on or outside the tape lines. Never wrap the rope around your wrists, hands, waist, or body.</p>
+            </div>
+          </div>
+          <div class="bible-penalty-banner">
+            <span class="penalty-icon">⚠️</span>
+            <div class="penalty-text">
+              <strong>PENALTY IF BROKEN:</strong> Stepping outside the box adds <strong>+15 seconds</strong> per step. Wrapping the rope around your body is a major safety violation and can cause disqualification!
+            </div>
+          </div>
+          <div class="bible-dora-tip">
+            <strong>Dora's Easy Tip:</strong> <em>"Sit back into a steady squat, plant your heels, and let your body weight lean backwards with each pull. Pull hand-over-hand like pulling a bucket from a well!"</em>
+          </div>
+        </article>
+
+        <!-- CARD 6: BURPEE BROAD JUMP -->
+        <article class="rule-bible-card" data-category="stations-1-4">
+          <div class="bible-card-header">
+            <span class="bible-card-badge">🐸 STATION 4</span>
+            <h3 class="bible-card-title">80m Burpee Broad Jumps</h3>
+          </div>
+          <div class="bible-split-grid">
+            <div class="bible-box do-box">
+              <span class="box-tag do-tag">✓ DO (The Simple Rule)</span>
+              <p>Place hands on the floor, drop chest and tummy flat to touch the turf. Stand up and jump forward taking off on TWO feet and landing on TWO feet at the same time.</p>
+            </div>
+            <div class="bible-box dont-box">
+              <span class="box-tag dont-tag">❌ DON'T (The Trap)</span>
+              <p>Never jump before your chest hits the floor. Never gallop, step into the jump, jump off one foot, or land one foot at a time. Hands cannot be placed ahead of your feet on the next rep.</p>
+            </div>
+          </div>
+          <div class="bible-penalty-banner">
+            <span class="penalty-icon">⚠️</span>
+            <div class="penalty-text">
+              <strong>PENALTY IF BROKEN:</strong> Instant <strong>NO REP!</strong> You have to redo the entire jump from where you started. No-reps here will crush your stamina!
+            </div>
+          </div>
+          <div class="bible-dora-tip">
+            <strong>Dora's Easy Tip:</strong> <em>"Don't try heroic 6-foot jumps. Do steady, safe 3-foot jumps! Drop down, breathe, snap up, two-foot hop, repeat. Consistency is king!"</em>
+          </div>
+        </article>
+
+        <!-- CARD 7: ROWING -->
+        <article class="rule-bible-card" data-category="stations-5-8">
+          <div class="bible-card-header">
+            <span class="bible-card-badge">🚣‍♀️ STATION 5</span>
+            <h3 class="bible-card-title">1,000m Rowing</h3>
+          </div>
+          <div class="bible-split-grid">
+            <div class="bible-box do-box">
+              <span class="box-tag do-tag">✓ DO (The Simple Rule)</span>
+              <p>Strap your feet into the footplates FIRST before grabbing the handle. Choose your damper setting, row until 1,000m is reached, and wait for the judge to check.</p>
+            </div>
+            <div class="bible-box dont-box">
+              <span class="box-tag dont-tag">❌ DON'T (The Trap)</span>
+              <p>Do not touch the handle before your feet are strapped in. Do not change the damper setting after stroke 1. Do not release the handle before 1,000m is verified.</p>
+            </div>
+          </div>
+          <div class="bible-penalty-banner">
+            <span class="penalty-icon">⚠️</span>
+            <div class="penalty-text">
+              <strong>PENALTY IF BROKEN:</strong> Early handle release or unstrapping triggers a <strong>+15-second penalty</strong> or extra uncounted meters.
+            </div>
+          </div>
+          <div class="bible-dora-tip">
+            <strong>Dora's Easy Tip:</strong> <em>"Legs, body, arms on the way back; arms, body, legs on the way in. Keep a smooth 26-28 strokes per minute and breathe out on every push!"</em>
+          </div>
+        </article>
+
+        <!-- CARD 8: FARMERS CARRY -->
+        <article class="rule-bible-card" data-category="stations-5-8">
+          <div class="bible-card-header">
+            <span class="bible-card-badge">🛍️ STATION 6</span>
+            <h3 class="bible-card-title">200m Farmers Carry (2x 16kg)</h3>
+          </div>
+          <div class="bible-split-grid">
+            <div class="bible-box do-box">
+              <span class="box-tag do-tag">✓ DO (The Simple Rule)</span>
+              <p>Carry one kettlebell in each hand with your arms hanging straight down at your sides. If your grip gets tired, put them down cleanly and pick them up from the same spot.</p>
+            </div>
+            <div class="bible-box dont-box">
+              <span class="box-tag dont-tag">❌ DON'T (The Trap)</span>
+              <p>Never rest the kettlebells on your thighs, hips, waist, or stomach while walking or resting. Never throw or kick the kettlebells forward when dropping them.</p>
+            </div>
+          </div>
+          <div class="bible-penalty-banner">
+            <span class="penalty-icon">⚠️</span>
+            <div class="penalty-text">
+              <strong>PENALTY IF BROKEN:</strong> Resting kettlebells on your body or throwing them forward adds a <strong>+15-second penalty</strong>!
+            </div>
+          </div>
+          <div class="bible-dora-tip">
+            <strong>Dora's Easy Tip:</strong> <em>"Stand tall, pull shoulders back, and take fast, short baby steps. Squeeze the handles tight and tell yourself: 'It's just 2 minutes of grocery bags!' You got this!"</em>
+          </div>
+        </article>
+
+        <!-- CARD 9: SANDBAG LUNGES -->
+        <article class="rule-bible-card" data-category="stations-5-8">
+          <div class="bible-card-header">
+            <span class="bible-card-badge">🎒 STATION 7</span>
+            <h3 class="bible-card-title">100m Sandbag Lunges (11kg)</h3>
+          </div>
+          <div class="bible-split-grid">
+            <div class="bible-box do-box">
+              <span class="box-tag do-tag">✓ DO (The Simple Rule)</span>
+              <p>Rest the sandbag across your shoulders behind your neck. On every forward lunge, your back knee must visibly touch the turf. Stand completely straight up before the next step.</p>
+            </div>
+            <div class="bible-box dont-box">
+              <span class="box-tag dont-tag">❌ DON'T (The Trap)</span>
+              <p>Never let your knee hover in the air without touching the turf! Never drop the sandbag off your back onto the floor. Do not take extra running/walking steps without lunging.</p>
+            </div>
+          </div>
+          <div class="bible-penalty-banner">
+            <span class="penalty-icon">⚠️</span>
+            <div class="penalty-text">
+              <strong>PENALTY IF BROKEN:</strong> Instant <strong>NO REP!</strong> If your back knee does not kiss the turf, or you don't stand all the way up, the step does not count and must be repeated.
+            </div>
+          </div>
+          <div class="bible-dora-tip">
+            <strong>Dora's Easy Tip:</strong> <em>"Wear knee sleeves! Gently kiss the turf with your back knee, push through front heel, and stand tall. Station 7 is almost the finish line!"</em>
+          </div>
+        </article>
+
+        <!-- CARD 10: WALL BALLS -->
+        <article class="rule-bible-card" data-category="stations-5-8">
+          <div class="bible-card-header">
+            <span class="bible-card-badge">🎯 STATION 8</span>
+            <h3 class="bible-card-title">Wall Balls (75 or 100 Reps, 4kg)</h3>
+          </div>
+          <div class="bible-split-grid">
+            <div class="bible-box do-box">
+              <span class="box-tag do-tag">✓ DO (The Simple Rule)</span>
+              <p>Squat deep so your hip crease drops below the top of your knees (below parallel) on every single rep! Throw the ball so it hits the center of the 2.70m target disc.</p>
+            </div>
+            <div class="bible-box dont-box">
+              <span class="box-tag dont-tag">❌ DON'T (The Trap)</span>
+              <p>Never do half-squats or parallel squats! Never let the ball hit below the target disc or hit the floor without catching/resetting.</p>
+            </div>
+          </div>
+          <div class="bible-penalty-banner">
+            <span class="penalty-icon">⚠️</span>
+            <div class="penalty-text">
+              <strong>PENALTY IF BROKEN:</strong> The #1 Judge Trap: <strong>NO REP!</strong> Judges will not count any rep where your hips don't drop below the knees. Doing 20 no-reps here is pure heartbreak!
+            </div>
+          </div>
+          <div class="bible-dora-tip">
+            <strong>Dora's Easy Tip:</strong> <em>"Don't rush! Break them into clean sets of 10 or 15 reps. Take 3 deep breaths, shake your arms, and go again. Every counted rep brings you to the finish line!"</em>
+          </div>
+        </article>
+
+        <!-- CARD 11: PENALTY MATRIX -->
+        <article class="rule-bible-card penalty-matrix-card" data-category="penalties">
+          <div class="bible-card-header">
+            <span class="bible-card-badge">⏱️ TIME MATRIX</span>
+            <h3 class="bible-card-title">Official HYROX Penalty Time Additions (At A Glance)</h3>
+          </div>
+          <div class="penalty-table-wrap">
+            <table class="penalty-table">
+              <thead>
+                <tr>
+                  <th>Foul / Infraction</th>
+                  <th>Penalty Added</th>
+                  <th>Impact on Sub-1.5h</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="danger-row">
+                  <td><strong>Missed Running Lap</strong></td>
+                  <td><span class="badge-time">+3:00 to +5:00 mins</span></td>
+                  <td>Massive risk of missing sub-1.5h</td>
+                </tr>
+                <tr class="danger-row">
+                  <td><strong>Wrong Roxzone Arch (IN/OUT swap)</strong></td>
+                  <td><span class="badge-time">+2:00 mins</span></td>
+                  <td>Instant 2-minute penalty on clock</td>
+                </tr>
+                <tr class="danger-row">
+                  <td><strong>Outside Assistance / Personal Pacer</strong></td>
+                  <td><span class="badge-time">DISQUALIFIED</span></td>
+                  <td>Official time voided</td>
+                </tr>
+                <tr class="warn-row">
+                  <td><strong>Sled Push Early Turn (Before Line)</strong></td>
+                  <td><span class="badge-time">NO REP + Push Back</span></td>
+                  <td>Wastes 20-30 seconds of leg energy</td>
+                </tr>
+                <tr class="warn-row">
+                  <td><strong>Sled Pull Foot Outside Box</strong></td>
+                  <td><span class="badge-time">+15 seconds</span></td>
+                  <td>Added to station timing</td>
+                </tr>
+                <tr class="warn-row">
+                  <td><strong>Burpee Single-Foot Jump / No Chest Touch</strong></td>
+                  <td><span class="badge-time">NO REP</span></td>
+                  <td>Must repeat jump from start</td>
+                </tr>
+                <tr class="warn-row">
+                  <td><strong>Farmers Carry Weights on Thighs / Forward Throw</strong></td>
+                  <td><span class="badge-time">+15 seconds</span></td>
+                  <td>Added to station timing</td>
+                </tr>
+                <tr class="warn-row">
+                  <td><strong>Sandbag Lunge Knee Not Touching Turf</strong></td>
+                  <td><span class="badge-time">NO REP</span></td>
+                  <td>Must repeat lunge step</td>
+                </tr>
+                <tr class="warn-row">
+                  <td><strong>Wall Balls Shallow Squat (Above Knees)</strong></td>
+                  <td><span class="badge-time">NO REP</span></td>
+                  <td>Rep does not count on clicker</td>
+                </tr>
+                <tr class="warn-row">
+                  <td><strong>SkiErg / Rower Stepping Off Early</strong></td>
+                  <td><span class="badge-time">+15s / Uncounted</span></td>
+                  <td>Must complete remaining meters</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="bible-dora-tip">
+            <strong>Dora's Gold Rule:</strong> <em>"Bhondu, a clean rep done 1 second slower is 100 times better than a fast rep that gets NO REPPED! Steady, clean, and you'll easily break 90 minutes! 💖"</em>
+          </div>
+        </article>
+
+      </div> <!-- /.rules-modal-body -->
+      
+      <div class="rules-modal-footer">
+        <button class="rules-modal-close-btn" id="rules-modal-bottom-close">
+          <span>👍</span> Got It, Dora! Ready to Conquer HYROX!
+        </button>
+      </div>
+
+    </div> <!-- /.rules-modal-sheet -->
+  </div> <!-- /.rules-modal-backdrop -->
 
   <script type="module" src="/app.js"></script>
 </body>

@@ -1139,6 +1139,80 @@ class HyroxApp {
       }
       this.triggerConfetti(25);
     });
+
+    // HYROX RULES VAULT & PENALTY BIBLE MODAL
+    const rulesTrigger = document.getElementById('rules-vault-trigger');
+    const rulesModal = document.getElementById('rules-modal');
+    const rulesClose = document.getElementById('rules-modal-close');
+    const rulesBottomClose = document.getElementById('rules-modal-bottom-close');
+    const rulesTabs = document.querySelectorAll('.rules-tab-btn');
+    const rulesCards = document.querySelectorAll('.rule-bible-card');
+    const rulesBody = document.getElementById('rules-modal-body');
+
+    const openRulesModal = () => {
+      if (!rulesModal) return;
+      this.playSound('fanfare');
+      this.triggerHaptic(40);
+      rulesModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      if (rulesBody) rulesBody.scrollTop = 0;
+    };
+
+    const closeRulesModal = () => {
+      if (!rulesModal) return;
+      this.playSound('pop');
+      rulesModal.classList.remove('active');
+      document.body.style.overflow = '';
+    };
+
+    if (rulesTrigger) {
+      rulesTrigger.addEventListener('click', openRulesModal);
+    }
+
+    if (rulesClose) {
+      rulesClose.addEventListener('click', closeRulesModal);
+    }
+
+    if (rulesBottomClose) {
+      rulesBottomClose.addEventListener('click', closeRulesModal);
+    }
+
+    if (rulesModal) {
+      rulesModal.addEventListener('click', (e) => {
+        if (e.target === rulesModal) {
+          closeRulesModal();
+        }
+      });
+    }
+
+    // Filter tabs logic
+    rulesTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        rulesTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        this.playSound('pop');
+        this.triggerHaptic(20);
+
+        const tabCategory = tab.getAttribute('data-tab');
+        rulesCards.forEach(card => {
+          const cardCat = card.getAttribute('data-category');
+          if (tabCategory === 'all' || cardCat === tabCategory) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+
+        if (rulesBody) rulesBody.scrollTop = 0;
+      });
+    });
+
+    // Escape key listener for modal
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && rulesModal && rulesModal.classList.contains('active')) {
+        closeRulesModal();
+      }
+    });
   }
 
   showRandomPepTalk() {
