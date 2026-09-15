@@ -131,34 +131,67 @@ class HyroxApp {
         noteOsc.stop(now + idx * 0.1 + 0.45);
       });
     } else if (type === 'warmHug') {
-      // Comforting acoustic chord: F3, A3, C4, E4, G4 with lowpass envelope
-      const chord = [174.61, 220.00, 261.63, 329.63, 392.00];
+      // Comforting acoustic pad: F2 deep root, F3, A3, C4, E4, G4 with gentle swell
+      const chord = [87.31, 174.61, 220.00, 261.63, 329.63, 392.00];
       chord.forEach((freq, idx) => {
         const noteOsc = this.audioCtx.createOscillator();
         const noteGain = this.audioCtx.createGain();
         const filter = this.audioCtx.createBiquadFilter();
 
         filter.type = 'lowpass';
-        filter.frequency.setValueAtTime(850, now);
-        filter.frequency.exponentialRampToValueAtTime(320, now + 1.2);
+        filter.frequency.setValueAtTime(750, now);
+        filter.frequency.exponentialRampToValueAtTime(280, now + 1.8);
 
-        noteOsc.type = idx % 2 === 0 ? 'sine' : 'triangle';
+        noteOsc.type = idx === 0 ? 'sine' : (idx % 2 === 0 ? 'sine' : 'triangle');
         noteOsc.frequency.setValueAtTime(freq, now);
 
         noteGain.gain.setValueAtTime(0.001, now);
         // Soft warm swell attack
-        noteGain.gain.linearRampToValueAtTime(0.16 / (idx + 1), now + 0.12);
+        noteGain.gain.linearRampToValueAtTime(0.20 / (idx + 1), now + 0.16);
         // Lingering gentle decay
-        noteGain.gain.exponentialRampToValueAtTime(0.0001, now + 1.2);
+        noteGain.gain.exponentialRampToValueAtTime(0.0001, now + 1.8);
 
         noteOsc.connect(filter);
         filter.connect(noteGain);
         noteGain.connect(this.audioCtx.destination);
 
         noteOsc.start(now);
-        noteOsc.stop(now + 1.2);
+        noteOsc.stop(now + 1.8);
       });
     }
+  }
+
+  // Acoustic Sub-Bass Physical Rumble Engine (Physically vibrates mobile phone bodies on iPhone + Android)
+  playHapticRumble(intensity = 1.0, duration = 0.28, freq = 52) {
+    if (!this.soundEnabled || !this.audioCtx) return;
+    this.resumeAudio();
+
+    try {
+      const now = this.audioCtx.currentTime;
+      const osc = this.audioCtx.createOscillator();
+      const gain = this.audioCtx.createGain();
+      const filter = this.audioCtx.createBiquadFilter();
+
+      filter.type = 'lowpass';
+      filter.frequency.setValueAtTime(110, now);
+
+      osc.type = 'sine';
+      // Low sub-bass frequency that physically resonates the mobile phone chassis
+      osc.frequency.setValueAtTime(freq, now);
+      osc.frequency.exponentialRampToValueAtTime(Math.max(35, freq * 0.75), now + duration);
+
+      const peak = Math.min(0.95, 0.45 * intensity);
+      gain.gain.setValueAtTime(0.001, now);
+      gain.gain.linearRampToValueAtTime(peak, now + 0.03);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
+
+      osc.connect(filter);
+      filter.connect(gain);
+      gain.connect(this.audioCtx.destination);
+
+      osc.start(now);
+      osc.stop(now + duration);
+    } catch (e) {}
   }
 
   triggerHaptic(ms = 35) {
@@ -169,12 +202,36 @@ class HyroxApp {
     }
   }
 
-  triggerHeartbeatHaptic() {
+  // High-impact multi-level haptics (Hardware Actuator + Speaker Rumble)
+  triggerHeartbeatHaptic(level = 1) {
+    // 1) Hardware Actuator Vibrations (Android / supported devices)
     if ('vibrate' in navigator) {
       try {
-        // Dual-pulse lub-dub heartbeat pattern
-        navigator.vibrate([70, 85, 120, 90, 70]);
+        if (level === 1) {
+          // Contact / initial charge pulse
+          navigator.vibrate([120, 70, 180]);
+        } else if (level === 2) {
+          // Building warmth heartbeat
+          navigator.vibrate([160, 60, 240]);
+        } else if (level === 3) {
+          // High intensity charging heartbeat
+          navigator.vibrate([220, 50, 320]);
+        } else if (level >= 4) {
+          // HUGE CELEBRATORY WARM HUG IMPACT (extra powerful & long)
+          navigator.vibrate([260, 70, 380, 80, 520, 90, 750]);
+        }
       } catch (e) {}
+    }
+
+    // 2) Acoustic Speaker Transducer Physical Rumble (Works on iPhone + Android)
+    if (level === 1) {
+      this.playHapticRumble(0.7, 0.22, 54);
+    } else if (level === 2) {
+      this.playHapticRumble(0.9, 0.28, 50);
+    } else if (level === 3) {
+      this.playHapticRumble(1.1, 0.36, 46);
+    } else if (level >= 4) {
+      this.playHapticRumble(1.3, 0.65, 42);
     }
   }
 
@@ -267,7 +324,7 @@ class HyroxApp {
       this.createHeartParticle(e.clientX || 50, e.clientY || 50, this.soundEnabled ? '🎵' : '💤');
     });
 
-    // REAL WARM HUG EXPERIENCE (Multi-Sensory: Heartbeat Haptics + Ambient Warmth + Chords + Whispers)
+    // REAL WARM HUG EXPERIENCE (HOLD-ONLY, NO TAPPING, POWERFUL CHARGE + ESCALATING HAPTICS)
     const hugBtn = document.getElementById('hug-btn');
     const hugCounter = document.getElementById('hug-counter');
     const hugFill = document.getElementById('hug-hold-fill');
@@ -276,6 +333,9 @@ class HyroxApp {
     const hugBtnText = document.getElementById('hug-btn-text');
     const warmthOverlay = document.getElementById('warmth-overlay');
 
+    const HUG_FULL_MS = 2600; // 2.6s for a deep, comforting long warm hug
+    const MIN_HOLD_MS = 2100; // Must hold for at least 2.1s to count (tapping prevented!)
+
     const updateWhisper = () => {
       this.whisperIdx = (this.whisperIdx + 1) % this.doraWhispers.length;
       if (hugWhisperText) {
@@ -283,61 +343,24 @@ class HyroxApp {
       }
       if (hugWhisper) {
         hugWhisper.classList.remove('whisper-pop');
-        void hugWhisper.offsetWidth; // trigger reflow for animation restart
+        void hugWhisper.offsetWidth;
         hugWhisper.classList.add('whisper-pop');
       }
     };
 
-    const triggerHugGlow = (isLongHold = false) => {
+    const triggerHugGlow = (isActive = true) => {
       if (warmthOverlay) {
         warmthOverlay.classList.remove('warmth-holding');
-        warmthOverlay.classList.add('warmth-active');
-        clearTimeout(this.warmthTimeout);
-        this.warmthTimeout = setTimeout(() => {
+        if (isActive) {
+          warmthOverlay.classList.add('warmth-active');
+          clearTimeout(this.warmthTimeout);
+          this.warmthTimeout = setTimeout(() => {
+            warmthOverlay.classList.remove('warmth-active');
+          }, 2800);
+        } else {
           warmthOverlay.classList.remove('warmth-active');
-        }, isLongHold ? 1800 : 1200);
+        }
       }
-    };
-
-    const triggerHugRelease = (wasHolding) => {
-      if (!this.holdPressActive) return;
-      this.holdPressActive = false;
-
-      clearTimeout(this.hugHoldTimer);
-      clearInterval(this.hugPulseInterval);
-
-      hugBtn.classList.remove('squeezing');
-      if (hugFill) hugFill.style.width = '0%';
-      if (hugBtnText) hugBtnText.textContent = 'Tap or Hold for a Warm Hug!';
-
-      this.hugCount++;
-      if (hugCounter) {
-        hugCounter.textContent = `${this.hugCount} hug${this.hugCount === 1 ? '' : 's'} sent!`;
-      }
-
-      hugBtn.classList.add('blooming');
-      setTimeout(() => hugBtn.classList.remove('blooming'), 450);
-
-      const rect = hugBtn.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-
-      this.playSound('warmHug');
-      this.triggerHeartbeatHaptic();
-
-      if (wasHolding) {
-        // Deep warm hold release
-        triggerHugGlow(true);
-        this.burstHearts(centerX, centerY, 14);
-        this.triggerConfetti(35);
-      } else {
-        // Sweet quick tap
-        triggerHugGlow(false);
-        this.burstHearts(centerX, centerY, 8);
-      }
-
-      updateWhisper();
-      this.isHoldingHug = false;
     };
 
     if (hugBtn) {
@@ -347,78 +370,151 @@ class HyroxApp {
         e.preventDefault();
         this.resumeAudio();
         this.holdPressActive = true;
-        this.isHoldingHug = false;
         this.holdStartTime = Date.now();
 
-        clearTimeout(this.hugHoldTimer);
         clearInterval(this.hugPulseInterval);
+        clearTimeout(this.hugResetTimer);
 
-        // Threshold before hold-squeeze starts (220ms)
-        this.hugHoldTimer = setTimeout(() => {
+        hugBtn.classList.remove('shaking', 'blooming');
+        hugBtn.classList.add('squeezing');
+        if (warmthOverlay) warmthOverlay.classList.add('warmth-holding');
+
+        // Immediate strong physical actuator + speaker thump on contact
+        this.triggerHeartbeatHaptic(1);
+
+        let lastBeatTier = 0;
+
+        // Smoothly charge the hug progress and escalate heartbeats
+        this.hugPulseInterval = setInterval(() => {
           if (!this.holdPressActive) return;
-          this.isHoldingHug = true;
-          hugBtn.classList.add('squeezing');
-          if (warmthOverlay) warmthOverlay.classList.add('warmth-holding');
-          if (hugBtnText) hugBtnText.textContent = 'Squeezing tight...';
+          const elapsed = Date.now() - this.holdStartTime;
+          const pct = Math.min(100, Math.round((elapsed / HUG_FULL_MS) * 100));
+          if (hugFill) hugFill.style.width = `${pct}%`;
 
-          this.triggerHeartbeatHaptic();
-          const holdStart = Date.now();
-          const maxHoldMs = 1400;
-
-          // Smoothly fill bar and pulse heartbeat while holding
-          this.hugPulseInterval = setInterval(() => {
-            if (!this.holdPressActive) return;
-            const elapsed = Date.now() - holdStart;
-            const pct = Math.min(100, Math.round((elapsed / maxHoldMs) * 100));
-            if (hugFill) hugFill.style.width = `${pct}%`;
-
-            // Rising warm heart particle
-            const rect = hugBtn.getBoundingClientRect();
-            this.createHeartParticle(
-              rect.left + rect.width / 2 + (Math.random() - 0.5) * 50,
-              rect.top + 10,
-              '💖'
-            );
-
-            // Periodic heartbeat haptic
-            if (elapsed % 420 < 75) {
-              this.triggerHaptic(40);
+          // Progressive phase feedback
+          if (pct < 25) {
+            if (hugBtnText) hugBtnText.textContent = 'Dora is reaching out... 🫂';
+          } else if (pct < 55) {
+            if (hugBtnText) hugBtnText.textContent = 'Wrapping you up warm... 💖';
+            if (lastBeatTier < 1) {
+              lastBeatTier = 1;
+              this.triggerHeartbeatHaptic(1);
             }
-          }, 70);
-        }, 220);
+          } else if (pct < 85) {
+            if (hugBtnText) hugBtnText.textContent = 'Squeezing super tight... 🥰';
+            if (lastBeatTier < 2) {
+              lastBeatTier = 2;
+              this.triggerHeartbeatHaptic(2);
+            }
+          } else if (pct < 100) {
+            if (hugBtnText) hugBtnText.textContent = 'Almost there... keep holding! ✨';
+            if (lastBeatTier < 3) {
+              lastBeatTier = 3;
+              this.triggerHeartbeatHaptic(3);
+            }
+          } else {
+            // 100% Fully Powered Warm Hug!
+            if (hugBtnText) hugBtnText.textContent = '100% WARMTH! Release now! 💖✨';
+            if (lastBeatTier < 4) {
+              lastBeatTier = 4;
+              this.triggerHeartbeatHaptic(3);
+            }
+          }
+
+          // Warm emoji stream floating up during hold
+          const rect = hugBtn.getBoundingClientRect();
+          const holdEmojis = ['💖', '🥰', '🫂', '✨'];
+          this.createHeartParticle(
+            rect.left + rect.width / 2 + (Math.random() - 0.5) * 50,
+            rect.top + 10,
+            holdEmojis[Math.floor(Math.random() * holdEmojis.length)]
+          );
+        }, 60);
       });
 
       const handleRelease = () => {
-        if (this.holdPressActive) {
-          triggerHugRelease(this.isHoldingHug);
+        if (!this.holdPressActive) return;
+        this.holdPressActive = false;
+
+        clearInterval(this.hugPulseInterval);
+
+        hugBtn.classList.remove('squeezing');
+        if (warmthOverlay) warmthOverlay.classList.remove('warmth-holding');
+
+        const elapsed = Date.now() - this.holdStartTime;
+
+        // DID NOT HOLD LONG ENOUGH -> NO HUG INCREMENT (TAPPING PREVENTED!)
+        if (elapsed < MIN_HOLD_MS) {
+          if (hugFill) hugFill.style.width = '0%';
+          hugBtn.classList.add('shaking');
+          setTimeout(() => hugBtn.classList.remove('shaking'), 450);
+
+          if (hugBtnText) hugBtnText.textContent = 'Hold longer for a real hug! 🫂';
+          if ('vibrate' in navigator) {
+            try { navigator.vibrate([100, 60, 100]); } catch (e) {}
+          }
+          this.playSound('boing');
+
+          clearTimeout(this.hugResetTimer);
+          this.hugResetTimer = setTimeout(() => {
+            if (hugBtnText) hugBtnText.textContent = 'Press & Hold for a Warm Hug!';
+          }, 1800);
+          return;
         }
+
+        // HELD LONG ENOUGH -> CELEBRATE FULL WARM HUG!
+        this.hugCount++;
+        if (hugCounter) {
+          hugCounter.textContent = `${this.hugCount} warm hug${this.hugCount === 1 ? '' : 's'} sent!`;
+        }
+
+        if (hugFill) {
+          hugFill.style.width = '100%';
+          setTimeout(() => { if (hugFill) hugFill.style.width = '0%'; }, 350);
+        }
+
+        hugBtn.classList.add('blooming');
+        setTimeout(() => hugBtn.classList.remove('blooming'), 600);
+
+        if (hugBtnText) hugBtnText.textContent = 'Warm Hug Sent with All My Love! 💖';
+
+        // EXTRA IMPACTFUL VIBRATION SEQUENCE (Heavy Actuator + Sub-bass acoustic rumble)
+        this.triggerHeartbeatHaptic(4);
+        this.playSound('warmHug');
+        triggerHugGlow(true);
+
+        const rect = hugBtn.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+
+        this.burstHearts(centerX, centerY, 16);
+        this.triggerConfetti(45);
+        updateWhisper();
+
+        clearTimeout(this.hugResetTimer);
+        this.hugResetTimer = setTimeout(() => {
+          if (hugBtnText) hugBtnText.textContent = 'Press & Hold for a Warm Hug!';
+        }, 2500);
       };
 
       hugBtn.addEventListener('pointerup', handleRelease);
       hugBtn.addEventListener('pointercancel', handleRelease);
       hugBtn.addEventListener('pointerleave', () => {
-        if (this.holdPressActive) {
-          handleRelease();
-        }
+        if (this.holdPressActive) handleRelease();
       });
 
-      // Keyboard accessibility (Space or Enter key)
+      // Keyboard support: holding Space or Enter
       hugBtn.addEventListener('keydown', (e) => {
         if ((e.key === ' ' || e.key === 'Enter') && !this.holdPressActive) {
           e.preventDefault();
-          this.holdPressActive = true;
-          this.resumeAudio();
-          hugBtn.classList.add('squeezing');
-          if (warmthOverlay) warmthOverlay.classList.add('warmth-holding');
-          if (hugBtnText) hugBtnText.textContent = 'Squeezing tight...';
-          this.triggerHeartbeatHaptic();
+          hugBtn.dispatchEvent(new PointerEvent('pointerdown'));
         }
       });
 
       hugBtn.addEventListener('keyup', (e) => {
         if ((e.key === ' ' || e.key === 'Enter') && this.holdPressActive) {
           e.preventDefault();
-          triggerHugRelease(true);
+          handleRelease();
         }
       });
     }

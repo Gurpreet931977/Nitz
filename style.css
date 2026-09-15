@@ -463,16 +463,43 @@ body {
   overflow: hidden;
   user-select: none;
   -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  touch-action: manipulation;
 }
 
 .hug-button.squeezing {
-  transform: scale(0.95);
-  box-shadow: 0 4px 18px rgba(255, 77, 109, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.35);
+  transform: scale(0.96);
+  box-shadow: 0 0 30px rgba(255, 77, 109, 0.75), inset 0 0 24px rgba(255, 255, 255, 0.4);
+  animation: hugSqueezePulse 0.4s ease-in-out infinite alternate;
+}
+
+@keyframes hugSqueezePulse {
+  0% { transform: scale(0.96); }
+  50% { transform: scale(0.945); box-shadow: 0 0 40px rgba(255, 77, 109, 0.9), inset 0 0 32px rgba(255, 255, 255, 0.55); }
+  100% { transform: scale(0.96); }
+}
+
+.hug-button.shaking {
+  animation: hugShakePrompt 0.4s ease-in-out;
+}
+
+@keyframes hugShakePrompt {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
 }
 
 .hug-button.blooming {
-  transform: scale(1.05);
-  box-shadow: 0 16px 40px -4px rgba(255, 77, 109, 0.65);
+  transform: scale(1.06);
+  box-shadow: 0 20px 50px rgba(255, 77, 109, 0.8), 0 0 30px rgba(255, 208, 0, 0.5);
+  animation: hugBloomImpact 0.6s cubic-bezier(0.17, 0.89, 0.32, 1.25);
+}
+
+@keyframes hugBloomImpact {
+  0% { transform: scale(0.95); }
+  40% { transform: scale(1.08); }
+  70% { transform: scale(1.03); }
+  100% { transform: scale(1); }
 }
 
 .hug-progress-fill {
@@ -481,9 +508,11 @@ body {
   left: 0;
   bottom: 0;
   width: 0%;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.3), rgba(255, 208, 0, 0.4));
+  background: linear-gradient(90deg, rgba(255, 208, 0, 0.5), rgba(255, 255, 255, 0.6), rgba(255, 77, 109, 0.5));
+  box-shadow: 0 0 16px rgba(255, 208, 0, 0.7);
+  border-radius: var(--radius-xl);
   pointer-events: none;
-  transition: width 0.05s linear;
+  transition: width 0.08s linear;
 }
 
 .btn-icon {
