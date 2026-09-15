@@ -25,18 +25,48 @@ class HyroxApp {
     this.wallBallMax = 3;
     this.wallBallDone = false;
 
-    // Love quotes for Bhondu (Zero em-dashes)
+    // Deeply Loving, Motivating & Race-Day Pep Talks from Dora (Zero em-dashes)
     this.pepQuotes = [
-      "Bhondu, remember how hard you trained for this! Take a deep breath, keep that cute chin up, and crush it!",
-      "Even if you feel tired, remember: you're 90% determination, 10% pure cuteness, and 100% unstoppable!",
-      "I'm cheering for you so loud, even the judges in the Roxzone can hear my heart beating for you!",
-      "Pacing is key, meri jaan! Smooth running, steady stations, and that signature Bhondu smile!",
-      "Fun fact: When you cross the finish line, you officially get 10,000 Dora points, endless smoothies, and infinite foot rubs!",
-      "Look at that runner bib: #01 Athlete! You are already my champion, now just go have fun on the turf!",
-      "Thakna mana hai, haar maanna impossible hai, and looking adorable while lifting is your specialty!",
-      "Whenever you feel the burn, imagine each repetition is a high-five from me waiting at the finish line!",
-      "Wall balls? Sleds? SkiErg? Nothing is as fierce as my Bhondu when she decides to do something!",
-      "Breathe in bravery, breathe out nerves. You're doing something 99% of people only dream of doing. Proud of you!"
+      { text: "Bhondu, remember how hard you trained for this! Take a deep breath, keep that cute chin up, and show that turf what you are made of!", tag: "👑 CHAMPION MINDSET", emoji: "⭐" },
+      { text: "Even if your legs feel heavy, remember: you are 90% determination, 10% pure cuteness, and 100% unstoppable!", tag: "⚡ BEAST MODE", emoji: "🔥" },
+      { text: "I am cheering for you so loud, even the judges in the Roxzone can hear my heart beating for you, meri jaan!", tag: "💖 PURE LOVE", emoji: "🥰" },
+      { text: "Pacing is key, meri Bhondu! Smooth running, steady stations, and that signature mischievous smile that lights up my whole world!", tag: "🏃 PACING WISDOM", emoji: "👟" },
+      { text: "Fun fact: When you cross the finish line, you officially get 10,000 Dora points, endless fruit smoothies, and unlimited foot rubs forever!", tag: "🥰 CHEEKY DORA", emoji: "🍓" },
+      { text: "Look at that runner bib: #01 Athlete! You are already my champion, now just go out there and have the time of your life!", tag: "👑 CHAMPION MINDSET", emoji: "🥇" },
+      { text: "Thakna mana hai, haar maanna impossible hai, and looking insanely adorable while lifting heavy is your superpower!", tag: "⚡ BEAST MODE", emoji: "💪" },
+      { text: "Whenever you feel the burn, imagine each repetition is a warm squeeze from me waiting to scoop you up at the finish line!", tag: "💖 PURE LOVE", emoji: "🫂" },
+      { text: "Wall balls? Sleds? SkiErg? Nothing in this arena is as fierce as my Bhondu when she sets her mind to conquer something!", tag: "⚡ BEAST MODE", emoji: "🦁" },
+      { text: "Breathe in bravery, breathe out nerves. You are doing something 99% of people only dream of doing. I could not be prouder of you!", tag: "🌟 COURAGE", emoji: "✨" },
+      { text: "Tu meri sabse strong, sabse fearless, aur sabse pyaari rockstar hai. Jab tu turf par utarti hai, arena roshan ho jata hai!", tag: "💖 PURE LOVE", emoji: "💖" },
+      { text: "Every drop of sweat today is proof of your dedication. Run like the wind, breathe deep, and know Dora's eyes are always watching you with pure awe.", tag: "🏃 PACING WISDOM", emoji: "💨" },
+      { text: "Whenever self-doubt whispers in your ear, remember: Dora believes in you 1000 times more than you can ever doubt yourself!", tag: "🌟 COURAGE", emoji: "🛡️" },
+      { text: "Station 4, Station 6, Station 8: take it one station at a time, Bhondu! Don't race the whole clock, just win the rep right in front of you!", tag: "⏱️ SUB-1.5H MISSION", emoji: "🎯" },
+      { text: "Teri yeh fighting spirit dekh kar mera dil har roz tere pyaar mein dubara girta hai. Go shine today, my brave superhero!", tag: "💖 PURE LOVE", emoji: "💘" },
+      { text: "Feeling that lactic acid burn? That is just your inner beast waking up! Smile at the pain and keep those feet dancing!", tag: "⚡ BEAST MODE", emoji: "🔥" },
+      { text: "Finish line par clock time jo bhi dikhaye, meri nazar mein tu pehle hi gold standard set kar chuki hai. Bas enjoy kar aur udaan bhar!", tag: "👑 CHAMPION MINDSET", emoji: "👑" },
+      { text: "Sub-1.5 hours is not just a dream, it is the result of every early morning and every rep you did. It belongs to you, Bhondu!", tag: "⏱️ SUB-1.5H MISSION", emoji: "⏱️" },
+      { text: "Your legs are strong, your lungs are ready, your heart is pure gold, and you have Dora cheering in your corner forever!", tag: "💖 PURE LOVE", emoji: "❤️" },
+      { text: "When the sled feels heavy, lean in lower, drive through the turf, and whisper: 'Dora is waiting with the warmest hug!'", tag: "🚜 SLED POWER", emoji: "🏋️‍♀️" },
+      { text: "Bhondu, you are not just participating today, you are writing your own inspiring story. Hold your head high and own every single meter!", tag: "🌟 COURAGE", emoji: "📖" },
+      { text: "If you need strength in the middle of a run, take a deep breath and feel my hand in yours. I am right there running alongside your spirit!", tag: "💖 PURE LOVE", emoji: "🤝" },
+      { text: "No one has your heart, no one has your grit, and definitely no one looks that cute while conquering 8 kilometers of sheer grind!", tag: "🥰 CHEEKY DORA", emoji: "🐰" },
+      { text: "Remember to relax your shoulders, unclench your jaw, and let your rhythm take over. Flow like water, strike like lightning!", tag: "🏃 PACING WISDOM", emoji: "⚡" },
+      { text: "Tu meri favorite human hai aur hamesha rahegi. Win or learn, you are my ultimate hero, meri jaan!", tag: "💖 PURE LOVE", emoji: "🌹" },
+      { text: "The pain is temporary, but the feeling of conquering HYROX and hearing your name called will last forever. Go get it, champ!", tag: "👑 CHAMPION MINDSET", emoji: "🏆" },
+      { text: "Whenever you pass a cheering crowd, remember the loudest cheer in that entire building is coming straight from Dora's soul for you!", tag: "💖 PURE LOVE", emoji: "📢" },
+      { text: "Burpees getting spicy? Count to four: hands down, chest flat, pop up, leap! Robotic perfection, just like we practiced!", tag: "🐸 BURPEE RHYTHM", emoji: "🐸" },
+      { text: "Dora's official race contract: After this, all grocery carrying, heavy lifting, and cooking duties are 100% mine for the next month!", tag: "🥰 CHEEKY DORA", emoji: "🥐" },
+      { text: "You turned fear into focus and sweat into strength. Look at how far you have come, Bhondu. Now go claim your victory lap!", tag: "🌟 COURAGE", emoji: "🌈" },
+      { text: "Sub-90 minutes is calling your name! Keep those transitions sharp, breathe through the nose, and keep that fiery spirit blazing!", tag: "⏱️ SUB-1.5H MISSION", emoji: "🚀" },
+      { text: "Tu fearless hai, tu powerful hai, aur tu meri sabse pyari Bhondu hai. Bas dil khol ke daud, baaki sab Dora sambhal lega!", tag: "💖 PURE LOVE", emoji: "✨" },
+      { text: "Every wall ball that hits the center of the target is a kiss from Dora waiting for you at the finish arch!", tag: "🎯 TARGET LOCK", emoji: "💋" },
+      { text: "Never look at what others are doing. This is YOUR race, YOUR pace, and YOUR moment to shine bright like the sun!", tag: "👑 CHAMPION MINDSET", emoji: "☀️" },
+      { text: "One kilometer at a time, one rep at a time. Before you know it, you will hear the finish crowd roaring for Super Nitz!", tag: "🏃 PACING WISDOM", emoji: "🏁" },
+      { text: "Bhondu, jab tu thakne lage, bas aankhein band karke sochna: Dora finish line par khada hai, dono baazu khole hue, sirf tere liye!", tag: "💖 PURE LOVE", emoji: "🫂" },
+      { text: "You have survived 100% of your hardest training days, and today you are going to thrive. Trust yourself like I trust you!", tag: "🌟 COURAGE", emoji: "💎" },
+      { text: "When you feel like stopping, remember why you started. Every step is bringing you closer to glory, and Dora is so proud!", tag: "👑 CHAMPION MINDSET", emoji: "🔥" },
+      { text: "Dora's promise: No matter how sweaty or exhausted you are at the end, the biggest, warmest bear hug is waiting right for you!", tag: "💖 PURE LOVE", emoji: "🧸" },
+      { text: "Head up, shoulders back, smile on your face. You are the baddest, bravest, and most beautiful athlete in this entire arena!", tag: "👑 CHAMPION MINDSET", emoji: "🌸" }
     ];
 
     // Real Warm Hug states and Dora whispers
@@ -1235,8 +1265,32 @@ class HyroxApp {
 
   showRandomPepTalk() {
     const pepMessageText = document.getElementById('pep-message-text');
-    const quote = this.pepQuotes[Math.floor(Math.random() * this.pepQuotes.length)];
-    pepMessageText.textContent = `"${quote}"`;
+    const pepCardDoodle = document.getElementById('pep-card-doodle');
+    const pepTagPill = document.getElementById('pep-tag-pill');
+
+    if (!pepMessageText || !this.pepQuotes || this.pepQuotes.length === 0) return;
+
+    // Pick a new quote ensuring no immediate repeat
+    let newIdx = Math.floor(Math.random() * this.pepQuotes.length);
+    if (this.lastPepIdx !== undefined && this.pepQuotes.length > 1) {
+      while (newIdx === this.lastPepIdx) {
+        newIdx = Math.floor(Math.random() * this.pepQuotes.length);
+      }
+    }
+    this.lastPepIdx = newIdx;
+
+    const item = this.pepQuotes[newIdx];
+    const text = typeof item === 'string' ? item : item.text;
+    const tag = (typeof item === 'object' && item.tag) ? item.tag : '💖 DORA\'S LOVE';
+    const emoji = (typeof item === 'object' && item.emoji) ? item.emoji : '🌟';
+
+    pepMessageText.classList.remove('quote-pop');
+    void pepMessageText.offsetWidth;
+    pepMessageText.textContent = `"${text}"`;
+    pepMessageText.classList.add('quote-pop');
+
+    if (pepCardDoodle) pepCardDoodle.textContent = emoji;
+    if (pepTagPill) pepTagPill.textContent = tag;
   }
 
   stampStation(num) {
