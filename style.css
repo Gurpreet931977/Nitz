@@ -255,6 +255,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 22px;
+  line-height: 1;
   filter: drop-shadow(0 2px 8px rgba(255, 209, 59, 0.4));
   animation: floatSparkle 3s ease-in-out infinite alternate;
 }
@@ -309,11 +311,14 @@ body {
 
 .bib-pin {
   position: absolute;
-  top: 14px;
+  top: 10px;
+  font-size: 22px;
+  line-height: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+  z-index: 5;
 }
 
 .pin-left { left: 18px; }
@@ -553,8 +558,11 @@ body {
 
 .pin-tack {
   position: absolute;
-  top: 14px;
+  top: 12px;
   right: 18px;
+  font-size: 20px;
+  line-height: 1;
+  z-index: 5;
 }
 
 .card-tag {
@@ -1909,16 +1917,21 @@ body {
   transform: scale(0.97);
 }
 
-/* Floating SVG Particle */
+/* Floating Emoji / Heart Particle */
+.floating-heart-particle,
 .floating-svg-particle {
   position: fixed;
   pointer-events: none;
   z-index: 99999;
+  font-size: 28px;
+  line-height: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   animation: floatUpAndFade 1.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 @keyframes floatUpAndFade {

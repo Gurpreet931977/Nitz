@@ -1,6 +1,6 @@
 /**
  * SUPER NITZ & THE HYROX QUEST
- * Interactive Logic, Mini-Games, Web Audio, SVG Particle Bursts, and Canvas Confetti
+ * Interactive Logic, Mini-Games, Web Audio, Emoji Particle Bursts, and Canvas Confetti
  */
 
 class HyroxApp {
@@ -25,7 +25,7 @@ class HyroxApp {
     this.wallBallMax = 3;
     this.wallBallDone = false;
 
-    // Love quotes for Bhondu
+    // Love quotes for Bhondu (Zero em-dashes)
     this.pepQuotes = [
       "Bhondu, remember how hard you trained for this! Take a deep breath, keep that cute chin up, and crush it!",
       "Even if you feel tired, remember: you're 90% determination, 10% pure cuteness, and 100% unstoppable!",
@@ -178,11 +178,11 @@ class HyroxApp {
     }
   }
 
-  // Floating SVG Particle on user interaction
-  createHeartParticle(x, y, iconId = 'icon-heart') {
+  // Floating Emoji Particle on user tap
+  createHeartParticle(x, y, emoji = '💖') {
     const particle = document.createElement('div');
-    particle.className = 'floating-svg-particle';
-    particle.innerHTML = `<svg class="c-icon c-icon-lg"><use href="#${iconId}"></use></svg>`;
+    particle.className = 'floating-heart-particle';
+    particle.textContent = emoji;
     particle.style.left = `${x}px`;
     particle.style.top = `${y}px`;
 
@@ -192,17 +192,17 @@ class HyroxApp {
     particle.style.setProperty('--rand-rot', `${randRot}deg`);
 
     document.body.appendChild(particle);
-    setTimeout(() => particle.remove(), 1300);
+    setTimeout(() => particle.remove(), 1400);
   }
 
   burstHearts(x, y, count = 6) {
-    const icons = ['icon-heart', 'icon-sparkle', 'icon-paw', 'icon-star', 'icon-kiss', 'icon-fire'];
+    const emojis = ['💖', '✨', '🐾', '⭐', '🥰', '🔥', '💪', '💋', '🐰'];
     for (let i = 0; i < count; i++) {
       setTimeout(() => {
-        const randIcon = icons[Math.floor(Math.random() * icons.length)];
+        const randEmoji = emojis[Math.floor(Math.random() * emojis.length)];
         const offsetX = x + (Math.random() - 0.5) * 40;
         const offsetY = y + (Math.random() - 0.5) * 30;
-        this.createHeartParticle(offsetX, offsetY, randIcon);
+        this.createHeartParticle(offsetX, offsetY, randEmoji);
       }, i * 60);
     }
   }
@@ -260,13 +260,11 @@ class HyroxApp {
 
     soundToggle.addEventListener('click', (e) => {
       this.soundEnabled = !this.soundEnabled;
-      soundIcon.innerHTML = this.soundEnabled 
-        ? '<svg class="c-icon"><use href="#icon-sound-on"></use></svg>'
-        : '<svg class="c-icon"><use href="#icon-sound-off"></use></svg>';
+      soundIcon.textContent = this.soundEnabled ? '🔊' : '🔇';
       soundState.textContent = this.soundEnabled ? 'ON' : 'OFF';
       this.playSound('pop');
       this.triggerHaptic(20);
-      this.createHeartParticle(e.clientX || 50, e.clientY || 50, this.soundEnabled ? 'icon-sparkle' : 'icon-star');
+      this.createHeartParticle(e.clientX || 50, e.clientY || 50, this.soundEnabled ? '🎵' : '💤');
     });
 
     // REAL WARM HUG EXPERIENCE (Multi-Sensory: Heartbeat Haptics + Ambient Warmth + Chords + Whispers)
@@ -379,7 +377,7 @@ class HyroxApp {
             this.createHeartParticle(
               rect.left + rect.width / 2 + (Math.random() - 0.5) * 50,
               rect.top + 10,
-              'icon-heart'
+              '💖'
             );
 
             // Periodic heartbeat haptic
@@ -434,11 +432,11 @@ class HyroxApp {
         this.triggerHaptic(25);
         const checkedCount = document.querySelectorAll('.doodle-checkbox:checked').length;
         if (checkedCount === checkboxes.length) {
-          checklistStatus.innerHTML = '<svg class="c-icon c-icon-sm text-emerald"><use href="#icon-stamp"></use></svg> 100% Ready! Bhondu is an unstoppable beast!';
+          checklistStatus.textContent = '🎉 100% Ready! Bhondu is an unstoppable beast!';
           this.playSound('fanfare');
           this.triggerConfetti(30);
         } else {
-          checklistStatus.innerHTML = `<svg class="c-icon c-icon-sm text-gold"><use href="#icon-bolt"></use></svg> ${checkedCount} of ${checkboxes.length} ready! Keep going, champ!`;
+          checklistStatus.textContent = `⚡ ${checkedCount} of ${checkboxes.length} ready! Keep going, champ!`;
         }
       });
     });
@@ -462,13 +460,13 @@ class HyroxApp {
       sledTaps.textContent = this.sledTaps;
 
       const rect = sledBtn.getBoundingClientRect();
-      this.createHeartParticle(rect.left + rect.width / 2, rect.top, 'icon-fire');
+      this.createHeartParticle(rect.left + rect.width / 2, rect.top, '🔥');
 
       if (this.sledTaps >= this.sledMax) {
         this.sledDone = true;
         sledBtn.classList.add('completed-game');
-        sledBtn.innerHTML = '<svg class="c-icon"><use href="#icon-stamp"></use></svg> SLED CRUSHED! YOU ARE A BEAST!';
-        sledMsg.textContent = "Boom! 50m of pure power slayed by Bhondu!";
+        sledBtn.innerHTML = "✅ SLED CRUSHED! YOU'RE A BEAST!";
+        sledMsg.textContent = 'Boom! 50m of pure power slayed by Bhondu! 💥';
         this.stampStation(2);
         this.playSound('fanfare');
         this.burstHearts(rect.left + rect.width / 2, rect.top, 10);
@@ -498,13 +496,13 @@ class HyroxApp {
       burpeeJumpsEl.textContent = this.burpeeJumps;
 
       const rect = burpeeBtn.getBoundingClientRect();
-      this.createHeartParticle(rect.left + rect.width / 2, rect.top, 'icon-frog');
+      this.createHeartParticle(rect.left + rect.width / 2, rect.top, '🐸');
 
       if (this.burpeeJumps >= this.burpeeMax) {
         this.burpeeDone = true;
         burpeeBtn.classList.add('completed-game');
-        burpeeBtn.innerHTML = '<svg class="c-icon"><use href="#icon-stamp"></use></svg> 80m JUMPS COMPLETED! HALFWAY!';
-        burpeeMsg.textContent = "Froggy leaps slayed! The mental hump is conquered!";
+        burpeeBtn.innerHTML = '✅ 80m JUMPS COMPLETED! HALFWAY!';
+        burpeeMsg.textContent = 'Froggy leaps slayed! The mental hump is conquered! 🌟';
         this.stampStation(4);
         this.playSound('fanfare');
         this.burstHearts(rect.left + rect.width / 2, rect.top, 10);
@@ -531,13 +529,13 @@ class HyroxApp {
 
       wbHitsEl.textContent = this.wallBallHits;
       const rect = wbBtn.getBoundingClientRect();
-      this.createHeartParticle(rect.left + rect.width / 2, rect.top, 'icon-target');
+      this.createHeartParticle(rect.left + rect.width / 2, rect.top, '🎯');
 
       if (this.wallBallHits >= this.wallBallMax) {
         this.wallBallDone = true;
         wbBtn.classList.add('completed-game');
-        wbBtn.innerHTML = '<svg class="c-icon"><use href="#icon-trophy"></use></svg> TARGET HIT! ALL 8 STATIONS CONQUERED!';
-        wbMsg.textContent = "FINAL BOSS DOWN! The Red Carpet awaits our Champion!";
+        wbBtn.innerHTML = '🏆 TARGET HIT! ALL 8 STATIONS CONQUERED!';
+        wbMsg.textContent = 'FINAL BOSS DOWN! The Red Carpet awaits our Champion! 👑';
         this.stampStation(8);
         this.playSound('fanfare');
         this.triggerConfetti(60);
@@ -608,20 +606,20 @@ class HyroxApp {
       this.triggerHaptic(20);
       this.showRandomPepTalk();
       const rect = newPepBtn.getBoundingClientRect();
-      this.createHeartParticle(rect.left + rect.width / 2, rect.top, 'icon-dice');
+      this.createHeartParticle(rect.left + rect.width / 2, rect.top, '🎲');
     });
 
     pepKissBtn.addEventListener('click', (e) => {
       this.playSound('chime');
       this.triggerHaptic(50);
       const rect = pepKissBtn.getBoundingClientRect();
-      const kissIcons = ['icon-kiss', 'icon-kiss', 'icon-heart', 'icon-sparkle'];
+      const kissEmojis = ['💋', '💖', '🥰', '✨'];
       for (let i = 0; i < 14; i++) {
         setTimeout(() => {
-          const randIcon = kissIcons[Math.floor(Math.random() * kissIcons.length)];
+          const randEmoji = kissEmojis[Math.floor(Math.random() * kissEmojis.length)];
           const offsetX = rect.left + rect.width / 2 + (Math.random() - 0.5) * 60;
           const offsetY = rect.top + (Math.random() - 0.5) * 30;
-          this.createHeartParticle(offsetX, offsetY, randIcon);
+          this.createHeartParticle(offsetX, offsetY, randEmoji);
         }, i * 50);
       }
       this.triggerConfetti(25);
@@ -647,7 +645,7 @@ class HyroxApp {
       card.classList.add('completed');
       const pill = card.querySelector('.station-status-pill');
       if (pill) {
-        pill.innerHTML = '<svg class="c-icon c-icon-sm text-emerald"><use href="#icon-stamp"></use></svg> Stamped!';
+        pill.innerHTML = '✅ Stamped!';
       }
     }
 
@@ -664,7 +662,7 @@ class HyroxApp {
 
     if (fill) fill.style.width = `${pct}%`;
     if (stationCount) stationCount.textContent = `Completed: ${count} of ${this.totalStations} Stations`;
-    if (energyCount) energyCount.innerHTML = `<svg class="c-icon c-icon-sm text-gold"><use href="#icon-bolt"></use></svg> ${this.energyScore} Energy Points`;
+    if (energyCount) energyCount.innerHTML = `⚡ ${this.energyScore} Energy Points`;
   }
 
   // Built-in Mobile Canvas Confetti
