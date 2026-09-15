@@ -336,17 +336,25 @@ class HyroxApp {
     if ('vibrate' in navigator) {
       try {
         if (level === 1) {
-          // Contact impact
-          navigator.vibrate([140, 50, 160]);
+          // Firm double-tap contact
+          navigator.vibrate([120, 40, 160]);
         } else if (level === 2) {
-          // Deep pulse
-          navigator.vibrate([180, 50, 220]);
+          // Rolling deep pulse
+          navigator.vibrate([180, 40, 240, 40, 180]);
         } else if (level === 3) {
-          // High intensity charging heartbeat
-          navigator.vibrate([240, 40, 300]);
+          // Heavy triple-beat charging
+          navigator.vibrate([250, 50, 300, 50, 350]);
         } else if (level >= 4) {
-          // Full celebratory warm hug explosion
-          navigator.vibrate([350, 60, 450, 70, 600, 80, 950]);
+          // MAXIMUM IMPACT: Explosive warm hug celebration sequence (2.8 seconds)
+          navigator.vibrate([
+            400, 50,
+            450, 50,
+            500, 50,
+            550, 80,
+            600, 80,
+            700, 80,
+            900
+          ]);
         }
       } catch (e) {}
     }
@@ -355,11 +363,11 @@ class HyroxApp {
     if (level === 1) {
       this.playHapticRumble(0.85, 0.25, 68);
     } else if (level === 2) {
-      this.playHapticRumble(1.0, 0.32, 62);
+      this.playHapticRumble(1.0, 0.36, 60);
     } else if (level === 3) {
-      this.playHapticRumble(1.2, 0.40, 56);
+      this.playHapticRumble(1.3, 0.45, 52);
     } else if (level >= 4) {
-      this.playHapticRumble(1.5, 0.75, 48);
+      this.playHapticRumble(1.8, 0.90, 44);
     }
   }
 
@@ -665,19 +673,32 @@ class HyroxApp {
           // Dynamically ramp the acoustic rumble motor volume and frequency
           this.setHugRumbleIntensity(pct);
 
-          // Continuous escalating hardware vibration pulses throughout hold
+          // ---- Continuous escalating hardware vibration (pattern loop approach) ----
+          // We schedule a new vibration pattern each ~interval so the phone *never* stops.
+          // Navigator.vibrate() with a pattern auto-stops at end; re-calling keeps it going.
           const nowTime = Date.now();
-          const pulseIntervalMs = Math.max(105, 230 - (pct * 1.25)); // 230ms down to 105ms
-          const pulseDurationMs = Math.min(170, 70 + (pct * 1.0));    // 70ms up to 170ms
+
+          // Interval tightens as pct rises: 260ms (start) -> 90ms (at 100%)
+          const pulseIntervalMs = Math.max(90, 260 - (pct * 1.7));
 
           if (nowTime - lastVibrateTime >= pulseIntervalMs) {
             lastVibrateTime = nowTime;
             if ('vibrate' in navigator) {
               try {
                 if (pct >= 100) {
-                  navigator.vibrate([220, 30, 220]);
+                  // Full-power: continuous double-thump at maximum phone motor strength
+                  navigator.vibrate([300, 40, 300]);
+                } else if (pct >= 75) {
+                  // Heavy rapid pulses  
+                  const on = Math.round(120 + pct * 1.2);
+                  navigator.vibrate([on, 35, on]);
+                } else if (pct >= 45) {
+                  // Growing double-tap pattern
+                  const on = Math.round(80 + pct * 1.0);
+                  navigator.vibrate([on, 45, Math.round(on * 0.8)]);
                 } else {
-                  navigator.vibrate(pulseDurationMs);
+                  // Gentle single pulse rising
+                  navigator.vibrate(Math.round(60 + pct * 0.9));
                 }
               } catch (err) {}
             }
@@ -685,37 +706,45 @@ class HyroxApp {
 
           // Progressive phase feedback
           if (pct < 25) {
-            if (hugBtnText) hugBtnText.textContent = 'Dora is reaching out... 🫂';
+            if (hugBtnText) hugBtnText.textContent = 'Dora is reaching out...';
             if (hugMeterText) hugMeterText.textContent = 'Arms reaching out...';
           } else if (pct < 55) {
-            if (hugBtnText) hugBtnText.textContent = 'Wrapping you up warm... 💖';
+            if (hugBtnText) hugBtnText.textContent = 'Wrapping you up warm...';
             if (hugMeterText) hugMeterText.textContent = 'Wrapping around you warm...';
             if (lastBeatTier < 1) {
               lastBeatTier = 1;
-              this.triggerHeartbeatHaptic(1);
+              this.triggerHeartbeatHaptic(2);
             }
-          } else if (pct < 85) {
-            if (hugBtnText) hugBtnText.textContent = 'Squeezing super tight... 🥰';
+          } else if (pct < 80) {
+            if (hugBtnText) hugBtnText.textContent = 'Squeezing super tight...';
             if (hugMeterText) hugMeterText.textContent = 'Squeezing tight with love...';
             if (lastBeatTier < 2) {
               lastBeatTier = 2;
-              this.triggerHeartbeatHaptic(2);
+              this.triggerHeartbeatHaptic(3);
             }
           } else if (pct < 100) {
-            if (hugBtnText) hugBtnText.textContent = 'Almost there... keep holding! ✨';
+            if (hugBtnText) hugBtnText.textContent = 'Almost there... keep holding!';
             if (hugMeterText) hugMeterText.textContent = 'Peak warmth incoming...';
             if (lastBeatTier < 3) {
               lastBeatTier = 3;
               this.triggerHeartbeatHaptic(3);
             }
           } else {
-            // 100% Fully Powered Warm Hug!
+            // 100% Fully Powered Warm Hug! - continuous max-power rumble
             hugBtn.classList.add('fully-charged');
-            if (hugBtnText) hugBtnText.textContent = '100% WARMTH! Release now! 💖✨';
+            if (hugBtnText) hugBtnText.textContent = '100% WARMTH! Release now!';
             if (hugMeterText) hugMeterText.textContent = 'Release to receive full hug!';
             if (lastBeatTier < 4) {
               lastBeatTier = 4;
-              this.triggerHeartbeatHaptic(3);
+              // Fire max-impact blast immediately when 100% is first reached
+              if ('vibrate' in navigator) {
+                try {
+                  navigator.vibrate([
+                    500, 30, 500, 30, 500, 30, 500
+                  ]);
+                } catch(e) {}
+              }
+              this.triggerHeartbeatHaptic(4);
             }
           }
 
@@ -780,11 +809,23 @@ class HyroxApp {
         hugBtn.classList.add('blooming');
         setTimeout(() => hugBtn.classList.remove('blooming'), 650);
 
-        if (hugBtnText) hugBtnText.textContent = 'Warm Hug Sent with All My Love! 💖';
-        if (hugMeterText) hugMeterText.textContent = 'Wrapped in Dora\'s love!';
-        if (hugPctBadge) hugPctBadge.textContent = '100% ✓';
+        if (hugBtnText) hugBtnText.textContent = 'Warm Hug Sent with All My Love!';
+        if (hugMeterText) hugMeterText.textContent = "Wrapped in Dora's love!";
+        if (hugPctBadge) hugPctBadge.textContent = '100% \u2713';
 
-        // MASSIVE CELEBRATORY VIBRATION SEQUENCE (Heavy Actuator Blast + Sub-bass acoustic thump)
+        // MAXIMUM CELEBRATORY VIBRATION: long escalating explosion (3+ seconds)
+        if ('vibrate' in navigator) {
+          try {
+            navigator.vibrate([
+              // Phase 1: rapid triple-tap
+              200, 30, 200, 30, 200,
+              // Phase 2: building rolls
+              60, 350, 60, 400, 60, 450,
+              // Phase 3: final sustained love-blast
+              80, 600, 80, 800
+            ]);
+          } catch(e) {}
+        }
         this.triggerHeartbeatHaptic(4);
         this.playSound('warmHug');
         triggerHugGlow(true);

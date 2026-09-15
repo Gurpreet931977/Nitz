@@ -186,6 +186,37 @@ body {
   height: 1.1em;
   vertical-align: -0.15em;
   stroke: currentColor;
+  flex-shrink: 0;
+}
+
+/* Icon Size Scale */
+.c-icon-xs  { width: 14px;  height: 14px;  vertical-align: -2px; }
+.c-icon-sm  { width: 18px;  height: 18px;  vertical-align: -3px; }
+.c-icon-md  { width: 24px;  height: 24px;  vertical-align: -4px; }
+.c-icon-lg  { width: 32px;  height: 32px;  vertical-align: -6px; }
+.c-icon-xl  { width: 48px;  height: 48px;  display: block; }
+
+/* Station Title Icon (inline with station name h3) */
+.station-title-icon {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+  vertical-align: -6px;
+  margin-left: 6px;
+  flex-shrink: 0;
+}
+
+/* Sparkle / Star Icon */
+.c-sparkle-svg {
+  display: inline-block;
+  vertical-align: -3px;
+}
+
+/* Pin SVG (bib corners) */
+.c-pin-svg {
+  display: block;
+  width: 28px;
+  height: 28px;
 }
 
 .sound-toggle-badge {
@@ -245,7 +276,8 @@ body {
   justify-content: center;
   align-items: center;
   background: var(--pink-hero);
-  padding: 70px 20px 40px 20px;
+  /* 80px top padding keeps content below fixed top-nav */
+  padding: 80px 20px 48px 20px;
   position: relative;
   overflow: hidden;
 }
@@ -2662,7 +2694,8 @@ body {
   position: fixed;
   bottom: 22px;
   right: 18px;
-  z-index: 90;
+  /* Sit above all modals and overlays except confetti canvas */
+  z-index: 9990;
 }
 
 .floating-pep-btn {

@@ -29,30 +29,46 @@
       <span>Back</span>
     </button>
     <div class="sound-toggle-badge" id="sound-toggle" role="button" aria-label="Toggle Sound Effects">
-      <span class="sound-icon" id="sound-icon">🔊</span>
+      <span class="sound-icon" id="sound-icon">
+        <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="currentColor" d="M14 3.23v17.54c0 .88-1.02 1.37-1.7.81L6.59 17H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h3.59l5.71-4.58c.68-.56 1.7-.07 1.7.81zm4.5 8.77c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM16 4.41v2.06c3.01.89 5.2 3.67 5.2 6.98 0 3.32-2.19 6.09-5.2 6.99v2.06c4.13-.97 7.2-4.68 7.2-9.05 0-4.37-3.07-8.08-7.2-9.04z"/></svg>
+      </span>
       <span class="sound-label">Sound: <strong id="sound-state">ON</strong></span>
     </div>
     <div class="love-badge">
       <span>Built with</span>
-      <span class="love-heart-emoji">💖</span>
+      <span class="love-heart-icon" aria-label="love">
+        <svg class="c-icon c-icon-sm icon-heart-pulse" viewBox="0 0 24 24"><path fill="#FF2A54" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+      </span>
       <span>for Bhondu</span>
     </div>
   </header>
 
   <!-- First Page: Interactive "Accept The Gift" Love Experience -->
   <div class="portal-view" id="portal-view">
-    <div class="portal-sparkle ps-1">✨</div>
-    <div class="portal-sparkle ps-2">⭐</div>
-    <div class="portal-sparkle ps-3">💖</div>
-    <div class="portal-sparkle ps-4">🐾</div>
+    <div class="portal-sparkle ps-1">
+      <svg class="c-sparkle-svg" viewBox="0 0 24 24"><path fill="#FFCF36" d="M12 0L14.8 9.2L24 12L14.8 14.8L12 24L9.2 14.8L0 12L9.2 9.2z"/></svg>
+    </div>
+    <div class="portal-sparkle ps-2">
+      <svg class="c-sparkle-svg" viewBox="0 0 24 24"><path fill="#FF6584" d="M12 2l2.6 6.8L22 12l-7.4 3.2L12 22l-2.6-6.8L2 12l7.4-3.2z"/></svg>
+    </div>
+    <div class="portal-sparkle ps-3">
+      <svg class="c-icon c-icon-md" viewBox="0 0 24 24"><path fill="#FF2A54" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+    </div>
+    <div class="portal-sparkle ps-4">
+      <svg class="c-icon c-icon-md" viewBox="0 0 24 24"><path fill="#FFA800" d="M12 13c-2.2 0-4 1.8-4 4 0 1.7 1.3 3 3 3 1.1 0 2-.4 2.7-1 .7.6 1.6 1 2.7 1 1.7 0 3-1.3 3-3 0-2.2-1.8-4-4-4zm-4.5-3c1.4 0 2.5-1.1 2.5-2.5S8.9 5 7.5 5 5 6.1 5 7.5 6.1 10 7.5 10zm9 0c1.4 0 2.5-1.1 2.5-2.5S17.9 5 16.5 5 14 6.1 14 7.5s1.1 2.5 2.5 2.5zm-6.5-2c1.4 0 2.5-1.1 2.5-2.5S9.4 3 8 3 5.5 4.1 5.5 5.5 6.6 8 8 8zm6 0c1.4 0 2.5-1.1 2.5-2.5S15.4 3 14 3s-2.5 1.1-2.5 2.5 1.1 2.5 2.5 2.5z"/></svg>
+    </div>
 
     <!-- Stage 1: The Main Gift Proposal Card -->
     <div class="portal-card gift-card" id="gift-card-main">
       <div class="portal-tag">
-        <span>💌</span> SPECIAL DELIVERY FOR BHONDU
+        <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="#FF2A54" d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        <span>SPECIAL DELIVERY FOR BHONDU</span>
       </div>
       
-      <h1 class="gift-title">PLS ACCEPT THE GIFT 🎁</h1>
+      <h1 class="gift-title">
+        PLS ACCEPT THE GIFT
+        <svg class="c-icon c-icon-md gift-title-box" viewBox="0 0 24 24"><path fill="#FFCF36" stroke="#1E1E24" stroke-width="2" stroke-linejoin="round" d="M20 7H4v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path fill="#FF2A54" stroke="#1E1E24" stroke-width="2" stroke-linecap="round" d="M12 7v15M4 11h16M21 4H3v3h18V4z"/><path fill="none" stroke="#FF2A54" stroke-width="2" stroke-linecap="round" d="M12 4c-1.5-3-5-3-5 0s5 3 5 3M12 4c1.5-3 5-3 5 0s-5 3-5 3"/></svg>
+      </h1>
       
       <!-- Adorable Mascot with Flowers and Cute Pink Ribbon Bow -->
       <div class="gift-mascot-wrap">
@@ -62,7 +78,9 @@
             <span class="mascot-face">🐱</span>
             <span class="mascot-bouquet">💐</span>
           </div>
-          <div class="mascot-sparkles">✨</div>
+          <div class="mascot-sparkles">
+            <svg class="c-sparkle-svg" viewBox="0 0 24 24"><path fill="#FFCF36" d="M12 0L14.8 9.2L24 12L14.8 14.8L12 24L9.2 14.8L0 12L9.2 9.2z"/></svg>
+          </div>
         </div>
       </div>
 
@@ -71,7 +89,9 @@
       <!-- Interactive Button Arena (Yes grows, No runs away) -->
       <div class="gift-btn-arena" id="gift-btn-arena">
         <button class="gift-yes-btn" id="gift-yes-btn">
-          <span>💖</span> YES! <span>✨</span>
+          <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+          <span>YES!</span>
+          <svg class="c-sparkle-svg" viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M12 0L14.8 9.2L24 12L14.8 14.8L12 24L9.2 14.8L0 12L9.2 9.2z"/></svg>
         </button>
         <button class="gift-no-btn" id="gift-no-btn">
           NO 🙈
@@ -79,7 +99,7 @@
       </div>
 
       <div class="gift-subhint" id="gift-subhint">
-        <span>🐾</span>
+        <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="currentColor" d="M12 13c-2.2 0-4 1.8-4 4 0 1.7 1.3 3 3 3 1.1 0 2-.4 2.7-1 .7.6 1.6 1 2.7 1 1.7 0 3-1.3 3-3 0-2.2-1.8-4-4-4zm-4.5-3c1.4 0 2.5-1.1 2.5-2.5S8.9 5 7.5 5 5 6.1 5 7.5 6.1 10 7.5 10zm9 0c1.4 0 2.5-1.1 2.5-2.5S17.9 5 16.5 5 14 6.1 14 7.5s1.1 2.5 2.5 2.5zm-6.5-2c1.4 0 2.5-1.1 2.5-2.5S9.4 3 8 3 5.5 4.1 5.5 5.5 6.6 8 8 8zm6 0c1.4 0 2.5-1.1 2.5-2.5S15.4 3 14 3s-2.5 1.1-2.5 2.5 1.1 2.5 2.5 2.5z"/></svg>
         <span id="gift-hint-text">Psst: There's only one right answer, Bhondu! 😉</span>
       </div>
     </div>
@@ -87,7 +107,8 @@
     <!-- Stage 2: "HOW DARE YOU!" Meme Card (If she clicks NO) -->
     <div class="portal-card dare-card" id="gift-dare-card" style="display: none;">
       <div class="dare-tag">
-        <span>🚨</span> SUSPICIOUS BEHAVIOR DETECTED
+        <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="#EF4444" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+        <span>SUSPICIOUS BEHAVIOR DETECTED</span>
       </div>
       
       <h2 class="dare-title">HOW DARE YOU! 😼</h2>
@@ -103,11 +124,13 @@
       <p class="dare-desc">You actually tried to click NO on Dora's surprise?! Unacceptable! 😤</p>
 
       <button class="gift-try-again-btn" id="gift-try-again-btn">
-        <span>💕</span> TRY AGAIN (CORRECTLY!) <span>💕</span>
+        <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="currentColor" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        <span>TRY AGAIN (CORRECTLY!)</span>
+        <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="currentColor" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
       </button>
 
       <div class="portal-footer-hint">
-        <span>🐾</span>
+        <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="currentColor" d="M12 13c-2.2 0-4 1.8-4 4 0 1.7 1.3 3 3 3 1.1 0 2-.4 2.7-1 .7.6 1.6 1 2.7 1 1.7 0 3-1.3 3-3 0-2.2-1.8-4-4-4zm-4.5-3c1.4 0 2.5-1.1 2.5-2.5S8.9 5 7.5 5 5 6.1 5 7.5 6.1 10 7.5 10zm9 0c1.4 0 2.5-1.1 2.5-2.5S17.9 5 16.5 5 14 6.1 14 7.5s1.1 2.5 2.5 2.5zm-6.5-2c1.4 0 2.5-1.1 2.5-2.5S9.4 3 8 3 5.5 4.1 5.5 5.5 6.6 8 8 8zm6 0c1.4 0 2.5-1.1 2.5-2.5S15.4 3 14 3s-2.5 1.1-2.5 2.5 1.1 2.5 2.5 2.5z"/></svg>
         <span>You know you love Dora too much to resist!</span>
       </div>
     </div>
@@ -115,9 +138,12 @@
     <!-- Stage 3: Celebratory "YAAAY" Screen (Before transitioning to quest) -->
     <div class="portal-card yay-card" id="gift-yay-card" style="display: none;">
       <div class="yay-tag">
-        <span>🎉</span> MISSION ACCEPTED!
+        <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="#FFCF36" d="M12 2l2.6 6.8L22 12l-7.4 3.2L12 22l-2.6-6.8L2 12l7.4-3.2z"/></svg>
+        <span>MISSION ACCEPTED!</span>
       </div>
-      <div class="yay-emoji">🥳💖✨</div>
+      <div class="yay-icon-wrap">
+        <svg class="c-icon-xl" viewBox="0 0 24 24"><path fill="#FF2A54" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+      </div>
       <h2 class="yay-title">YAAAY! BEST DECISION EVER!</h2>
       <p class="yay-desc">Loading your HYROX superhero quest right now...</p>
       <div class="yay-loader-bar">
@@ -135,18 +161,31 @@
       <div class="content-container">
         <!-- Hero Section: Runner Bib -->
         <section class="hero-section">
-          <div class="doodle-sparkle sparkle-1">✨</div>
-          <div class="doodle-sparkle sparkle-2">💖</div>
-          <div class="doodle-sparkle sparkle-3">⭐</div>
-          <div class="doodle-sparkle sparkle-4">🐾</div>
+          <div class="doodle-sparkle sparkle-1">
+            <svg class="c-sparkle-svg" viewBox="0 0 24 24"><path fill="#FFCF36" d="M12 0L14.8 9.2L24 12L14.8 14.8L12 24L9.2 14.8L0 12L9.2 9.2z"/></svg>
+          </div>
+          <div class="doodle-sparkle sparkle-2">
+            <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="#FF2A54" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          </div>
+          <div class="doodle-sparkle sparkle-3">
+            <svg class="c-sparkle-svg" viewBox="0 0 24 24"><path fill="#FFA800" d="M12 2l2.6 6.8L22 12l-7.4 3.2L12 22l-2.6-6.8L2 12l7.4-3.2z"/></svg>
+          </div>
+          <div class="doodle-sparkle sparkle-4">
+            <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="#FFA800" d="M12 13c-2.2 0-4 1.8-4 4 0 1.7 1.3 3 3 3 1.1 0 2-.4 2.7-1 .7.6 1.6 1 2.7 1 1.7 0 3-1.3 3-3 0-2.2-1.8-4-4-4zm-4.5-3c1.4 0 2.5-1.1 2.5-2.5S8.9 5 7.5 5 5 6.1 5 7.5 6.1 10 7.5 10zm9 0c1.4 0 2.5-1.1 2.5-2.5S17.9 5 16.5 5 14 6.1 14 7.5s1.1 2.5 2.5 2.5zm-6.5-2c1.4 0 2.5-1.1 2.5-2.5S9.4 3 8 3 5.5 4.1 5.5 5.5 6.6 8 8 8zm6 0c1.4 0 2.5-1.1 2.5-2.5S15.4 3 14 3s-2.5 1.1-2.5 2.5 1.1 2.5 2.5 2.5z"/></svg>
+          </div>
 
-          <div class="runner-bib">
-            <div class="bib-pin pin-left">📌</div>
-            <div class="bib-pin pin-right">📌</div>
+          <div class="runner-bib-card" id="runner-bib">
+            <!-- Brass Pushpins on Corners -->
+            <div class="bib-pin pin-left" aria-hidden="true">
+              <svg class="c-pin-svg" viewBox="0 0 24 24"><circle cx="12" cy="10" r="7" fill="#FFCF36" stroke="#1E1E24" stroke-width="2.5"/><circle cx="12" cy="10" r="3" fill="#FFA800"/><path d="M12 17v5" stroke="#1E1E24" stroke-width="2.5" stroke-linecap="round"/></svg>
+            </div>
+            <div class="bib-pin pin-right" aria-hidden="true">
+              <svg class="c-pin-svg" viewBox="0 0 24 24"><circle cx="12" cy="10" r="7" fill="#FFCF36" stroke="#1E1E24" stroke-width="2.5"/><circle cx="12" cy="10" r="3" fill="#FFA800"/><path d="M12 17v5" stroke="#1E1E24" stroke-width="2.5" stroke-linecap="round"/></svg>
+            </div>
 
-            <div class="bib-header">
-              <span class="bib-event">HYROX FIRST TIMER EDITION</span>
+            <div class="bib-header-row">
               <span class="bib-badge">★ PRO ATHLETE</span>
+              <span class="bib-division">HYROX WOMEN OPEN</span>
             </div>
 
             <div class="bib-number">#01</div>
@@ -156,17 +195,26 @@
             <div class="bib-stats">
               <div class="stat-item">
                 <span class="stat-label">HEART</span>
-                <span class="stat-val">1000% ❤️</span>
+                <span class="stat-val">
+                  1000%
+                  <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="#FF2A54" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                </span>
               </div>
               <div class="stat-divider">•</div>
               <div class="stat-item">
                 <span class="stat-label">BEAST MODE</span>
-                <span class="stat-val">ACTIVE 🔥</span>
+                <span class="stat-val">
+                  ACTIVE
+                  <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="#FF5C00" d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z"/></svg>
+                </span>
               </div>
               <div class="stat-divider">•</div>
               <div class="stat-item">
                 <span class="stat-label">CUTENESS</span>
-                <span class="stat-val">MAX 🐰</span>
+                <span class="stat-val">
+                  MAX
+                  <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="#FFCF36" stroke="#1E1E24" stroke-width="1.5" d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm14 3c0 .6-.4 1-1 1H6c-.6 0-1-.4-1-1v-1h14v1z"/></svg>
+                </span>
               </div>
             </div>
           </div>
@@ -201,14 +249,19 @@
               <div class="hug-btn-core">
                 <!-- Icon with Heartbeat Pulse -->
                 <div class="hug-icon-badge">
-                  <span class="hug-beating-heart" id="hug-beating-icon">🫂</span>
+                  <span class="hug-beating-heart" id="hug-beating-icon">
+                    <svg class="c-icon c-icon-lg" viewBox="0 0 24 24"><path fill="#FF2A54" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                  </span>
                   <div class="hug-heartbeat-ring"></div>
                 </div>
 
                 <!-- Text & Real-Time Status -->
                 <div class="hug-btn-text-wrap">
                   <div class="hug-tag-row">
-                    <span class="hug-mini-pill">💖 DORA'S BIG WARM HUG</span>
+                    <span class="hug-mini-pill">
+                      <svg class="c-icon c-icon-xs" viewBox="0 0 24 24" width="10" height="10"><path fill="#FF2A54" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                      DORA'S BIG WARM HUG
+                    </span>
                     <span class="hug-hold-pill">HOLD TO SQUEEZE</span>
                   </div>
                   <h3 class="hug-main-title" id="hug-btn-text">Press &amp; Hold for a Warm Hug</h3>
@@ -220,7 +273,9 @@
 
                 <!-- Counter Badge -->
                 <div class="hug-counter-wrap">
-                  <span class="hug-counter-icon">❤️</span>
+                  <span class="hug-counter-icon">
+                    <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="#FF2A54" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                  </span>
                   <span class="hug-counter-badge" id="hug-counter">0 hugs sent</span>
                 </div>
               </div>
@@ -235,27 +290,39 @@
               </div>
 
               <!-- Decorative Floating Stickers -->
-              <span class="hug-floating-sticker sticker-tl" aria-hidden="true">⭐</span>
-              <span class="hug-floating-sticker sticker-br" aria-hidden="true">✨</span>
+              <span class="hug-floating-sticker sticker-tl" aria-hidden="true">
+                <svg class="c-sparkle-svg" viewBox="0 0 24 24" width="22" height="22"><path fill="#FFCF36" d="M12 0L14.8 9.2L24 12L14.8 14.8L12 24L9.2 14.8L0 12L9.2 9.2z"/></svg>
+              </span>
+              <span class="hug-floating-sticker sticker-br" aria-hidden="true">
+                <svg class="c-sparkle-svg" viewBox="0 0 24 24" width="18" height="18"><path fill="#FFA800" d="M12 2l2.6 6.8L22 12l-7.4 3.2L12 22l-2.6-6.8L2 12l7.4-3.2z"/></svg>
+              </span>
             </button>
 
             <!-- Dora Whisper Speech Bubble -->
             <div class="hug-whisper" id="hug-whisper">
-              <span class="whisper-icon">💬</span>
+              <span class="whisper-icon">
+                <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="#FF5C8A" d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+              </span>
               <span id="hug-whisper-text">Press &amp; hold anytime you need Dora's warm squeeze!</span>
             </div>
 
             <p class="hug-hint">
-              <span>🧸</span> <strong>Feel the real hug:</strong> Keep holding to feel the heartbeat rumble vibrate in your hands!
+              <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="#FF2A54" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+              <strong>Feel the real hug:</strong> Keep holding to feel the heartbeat rumble vibrate in your hands!
             </p>
           </div>
         </section>
 
         <!-- Race Day Affirmation Card -->
         <section class="scrapbook-card affirmation-card">
-          <div class="pin-tack">📌</div>
-          <div class="card-tag">A Note From Your Biggest Fan 📌</div>
-          <h2 class="card-title">Hey Bhondu, You Got This! ⭐</h2>
+          <div class="pin-tack" aria-hidden="true">
+            <svg class="c-pin-svg" viewBox="0 0 24 24"><circle cx="12" cy="10" r="7" fill="#FF5C8A" stroke="#1E1E24" stroke-width="2.5"/><circle cx="12" cy="10" r="3" fill="#FFE3EC"/><path d="M12 17v5" stroke="#1E1E24" stroke-width="2.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="card-tag">
+            <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="currentColor" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            <span>A Note From Your Biggest Fan</span>
+          </div>
+          <h2 class="card-title">Hey Bhondu, You Got This! <svg class="c-sparkle-svg" viewBox="0 0 24 24" width="22" height="22" style="vertical-align: -3px;"><path fill="#FFCF36" d="M12 0L14.8 9.2L24 12L14.8 14.8L12 24L9.2 14.8L0 12L9.2 9.2z"/></svg></h2>
           <p class="card-text">
             Today is your very first HYROX, and I couldn't be prouder of you! You've put in the sweat, the laughs, and all the hard work. Remember: it’s not about anyone else. It’s just you having fun, kicking butt, and showing the race course what a rockstar you are.
           </p>
@@ -279,7 +346,8 @@
         <!-- Morning Checklist -->
         <section class="scrapbook-card checklist-card">
           <h2 class="section-title">
-            <span>📋</span> Bhondu's Race Day Checklist
+            <svg class="c-icon c-icon-md" viewBox="0 0 24 24"><path fill="#FFCF36" stroke="#1E1E24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 2h6a1 1 0 0 1 1 1v2H8V3a1 1 0 0 1 1-1zM5 5h14v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5z"/><path d="M9 12l2 2 4-4" stroke="#1E1E24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+            <span>Bhondu's Race Day Checklist</span>
           </h2>
           <p class="section-subtitle">Tap each one to check off your superpowers!</p>
       
@@ -287,37 +355,61 @@
         <label class="check-item">
           <input type="checkbox" class="doodle-checkbox" checked>
           <span class="checkmark"></span>
-          <span class="check-label">Double-knotted shoelaces 👟</span>
+          <span class="check-label">
+            <span>Double-knotted shoelaces</span>
+            <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="#FF5C8A" stroke="#1E1E24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M2 18h20v2H2zm19-4l-3-6-4 2-2-4H7L3 14h18z"/></svg>
+          </span>
         </label>
         <label class="check-item">
           <input type="checkbox" class="doodle-checkbox" checked>
           <span class="checkmark"></span>
-          <span class="check-label">Electrolytes & happy hydration 💧</span>
+          <span class="check-label">
+            <span>Electrolytes &amp; happy hydration</span>
+            <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="#38BDF8" stroke="#1E1E24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+          </span>
         </label>
         <label class="check-item">
           <input type="checkbox" class="doodle-checkbox">
           <span class="checkmark"></span>
-          <span class="check-label">Signature Bhondu cheeky smile 😊</span>
+          <span class="check-label">
+            <span>Signature Bhondu cheeky smile</span>
+            <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#FFCF36" stroke="#1E1E24" stroke-width="2"/><path d="M8 14s1.5 3 4 3 4-3 4-3" stroke="#1E1E24" stroke-width="2" stroke-linecap="round" fill="none"/><circle cx="9" cy="9" r="1.5" fill="#1E1E24"/><circle cx="15" cy="9" r="1.5" fill="#1E1E24"/></svg>
+          </span>
         </label>
         <label class="check-item">
           <input type="checkbox" class="doodle-checkbox">
           <span class="checkmark"></span>
-          <span class="check-label">Pacing strategy: steady & strong 🚀</span>
+          <span class="check-label">
+            <span>Pacing strategy: steady &amp; strong</span>
+            <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="#FF2A54" stroke="#1E1E24" stroke-width="1.5" stroke-linejoin="round" d="M12 2.5s4 4 4 10.5l-4 4-4-4c0-6.5 4-10.5 4-10.5z"/><path fill="#FFCF36" d="M12 17l-2 4 2-1 2 1z"/></svg>
+          </span>
         </label>
         <label class="check-item">
           <input type="checkbox" class="doodle-checkbox">
           <span class="checkmark"></span>
-          <span class="check-label">Remembering that you are SO loved 💖</span>
+          <span class="check-label">
+            <span>Remembering that you are SO loved</span>
+            <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="#FF2A54" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          </span>
         </label>
       </div>
-      <div class="checklist-status" id="checklist-status">Keep ticking, champ! ⚡</div>
+      <div class="checklist-status" id="checklist-status">
+        Keep ticking, champ!
+        <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="#FFA800" d="M11 21h-1l1-7H7.5c-.88 0-.33-.75-.31-.78C8.48 10.94 10.42 7.54 13 3h1l-1 7h3.5c.49 0 .56.33.47.51l-.07.15C12.9 17.55 11 21 11 21z"/></svg>
+      </div>
     </section>
 
     <!-- The Quest Trail: 8 HYROX Stations -->
     <section class="quest-section">
       <div class="quest-header">
-        <span class="quest-badge">THE 8 STATIONS</span>
-        <h2 class="quest-title">Mission: Conquer HYROX! 🗺️</h2>
+        <span class="quest-badge">
+          <svg class="c-icon c-icon-xs" viewBox="0 0 24 24" width="12" height="12"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.88V19h-2v-2.12c-2.8-.45-4.9-2.55-5.35-5.35H3v-2h2.65c.45-2.8 2.55-4.9 5.35-5.35V2h2v2.65c2.8.45 4.9 2.55 5.35 5.35H21v2h-2.65c-.45 2.8-2.55 4.9-5.35 5.35z"/></svg>
+          THE 8 STATIONS
+        </span>
+        <h2 class="quest-title">
+          Mission: Conquer HYROX!
+          <svg class="c-icon c-icon-md" viewBox="0 0 24 24"><path fill="#FFCF36" stroke="#1E1E24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </h2>
         <p class="quest-desc">
           8 runs, 8 stations, infinite glory! Tap through your journey and play the station mini-games to collect energy!
         </p>
@@ -330,7 +422,10 @@
         </div>
         <div class="progress-label">
           <span id="progress-station-count">Station 1 of 8</span>
-          <span id="energy-count">⚡ 100 Energy Points</span>
+          <span id="energy-count">
+            <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="#FFA800" d="M11 21h-1l1-7H7.5c-.88 0-.33-.75-.31-.78C8.48 10.94 10.42 7.54 13 3h1l-1 7h3.5c.49 0 .56.33.47.51l-.07.15C12.9 17.55 11 21 11 21z"/></svg>
+            100 Energy Points
+          </span>
         </div>
       </div>
 
@@ -342,8 +437,14 @@
           <div class="station-header">
             <div class="station-badge">1</div>
             <div class="station-info">
-              <span class="run-marker">🏃 1km Run +</span>
-              <h3 class="station-name">1,000m SkiErg 🎿</h3>
+              <span class="run-marker">
+                <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="currentColor" d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"/></svg>
+                1km Run +
+              </span>
+              <h3 class="station-name">
+                1,000m SkiErg
+                <svg class="station-title-icon" viewBox="0 0 36 36" aria-label="SkiErg Icon"><rect x="6" y="4" width="24" height="6" rx="3" fill="#FFCF36" stroke="#1E1E24" stroke-width="2.5"/><path d="M12 10v16M24 10v16" stroke="#1E1E24" stroke-width="2.5" stroke-dasharray="2 2"/><rect x="8" y="24" width="8" height="5" rx="2.5" fill="#FF5C8A" stroke="#1E1E24" stroke-width="2"/><rect x="20" y="24" width="8" height="5" rx="2.5" fill="#FF5C8A" stroke="#1E1E24" stroke-width="2"/></svg>
+              </h3>
             </div>
             <span class="station-status-pill">Unlocked</span>
           </div>
@@ -365,7 +466,8 @@
             </div>
             <div class="station-action">
               <button class="stamp-btn" onclick="app.stampStation(1)">
-                <span>💮</span> Tap to Collect Station 1 Stamp!
+                <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="#FFCF36" stroke="#1E1E24" stroke-width="2"/><path fill="#FF2A54" d="M12 7l1.5 3.5L17 12l-3.5 1.5L12 17l-1.5-3.5L7 12l3.5-1.5z"/></svg>
+                <span>Tap to Collect Station 1 Stamp!</span>
               </button>
             </div>
           </div>
@@ -376,8 +478,14 @@
           <div class="station-header">
             <div class="station-badge">2</div>
             <div class="station-info">
-              <span class="run-marker">🏃 1km Run +</span>
-              <h3 class="station-name">50m Sled Push (4x 12.5m) 🚜</h3>
+              <span class="run-marker">
+                <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="currentColor" d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"/></svg>
+                1km Run +
+              </span>
+              <h3 class="station-name">
+                50m Sled Push (4x 12.5m)
+                <svg class="station-title-icon" viewBox="0 0 36 36" aria-label="Sled Push Icon"><path d="M4 28h28c1.5 0 2.5-1 2.5-2.5" stroke="#1E1E24" stroke-width="2.5" stroke-linecap="round" fill="none"/><rect x="7" y="22" width="22" height="5" rx="2" fill="#FFCF36" stroke="#1E1E24" stroke-width="2"/><line x1="11" y1="6" x2="11" y2="22" stroke="#1E1E24" stroke-width="2.5" stroke-linecap="round"/><line x1="25" y1="6" x2="25" y2="22" stroke="#1E1E24" stroke-width="2.5" stroke-linecap="round"/><rect x="14" y="14" width="8" height="8" rx="2" fill="#FF5C8A" stroke="#1E1E24" stroke-width="2"/></svg>
+              </h3>
             </div>
             <span class="station-status-pill">Penalty Simulator!</span>
           </div>
@@ -388,7 +496,10 @@
                 <p>Push sled with hands on upright poles; stay strictly in your marked lane for all 4x 12.5m lengths.</p>
               </div>
               <div class="rule-row penalty-row">
-                <span class="rule-badge penalty-badge">⚠️ #1 SLED PENALTY TRAP</span>
+                <span class="rule-badge penalty-badge">
+                  <svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="#FFA800" d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+                  #1 SLED PENALTY TRAP
+                </span>
                 <p><strong>The Line Clearance Rule:</strong> All 4 skids must completely cross the white boundary line before you can turn! Turning 1 inch early gets a strict <strong>NO REP!</strong></p>
               </div>
             </div>
@@ -396,19 +507,28 @@
             <!-- Mini Game: Sled Line Clearance Simulator -->
             <div class="mini-game-box" id="sled-game">
               <div class="game-header">
-                <span class="game-tag">🎮 HYROX PENALTY SIMULATOR</span>
+                <span class="game-tag">
+                  <svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4-3c-.83 0-1.5-.67-1.5-1.5S18.67 9 19.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+                  HYROX PENALTY SIMULATOR
+                </span>
                 <span class="game-title">Clear The White Line Completely!</span>
               </div>
               <div class="sled-track">
                 <div class="sled-runner" id="sled-runner">
-                  <span class="sled-avatar">🏋️‍♀️</span>
-                  <span class="sled-object">📦</span>
+                  <span class="sled-avatar">
+                    <svg class="c-icon c-icon-lg" viewBox="0 0 24 24"><circle cx="12" cy="4" r="2.5" fill="#FF5C8A" stroke="#1E1E24" stroke-width="1.5"/><path d="M10 8h4l2 6-2 1-1.5-4-1 9H8.5l1.5-9-1.5 4-2-1z" fill="#FFCF36" stroke="#1E1E24" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                  </span>
+                  <span class="sled-object">
+                    <svg class="c-icon c-icon-lg" viewBox="0 0 24 24"><path d="M3 18h18" stroke="#1E1E24" stroke-width="2.5" stroke-linecap="round"/><rect x="6" y="10" width="12" height="7" rx="1.5" fill="#FF5C8A" stroke="#1E1E24" stroke-width="1.8"/><line x1="8" y1="4" x2="8" y2="10" stroke="#1E1E24" stroke-width="2" stroke-linecap="round"/><line x1="16" y1="4" x2="16" y2="10" stroke="#1E1E24" stroke-width="2" stroke-linecap="round"/></svg>
+                  </span>
                 </div>
                 <!-- 12.5m White Boundary Line Indicator -->
                 <div class="sled-white-line">
                   <span class="line-label">12.5m LINE</span>
                 </div>
-                <div class="sled-finish-flag">🏁</div>
+                <div class="sled-finish-flag">
+                  <svg class="c-icon c-icon-md" viewBox="0 0 24 24"><path d="M5 2v20" stroke="#1E1E24" stroke-width="2.5" stroke-linecap="round"/><path d="M5 4h14l-2 5 2 5H5V4z" fill="#FFCF36" stroke="#1E1E24" stroke-width="1.8"/><rect x="7.5" y="5" width="2.5" height="2.5" fill="#1E1E24"/><rect x="12.5" y="5" width="2.5" height="2.5" fill="#1E1E24"/><rect x="5" y="7.5" width="2.5" height="2.5" fill="#1E1E24"/><rect x="10" y="7.5" width="2.5" height="2.5" fill="#1E1E24"/><rect x="7.5" y="10" width="2.5" height="2.5" fill="#1E1E24"/></svg>
+                </div>
               </div>
               <div class="sled-progress-bar">
                 <div class="sled-fill" id="sled-fill" style="width: 0%;"></div>
@@ -416,14 +536,16 @@
 
               <div class="sled-actions-row">
                 <button class="game-tap-btn" id="sled-push-btn">
-                  🔥 PUSH SLED (<span id="sled-taps">0</span>/10)
+                  <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="#FF2A54" d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.61 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z"/></svg>
+                  <span>PUSH SLED (<span id="sled-taps">0</span>/10)</span>
                 </button>
                 <button class="sled-turn-btn" id="sled-turn-btn">
-                  ↩️ Turn Sled Around
+                  <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="currentColor" d="M12.5 8c-2.65 0-5.05.99-6.9 2.6L2 7v9h9l-3.62-3.62c1.39-1.16 3.16-1.88 5.12-1.88 3.54 0 6.55 2.31 7.6 5.5l2.37-.78C21.08 11.03 17.15 8 12.5 8z"/></svg>
+                  <span>Turn Sled Around</span>
                 </button>
               </div>
 
-              <div class="game-reward-msg" id="sled-msg">Tap PUSH to drive the sled across the 12.5m boundary line! 💥</div>
+              <div class="game-reward-msg" id="sled-msg">Tap PUSH to drive the sled across the 12.5m boundary line!</div>
             </div>
 
             <div class="doodle-tip">
@@ -437,8 +559,14 @@
           <div class="station-header">
             <div class="station-badge">3</div>
             <div class="station-info">
-              <span class="run-marker">🏃 1km Run +</span>
-              <h3 class="station-name">50m Sled Pull (4x 12.5m) 🪢</h3>
+              <span class="run-marker">
+                <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="currentColor" d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"/></svg>
+                1km Run +
+              </span>
+              <h3 class="station-name">
+                50m Sled Pull (4x 12.5m)
+                <svg class="station-title-icon" viewBox="0 0 36 36" aria-label="Sled Pull Rope Icon"><path d="M5 26c5-4 7 4 12 0s7-4 12 0 3 2 4 4" fill="none" stroke="#FFCF36" stroke-width="3" stroke-linecap="round"/><path d="M5 26c5-4 7 4 12 0s7-4 12 0 3 2 4 4" fill="none" stroke="#1E1E24" stroke-width="1.5" stroke-dasharray="2 3"/><rect x="6" y="8" width="10" height="12" rx="3" fill="#38BDF8" stroke="#1E1E24" stroke-width="2"/><path d="M16 14h14" stroke="#1E1E24" stroke-width="2.5" stroke-linecap="round"/></svg>
+              </h3>
             </div>
             <span class="station-status-pill">Ready</span>
           </div>
@@ -449,7 +577,10 @@
                 <p>Athlete must remain entirely inside the taped athlete box on the floor. Pull hand-over-hand.</p>
               </div>
               <div class="rule-row penalty-row">
-                <span class="rule-badge penalty-badge">⚠️ STRICT DQ / PENALTY TRAP</span>
+                <span class="rule-badge penalty-badge">
+                  <svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="#FFA800" d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+                  STRICT DQ / PENALTY TRAP
+                </span>
                 <p>Wrapping the rope around arms, waist, or body is strictly prohibited. Stepping outside the box is a foul (+15s penalty!).</p>
               </div>
             </div>
@@ -459,7 +590,8 @@
             </div>
             <div class="station-action">
               <button class="stamp-btn" onclick="app.stampStation(3)">
-                <span>💮</span> Tap to Collect Station 3 Stamp!
+                <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="#FFCF36" stroke="#1E1E24" stroke-width="2"/><path fill="#FF2A54" d="M12 7l1.5 3.5L17 12l-3.5 1.5L12 17l-1.5-3.5L7 12l3.5-1.5z"/></svg>
+                <span>Tap to Collect Station 3 Stamp!</span>
               </button>
             </div>
           </div>
@@ -470,8 +602,14 @@
           <div class="station-header">
             <div class="station-badge">4</div>
             <div class="station-info">
-              <span class="run-marker">🏃 1km Run +</span>
-              <h3 class="station-name">80m Burpee Broad Jumps 🐸</h3>
+              <span class="run-marker">
+                <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="currentColor" d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"/></svg>
+                1km Run +
+              </span>
+              <h3 class="station-name">
+                80m Burpee Broad Jumps
+                <svg class="station-title-icon" viewBox="0 0 36 36" aria-label="Burpee Broad Jump Icon"><path d="M6 28 C 12 10, 24 10, 30 28" fill="none" stroke="#38BDF8" stroke-width="2.5" stroke-dasharray="3 3"/><circle cx="22" cy="11" r="3.5" fill="#FF5C8A" stroke="#1E1E24" stroke-width="1.5"/><path d="M19 15l4 4 6-2M18 19l-4 3-4-2M21 21l3 7M17 21l-3 7" stroke="#1E1E24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </h3>
             </div>
             <span class="station-status-pill">Penalty Simulator!</span>
           </div>
@@ -482,7 +620,10 @@
                 <p>Chest must touch the floor between hands. Takeoff and landing must be simultaneous two-foot (max 5cm stagger).</p>
               </div>
               <div class="rule-row penalty-row">
-                <span class="rule-badge penalty-badge">⚠️ #1 BURPEE PENALTY TRAP</span>
+                <span class="rule-badge penalty-badge">
+                  <svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="#FFA800" d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+                  #1 BURPEE PENALTY TRAP
+                </span>
                 <p>Galloping or single-leg stepping into the jump is an immediate <strong>NO REP!</strong> Jumping before chest hits the ground is also an instant NO REP.</p>
               </div>
             </div>
@@ -490,35 +631,42 @@
             <!-- Mini Game: Chest Touch & Simultaneous Jump Simulator -->
             <div class="mini-game-box" id="burpee-game">
               <div class="game-header">
-                <span class="game-tag">🎮 HYROX PENALTY SIMULATOR</span>
+                <span class="game-tag">
+                  <svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4-3c-.83 0-1.5-.67-1.5-1.5S18.67 9 19.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+                  HYROX PENALTY SIMULATOR
+                </span>
                 <span class="game-title">Chest-to-Turf + 2-Foot Leap</span>
               </div>
               
               <div class="burpee-hud">
-                <span class="hud-chest-badge" id="chest-touch-indicator">Chest on Turf: NO ❌</span>
-                <span class="hud-landing-badge" id="landing-indicator">2-Foot Ready: YES ✓</span>
+                <span class="hud-chest-badge" id="chest-touch-indicator">Chest on Turf: NO</span>
+                <span class="hud-landing-badge" id="landing-indicator">2-Foot Ready: YES</span>
               </div>
 
               <div class="burpee-stage">
-                <div class="burpee-jumper" id="burpee-jumper">🐸</div>
+                <div class="burpee-jumper" id="burpee-jumper">
+                  <svg class="c-icon c-icon-lg" viewBox="0 0 24 24"><circle cx="12" cy="5" r="3" fill="#FF5C8A" stroke="#1E1E24" stroke-width="1.5"/><path d="M7 14l5-3 5 3M9 11v8M15 11v8" stroke="#1E1E24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
                 <div class="burpee-ground">
-                  <span class="burpee-step step-1">🌱 20m</span>
-                  <span class="burpee-step step-2">🌿 40m</span>
-                  <span class="burpee-step step-3">🌾 60m</span>
-                  <span class="burpee-step step-4">🏁 80m!</span>
+                  <span class="burpee-step step-1">20m</span>
+                  <span class="burpee-step step-2">40m</span>
+                  <span class="burpee-step step-3">60m</span>
+                  <span class="burpee-step step-4">80m!</span>
                 </div>
               </div>
 
               <div class="burpee-buttons-row">
                 <button class="burpee-sub-btn drop-btn" id="burpee-drop-btn">
-                  ⬇️ 1. Drop Chest to Turf
+                  <svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"/></svg>
+                  <span>1. Drop Chest to Turf</span>
                 </button>
                 <button class="burpee-sub-btn jump-btn" id="burpee-jump-btn">
-                  🚀 2. Two-Foot Leap (<span id="burpee-jumps">0</span>/4)
+                  <svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.5s4 4 4 10.5l-4 4-4-4c0-6.5 4-10.5 4-10.5z"/><path fill="#FFCF36" d="M12 17l-2 4 2-1 2 1z"/></svg>
+                  <span>2. Two-Foot Leap (<span id="burpee-jumps">0</span>/4)</span>
                 </button>
               </div>
 
-              <div class="game-reward-msg" id="burpee-msg">Step 1: Tap "Drop Chest to Turf" first, then leap forward! 🌟</div>
+              <div class="game-reward-msg" id="burpee-msg">Step 1: Tap "Drop Chest to Turf" first, then leap forward!</div>
             </div>
 
             <div class="doodle-tip">
@@ -531,19 +679,26 @@
         <div class="roxzone-lounge">
           <div class="roxzone-tape">ROXZONE CHILL ZONE &amp; PENALTY DEFENSE</div>
           <div class="roxzone-content">
-            <div class="roxzone-icon">🥤⚡</div>
+            <div class="roxzone-icon">
+              <svg class="c-icon c-icon-lg" viewBox="0 0 24 24"><path fill="#38BDF8" stroke="#1E1E24" stroke-width="1.5" d="M6 3h12l-1.5 15a3 3 0 0 1-3 3h-3a3 3 0 0 1-3-3L6 3z"/><path d="M12 1v5" stroke="#FF5C8A" stroke-width="2.5" stroke-linecap="round"/><path fill="#FFCF36" d="M14 8l-3 4h2l-2 4 4-5h-2z"/></svg>
+            </div>
             <h4>You're Halfway There, Superhero!</h4>
             <p>The Roxzone connects the running track and stations. But beware: this is where first-timers lose 2 to 4 minutes in rookie penalties!</p>
             
             <div class="roxzone-quiz-box">
-              <span class="quiz-badge">🚨 CRITICAL ARCH RULE CHECK</span>
+              <span class="quiz-badge">
+                <svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="#FF2A54" d="M12 2a4 4 0 0 0-4 4v1.08C5.64 8.04 4 10.32 4 13v4l-2 2v1h20v-1l-2-2v-4c0-2.68-1.64-4.96-4-5.92V6a4 4 0 0 0-4-4zm0 20a2 2 0 0 0 2-2h-4a2 2 0 0 0 2 2z"/></svg>
+                CRITICAL ARCH RULE CHECK
+              </span>
               <p class="quiz-question">You finished Station 4 and need to head out for Run 5. Which arch do you exit through?</p>
               <div class="quiz-actions">
                 <button class="arch-choice-btn in-btn" id="arch-choice-in">
-                  🚫 IN Arch
+                  <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#FF2A54" stroke-width="2.5" fill="none"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07" stroke="#FF2A54" stroke-width="2.5"/></svg>
+                  <span>IN Arch</span>
                 </button>
                 <button class="arch-choice-btn out-btn" id="arch-choice-out">
-                  🏁 OUT Arch
+                  <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path d="M5 2v20" stroke="#1E1E24" stroke-width="2.5" stroke-linecap="round"/><path d="M5 4h14l-2 5 2 5H5V4z" fill="#FFCF36" stroke="#1E1E24" stroke-width="1.8"/><rect x="7.5" y="5" width="2.5" height="2.5" fill="#1E1E24"/><rect x="12.5" y="5" width="2.5" height="2.5" fill="#1E1E24"/><rect x="5" y="7.5" width="2.5" height="2.5" fill="#1E1E24"/><rect x="10" y="7.5" width="2.5" height="2.5" fill="#1E1E24"/><rect x="7.5" y="10" width="2.5" height="2.5" fill="#1E1E24"/></svg>
+                  <span>OUT Arch</span>
                 </button>
               </div>
               <div class="arch-quiz-result" id="arch-quiz-result">
@@ -551,7 +706,10 @@
               </div>
             </div>
 
-            <div class="roxzone-quote">"Thakna mana hai, smile karna zaroori hai!" 💖</div>
+            <div class="roxzone-quote">
+              "Thakna mana hai, smile karna zaroori hai!"
+              <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="#FF2A54" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
           </div>
         </div>
 
@@ -560,8 +718,14 @@
           <div class="station-header">
             <div class="station-badge">5</div>
             <div class="station-info">
-              <span class="run-marker">🏃 1km Run +</span>
-              <h3 class="station-name">1,000m Rowing 🚣‍♀️</h3>
+              <span class="run-marker">
+                <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="currentColor" d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"/></svg>
+                1km Run +
+              </span>
+              <h3 class="station-name">
+                1,000m Rowing
+                <svg class="station-title-icon" viewBox="0 0 36 36" aria-label="Rowing Machine Icon"><circle cx="9" cy="23" r="6" fill="#FFCF36" stroke="#1E1E24" stroke-width="2"/><line x1="9" y1="25" x2="31" y2="25" stroke="#1E1E24" stroke-width="2.5" stroke-linecap="round"/><rect x="20" y="21" width="6" height="4" rx="1.5" fill="#FF5C8A" stroke="#1E1E24" stroke-width="1.5"/><line x1="9" y1="19" x2="18" y2="15" stroke="#1E1E24" stroke-width="2"/><line x1="17" y1="13" x2="19" y2="17" stroke="#38BDF8" stroke-width="2.5" stroke-linecap="round"/></svg>
+              </h3>
             </div>
             <span class="station-status-pill">Ready</span>
           </div>
@@ -572,7 +736,10 @@
                 <p>Feet must be secured in footplates BEFORE touching the handle. Row until the monitor displays 1,000m.</p>
               </div>
               <div class="rule-row penalty-row">
-                <span class="rule-badge penalty-badge">⚠️ JUDGE PENALTY TRAP</span>
+                <span class="rule-badge penalty-badge">
+                  <svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="#FFA800" d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+                  JUDGE PENALTY TRAP
+                </span>
                 <p>Dropping the handle or stepping out of the rower before the judge inspects the screen triggers a time penalty!</p>
               </div>
             </div>
@@ -582,7 +749,8 @@
             </div>
             <div class="station-action">
               <button class="stamp-btn" onclick="app.stampStation(5)">
-                <span>💮</span> Tap to Collect Station 5 Stamp!
+                <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="#FFCF36" stroke="#1E1E24" stroke-width="2"/><path fill="#FF2A54" d="M12 7l1.5 3.5L17 12l-3.5 1.5L12 17l-1.5-3.5L7 12l3.5-1.5z"/></svg>
+                <span>Tap to Collect Station 5 Stamp!</span>
               </button>
             </div>
           </div>
@@ -593,8 +761,14 @@
           <div class="station-header">
             <div class="station-badge">6</div>
             <div class="station-info">
-              <span class="run-marker">🏃 1km Run +</span>
-              <h3 class="station-name">200m Farmers Carry (2x 16kg) 🛍️</h3>
+              <span class="run-marker">
+                <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="currentColor" d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"/></svg>
+                1km Run +
+              </span>
+              <h3 class="station-name">
+                200m Farmers Carry (2x 16kg)
+                <svg class="station-title-icon" viewBox="0 0 36 36" aria-label="Farmers Carry Icon"><rect x="7" y="15" width="10" height="13" rx="4" fill="#FFCF36" stroke="#1E1E24" stroke-width="2"/><path d="M9 15V10a3 3 0 0 1 6 0v5" fill="none" stroke="#1E1E24" stroke-width="2" stroke-linecap="round"/><rect x="20" y="15" width="10" height="13" rx="4" fill="#38BDF8" stroke="#1E1E24" stroke-width="2"/><path d="M22 15V10a3 3 0 0 1 6 0v5" fill="none" stroke="#1E1E24" stroke-width="2" stroke-linecap="round"/></svg>
+              </h3>
             </div>
             <span class="station-status-pill">Ready</span>
           </div>
@@ -605,7 +779,10 @@
                 <p>Kettlebells must be carried at your sides with arms extended. If you place them down to rest, you must resume from the EXACT spot.</p>
               </div>
               <div class="rule-row penalty-row">
-                <span class="rule-badge penalty-badge">⚠️ STRICT PENALTY TRAP</span>
+                <span class="rule-badge penalty-badge">
+                  <svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="#FFA800" d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+                  STRICT PENALTY TRAP
+                </span>
                 <p>Resting kettlebells on thighs/hips or kicking/throwing them forward on a drop incurs a 15-second penalty!</p>
               </div>
             </div>
@@ -615,7 +792,8 @@
             </div>
             <div class="station-action">
               <button class="stamp-btn" onclick="app.stampStation(6)">
-                <span>💮</span> Tap to Collect Station 6 Stamp!
+                <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="#FFCF36" stroke="#1E1E24" stroke-width="2"/><path fill="#FF2A54" d="M12 7l1.5 3.5L17 12l-3.5 1.5L12 17l-1.5-3.5L7 12l3.5-1.5z"/></svg>
+                <span>Tap to Collect Station 6 Stamp!</span>
               </button>
             </div>
           </div>
@@ -626,8 +804,14 @@
           <div class="station-header">
             <div class="station-badge">7</div>
             <div class="station-info">
-              <span class="run-marker">🏃 1km Run +</span>
-              <h3 class="station-name">100m Sandbag Lunges (11kg) 🎒</h3>
+              <span class="run-marker">
+                <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="currentColor" d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"/></svg>
+                1km Run +
+              </span>
+              <h3 class="station-name">
+                100m Sandbag Lunges (11kg)
+                <svg class="station-title-icon" viewBox="0 0 36 36" aria-label="Sandbag Lunges Icon"><rect x="6" y="12" width="24" height="11" rx="5" fill="#FFA800" stroke="#1E1E24" stroke-width="2.2"/><path d="M11 12V8h4v4M21 12V8h4v4" fill="none" stroke="#1E1E24" stroke-width="2" stroke-linecap="round"/><rect x="14" y="15" width="8" height="5" rx="1.5" fill="#FFFFFF" stroke="#1E1E24" stroke-width="1.2"/></svg>
+              </h3>
             </div>
             <span class="station-status-pill">Ready</span>
           </div>
@@ -638,7 +822,10 @@
                 <p>Sandbag must remain resting on your shoulders at all times. Alternate legs (left, right) with no extra shuffling.</p>
               </div>
               <div class="rule-row penalty-row">
-                <span class="rule-badge penalty-badge">⚠️ #1 LUNGE PENALTY TRAP</span>
+                <span class="rule-badge penalty-badge">
+                  <svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="#FFA800" d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+                  #1 LUNGE PENALTY TRAP
+                </span>
                 <p><strong>Rear knee must touch the turf on EVERY rep!</strong> If your knee hovers 1 inch off the turf, or you don't stand fully upright at the top, it is an automatic <strong>NO REP!</strong></p>
               </div>
             </div>
@@ -648,7 +835,8 @@
             </div>
             <div class="station-action">
               <button class="stamp-btn" onclick="app.stampStation(7)">
-                <span>💮</span> Tap to Collect Station 7 Stamp!
+                <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="#FFCF36" stroke="#1E1E24" stroke-width="2"/><path fill="#FF2A54" d="M12 7l1.5 3.5L17 12l-3.5 1.5L12 17l-1.5-3.5L7 12l3.5-1.5z"/></svg>
+                <span>Tap to Collect Station 7 Stamp!</span>
               </button>
             </div>
           </div>
@@ -659,8 +847,14 @@
           <div class="station-header">
             <div class="station-badge">8</div>
             <div class="station-info">
-              <span class="run-marker">🏃 1km Run +</span>
-              <h3 class="station-name">75/100 Wall Balls (4kg) 🎯</h3>
+              <span class="run-marker">
+                <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="currentColor" d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"/></svg>
+                1km Run +
+              </span>
+              <h3 class="station-name">
+                75/100 Wall Balls (4kg)
+                <svg class="station-title-icon" viewBox="0 0 36 36" aria-label="Wall Balls Icon"><circle cx="10" cy="28" r="6" fill="#FF5C8A" stroke="#1E1E24" stroke-width="2"/><circle cx="10" cy="28" r="2.5" fill="#FFFFFF" opacity="0.7"/><rect x="24" y="4" width="6" height="6" rx="1.5" fill="#FFCF36" stroke="#1E1E24" stroke-width="1.5"/><path d="M13 25 L27 7" stroke="#1E1E24" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="2 3"/></svg>
+              </h3>
             </div>
             <span class="station-status-pill">Final Boss Simulator!</span>
           </div>
@@ -671,7 +865,10 @@
                 <p>Throw ball to hit the center of the 2.70m target. Catch ball on descent and fluidly initiate next squat.</p>
               </div>
               <div class="rule-row penalty-row">
-                <span class="rule-badge penalty-badge">⚠️ THE INFAMOUS HYROX SQUAT TRAP</span>
+                <span class="rule-badge penalty-badge">
+                  <svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="#FFA800" d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+                  THE INFAMOUS HYROX SQUAT TRAP
+                </span>
                 <p><strong>Hip crease MUST drop below the top of the knees on EVERY squat!</strong> If your squat is parallel or shallow, the judge calls <strong>NO REP!</strong></p>
               </div>
             </div>
@@ -679,7 +876,10 @@
             <!-- Mini Game: Live Squat Depth Gauge & Target Toss -->
             <div class="mini-game-box" id="wallball-game">
               <div class="game-header">
-                <span class="game-tag">🎮 HYROX PENALTY SIMULATOR</span>
+                <span class="game-tag">
+                  <svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4-3c-.83 0-1.5-.67-1.5-1.5S18.67 9 19.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+                  HYROX PENALTY SIMULATOR
+                </span>
                 <span class="game-title">Squat Below Parallel + Hit Target</span>
               </div>
               
@@ -695,24 +895,33 @@
 
               <div class="wallball-arena">
                 <div class="wallball-target" id="wallball-target">
-                  <span class="target-ring">🎯 2.70m TARGET</span>
+                  <span class="target-ring">
+                    <svg class="c-icon c-icon-md" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#FFCF36" stroke="#1E1E24" stroke-width="2"/><circle cx="12" cy="12" r="6" fill="#FF5C8A" stroke="#1E1E24" stroke-width="1.5"/><circle cx="12" cy="12" r="2.5" fill="#FF2A54" stroke="#1E1E24" stroke-width="1"/></svg>
+                    2.70m TARGET
+                  </span>
                 </div>
                 <div class="wallball-athlete-art">
-                  <div class="wallball-projectile" id="wallball-ball">🏀</div>
-                  <div class="athlete-squat-emoji" id="athlete-squat-emoji">🧍‍♀️</div>
+                  <div class="wallball-projectile" id="wallball-ball">
+                    <svg class="c-icon c-icon-md" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#FF5C8A" stroke="#1E1E24" stroke-width="2"/><path d="M7 7 Q12 14 17 7" fill="none" stroke="#1E1E24" stroke-width="1.5"/><path d="M7 17 Q12 10 17 17" fill="none" stroke="#1E1E24" stroke-width="1.5"/></svg>
+                  </div>
+                  <div class="athlete-squat-emoji" id="athlete-squat-emoji">
+                    <svg class="c-icon c-icon-lg" viewBox="0 0 24 24"><circle cx="12" cy="3.5" r="2.5" fill="#FF5C8A" stroke="#1E1E24" stroke-width="1.5"/><path d="M9 8h6l2 6h-3l1 6H9l1-6H7z" fill="#FFCF36" stroke="#1E1E24" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                  </div>
                 </div>
               </div>
 
               <div class="wb-actions-row">
                 <button class="game-tap-btn wb-squat-toggle" id="wallball-squat-toggle-btn">
-                  🏋️ 1. Squat Deep (Below Parallel)
+                  <svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z"/></svg>
+                  <span>1. Squat Deep (Below Parallel)</span>
                 </button>
                 <button class="game-tap-btn wb-toss-btn" id="wallball-toss-btn">
-                  🎯 2. Toss to Target! (<span id="wb-hits">0</span>/3)
+                  <svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>
+                  <span>2. Toss to Target! (<span id="wb-hits">0</span>/3)</span>
                 </button>
               </div>
 
-              <div class="game-reward-msg" id="wb-msg">Step 1: Tap "Squat Deep" to drop your hips below parallel, then Toss! 💥</div>
+              <div class="game-reward-msg" id="wb-msg">Step 1: Tap "Squat Deep" to drop your hips below parallel, then Toss!</div>
             </div>
 
             <div class="doodle-tip">
@@ -728,27 +937,43 @@
     <section class="finish-section" id="finish-section">
       <div class="finish-arch-wrap">
         <div class="arch-banner">
-          <div class="arch-icon">🏆</div>
+          <div class="arch-icon">
+            <svg viewBox="0 0 48 48" width="64" height="64" aria-label="Champion Trophy"><rect x="16" y="36" width="16" height="4" rx="2" fill="#FFCF36" stroke="#1E1E24" stroke-width="2"/><rect x="12" y="40" width="24" height="5" rx="2" fill="#FFA800" stroke="#1E1E24" stroke-width="2"/><path d="M24 4 C14 4 10 12 10 20 C10 29 16 33 24 33 C32 33 38 29 38 20 C38 12 34 4 24 4z" fill="#FFCF36" stroke="#1E1E24" stroke-width="2.5"/><path d="M10 14 C4 14 4 24 10 24" fill="none" stroke="#1E1E24" stroke-width="2.5" stroke-linecap="round"/><path d="M38 14 C44 14 44 24 38 24" fill="none" stroke="#1E1E24" stroke-width="2.5" stroke-linecap="round"/><path d="M20 22 L22 25 L27 18" stroke="#FF2A54" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          </div>
           <h2 class="arch-title">HYROX FINISH ARCH</h2>
-          <span class="arch-subtitle">WELCOME HOME, CHAMPION! 🌟</span>
+          <span class="arch-subtitle">WELCOME HOME, CHAMPION!
+            <svg class="c-sparkle-svg" viewBox="0 0 24 24" width="18" height="18" style="vertical-align:-2px"><path fill="#FFCF36" d="M12 0L14.8 9.2L24 12L14.8 14.8L12 24L9.2 14.8L0 12L9.2 9.2z"/></svg>
+          </span>
         </div>
       </div>
 
       <!-- Official HYROX Race Timing Target Card (Sub-1.5 Hours Goal) -->
       <div class="timing-card">
         <div class="timing-header-badge">
-          <span>⏱️</span> OFFICIAL RACE TIME GOAL <span>⚡</span>
+          <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="#FFCF36" stroke-width="2.5"/><path d="M12 6v6l4 2" stroke="#FF2A54" stroke-width="2.5" stroke-linecap="round"/></svg>
+          OFFICIAL RACE TIME GOAL
+          <svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="#FFA800" d="M11 21h-1l1-7H7.5c-.88 0-.33-.75-.31-.78C8.48 10.94 10.42 7.54 13 3h1l-1 7h3.5c.49 0 .56.33.47.51l-.07.15C12.9 17.55 11 21 11 21z"/></svg>
         </div>
         <div class="timing-display">
           <span class="timing-sub-tag">TARGET TIME</span>
           <div class="timing-clock">&lt; 01:30:00</div>
-          <span class="timing-label">SUB 1.5 HOURS (UNDER 90 MINUTES) ⏱️</span>
+          <span class="timing-label">SUB 1.5 HOURS (UNDER 90 MINUTES)
+            <svg class="c-icon c-icon-xs" viewBox="0 0 24 24" style="vertical-align:-2px"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </span>
         </div>
-        <h3 class="timing-title">THE SUB-1.5 CLUB MISSION 🎯</h3>
-        <p class="timing-athlete">Locked in for <strong>Nitz</strong> by Dora 🐾</p>
-        <p class="timing-sub">8km of steady running and 8 ruthless stations. Smooth pacing, quick transitions in the Roxzone, and breaking that 1h 30m barrier like the true champion you are! 🔥</p>
+        <h3 class="timing-title">THE SUB-1.5 CLUB MISSION
+          <svg class="c-icon c-icon-sm" viewBox="0 0 24 24" style="vertical-align:-3px"><circle cx="12" cy="12" r="10" fill="none" stroke="#FF2A54" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="#FF2A54" stroke-width="2"/><circle cx="12" cy="12" r="1.5" fill="#FF2A54"/></svg>
+        </h3>
+        <p class="timing-athlete">Locked in for <strong>Nitz</strong> by Dora
+          <svg class="c-icon c-icon-xs" viewBox="0 0 24 24" style="vertical-align:-2px"><path fill="currentColor" d="M12 13c-2.2 0-4 1.8-4 4 0 1.7 1.3 3 3 3 1.1 0 2-.4 2.7-1 .7.6 1.6 1 2.7 1 1.7 0 3-1.3 3-3 0-2.2-1.8-4-4-4zm-4.5-3c1.4 0 2.5-1.1 2.5-2.5S8.9 5 7.5 5 5 6.1 5 7.5 6.1 10 7.5 10zm9 0c1.4 0 2.5-1.1 2.5-2.5S17.9 5 16.5 5 14 6.1 14 7.5s1.1 2.5 2.5 2.5zm-6.5-2c1.4 0 2.5-1.1 2.5-2.5S9.4 3 8 3 5.5 4.1 5.5 5.5 6.6 8 8 8zm6 0c1.4 0 2.5-1.1 2.5-2.5S15.4 3 14 3s-2.5 1.1-2.5 2.5 1.1 2.5 2.5 2.5z"/></svg>
+        </p>
+        <p class="timing-sub">8km of steady running and 8 ruthless stations. Smooth pacing, quick transitions in the Roxzone, and breaking that 1h 30m barrier like the true champion you are!
+          <svg class="c-icon c-icon-xs" viewBox="0 0 24 24" style="vertical-align:-2px"><path fill="#FF2A54" d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.61 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67z"/></svg>
+        </p>
         <div class="timing-ribbon">
-          <span>⭐</span> GOAL: SUB 1.5 HOURS <span>⭐</span>
+          <svg class="c-sparkle-svg" viewBox="0 0 24 24" width="16" height="16"><path fill="#FFCF36" d="M12 0L14.8 9.2L24 12L14.8 14.8L12 24L9.2 14.8L0 12L9.2 9.2z"/></svg>
+          GOAL: SUB 1.5 HOURS
+          <svg class="c-sparkle-svg" viewBox="0 0 24 24" width="16" height="16"><path fill="#FFCF36" d="M12 0L14.8 9.2L24 12L14.8 14.8L12 24L9.2 14.8L0 12L9.2 9.2z"/></svg>
         </div>
       </div>
 
@@ -769,34 +994,34 @@
             </div>
           </div>
           
-          <!-- Hidden Unfolded Letter (Hinglish from Dora) -->
+          <!-- Hidden Unfolded Letter (English, warm and loving) -->
           <div class="unfolded-letter" id="unfolded-letter">
             <div class="letter-paper">
               <div class="letter-washi"></div>
               <div class="letter-header">
-                <span class="letter-date">Race Day • Always & Forever 💌</span>
-                <h4 class="letter-to">Dearest Nitz (Meri Bhondu),</h4>
+                <span class="letter-date">Race Day • Always &amp; Forever 💌</span>
+                <h4 class="letter-to">Hey Nitz (my favourite Bhondu),</h4>
               </div>
               <div class="letter-body">
                 <p>
-                  Tujhe pehli baar HYROX jaise race arena mein utarte dekh kar mujhe itna proud feel ho raha hai ki words kam pad jayein! Yeh koi normal workout nahi tha, tune 8 kilometers running, heavy sleds, burpees aur wall balls ke toofan ko boldly challenge kiya hai! 💪🔥
+                  Okay so, I don't even know where to start because I'm just SO proud of you right now it's actually crazy. Like, you picked up this whole HYROX thing, trained for it, and now you're here actually doing it. That's not small. That's genuinely one of the coolest things ever. 💪
                 </p>
                 <p>
-                  Mujhe pata hai training ke dauran kitne din body pain hua, muscle soreness hui, self-doubt aaya aur pet mein butterflies bhi baji. Par jab bhi main tujhe dekhta hoon, mujhe bas ek fearless champion aur meri sabse favorite human ka pyaara sa dil dikhta hai. ❤️
+                  I know there were days where the training felt rough, where your legs hurt and you just wanted to skip it. But you didn't. And that grit you showed every single time? That's exactly why you're going to absolutely smash this race today. ❤️
                 </p>
                 <p>
-                  Finish line par clock time chahe jo bhi bole, bas ek baat hamesha yaad rakhna: <strong>mere liye tu sab kuch pehle hi jeet chuki hai</strong>. Tu itni inspiring hai, itni brave hai, aur ye sab karte hue itni zyada cute lagti hai ki kya bataun! 🥰
+                  Whatever the clock says when you cross that finish line, please know this: <strong>you've already won, just by being out there and giving it your all.</strong> I couldn't be more in your corner even if I tried. You're incredible, honestly. 🥰
                 </p>
                 <p>
-                  Ab mast proud feel kar, yummy smoothies pi, tere saare heavy bags (aur tujhe bhi!) uthana ab mera kaam hai, aur chal milke teri is shaandar jeet ko celebrate karte hain! 🥂✨
+                  Now go run your heart out, enjoy every single moment of it, and when you're done I'll be right there with a massive hug and whatever snack you're craving. You've got this, all the way!
                 </p>
               </div>
               <div class="letter-sign">
-                <p>Bhot bhot pyaar ke saath,</p>
-                <h5>Your Dora 💖🐾</h5>
+                <p>With all the love in the world,</p>
+                <h5>Your Dora 💖</h5>
               </div>
               <div class="letter-footer-doodle">
-                <span>(Ab ja aur sub 1.5 hrs ka timing tod ke aa, Bhondu! ⏱️🚀)</span>
+                <span>(Go break that sub-1.5 hrs, Bhondu! You're made for this!)</span>
               </div>
             </div>
           </div>
@@ -804,20 +1029,27 @@
         </div>
 
         <button class="replay-confetti-btn" id="confetti-btn">
-          <span>🎉</span> Tap for Victory Confetti! 🎊
+          <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="#FFCF36" d="M7.8 19.2c-.4.4-1 .4-1.4 0L2.8 15.6c-.4-.4-.4-1 0-1.4l9.8-9.8L17.6 9.4l-9.8 9.8zM20.7 7.3l-1.1 1.1-4.5-4.5 1.1-1.1c.4-.4 1-.4 1.4 0l3.1 3.1c.4.4.4 1 0 1.4z"/><path fill="#FF5C8A" d="M3 18l-1 3 3-1z"/></svg>
+          <span>Tap for Victory Confetti!</span>
         </button>
       </div>
 
       <!-- HYROX PENALTY BIBLE: DOS & DON'TS POPUP TRIGGER BUTTON -->
       <div class="rules-vault-trigger-wrap">
         <button class="rules-vault-btn" id="rules-vault-trigger" aria-label="Open Official HYROX Penalties, Dos and Donts Bible">
-          <span class="vault-btn-icon">📜</span>
+          <span class="vault-btn-icon">
+            <svg viewBox="0 0 36 36" width="36" height="36" aria-label="Rules Shield"><path d="M18 3 L32 8 L32 18 C32 27 25 33 18 35 C11 33 4 27 4 18 L4 8 Z" fill="#FFCF36" stroke="#1E1E24" stroke-width="2.5" stroke-linejoin="round"/><path d="M12 18 L16 22 L24 13" stroke="#FF2A54" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          </span>
           <div class="vault-btn-content">
-            <span class="vault-badge">OFFICIAL HYROX RULEBOOK &amp; PENALTIES 🚨</span>
+            <span class="vault-badge">OFFICIAL HYROX RULEBOOK &amp; PENALTIES
+              <svg class="c-icon c-icon-xs" viewBox="0 0 24 24" style="vertical-align:-2px"><path fill="#FF2A54" d="M12 2a4 4 0 0 0-4 4v1.08C5.64 8.04 4 10.32 4 13v4l-2 2v1h20v-1l-2-2v-4c0-2.68-1.64-4.96-4-5.92V6a4 4 0 0 0-4-4zm0 20a2 2 0 0 0 2-2h-4a2 2 0 0 0 2 2z"/></svg>
+            </span>
             <span class="vault-title">HYROX PENALTY BIBLE: ALL DOS &amp; DON'TS</span>
             <span class="vault-desc">Tap to view judge warning traps, time additions &amp; movement standards!</span>
           </div>
-          <span class="vault-arrow">➔</span>
+          <span class="vault-arrow">
+            <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="currentColor" d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+          </span>
         </button>
       </div>
 
@@ -825,7 +1057,13 @@
 
       <!-- Footer Loving Note -->
       <footer class="app-footer">
-        <div class="footer-doodle">🐾 • 💖 • 👟 • ⏱️ • ✨</div>
+        <div class="footer-doodle">
+          <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 13c-2.2 0-4 1.8-4 4 0 1.7 1.3 3 3 3 1.1 0 2-.4 2.7-1 .7.6 1.6 1 2.7 1 1.7 0 3-1.3 3-3 0-2.2-1.8-4-4-4zm-4.5-3c1.4 0 2.5-1.1 2.5-2.5S8.9 5 7.5 5 5 6.1 5 7.5 6.1 10 7.5 10zm9 0c1.4 0 2.5-1.1 2.5-2.5S17.9 5 16.5 5 14 6.1 14 7.5s1.1 2.5 2.5 2.5zm-6.5-2c1.4 0 2.5-1.1 2.5-2.5S9.4 3 8 3 5.5 4.1 5.5 5.5 6.6 8 8 8zm6 0c1.4 0 2.5-1.1 2.5-2.5S15.4 3 14 3s-2.5 1.1-2.5 2.5 1.1 2.5 2.5 2.5z"/></svg>
+          <svg viewBox="0 0 24 24" width="20" height="20"><path fill="#FF2A54" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" stroke="#1E1E24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M2 18h20v2H2zm19-4l-3-6-4 2-2-4H7L3 14h18z"/></svg>
+          <svg viewBox="0 0 24 24" width="20" height="20"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <svg viewBox="0 0 24 24" width="20" height="20"><path fill="#FFCF36" d="M12 0L14.8 9.2L24 12L14.8 14.8L12 24L9.2 14.8L0 12L9.2 9.2z"/></svg>
+        </div>
         <p class="footer-text">Handcrafted with infinite love by Dora for <strong>Nitz</strong> on her HYROX debut.</p>
         <p class="footer-sub">"You are stronger than you know, braver than you feel, and loved more than you can imagine."</p>
       </footer>
@@ -837,7 +1075,9 @@
   <!-- Sticky Floating "Emergency Pep-Talk / Hug" Button -->
   <aside class="floating-pep-wrap" id="floating-pep-wrap" style="display: none;">
     <button class="floating-pep-btn" id="pep-talk-trigger" aria-label="Emergency Pep Talk">
-      <span class="pep-btn-icon">💌</span>
+      <span class="pep-btn-icon">
+        <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="currentColor" d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/><path fill="#FF5C8A" d="M12 14l-1.45-1.32C5.4 9.36 2 6.28 2 2.5 2-.58 4.42-3 7.5-3c1.74 0 3.41.81 4.5 2.09C13.09-.81 14.76-3 16.5-3 19.58-3 22-.58 22 2.5c0 3.78-3.4 6.86-8.55 11.54L12 14z" transform="translate(0 6) scale(0.7)" style="display:none"/></svg>
+      </span>
       <span class="pep-btn-text">Need Love? Tap Here!</span>
       <span class="pep-btn-ping"></span>
     </button>
@@ -863,10 +1103,12 @@
 
       <div class="pep-actions">
         <button class="new-pep-btn" id="new-pep-btn">
-          <span>🎲</span> Gimme Another Pep-Talk!
+          <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H7l5-8v4h4l-5 8z"/></svg>
+          <span>Gimme Another Pep-Talk!</span>
         </button>
         <button class="pep-virtual-kiss-btn" id="pep-kiss-btn">
-          <span>💋</span> Get flying kisses from Dora
+          <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="currentColor" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          <span>Get flying kisses from Dora</span>
         </button>
       </div>
     </div>
@@ -879,7 +1121,10 @@
       <div class="rules-modal-header">
         <div class="rules-modal-top-row">
           <div class="rules-modal-badges">
-            <span class="rules-badge-alert">🚨 REAL HYROX RULES</span>
+            <span class="rules-badge-alert">
+              <svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="#FF2A54" d="M12 2a4 4 0 0 0-4 4v1.08C5.64 8.04 4 10.32 4 13v4l-2 2v1h20v-1l-2-2v-4c0-2.68-1.64-4.96-4-5.92V6a4 4 0 0 0-4-4zm0 20a2 2 0 0 0 2-2h-4a2 2 0 0 0 2 2z"/></svg>
+              REAL HYROX RULES
+            </span>
             <span class="rules-badge-sub">SUB-1.5H DEFENSE BIBLE</span>
           </div>
           <button class="rules-modal-close" id="rules-modal-close" aria-label="Close Rules Modal">✕</button>
@@ -892,11 +1137,26 @@
 
         <!-- Category Tabs -->
         <div class="rules-tabs-bar" role="tablist">
-          <button class="rules-tab-btn active" data-tab="all" role="tab" aria-selected="true">⭐ All Rules</button>
-          <button class="rules-tab-btn" data-tab="track" role="tab" aria-selected="false">🏃 Track &amp; Roxzone</button>
-          <button class="rules-tab-btn" data-tab="stations-1-4" role="tab" aria-selected="false">🚜 Stations 1-4</button>
-          <button class="rules-tab-btn" data-tab="stations-5-8" role="tab" aria-selected="false">🎯 Stations 5-8</button>
-          <button class="rules-tab-btn" data-tab="penalties" role="tab" aria-selected="false">⏱️ Penalty Time Matrix</button>
+          <button class="rules-tab-btn active" data-tab="all" role="tab" aria-selected="true">
+            <svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l2.6 6.8L22 12l-7.4 3.2L12 22l-2.6-6.8L2 12l7.4-3.2z"/></svg>
+            All Rules
+          </button>
+          <button class="rules-tab-btn" data-tab="track" role="tab" aria-selected="false">
+            <svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"/></svg>
+            Track &amp; Roxzone
+          </button>
+          <button class="rules-tab-btn" data-tab="stations-1-4" role="tab" aria-selected="false">
+            <svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path d="M4 20h16c.8 0 1.4-.5 1.4-1.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/><rect x="6" y="14" width="12" height="5" rx="1" fill="currentColor" opacity="0.7"/><line x1="9" y1="5" x2="9" y2="14" stroke="currentColor" stroke-width="2"/><line x1="15" y1="5" x2="15" y2="14" stroke="currentColor" stroke-width="2"/></svg>
+            Stations 1-4
+          </button>
+          <button class="rules-tab-btn" data-tab="stations-5-8" role="tab" aria-selected="false">
+            <svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>
+            Stations 5-8
+          </button>
+          <button class="rules-tab-btn" data-tab="penalties" role="tab" aria-selected="false">
+            <svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            Penalty Matrix
+          </button>
         </div>
       </div>
 
@@ -1251,7 +1511,8 @@
       
       <div class="rules-modal-footer">
         <button class="rules-modal-close-btn" id="rules-modal-bottom-close">
-          <span>👍</span> Got It, Dora! Ready to Conquer HYROX!
+          <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="currentColor" d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>
+          <span>Got It! Ready to Conquer HYROX!</span>
         </button>
       </div>
 
