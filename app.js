@@ -266,22 +266,157 @@ class HyroxApp {
 
   // Event Listeners
   bindEvents() {
-    // Portal Hub / First Page View Switching
-    const openQuestBtn = document.getElementById('open-quest-btn');
+    // First Page: Interactive "Accept The Gift" Love Experience
+    const giftYesBtn = document.getElementById('gift-yes-btn');
+    const giftNoBtn = document.getElementById('gift-no-btn');
+    const giftCardMain = document.getElementById('gift-card-main');
+    const giftDareCard = document.getElementById('gift-dare-card');
+    const giftYayCard = document.getElementById('gift-yay-card');
+    const giftTryAgainBtn = document.getElementById('gift-try-again-btn');
+    const giftHintText = document.getElementById('gift-hint-text');
     const backToPortalBtn = document.getElementById('back-to-portal-btn');
     const portalView = document.getElementById('portal-view');
     const questView = document.getElementById('quest-view');
     const floatingPepWrap = document.getElementById('floating-pep-wrap');
 
-    if (openQuestBtn) {
-      openQuestBtn.addEventListener('click', (e) => {
+    let noAttempts = 0;
+    const noPleadingMessages = [
+      "NO 🙈",
+      "Are you sure? 🥺",
+      "Really really sure?? 💔",
+      "Think of all the smoothies! 🥤",
+      "Dora will cry! 😿",
+      "Free foot rubs though! 🦶✨",
+      "You can't say no! 😤",
+      "Last chance, Bhondu! 🚨"
+    ];
+
+    const hintPleadingMessages = [
+      "Psst: There's only one right answer, Bhondu! 😉",
+      "Wait, why are you hovering over NO?! 🥺",
+      "Dora is watching your cursor very closely... 👀",
+      "The YES button is looking greener and juicier! 💖",
+      "Smoothies, cuddles, and cheerleading at stake! 🥤",
+      "Resistance is futile, you love Dora too much! 🥰"
+    ];
+
+    const showDareCard = () => {
+      this.resumeAudio();
+      this.playSound('boing');
+      this.triggerHaptic(50);
+      if (giftCardMain) giftCardMain.style.display = 'none';
+      if (giftDareCard) giftDareCard.style.display = 'flex';
+    };
+
+    const resetNoButton = () => {
+      noAttempts = 0;
+      if (giftNoBtn) {
+        giftNoBtn.textContent = 'NO 🙈';
+        giftNoBtn.style.transform = 'translate(0px, 0px) scale(1)';
+      }
+      if (giftYesBtn) {
+        giftYesBtn.style.setProperty('--yes-scale', 1);
+        giftYesBtn.style.transform = 'scale(1)';
+      }
+      if (giftHintText) {
+        giftHintText.textContent = "Psst: There's only one right answer, Bhondu! 😉";
+      }
+    };
+
+    const dodgeNoButton = (e) => {
+      if (e) e.preventDefault();
+      noAttempts++;
+
+      this.resumeAudio();
+      this.playSound('boing');
+      this.triggerHaptic(25);
+
+      // If she pressed it 6+ times, trigger the Gangster Cat meme
+      if (noAttempts >= 6) {
+        showDareCard();
+        return;
+      }
+
+      // Update text on NO button
+      if (giftNoBtn) {
+        giftNoBtn.textContent = noPleadingMessages[noAttempts % noPleadingMessages.length];
+      }
+
+      // Update hint text
+      if (giftHintText) {
+        giftHintText.textContent = hintPleadingMessages[noAttempts % hintPleadingMessages.length];
+      }
+
+      // Grow the YES button
+      const scale = 1 + Math.min(noAttempts * 0.16, 0.9);
+      if (giftYesBtn) {
+        giftYesBtn.style.setProperty('--yes-scale', scale);
+        giftYesBtn.style.transform = `scale(${scale})`;
+      }
+
+      // Playfully dodge the NO button within card boundaries
+      if (giftNoBtn) {
+        const arena = document.getElementById('gift-btn-arena');
+        const arenaRect = arena ? arena.getBoundingClientRect() : { width: 300, height: 80 };
+        const maxRangeX = Math.min(80, arenaRect.width * 0.22);
+        const maxRangeY = 35;
+
+        const randX = (Math.random() > 0.5 ? 1 : -1) * (25 + Math.random() * maxRangeX);
+        const randY = (Math.random() > 0.5 ? 1 : -1) * (15 + Math.random() * maxRangeY);
+        const shrink = Math.max(0.75, 1 - noAttempts * 0.05);
+
+        giftNoBtn.style.transform = `translate(${randX}px, ${randY}px) scale(${shrink})`;
+      }
+    };
+
+    if (giftNoBtn) {
+      // Evasion on pointer/hover
+      giftNoBtn.addEventListener('mouseenter', dodgeNoButton);
+      // Evasion on mobile touch / tap
+      giftNoBtn.addEventListener('pointerdown', (e) => {
+        if (noAttempts < 5) {
+          dodgeNoButton(e);
+        } else {
+          showDareCard();
+        }
+      });
+      giftNoBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        showDareCard();
+      });
+    }
+
+    if (giftTryAgainBtn) {
+      giftTryAgainBtn.addEventListener('click', () => {
+        this.playSound('pop');
+        this.triggerHaptic(20);
+        if (giftDareCard) giftDareCard.style.display = 'none';
+        if (giftCardMain) giftCardMain.style.display = 'flex';
+        resetNoButton();
+        if (giftYesBtn) {
+          giftYesBtn.style.setProperty('--yes-scale', 1.25);
+          giftYesBtn.style.transform = 'scale(1.25)';
+        }
+        if (giftNoBtn) {
+          giftNoBtn.textContent = 'Think twice! 😼';
+        }
+      });
+    }
+
+    if (giftYesBtn) {
+      giftYesBtn.addEventListener('click', () => {
         this.resumeAudio();
         this.playSound('fanfare');
-        this.triggerHaptic(50);
+        this.triggerHaptic(60);
 
-        const rect = openQuestBtn.getBoundingClientRect();
-        this.burstHearts(rect.left + rect.width / 2, rect.top + rect.height / 2, 10);
-        this.triggerConfetti(35);
+        const rect = giftYesBtn.getBoundingClientRect();
+        this.burstHearts(rect.left + rect.width / 2, rect.top + rect.height / 2, 14);
+        this.triggerConfetti(45);
+
+        // Show celebratory yay screen briefly
+        if (giftCardMain) giftCardMain.style.display = 'none';
+        if (giftDareCard) giftDareCard.style.display = 'none';
+        if (giftYayCard) giftYayCard.style.display = 'flex';
 
         setTimeout(() => {
           portalView.style.display = 'none';
@@ -293,7 +428,7 @@ class HyroxApp {
             this.canvas.width = window.innerWidth;
             this.canvas.height = window.innerHeight;
           }
-        }, 280);
+        }, 950);
       });
     }
 
@@ -306,6 +441,13 @@ class HyroxApp {
         questView.style.display = 'none';
         backToPortalBtn.style.display = 'none';
         if (floatingPepWrap) floatingPepWrap.style.display = 'none';
+
+        // Reset to initial stage
+        if (giftCardMain) giftCardMain.style.display = 'flex';
+        if (giftDareCard) giftDareCard.style.display = 'none';
+        if (giftYayCard) giftYayCard.style.display = 'none';
+        resetNoButton();
+
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
     }

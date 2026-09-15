@@ -39,32 +39,92 @@
     </div>
   </header>
 
-  <!-- First Page: Portal Hub with Surprise Button -->
+  <!-- First Page: Interactive "Accept The Gift" Love Experience -->
   <div class="portal-view" id="portal-view">
     <div class="portal-sparkle ps-1">✨</div>
     <div class="portal-sparkle ps-2">⭐</div>
     <div class="portal-sparkle ps-3">💖</div>
     <div class="portal-sparkle ps-4">🐾</div>
-    <div class="portal-card">
+
+    <!-- Stage 1: The Main Gift Proposal Card -->
+    <div class="portal-card gift-card" id="gift-card-main">
       <div class="portal-tag">
-        <span>💖</span> FROM DORA TO BHONDU
+        <span>💌</span> SPECIAL DELIVERY FOR BHONDU
       </div>
-      <h1 class="portal-title">Something Special Awaits ✨</h1>
-      <p class="portal-desc">A little universe built just for you. Tap below to unlock your mission!</p>
       
-      <div class="portal-actions">
-        <button class="portal-quest-btn" id="open-quest-btn">
-          <span>✨</span>
-          <span class="portal-btn-text">Secret Quest</span>
-          <span>💖</span>
+      <h1 class="gift-title">PLS ACCEPT THE GIFT 🎁</h1>
+      
+      <!-- Adorable Mascot with Flowers and Cute Pink Ribbon Bow -->
+      <div class="gift-mascot-wrap">
+        <div class="gift-mascot-doodle">
+          <div class="mascot-cat-art">
+            <span class="mascot-bow">🎀</span>
+            <span class="mascot-face">🐱</span>
+            <span class="mascot-bouquet">💐</span>
+          </div>
+          <div class="mascot-sparkles">✨</div>
+        </div>
+      </div>
+
+      <p class="gift-subtitle">Dora made something super special for your HYROX day... will you accept it?</p>
+
+      <!-- Interactive Button Arena (Yes grows, No runs away) -->
+      <div class="gift-btn-arena" id="gift-btn-arena">
+        <button class="gift-yes-btn" id="gift-yes-btn">
+          <span>💖</span> YES! <span>✨</span>
+        </button>
+        <button class="gift-no-btn" id="gift-no-btn">
+          NO 🙈
         </button>
       </div>
 
-      <div class="portal-footer-hint">
+      <div class="gift-subhint" id="gift-subhint">
         <span>🐾</span>
-        <span>Handcrafted with love by Dora</span>
+        <span id="gift-hint-text">Psst: There's only one right answer, Bhondu! 😉</span>
       </div>
     </div>
+
+    <!-- Stage 2: "HOW DARE YOU!" Meme Card (If she clicks NO) -->
+    <div class="portal-card dare-card" id="gift-dare-card" style="display: none;">
+      <div class="dare-tag">
+        <span>🚨</span> SUSPICIOUS BEHAVIOR DETECTED
+      </div>
+      
+      <h2 class="dare-title">HOW DARE YOU! 😼</h2>
+      
+      <div class="dare-mascot-wrap">
+        <div class="gangster-cat-art">
+          <span class="gangster-cap">🧢</span>
+          <span class="gangster-cat">😼</span>
+          <span class="gangster-item">💥</span>
+        </div>
+      </div>
+
+      <p class="dare-desc">You actually tried to click NO on Dora's surprise?! Unacceptable! 😤</p>
+
+      <button class="gift-try-again-btn" id="gift-try-again-btn">
+        <span>💕</span> TRY AGAIN (CORRECTLY!) <span>💕</span>
+      </button>
+
+      <div class="portal-footer-hint">
+        <span>🐾</span>
+        <span>You know you love Dora too much to resist!</span>
+      </div>
+    </div>
+
+    <!-- Stage 3: Celebratory "YAAAY" Screen (Before transitioning to quest) -->
+    <div class="portal-card yay-card" id="gift-yay-card" style="display: none;">
+      <div class="yay-tag">
+        <span>🎉</span> MISSION ACCEPTED!
+      </div>
+      <div class="yay-emoji">🥳💖✨</div>
+      <h2 class="yay-title">YAAAY! BEST DECISION EVER!</h2>
+      <p class="yay-desc">Loading your HYROX superhero quest right now...</p>
+      <div class="yay-loader-bar">
+        <div class="yay-loader-fill"></div>
+      </div>
+    </div>
+
   </div>
 
   <!-- Main Container (HYROX Quest View) -->

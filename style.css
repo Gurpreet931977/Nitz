@@ -323,45 +323,340 @@ body {
   margin-top: 8px;
 }
 
-.portal-quest-btn {
-  width: 100%;
-  background: var(--yellow-main);
+/* ===================================================
+   INTERACTIVE "ACCEPT THE GIFT" STYLES
+=================================================== */
+.gift-card {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.gift-title {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 900;
+  line-height: 1.15;
   color: var(--ink-dark);
+  letter-spacing: -0.5px;
+}
+
+/* Adorable Mascot Art (Kitten with Flowers and Ribbon) */
+.gift-mascot-wrap {
+  width: 124px;
+  height: 124px;
+  background: #FFE5EC;
+  border: var(--border-ink);
+  border-radius: 50%;
+  box-shadow: 3px 3px 0px var(--ink-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: 4px 0;
+  user-select: none;
+}
+
+.gift-mascot-doodle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mascot-cat-art {
+  position: relative;
+  font-size: 58px;
+  line-height: 1;
+  display: inline-block;
+  animation: gentleWiggle 3s ease-in-out infinite alternate;
+}
+
+@keyframes gentleWiggle {
+  0% { transform: rotate(-3deg); }
+  100% { transform: rotate(4deg); }
+}
+
+.mascot-bow {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  font-size: 26px;
+  transform: rotate(18deg);
+  filter: drop-shadow(1.5px 1.5px 0px rgba(0, 0, 0, 0.25));
+}
+
+.mascot-bouquet {
+  position: absolute;
+  bottom: -6px;
+  left: -14px;
+  font-size: 32px;
+  transform: rotate(-15deg);
+  filter: drop-shadow(1.5px 1.5px 0px rgba(0, 0, 0, 0.25));
+}
+
+.mascot-sparkles {
+  position: absolute;
+  top: -12px;
+  left: -14px;
+  font-size: 20px;
+  animation: pulseHeart 1.2s infinite alternate;
+}
+
+.gift-subtitle {
+  font-size: 15px;
+  color: var(--ink-gray);
+  line-height: 1.5;
+  max-width: 330px;
+}
+
+/* Button Arena: Yes button grows, No button flees */
+.gift-btn-arena {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+  margin: 12px 0 6px 0;
+  position: relative;
+  min-height: 80px;
+}
+
+.gift-yes-btn {
+  background: #10B981;
+  color: #FFFFFF;
+  border: var(--border-ink);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-hard);
+  padding: 16px 32px;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s ease, background 0.15s ease;
+  transform-origin: center center;
+  z-index: 5;
+}
+
+.gift-yes-btn:hover {
+  background: #059669;
+  box-shadow: 5px 6px 0px var(--ink-dark);
+}
+
+.gift-yes-btn:active {
+  box-shadow: 1px 2px 0px var(--ink-dark);
+}
+
+.gift-no-btn {
+  background: var(--coral-pop);
+  color: #FFFFFF;
+  border: var(--border-ink-thin);
+  border-radius: var(--radius-pill);
+  box-shadow: 2.5px 3px 0px var(--ink-dark);
+  padding: 12px 20px;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s ease;
+  z-index: 4;
+  user-select: none;
+}
+
+.gift-no-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px var(--ink-dark);
+}
+
+.gift-subhint {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-scribble);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--coral-pop);
+  margin-top: 4px;
+}
+
+/* ===================================================
+   "HOW DARE YOU!" MEME CARD
+=================================================== */
+.dare-card {
+  background: #FFFDF8;
+  animation: popIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.dare-tag {
+  background: var(--coral-pop);
+  color: #FFFFFF;
+  border: var(--border-ink-thin);
+  border-radius: var(--radius-pill);
+  padding: 4px 12px;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  box-shadow: 1.5px 1.5px 0px var(--ink-dark);
+}
+
+.dare-title {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 1.15;
+  color: var(--ink-dark);
+  letter-spacing: -0.5px;
+}
+
+.dare-mascot-wrap {
+  width: 124px;
+  height: 124px;
+  background: #FFE3E3;
+  border: var(--border-ink);
+  border-radius: 50%;
+  box-shadow: 3px 3px 0px var(--ink-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: 6px 0;
+  user-select: none;
+}
+
+.gangster-cat-art {
+  position: relative;
+  font-size: 58px;
+  line-height: 1;
+  display: inline-block;
+}
+
+.gangster-cap {
+  position: absolute;
+  top: -14px;
+  left: 4px;
+  font-size: 34px;
+  transform: rotate(-16deg);
+  filter: drop-shadow(2px 2px 0px rgba(0, 0, 0, 0.3));
+}
+
+.gangster-item {
+  position: absolute;
+  bottom: -6px;
+  right: -12px;
+  font-size: 28px;
+}
+
+.dare-desc {
+  font-size: 15px;
+  color: var(--ink-gray);
+  line-height: 1.5;
+  max-width: 320px;
+  font-weight: 700;
+}
+
+.gift-try-again-btn {
+  width: 100%;
+  background: var(--coral-pop);
+  color: #FFFFFF;
   border: var(--border-ink);
   border-radius: var(--radius-pill);
   box-shadow: var(--shadow-hard);
   padding: 16px 24px;
   font-family: var(--font-display);
-  font-size: 19px;
+  font-size: 17px;
   font-weight: 900;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.5px;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  cursor: pointer;
-  transition: transform 0.12s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.12s ease;
+  gap: 8px;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
 
-.portal-quest-btn:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 7px 0px var(--ink-dark);
+.gift-try-again-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 6px 0px var(--ink-dark);
 }
 
-.portal-quest-btn:active {
-  transform: translate(3px, 3px);
-  box-shadow: var(--shadow-hard-pressed);
+.gift-try-again-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 2px 0px var(--ink-dark);
 }
 
-.portal-footer-hint {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--font-scribble);
-  font-size: 19px;
-  font-weight: 700;
+/* ===================================================
+   CELEBRATORY YAAAY SCREEN
+=================================================== */
+.yay-card {
+  background: #FFFDF8;
+  animation: popIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.yay-tag {
+  background: var(--badge-yellow);
   color: var(--ink-dark);
-  margin-top: 4px;
+  border: var(--border-ink-thin);
+  border-radius: var(--radius-pill);
+  padding: 4px 14px;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.6px;
+  box-shadow: 1.5px 1.5px 0px var(--ink-dark);
+}
+
+.yay-emoji {
+  font-size: 52px;
+  margin: 6px 0;
+  user-select: none;
+  animation: bounceYay 0.5s infinite alternate cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes bounceYay {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(-14px) scale(1.15); }
+}
+
+.yay-title {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 900;
+  color: var(--coral-pop);
+  letter-spacing: -0.5px;
+}
+
+.yay-desc {
+  font-size: 15px;
+  color: var(--ink-gray);
+}
+
+.yay-loader-bar {
+  width: 100%;
+  height: 14px;
+  background: #FFFFFF;
+  border: var(--border-ink-thin);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  box-shadow: 1.5px 1.5px 0px var(--ink-dark);
+  margin-top: 10px;
+}
+
+.yay-loader-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--yellow-main);
+  border-radius: var(--radius-pill);
+  animation: loadQuest 0.9s ease-in-out forwards;
+}
+
+@keyframes loadQuest {
+  0% { width: 0%; }
+  100% { width: 100%; }
 }
 
 /* ===================================================
