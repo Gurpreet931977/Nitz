@@ -39,6 +39,24 @@ class HyroxApp {
       "Breathe in bravery, breathe out nerves. You're doing something 99% of people only dream of doing. Proud of you!"
     ];
 
+    // Real Warm Hug states and Dora whispers
+    this.doraWhispers = [
+      "Dora is squeezing you super tight right now!",
+      "Take a deep breath... Dora's got you, Bhondu.",
+      "Infinite warmth sent straight to your heart!",
+      "Holding you close until all the butterflies disappear!",
+      "Breathe in bravery, breathe out nerves. You're loved!",
+      "Wrapped in Dora's arms, you're 100% unstoppable!",
+      "Whenever you feel the burn, remember Dora is holding your hand!"
+    ];
+    this.whisperIdx = 0;
+    this.hugHoldTimer = null;
+    this.hugPulseInterval = null;
+    this.warmthTimeout = null;
+    this.isHoldingHug = false;
+    this.holdPressActive = false;
+    this.holdStartTime = 0;
+
     this.initAudio();
     this.bindEvents();
     this.initConfetti();
@@ -112,6 +130,34 @@ class HyroxApp {
         noteOsc.start(now + idx * 0.1);
         noteOsc.stop(now + idx * 0.1 + 0.45);
       });
+    } else if (type === 'warmHug') {
+      // Comforting acoustic chord: F3, A3, C4, E4, G4 with lowpass envelope
+      const chord = [174.61, 220.00, 261.63, 329.63, 392.00];
+      chord.forEach((freq, idx) => {
+        const noteOsc = this.audioCtx.createOscillator();
+        const noteGain = this.audioCtx.createGain();
+        const filter = this.audioCtx.createBiquadFilter();
+
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(850, now);
+        filter.frequency.exponentialRampToValueAtTime(320, now + 1.2);
+
+        noteOsc.type = idx % 2 === 0 ? 'sine' : 'triangle';
+        noteOsc.frequency.setValueAtTime(freq, now);
+
+        noteGain.gain.setValueAtTime(0.001, now);
+        // Soft warm swell attack
+        noteGain.gain.linearRampToValueAtTime(0.16 / (idx + 1), now + 0.12);
+        // Lingering gentle decay
+        noteGain.gain.exponentialRampToValueAtTime(0.0001, now + 1.2);
+
+        noteOsc.connect(filter);
+        filter.connect(noteGain);
+        noteGain.connect(this.audioCtx.destination);
+
+        noteOsc.start(now);
+        noteOsc.stop(now + 1.2);
+      });
     }
   }
 
@@ -119,6 +165,15 @@ class HyroxApp {
     if ('vibrate' in navigator) {
       try {
         navigator.vibrate(ms);
+      } catch (e) {}
+    }
+  }
+
+  triggerHeartbeatHaptic() {
+    if ('vibrate' in navigator) {
+      try {
+        // Dual-pulse lub-dub heartbeat pattern
+        navigator.vibrate([70, 85, 120, 90, 70]);
       } catch (e) {}
     }
   }
@@ -214,17 +269,161 @@ class HyroxApp {
       this.createHeartParticle(e.clientX || 50, e.clientY || 50, this.soundEnabled ? 'icon-sparkle' : 'icon-star');
     });
 
-    // Hugs Button
+    // REAL WARM HUG EXPERIENCE (Multi-Sensory: Heartbeat Haptics + Ambient Warmth + Chords + Whispers)
     const hugBtn = document.getElementById('hug-btn');
     const hugCounter = document.getElementById('hug-counter');
-    hugBtn.addEventListener('click', (e) => {
+    const hugFill = document.getElementById('hug-hold-fill');
+    const hugWhisper = document.getElementById('hug-whisper');
+    const hugWhisperText = document.getElementById('hug-whisper-text');
+    const hugBtnText = document.getElementById('hug-btn-text');
+    const warmthOverlay = document.getElementById('warmth-overlay');
+
+    const updateWhisper = () => {
+      this.whisperIdx = (this.whisperIdx + 1) % this.doraWhispers.length;
+      if (hugWhisperText) {
+        hugWhisperText.textContent = this.doraWhispers[this.whisperIdx];
+      }
+      if (hugWhisper) {
+        hugWhisper.classList.remove('whisper-pop');
+        void hugWhisper.offsetWidth; // trigger reflow for animation restart
+        hugWhisper.classList.add('whisper-pop');
+      }
+    };
+
+    const triggerHugGlow = (isLongHold = false) => {
+      if (warmthOverlay) {
+        warmthOverlay.classList.remove('warmth-holding');
+        warmthOverlay.classList.add('warmth-active');
+        clearTimeout(this.warmthTimeout);
+        this.warmthTimeout = setTimeout(() => {
+          warmthOverlay.classList.remove('warmth-active');
+        }, isLongHold ? 1800 : 1200);
+      }
+    };
+
+    const triggerHugRelease = (wasHolding) => {
+      if (!this.holdPressActive) return;
+      this.holdPressActive = false;
+
+      clearTimeout(this.hugHoldTimer);
+      clearInterval(this.hugPulseInterval);
+
+      hugBtn.classList.remove('squeezing');
+      if (hugFill) hugFill.style.width = '0%';
+      if (hugBtnText) hugBtnText.textContent = 'Tap or Hold for a Warm Hug!';
+
       this.hugCount++;
-      hugCounter.textContent = `${this.hugCount} hug${this.hugCount === 1 ? '' : 's'} sent!`;
-      this.playSound('chime');
-      this.triggerHaptic(40);
+      if (hugCounter) {
+        hugCounter.textContent = `${this.hugCount} hug${this.hugCount === 1 ? '' : 's'} sent!`;
+      }
+
+      hugBtn.classList.add('blooming');
+      setTimeout(() => hugBtn.classList.remove('blooming'), 450);
+
       const rect = hugBtn.getBoundingClientRect();
-      this.burstHearts(rect.left + rect.width / 2, rect.top + rect.height / 2, 8);
-    });
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+
+      this.playSound('warmHug');
+      this.triggerHeartbeatHaptic();
+
+      if (wasHolding) {
+        // Deep warm hold release
+        triggerHugGlow(true);
+        this.burstHearts(centerX, centerY, 14);
+        this.triggerConfetti(35);
+      } else {
+        // Sweet quick tap
+        triggerHugGlow(false);
+        this.burstHearts(centerX, centerY, 8);
+      }
+
+      updateWhisper();
+      this.isHoldingHug = false;
+    };
+
+    if (hugBtn) {
+      hugBtn.addEventListener('contextmenu', (e) => e.preventDefault());
+
+      hugBtn.addEventListener('pointerdown', (e) => {
+        e.preventDefault();
+        this.resumeAudio();
+        this.holdPressActive = true;
+        this.isHoldingHug = false;
+        this.holdStartTime = Date.now();
+
+        clearTimeout(this.hugHoldTimer);
+        clearInterval(this.hugPulseInterval);
+
+        // Threshold before hold-squeeze starts (220ms)
+        this.hugHoldTimer = setTimeout(() => {
+          if (!this.holdPressActive) return;
+          this.isHoldingHug = true;
+          hugBtn.classList.add('squeezing');
+          if (warmthOverlay) warmthOverlay.classList.add('warmth-holding');
+          if (hugBtnText) hugBtnText.textContent = 'Squeezing tight...';
+
+          this.triggerHeartbeatHaptic();
+          const holdStart = Date.now();
+          const maxHoldMs = 1400;
+
+          // Smoothly fill bar and pulse heartbeat while holding
+          this.hugPulseInterval = setInterval(() => {
+            if (!this.holdPressActive) return;
+            const elapsed = Date.now() - holdStart;
+            const pct = Math.min(100, Math.round((elapsed / maxHoldMs) * 100));
+            if (hugFill) hugFill.style.width = `${pct}%`;
+
+            // Rising warm heart particle
+            const rect = hugBtn.getBoundingClientRect();
+            this.createHeartParticle(
+              rect.left + rect.width / 2 + (Math.random() - 0.5) * 50,
+              rect.top + 10,
+              'icon-heart'
+            );
+
+            // Periodic heartbeat haptic
+            if (elapsed % 420 < 75) {
+              this.triggerHaptic(40);
+            }
+          }, 70);
+        }, 220);
+      });
+
+      const handleRelease = () => {
+        if (this.holdPressActive) {
+          triggerHugRelease(this.isHoldingHug);
+        }
+      };
+
+      hugBtn.addEventListener('pointerup', handleRelease);
+      hugBtn.addEventListener('pointercancel', handleRelease);
+      hugBtn.addEventListener('pointerleave', () => {
+        if (this.holdPressActive) {
+          handleRelease();
+        }
+      });
+
+      // Keyboard accessibility (Space or Enter key)
+      hugBtn.addEventListener('keydown', (e) => {
+        if ((e.key === ' ' || e.key === 'Enter') && !this.holdPressActive) {
+          e.preventDefault();
+          this.holdPressActive = true;
+          this.resumeAudio();
+          hugBtn.classList.add('squeezing');
+          if (warmthOverlay) warmthOverlay.classList.add('warmth-holding');
+          if (hugBtnText) hugBtnText.textContent = 'Squeezing tight...';
+          this.triggerHeartbeatHaptic();
+        }
+      });
+
+      hugBtn.addEventListener('keyup', (e) => {
+        if ((e.key === ' ' || e.key === 'Enter') && this.holdPressActive) {
+          e.preventDefault();
+          triggerHugRelease(true);
+        }
+      });
+    }
 
     // Checklist checkboxes
     const checkboxes = document.querySelectorAll('.doodle-checkbox');

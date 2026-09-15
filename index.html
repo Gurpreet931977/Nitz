@@ -324,6 +324,9 @@
   <!-- Canvas Confetti Container -->
   <canvas id="confetti-canvas"></canvas>
 
+  <!-- Fullscreen Ambient Warm Hug Glow Overlay -->
+  <div class="screen-warmth-overlay" id="warmth-overlay"></div>
+
   <!-- Top Floating Controls -->
   <header class="top-nav">
     <button class="hub-back-btn" id="back-to-portal-btn" aria-label="Back to Hub" style="display: none;">
@@ -433,18 +436,21 @@
         </div>
       </div>
 
-      <!-- Quick Love Button -->
-      <button class="hug-button" id="hug-btn">
-        <span class="btn-icon">
-          <svg class="c-icon c-icon-lg"><use href="#icon-hug"></use></svg>
-        </span>
-        <span class="btn-text">Tap for an Instant Bhondu Hug!</span>
-        <span class="hug-counter-badge" id="hug-counter">0 hugs sent</span>
-      </button>
-      <p class="hug-hint">
-        Tap anytime you feel nervous or need a boost!
-        <svg class="c-icon c-icon-sm text-coral"><use href="#icon-heart"></use></svg>
-      </p>
+      <!-- Real Warm Hug Experience -->
+      <div class="hug-zone">
+        <button class="hug-button" id="hug-btn" role="button" aria-label="Real Warm Hug from Dora">
+          <div class="hug-progress-fill" id="hug-hold-fill"></div>
+          <span class="btn-icon">
+            <svg class="c-icon c-icon-lg"><use href="#icon-hug"></use></svg>
+          </span>
+          <span class="btn-text" id="hug-btn-text">Tap or Hold for a Warm Hug!</span>
+          <span class="hug-counter-badge" id="hug-counter">0 hugs sent</span>
+        </button>
+        <div class="hug-whisper" id="hug-whisper">
+          <svg class="c-icon c-icon-sm text-coral"><use href="#icon-heart"></use></svg>
+          <span id="hug-whisper-text">Tap or press &amp; hold anytime you need Dora's warm squeeze!</span>
+        </div>
+      </div>
     </section>
 
     <!-- Race Day Affirmation Card -->
