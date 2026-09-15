@@ -285,8 +285,20 @@
             <span class="station-status-pill">Unlocked</span>
           </div>
           <div class="station-body">
+            <!-- Official Movement Standards & Penalty Traps -->
+            <div class="hyrox-rules-card">
+              <div class="rule-row">
+                <span class="rule-badge standard-badge">✓ OFFICIAL STANDARD</span>
+                <p>Feet must remain on the black base plate at all times. Heels may lift during the pull, but toes/feet cannot step onto the gym floor.</p>
+              </div>
+              <div class="rule-row penalty-row">
+                <span class="rule-badge penalty-badge">⚠️ JUDGE PENALTY TRAP</span>
+                <p>Stepping off the machine or dropping handles before the judge verbally confirms 1,000m results in a 15-second penalty or uncounted meters!</p>
+              </div>
+            </div>
+
             <div class="doodle-tip">
-              <strong>Bhondu Secret Tip:</strong> <em>"Use your core and pull with rhythm like you're pulling Santa's sleigh! Don't blow all your fuel in the first 300 meters, pace it out softly."</em>
+              <strong>Dora's Pacing Hack:</strong> <em>"Aim for a steady 2:08 to 2:15 split. Pull using your core and lats with a fluid hip hinge. Don't blast your legs here, you need them for 7 more kilometers!"</em>
             </div>
             <div class="station-action">
               <button class="stamp-btn" onclick="app.stampStation(1)">
@@ -296,40 +308,63 @@
           </div>
         </article>
 
-        <!-- Station 2: Sled Push (Mini-Game 1) -->
+        <!-- Station 2: Sled Push (Line Clearance & Penalty Simulator) -->
         <article class="station-card" id="st-2" data-station="2">
           <div class="station-header">
             <div class="station-badge">2</div>
             <div class="station-info">
               <span class="run-marker">🏃 1km Run +</span>
-              <h3 class="station-name">50m Sled Push 🚜 🎮</h3>
+              <h3 class="station-name">50m Sled Push (4x 12.5m) 🚜</h3>
             </div>
-            <span class="station-status-pill">Mini Game!</span>
+            <span class="station-status-pill">Penalty Simulator!</span>
           </div>
           <div class="station-body">
-            <div class="doodle-tip">
-              <strong>Bhondu Secret Tip:</strong> <em>"Stay low, stay grounded, and push with your legs! It's heavy, but your determination is heavier!"</em>
+            <div class="hyrox-rules-card">
+              <div class="rule-row">
+                <span class="rule-badge standard-badge">✓ OFFICIAL STANDARD</span>
+                <p>Push sled with hands on upright poles; stay strictly in your marked lane for all 4x 12.5m lengths.</p>
+              </div>
+              <div class="rule-row penalty-row">
+                <span class="rule-badge penalty-badge">⚠️ #1 SLED PENALTY TRAP</span>
+                <p><strong>The Line Clearance Rule:</strong> All 4 skids must completely cross the white boundary line before you can turn! Turning 1 inch early gets a strict <strong>NO REP!</strong></p>
+              </div>
             </div>
-            <!-- Mini Game: Tap to Push Sled -->
+
+            <!-- Mini Game: Sled Line Clearance Simulator -->
             <div class="mini-game-box" id="sled-game">
               <div class="game-header">
-                <span class="game-tag">🎮 QUICK MINI-GAME</span>
-                <span class="game-title">Help Bhondu Push The Sled!</span>
+                <span class="game-tag">🎮 HYROX PENALTY SIMULATOR</span>
+                <span class="game-title">Clear The White Line Completely!</span>
               </div>
               <div class="sled-track">
                 <div class="sled-runner" id="sled-runner">
                   <span class="sled-avatar">🏋️‍♀️</span>
                   <span class="sled-object">📦</span>
                 </div>
+                <!-- 12.5m White Boundary Line Indicator -->
+                <div class="sled-white-line">
+                  <span class="line-label">12.5m LINE</span>
+                </div>
                 <div class="sled-finish-flag">🏁</div>
               </div>
               <div class="sled-progress-bar">
                 <div class="sled-fill" id="sled-fill" style="width: 0%;"></div>
               </div>
-              <button class="game-tap-btn" id="sled-push-btn">
-                🔥 TAP FAST TO PUSH! (<span id="sled-taps">0</span>/10)
-              </button>
-              <div class="game-reward-msg" id="sled-msg">Tap the button quickly to push the sled across! 💥</div>
+
+              <div class="sled-actions-row">
+                <button class="game-tap-btn" id="sled-push-btn">
+                  🔥 PUSH SLED (<span id="sled-taps">0</span>/10)
+                </button>
+                <button class="sled-turn-btn" id="sled-turn-btn">
+                  ↩️ Turn Sled Around
+                </button>
+              </div>
+
+              <div class="game-reward-msg" id="sled-msg">Tap PUSH to drive the sled across the 12.5m boundary line! 💥</div>
+            </div>
+
+            <div class="doodle-tip">
+              <strong>Dora's Pacing Hack:</strong> <em>"Keep your arms locked straight and drive through the turf with low, deliberate leg pumps. Never look up; look at the turf right in front of you!"</em>
             </div>
           </div>
         </article>
@@ -340,13 +375,24 @@
             <div class="station-badge">3</div>
             <div class="station-info">
               <span class="run-marker">🏃 1km Run +</span>
-              <h3 class="station-name">50m Sled Pull 🪢</h3>
+              <h3 class="station-name">50m Sled Pull (4x 12.5m) 🪢</h3>
             </div>
             <span class="station-status-pill">Ready</span>
           </div>
           <div class="station-body">
+            <div class="hyrox-rules-card">
+              <div class="rule-row">
+                <span class="rule-badge standard-badge">✓ OFFICIAL STANDARD</span>
+                <p>Athlete must remain entirely inside the taped athlete box on the floor. Pull hand-over-hand.</p>
+              </div>
+              <div class="rule-row penalty-row">
+                <span class="rule-badge penalty-badge">⚠️ STRICT DQ / PENALTY TRAP</span>
+                <p>Wrapping the rope around arms, waist, or body is strictly prohibited. Stepping outside the box is a foul (+15s penalty!).</p>
+              </div>
+            </div>
+
             <div class="doodle-tip">
-              <strong>Bhondu Secret Tip:</strong> <em>"Plant your feet firm in the box, pull hand over hand! Every inch you pull brings you closer to victory!"</em>
+              <strong>Dora's Pacing Hack:</strong> <em>"Sit low into a stable squat, anchor your heels into the box floor, and use your bodyweight to lean back with each big pull!"</em>
             </div>
             <div class="station-action">
               <button class="stamp-btn" onclick="app.stampStation(3)">
@@ -356,50 +402,92 @@
           </div>
         </article>
 
-        <!-- Station 4: Burpee Broad Jumps (Mini-Game 2) -->
+        <!-- Station 4: Burpee Broad Jumps (Chest & 2-Foot Landing Simulator) -->
         <article class="station-card" id="st-4" data-station="4">
           <div class="station-header">
             <div class="station-badge">4</div>
             <div class="station-info">
               <span class="run-marker">🏃 1km Run +</span>
-              <h3 class="station-name">80m Burpee Broad Jumps 🐸 🎮</h3>
+              <h3 class="station-name">80m Burpee Broad Jumps 🐸</h3>
             </div>
-            <span class="station-status-pill">Mini Game!</span>
+            <span class="station-status-pill">Penalty Simulator!</span>
           </div>
           <div class="station-body">
-            <div class="doodle-tip">
-              <strong>Bhondu Secret Tip:</strong> <em>"This is the famous mental hump of HYROX! Don't rush; just hit the floor, bounce up, and hop like a happy little froggy!"</em>
+            <div class="hyrox-rules-card">
+              <div class="rule-row">
+                <span class="rule-badge standard-badge">✓ OFFICIAL STANDARD</span>
+                <p>Chest must touch the floor between hands. Takeoff and landing must be simultaneous two-foot (max 5cm stagger).</p>
+              </div>
+              <div class="rule-row penalty-row">
+                <span class="rule-badge penalty-badge">⚠️ #1 BURPEE PENALTY TRAP</span>
+                <p>Galloping or single-leg stepping into the jump is an immediate <strong>NO REP!</strong> Jumping before chest hits the ground is also an instant NO REP.</p>
+              </div>
             </div>
-            <!-- Mini Game: Burpee Jumps -->
+
+            <!-- Mini Game: Chest Touch & Simultaneous Jump Simulator -->
             <div class="mini-game-box" id="burpee-game">
               <div class="game-header">
-                <span class="game-tag">🎮 JUMP MINI-GAME</span>
-                <span class="game-title">Bhondu's Froggy Leap!</span>
+                <span class="game-tag">🎮 HYROX PENALTY SIMULATOR</span>
+                <span class="game-title">Chest-to-Turf + 2-Foot Leap</span>
               </div>
+              
+              <div class="burpee-hud">
+                <span class="hud-chest-badge" id="chest-touch-indicator">Chest on Turf: NO ❌</span>
+                <span class="hud-landing-badge" id="landing-indicator">2-Foot Ready: YES ✓</span>
+              </div>
+
               <div class="burpee-stage">
                 <div class="burpee-jumper" id="burpee-jumper">🐸</div>
                 <div class="burpee-ground">
-                  <span class="burpee-step step-1">🌱 Step 1</span>
-                  <span class="burpee-step step-2">🌿 Step 2</span>
-                  <span class="burpee-step step-3">🌾 Step 3</span>
+                  <span class="burpee-step step-1">🌱 20m</span>
+                  <span class="burpee-step step-2">🌿 40m</span>
+                  <span class="burpee-step step-3">🌾 60m</span>
                   <span class="burpee-step step-4">🏁 80m!</span>
                 </div>
               </div>
-              <button class="game-tap-btn" id="burpee-jump-btn">
-                ✨ TAP TO LEAP! (<span id="burpee-jumps">0</span>/4)
-              </button>
-              <div class="game-reward-msg" id="burpee-msg">Tap to launch Bhondu forward with high spirits! 🌟</div>
+
+              <div class="burpee-buttons-row">
+                <button class="burpee-sub-btn drop-btn" id="burpee-drop-btn">
+                  ⬇️ 1. Drop Chest to Turf
+                </button>
+                <button class="burpee-sub-btn jump-btn" id="burpee-jump-btn">
+                  🚀 2. Two-Foot Leap (<span id="burpee-jumps">0</span>/4)
+                </button>
+              </div>
+
+              <div class="game-reward-msg" id="burpee-msg">Step 1: Tap "Drop Chest to Turf" first, then leap forward! 🌟</div>
+            </div>
+
+            <div class="doodle-tip">
+              <strong>Dora's Pacing Hack:</strong> <em>"This is the mental halfway test of HYROX! Don't sprint; find a robotic breathing cadence: drop down, breathe, snap up, hop forward, repeat."</em>
             </div>
           </div>
         </article>
 
-        <!-- ROXZONE BREATHER CARD -->
+        <!-- ROXZONE BREATHER & ARCH PENALTY DEFENSE SIMULATOR -->
         <div class="roxzone-lounge">
-          <div class="roxzone-tape">ROXZONE CHILL ZONE</div>
+          <div class="roxzone-tape">ROXZONE CHILL ZONE &amp; PENALTY DEFENSE</div>
           <div class="roxzone-content">
-            <div class="roxzone-icon">🥤✨</div>
+            <div class="roxzone-icon">🥤⚡</div>
             <h4>You're Halfway There, Superhero!</h4>
-            <p>The Roxzone is where champions breathe, hydrate, and recalibrate. Shake your hands, take two deep belly breaths, and smile!</p>
+            <p>The Roxzone connects the running track and stations. But beware: this is where first-timers lose 2 to 4 minutes in rookie penalties!</p>
+            
+            <div class="roxzone-quiz-box">
+              <span class="quiz-badge">🚨 CRITICAL ARCH RULE CHECK</span>
+              <p class="quiz-question">You finished Station 4 and need to head out for Run 5. Which arch do you exit through?</p>
+              <div class="quiz-actions">
+                <button class="arch-choice-btn in-btn" id="arch-choice-in">
+                  🚫 IN Arch
+                </button>
+                <button class="arch-choice-btn out-btn" id="arch-choice-out">
+                  🏁 OUT Arch
+                </button>
+              </div>
+              <div class="arch-quiz-result" id="arch-quiz-result">
+                Tap an arch to test your HYROX navigation rule!
+              </div>
+            </div>
+
             <div class="roxzone-quote">"Thakna mana hai, smile karna zaroori hai!" 💖</div>
           </div>
         </div>
@@ -415,8 +503,19 @@
             <span class="station-status-pill">Ready</span>
           </div>
           <div class="station-body">
+            <div class="hyrox-rules-card">
+              <div class="rule-row">
+                <span class="rule-badge standard-badge">✓ OFFICIAL STANDARD</span>
+                <p>Feet must be secured in footplates BEFORE touching the handle. Row until the monitor displays 1,000m.</p>
+              </div>
+              <div class="rule-row penalty-row">
+                <span class="rule-badge penalty-badge">⚠️ JUDGE PENALTY TRAP</span>
+                <p>Dropping the handle or stepping out of the rower before the judge inspects the screen triggers a time penalty!</p>
+              </div>
+            </div>
+
             <div class="doodle-tip">
-              <strong>Bhondu Secret Tip:</strong> <em>"Legs, body, arms, then arms, body, legs. Find a sweet rhythm like a gentle song in your head!"</em>
+              <strong>Dora's Pacing Hack:</strong> <em>"Legs, body, arms, then arms, body, legs. Keep your stroke rate at 26 to 28 SPM. Breathe out as you drive back!"</em>
             </div>
             <div class="station-action">
               <button class="stamp-btn" onclick="app.stampStation(5)">
@@ -432,13 +531,24 @@
             <div class="station-badge">6</div>
             <div class="station-info">
               <span class="run-marker">🏃 1km Run +</span>
-              <h3 class="station-name">200m Farmers Carry 🛍️</h3>
+              <h3 class="station-name">200m Farmers Carry (2x 16kg) 🛍️</h3>
             </div>
             <span class="station-status-pill">Ready</span>
           </div>
           <div class="station-body">
+            <div class="hyrox-rules-card">
+              <div class="rule-row">
+                <span class="rule-badge standard-badge">✓ OFFICIAL STANDARD</span>
+                <p>Kettlebells must be carried at your sides with arms extended. If you place them down to rest, you must resume from the EXACT spot.</p>
+              </div>
+              <div class="rule-row penalty-row">
+                <span class="rule-badge penalty-badge">⚠️ STRICT PENALTY TRAP</span>
+                <p>Resting kettlebells on thighs/hips or kicking/throwing them forward on a drop incurs a 15-second penalty!</p>
+              </div>
+            </div>
+
             <div class="doodle-tip">
-              <strong>Bhondu Secret Tip:</strong> <em>"Pretend you're carrying all the shopping bags from the mall in a single trip because you refuse to make two trips! You've got iron grip!"</em>
+              <strong>Dora's Pacing Hack:</strong> <em>"Chest tall, shoulders packed down, quick short footsteps. Tell your mind: 'I'm only holding this for 2 minutes!' Iron grip, Bhondu!"</em>
             </div>
             <div class="station-action">
               <button class="stamp-btn" onclick="app.stampStation(6)">
@@ -454,13 +564,24 @@
             <div class="station-badge">7</div>
             <div class="station-info">
               <span class="run-marker">🏃 1km Run +</span>
-              <h3 class="station-name">100m Sandbag Lunges 🎒</h3>
+              <h3 class="station-name">100m Sandbag Lunges (11kg) 🎒</h3>
             </div>
             <span class="station-status-pill">Ready</span>
           </div>
           <div class="station-body">
+            <div class="hyrox-rules-card">
+              <div class="rule-row">
+                <span class="rule-badge standard-badge">✓ OFFICIAL STANDARD</span>
+                <p>Sandbag must remain resting on your shoulders at all times. Alternate legs (left, right) with no extra shuffling.</p>
+              </div>
+              <div class="rule-row penalty-row">
+                <span class="rule-badge penalty-badge">⚠️ #1 LUNGE PENALTY TRAP</span>
+                <p><strong>Rear knee must touch the turf on EVERY rep!</strong> If your knee hovers 1 inch off the turf, or you don't stand fully upright at the top, it is an automatic <strong>NO REP!</strong></p>
+              </div>
+            </div>
+
             <div class="doodle-tip">
-              <strong>Bhondu Secret Tip:</strong> <em>"Chest proud, knee kisses the turf gently, and step forward! Penultimate station: you can practically smell the finish line!"</em>
+              <strong>Dora's Pacing Hack:</strong> <em>"Wear knee sleeves! Gently kiss the turf with your knee, stand tall, step through. Penultimate station: you can practically smell the finish line!"</em>
             </div>
             <div class="station-action">
               <button class="stamp-btn" onclick="app.stampStation(7)">
@@ -470,36 +591,69 @@
           </div>
         </article>
 
-        <!-- Station 8: Wall Balls (Mini-Game 3) -->
+        <!-- Station 8: Wall Balls (Squat Depth & Target Simulator) -->
         <article class="station-card" id="st-8" data-station="8">
           <div class="station-header">
             <div class="station-badge">8</div>
             <div class="station-info">
               <span class="run-marker">🏃 1km Run +</span>
-              <h3 class="station-name">75/100 Wall Balls 🎯 🎮</h3>
+              <h3 class="station-name">75/100 Wall Balls (4kg) 🎯</h3>
             </div>
-            <span class="station-status-pill">Final Boss</span>
+            <span class="station-status-pill">Final Boss Simulator!</span>
           </div>
           <div class="station-body">
-            <div class="doodle-tip">
-              <strong>Bhondu Secret Tip:</strong> <em>"The Final Boss! Deep squat, explosive hips, throw it right into the target! Break it into sets of 10. Every ball you hit brings you to the Red Carpet!"</em>
+            <div class="hyrox-rules-card">
+              <div class="rule-row">
+                <span class="rule-badge standard-badge">✓ OFFICIAL STANDARD</span>
+                <p>Throw ball to hit the center of the 2.70m target. Catch ball on descent and fluidly initiate next squat.</p>
+              </div>
+              <div class="rule-row penalty-row">
+                <span class="rule-badge penalty-badge">⚠️ THE INFAMOUS HYROX SQUAT TRAP</span>
+                <p><strong>Hip crease MUST drop below the top of the knees on EVERY squat!</strong> If your squat is parallel or shallow, the judge calls <strong>NO REP!</strong></p>
+              </div>
             </div>
-            <!-- Mini Game: Wall Balls Target -->
+
+            <!-- Mini Game: Live Squat Depth Gauge & Target Toss -->
             <div class="mini-game-box" id="wallball-game">
               <div class="game-header">
-                <span class="game-tag">🎮 FINAL BOSS MINI-GAME</span>
-                <span class="game-title">Wall Ball Target Toss!</span>
+                <span class="game-tag">🎮 HYROX PENALTY SIMULATOR</span>
+                <span class="game-title">Squat Below Parallel + Hit Target</span>
               </div>
+              
+              <!-- Live Squat Depth Gauge Indicator -->
+              <div class="squat-depth-gauge">
+                <div class="depth-bar-track">
+                  <div class="depth-zone zone-shallow">Shallow ❌</div>
+                  <div class="depth-zone zone-parallel">Parallel ⚠️</div>
+                  <div class="depth-zone zone-deep">BELOW PARALLEL ✓</div>
+                  <div class="depth-indicator-needle" id="depth-needle"></div>
+                </div>
+              </div>
+
               <div class="wallball-arena">
                 <div class="wallball-target" id="wallball-target">
-                  <span class="target-ring">🎯 TARGET</span>
+                  <span class="target-ring">🎯 2.70m TARGET</span>
                 </div>
-                <div class="wallball-projectile" id="wallball-ball">🏀</div>
+                <div class="wallball-athlete-art">
+                  <div class="wallball-projectile" id="wallball-ball">🏀</div>
+                  <div class="athlete-squat-emoji" id="athlete-squat-emoji">🧍‍♀️</div>
+                </div>
               </div>
-              <button class="game-tap-btn" id="wallball-toss-btn">
-                🎯 TAP TO THROW TO TARGET! (<span id="wb-hits">0</span>/3)
-              </button>
-              <div class="game-reward-msg" id="wb-msg">Hit the target 3 times to unlock the Red Carpet & Secret Surprise!</div>
+
+              <div class="wb-actions-row">
+                <button class="game-tap-btn wb-squat-toggle" id="wallball-squat-toggle-btn">
+                  🏋️ 1. Squat Deep (Below Parallel)
+                </button>
+                <button class="game-tap-btn wb-toss-btn" id="wallball-toss-btn">
+                  🎯 2. Toss to Target! (<span id="wb-hits">0</span>/3)
+                </button>
+              </div>
+
+              <div class="game-reward-msg" id="wb-msg">Step 1: Tap "Squat Deep" to drop your hips below parallel, then Toss! 💥</div>
+            </div>
+
+            <div class="doodle-tip">
+              <strong>Dora's Pacing Hack:</strong> <em>"The Final Boss! Break it into clean sets of 10 or 15. Every clean rep gets you closer to the Red Carpet and Dora's giant warm embrace!"</em>
             </div>
           </div>
         </article>

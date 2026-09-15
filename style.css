@@ -1612,39 +1612,358 @@ body {
   transform: translateY(-50px) scale(1.2);
 }
 
-/* Arcade Tap Button */
-.game-tap-btn {
-  width: 100%;
-  background: var(--orange-pop);
+/* ===================================================
+   OFFICIAL HYROX MOVEMENT STANDARDS & PENALTY CARDS
+=================================================== */
+.hyrox-rules-card {
+  background: #FFFFFF;
+  border: var(--border-ink-thin);
+  border-radius: var(--radius-inner);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 1.5px 1.5px 0px var(--ink-dark);
+}
+
+.rule-row {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink-dark);
+}
+
+.rule-badge {
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1.5px solid var(--ink-dark);
+  align-self: flex-start;
+}
+
+.standard-badge {
+  background: var(--mint-pop);
+  color: var(--ink-dark);
+}
+
+.penalty-badge {
+  background: #FF3B69;
   color: #FFFFFF;
+}
+
+.penalty-row {
+  background: #FFF5F7;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border-left: 3.5px solid var(--coral-pop);
+}
+
+.penalty-row strong {
+  color: var(--coral-pop);
+}
+
+/* Sled Push Line Clearance Additions */
+.sled-white-line {
+  position: absolute;
+  right: 52px;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: #FFFFFF;
+  border-left: 1.5px solid var(--ink-dark);
+  border-right: 1.5px solid var(--ink-dark);
+  z-index: 2;
+}
+
+.line-label {
+  position: absolute;
+  top: -16px;
+  left: -22px;
+  font-family: var(--font-display);
+  font-size: 8.5px;
+  font-weight: 900;
+  background: var(--ink-dark);
+  color: #FFFFFF;
+  padding: 1px 4px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+.sled-actions-row {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.sled-actions-row .game-tap-btn {
+  flex: 1.2;
+}
+
+.sled-turn-btn {
+  flex: 1;
+  background: var(--badge-yellow);
+  color: var(--ink-dark);
   border: var(--border-ink-thin);
   border-radius: var(--radius-pill);
-  box-shadow: 2.5px 3px 0px var(--ink-dark);
-  padding: 12px 14px;
+  box-shadow: 2px 2px 0px var(--ink-dark);
+  padding: 10px 12px;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.sled-turn-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px var(--ink-dark);
+}
+
+/* Burpee HUD & Step Buttons */
+.burpee-hud {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.hud-chest-badge, .hud-landing-badge {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 8px;
+  border: 1.5px solid var(--ink-dark);
+  border-radius: 6px;
+  background: #FFE5EC;
+  color: var(--ink-dark);
+}
+
+.hud-chest-badge.active {
+  background: var(--mint-pop);
+}
+
+.burpee-buttons-row {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.burpee-sub-btn {
+  flex: 1;
+  border: var(--border-ink-thin);
+  border-radius: var(--radius-pill);
+  box-shadow: 2px 2px 0px var(--ink-dark);
+  padding: 12px 10px;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 900;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.burpee-sub-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px var(--ink-dark);
+}
+
+.drop-btn {
+  background: var(--badge-yellow);
+  color: var(--ink-dark);
+}
+
+.drop-btn.chest-touched {
+  background: var(--mint-pop);
+}
+
+.jump-btn {
+  background: var(--orange-pop);
+  color: #FFFFFF;
+}
+
+/* Roxzone Arch Penalty Defense Quiz */
+.roxzone-quiz-box {
+  background: #FFFFFF;
+  border: var(--border-ink-thin);
+  border-radius: var(--radius-inner);
+  padding: 14px;
+  margin: 12px 0;
+  box-shadow: 2px 2px 0px var(--ink-dark);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.quiz-badge {
+  background: #FF3B69;
+  color: #FFFFFF;
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 900;
+  align-self: flex-start;
+}
+
+.quiz-question {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--ink-dark);
+}
+
+.quiz-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.arch-choice-btn {
+  flex: 1;
+  border: var(--border-ink-thin);
+  border-radius: var(--radius-pill);
+  box-shadow: 2px 2px 0px var(--ink-dark);
+  padding: 10px 14px;
   font-family: var(--font-display);
   font-size: 14px;
   font-weight: 900;
-  letter-spacing: 0.3px;
   cursor: pointer;
-  transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.2s ease;
+  text-align: center;
+  transition: transform 0.1s ease;
 }
 
-.game-tap-btn:active {
+.arch-choice-btn:active {
   transform: translate(2px, 2px);
-  box-shadow: 0.5px 0.5px 0px var(--ink-dark);
+  box-shadow: 0px 0px 0px var(--ink-dark);
 }
 
-.game-tap-btn.completed-game {
+.in-btn {
+  background: #FFE5EC;
+  color: var(--coral-pop);
+}
+
+.out-btn {
   background: var(--mint-pop);
   color: var(--ink-dark);
-  pointer-events: none;
 }
 
-.game-reward-msg {
-  font-size: 12.5px;
-  font-weight: 700;
-  color: var(--ink-dark);
+.arch-quiz-result {
+  font-size: 13px;
+  font-weight: 800;
+  padding: 8px 10px;
+  border-radius: 6px;
   text-align: center;
+  line-height: 1.4;
+  border: 1px dashed var(--ink-dark);
+}
+
+.arch-quiz-result.penalty-flash {
+  background: #FFE5EC;
+  color: #D90429;
+  border-color: #D90429;
+  animation: shakeWarning 0.4s ease;
+}
+
+.arch-quiz-result.success-flash {
+  background: #E8F5E9;
+  color: #059669;
+  border-color: #059669;
+}
+
+/* Wall Ball Live Squat Depth Gauge */
+.squat-depth-gauge {
+  background: #FFFFFF;
+  border: var(--border-ink-thin);
+  border-radius: 8px;
+  padding: 6px;
+  margin-bottom: 8px;
+  box-shadow: 1.5px 1.5px 0px var(--ink-dark);
+}
+
+.depth-bar-track {
+  display: flex;
+  width: 100%;
+  height: 28px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1.5px solid var(--ink-dark);
+  position: relative;
+}
+
+.depth-zone {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 9.5px;
+  font-weight: 900;
+  letter-spacing: 0.3px;
+}
+
+.zone-shallow {
+  background: #FF8A8A;
+  color: #FFFFFF;
+}
+
+.zone-parallel {
+  background: #FFD166;
+  color: var(--ink-dark);
+}
+
+.zone-deep {
+  background: #06D6A0;
+  color: #FFFFFF;
+}
+
+.depth-indicator-needle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  background: var(--ink-dark);
+  left: 15%;
+  transition: left 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+.wallball-athlete-art {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.athlete-squat-emoji {
+  font-size: 38px;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.athlete-squat-emoji.squatting-deep {
+  transform: translateY(12px) scale(0.9, 0.75);
+}
+
+.wb-actions-row {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.wb-squat-toggle {
+  flex: 1;
+  background: var(--badge-yellow);
+  color: var(--ink-dark);
+}
+
+.wb-squat-toggle.deep-active {
+  background: var(--mint-pop);
+}
+
+.wb-toss-btn {
+  flex: 1;
+  background: var(--orange-pop);
 }
 
 /* ===================================================

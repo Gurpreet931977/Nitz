@@ -805,111 +805,262 @@ class HyroxApp {
       });
     });
 
-    // MINI GAME 1: SLED PUSH
+    // MINI GAME 1: SLED PUSH (LINE CLEARANCE PENALTY SIMULATOR)
     const sledBtn = document.getElementById('sled-push-btn');
+    const sledTurnBtn = document.getElementById('sled-turn-btn');
     const sledRunner = document.getElementById('sled-runner');
     const sledFill = document.getElementById('sled-fill');
     const sledTaps = document.getElementById('sled-taps');
     const sledMsg = document.getElementById('sled-msg');
 
-    sledBtn.addEventListener('click', (e) => {
-      if (this.sledDone) return;
-      this.sledTaps++;
-      this.playSound('pop');
-      this.triggerHaptic(25);
+    if (sledBtn) {
+      sledBtn.addEventListener('click', () => {
+        if (this.sledDone) return;
+        this.sledTaps = Math.min(this.sledMax, this.sledTaps + 1);
+        this.playSound('pop');
+        this.triggerHaptic(25);
 
-      const percent = Math.min(100, (this.sledTaps / this.sledMax) * 100);
-      sledFill.style.width = `${percent}%`;
-      sledRunner.style.left = `calc(${percent}% * 0.72 + 10px)`;
-      sledTaps.textContent = this.sledTaps;
+        const percent = Math.min(100, (this.sledTaps / this.sledMax) * 100);
+        sledFill.style.width = `${percent}%`;
+        sledRunner.style.left = `calc(${percent}% * 0.72 + 10px)`;
+        sledTaps.textContent = this.sledTaps;
 
-      const rect = sledBtn.getBoundingClientRect();
-      this.createHeartParticle(rect.left + rect.width / 2, rect.top, '🔥');
+        const rect = sledBtn.getBoundingClientRect();
+        this.createHeartParticle(rect.left + rect.width / 2, rect.top, '🔥');
 
-      if (this.sledTaps >= this.sledMax) {
-        this.sledDone = true;
-        sledBtn.classList.add('completed-game');
-        sledBtn.innerHTML = "✅ SLED CRUSHED! YOU'RE A BEAST!";
-        sledMsg.textContent = 'Boom! 50m of pure power slayed by Bhondu! 💥';
-        this.stampStation(2);
-        this.playSound('fanfare');
-        this.burstHearts(rect.left + rect.width / 2, rect.top, 10);
-      }
-    });
+        if (this.sledTaps >= this.sledMax) {
+          sledMsg.textContent = '⚡ All 4 skids have crossed the white boundary line! Now tap "Turn Sled Around"!';
+        } else {
+          sledMsg.textContent = `Pushing across turf... (${this.sledTaps}/${this.sledMax} lengths)`;
+        }
+      });
+    }
 
-    // MINI GAME 2: BURPEE JUMPS
-    const burpeeBtn = document.getElementById('burpee-jump-btn');
+    if (sledTurnBtn) {
+      sledTurnBtn.addEventListener('click', () => {
+        if (this.sledDone) return;
+        if (this.sledTaps < this.sledMax) {
+          // EARLY TURN PENALTY!
+          this.playSound('boing');
+          this.triggerHaptic(60);
+          sledMsg.textContent = '⚠️ NO REP! Rear skids haven\'t cleared the white tape! In HYROX, all 4 skids must completely cross before turning!';
+          // Penalty: Sled pushed back 2 steps
+          this.sledTaps = Math.max(0, this.sledTaps - 2);
+          const percent = Math.min(100, (this.sledTaps / this.sledMax) * 100);
+          sledFill.style.width = `${percent}%`;
+          sledRunner.style.left = `calc(${percent}% * 0.72 + 10px)`;
+          sledTaps.textContent = this.sledTaps;
+        } else {
+          // Clean turn validated!
+          this.sledDone = true;
+          sledTurnBtn.innerHTML = '✅ CLEAN TURN VALIDATED!';
+          sledBtn.classList.add('completed-game');
+          sledBtn.innerHTML = '✅ 50m SLED CRUSHED!';
+          sledMsg.textContent = '✅ GOOD REP! All 4 skids cleared the line cleanly! Zero penalty minutes for Bhondu! 💥';
+          this.stampStation(2);
+          this.playSound('fanfare');
+          const rect = sledTurnBtn.getBoundingClientRect();
+          this.burstHearts(rect.left + rect.width / 2, rect.top, 10);
+        }
+      });
+    }
+
+    // MINI GAME 2: BURPEE BROAD JUMPS (CHEST-TO-TURF & 2-FOOT LEAP SIMULATOR)
+    const burpeeDropBtn = document.getElementById('burpee-drop-btn');
+    const burpeeJumpBtn = document.getElementById('burpee-jump-btn');
     const burpeeJumper = document.getElementById('burpee-jumper');
     const burpeeJumpsEl = document.getElementById('burpee-jumps');
     const burpeeMsg = document.getElementById('burpee-msg');
+    const chestTouchIndicator = document.getElementById('chest-touch-indicator');
+    let chestTouched = false;
 
-    burpeeBtn.addEventListener('click', (e) => {
-      if (this.burpeeDone) return;
-      this.burpeeJumps++;
-      this.playSound('boing');
-      this.triggerHaptic(35);
+    if (burpeeDropBtn) {
+      burpeeDropBtn.addEventListener('click', () => {
+        if (this.burpeeDone) return;
+        chestTouched = true;
+        this.playSound('pop');
+        this.triggerHaptic(30);
 
-      // Leap animation
-      burpeeJumper.style.transform = 'translateY(-22px) scale(1.3) rotate(-10deg)';
-      setTimeout(() => {
-        burpeeJumper.style.transform = 'translateY(0px) scale(1) rotate(0deg)';
-      }, 220);
+        burpeeDropBtn.classList.add('chest-touched');
+        burpeeDropBtn.innerHTML = '✓ Chest on Turf!';
+        if (chestTouchIndicator) {
+          chestTouchIndicator.textContent = 'Chest on Turf: YES ✓';
+          chestTouchIndicator.classList.add('active');
+        }
+        burpeeJumper.style.transform = 'translateY(12px) scale(1.15, 0.8)';
+        burpeeMsg.textContent = 'Chest touch verified by judge! Now tap "2. Two-Foot Leap"!';
+      });
+    }
 
-      const percent = (this.burpeeJumps / this.burpeeMax) * 100;
-      burpeeJumper.style.left = `calc(${percent}% * 0.75 + 15px)`;
-      burpeeJumpsEl.textContent = this.burpeeJumps;
+    if (burpeeJumpBtn) {
+      burpeeJumpBtn.addEventListener('click', () => {
+        if (this.burpeeDone) return;
 
-      const rect = burpeeBtn.getBoundingClientRect();
-      this.createHeartParticle(rect.left + rect.width / 2, rect.top, '🐸');
+        if (!chestTouched) {
+          // NO REP: Jumped without chest on turf
+          this.playSound('boing');
+          this.triggerHaptic(60);
+          burpeeMsg.textContent = '⚠️ NO REP! Chest didn\'t touch the turf! Both hands and chest must make full turf contact before jumping!';
+          return;
+        }
 
-      if (this.burpeeJumps >= this.burpeeMax) {
-        this.burpeeDone = true;
-        burpeeBtn.classList.add('completed-game');
-        burpeeBtn.innerHTML = '✅ 80m JUMPS COMPLETED! HALFWAY!';
-        burpeeMsg.textContent = 'Froggy leaps slayed! The mental hump is conquered! 🌟';
-        this.stampStation(4);
+        // Clean Two-Foot Leap!
+        this.burpeeJumps++;
+        chestTouched = false;
+        if (burpeeDropBtn) {
+          burpeeDropBtn.classList.remove('chest-touched');
+          burpeeDropBtn.innerHTML = '⬇️ 1. Drop Chest to Turf';
+        }
+        if (chestTouchIndicator) {
+          chestTouchIndicator.textContent = 'Chest on Turf: NO ❌';
+          chestTouchIndicator.classList.remove('active');
+        }
+
+        this.playSound('boing');
+        this.triggerHaptic(35);
+
+        // Leap animation
+        burpeeJumper.style.transform = 'translateY(-26px) scale(1.35) rotate(-10deg)';
+        setTimeout(() => {
+          burpeeJumper.style.transform = 'translateY(0px) scale(1) rotate(0deg)';
+        }, 240);
+
+        const percent = (this.burpeeJumps / this.burpeeMax) * 100;
+        burpeeJumper.style.left = `calc(${percent}% * 0.75 + 15px)`;
+        burpeeJumpsEl.textContent = this.burpeeJumps;
+
+        const rect = burpeeJumpBtn.getBoundingClientRect();
+        this.createHeartParticle(rect.left + rect.width / 2, rect.top, '🐸');
+
+        if (this.burpeeJumps >= this.burpeeMax) {
+          this.burpeeDone = true;
+          burpeeJumpBtn.classList.add('completed-game');
+          burpeeJumpBtn.innerHTML = '✅ 80m JUMPS COMPLETED!';
+          burpeeMsg.textContent = '✅ GOOD REP! 80m burpee broad jumps conquered with flawless movement standards! 🌟';
+          this.stampStation(4);
+          this.playSound('fanfare');
+          this.burstHearts(rect.left + rect.width / 2, rect.top, 10);
+        } else {
+          burpeeMsg.textContent = `Step ${this.burpeeJumps}/4 completed! Tap "Drop Chest to Turf" for the next rep!`;
+        }
+      });
+    }
+
+    // ROXZONE ARCH PENALTY DEFENSE SIMULATOR
+    const archInBtn = document.getElementById('arch-choice-in');
+    const archOutBtn = document.getElementById('arch-choice-out');
+    const archResult = document.getElementById('arch-quiz-result');
+
+    if (archInBtn) {
+      archInBtn.addEventListener('click', () => {
+        this.playSound('boing');
+        this.triggerHaptic(80);
+        if (archResult) {
+          archResult.className = 'arch-quiz-result penalty-flash';
+          archResult.textContent = '🚨 2-MINUTE TIME PENALTY! (Disaster for Sub-1.5h!) Exiting through the IN arch is an automatic 2-minute penalty. ALWAYS exit through the OUT arch!';
+        }
+      });
+    }
+
+    if (archOutBtn) {
+      archOutBtn.addEventListener('click', () => {
         this.playSound('fanfare');
-        this.burstHearts(rect.left + rect.width / 2, rect.top, 10);
-      }
-    });
+        this.triggerHaptic(35);
+        if (archResult) {
+          archResult.className = 'arch-quiz-result success-flash';
+          archResult.textContent = '✅ PERFECT NAVIGATION! You exited cleanly through the OUT arch. 0 penalty seconds, Sub-1.5h pacing protected!';
+        }
+      });
+    }
 
-    // MINI GAME 3: WALL BALLS
+    // MINI GAME 3: WALL BALLS (SQUAT DEPTH & TARGET SIMULATOR)
+    const wbSquatToggle = document.getElementById('wallball-squat-toggle-btn');
     const wbBtn = document.getElementById('wallball-toss-btn');
     const wbBall = document.getElementById('wallball-ball');
     const wbHitsEl = document.getElementById('wb-hits');
     const wbMsg = document.getElementById('wb-msg');
+    const depthNeedle = document.getElementById('depth-needle');
+    const athleteSquatEmoji = document.getElementById('athlete-squat-emoji');
+    let squatIsDeep = false;
 
-    wbBtn.addEventListener('click', (e) => {
-      if (this.wallBallDone) return;
-      this.wallBallHits++;
-      this.playSound('boing');
-      this.triggerHaptic(40);
+    if (wbSquatToggle) {
+      wbSquatToggle.addEventListener('click', () => {
+        if (this.wallBallDone) return;
+        squatIsDeep = !squatIsDeep;
+        this.playSound('pop');
+        this.triggerHaptic(30);
 
-      // Throw projectile
-      wbBall.classList.add('tossed');
-      setTimeout(() => {
-        wbBall.classList.remove('tossed');
-      }, 350);
+        if (squatIsDeep) {
+          wbSquatToggle.classList.add('deep-active');
+          wbSquatToggle.innerHTML = '✓ Squat Deep (Below Parallel)';
+          if (depthNeedle) depthNeedle.style.left = '80%';
+          if (athleteSquatEmoji) athleteSquatEmoji.classList.add('squatting-deep');
+          wbMsg.textContent = 'Hip crease is below knee line (valid rep depth)! Now tap "2. Toss to Target!"';
+        } else {
+          wbSquatToggle.classList.remove('deep-active');
+          wbSquatToggle.innerHTML = '🏋️ 1. Squat Deep (Below Parallel)';
+          if (depthNeedle) depthNeedle.style.left = '18%';
+          if (athleteSquatEmoji) athleteSquatEmoji.classList.remove('squatting-deep');
+          wbMsg.textContent = 'Standing upright. Tap "Squat Deep" before tossing!';
+        }
+      });
+    }
 
-      wbHitsEl.textContent = this.wallBallHits;
-      const rect = wbBtn.getBoundingClientRect();
-      this.createHeartParticle(rect.left + rect.width / 2, rect.top, '🎯');
+    if (wbBtn) {
+      wbBtn.addEventListener('click', () => {
+        if (this.wallBallDone) return;
 
-      if (this.wallBallHits >= this.wallBallMax) {
-        this.wallBallDone = true;
-        wbBtn.classList.add('completed-game');
-        wbBtn.innerHTML = '🏆 TARGET HIT! ALL 8 STATIONS CONQUERED!';
-        wbMsg.textContent = 'FINAL BOSS DOWN! The Red Carpet awaits our Champion! 👑';
-        this.stampStation(8);
-        this.playSound('fanfare');
-        this.triggerConfetti(60);
+        if (!squatIsDeep) {
+          // NO REP: Squat too shallow!
+          this.playSound('boing');
+          this.triggerHaptic(60);
+          if (depthNeedle) depthNeedle.style.left = '18%';
+          wbMsg.textContent = '⚠️ NO REP! Squat too shallow! In HYROX, hip crease must break parallel below the knee line on every rep!';
+          return;
+        }
 
-        // Smooth scroll down to the finish line arch
+        // Clean Wall Ball Rep!
+        this.wallBallHits++;
+        this.playSound('chime');
+        this.triggerHaptic(40);
+
+        // Projectile animation
+        wbBall.classList.add('tossed');
         setTimeout(() => {
-          document.getElementById('finish-section').scrollIntoView({ behavior: 'smooth' });
-        }, 600);
-      }
-    });
+          wbBall.classList.remove('tossed');
+        }, 350);
+
+        wbHitsEl.textContent = this.wallBallHits;
+        const rect = wbBtn.getBoundingClientRect();
+        this.createHeartParticle(rect.left + rect.width / 2, rect.top, '🎯');
+
+        // Reset squat depth for next rep
+        squatIsDeep = false;
+        if (wbSquatToggle) {
+          wbSquatToggle.classList.remove('deep-active');
+          wbSquatToggle.innerHTML = '🏋️ 1. Squat Deep (Below Parallel)';
+        }
+        if (depthNeedle) depthNeedle.style.left = '18%';
+        if (athleteSquatEmoji) athleteSquatEmoji.classList.remove('squatting-deep');
+
+        if (this.wallBallHits >= this.wallBallMax) {
+          this.wallBallDone = true;
+          wbBtn.classList.add('completed-game');
+          wbBtn.innerHTML = '🏆 100 WALL BALLS CRUSHED!';
+          wbMsg.textContent = '✅ FINAL BOSS DOWN! Flawless squat depth, zero no-reps, and the Red Carpet awaits our Champion! 👑';
+          this.stampStation(8);
+          this.playSound('fanfare');
+          this.triggerConfetti(65);
+
+          // Smooth scroll down to the finish line arch
+          setTimeout(() => {
+            document.getElementById('finish-section').scrollIntoView({ behavior: 'smooth' });
+          }, 650);
+        } else {
+          wbMsg.textContent = `Rep ${this.wallBallHits}/3 counted! Squat deep below parallel for rep ${this.wallBallHits + 1}!`;
+        }
+      });
+    }
 
     // WAX SEAL LOVE LETTER OPEN
     const waxSeal = document.getElementById('wax-seal');
