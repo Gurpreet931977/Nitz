@@ -90,27 +90,194 @@ body {
   z-index: 9999;
 }
 
-/* Fullscreen Ambient Warm Hug Glow Overlay */
+/* ===================================================
+   FULLSCREEN AMBIENT WARM HUG EXPERIENCE
+=================================================== */
+:root {
+  --hug-charge: 0;
+}
+
+/* Whole-page tactile squeeze when holding hug button */
+body {
+  transition: transform 0.15s ease-out;
+}
+
+body.screen-hug-holding {
+  /* Gently cushions and squeezes entire viewport inward like a physical hug */
+  transform: scale(calc(1 - var(--hug-charge) * 0.024));
+  transform-origin: center center;
+}
+
+/* Double Heartbeat Physical Screen Shockwave Animations */
+body.screen-heartbeat-thump-1 {
+  animation: screenThump1 0.16s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+body.screen-heartbeat-thump-2 {
+  animation: screenThump2 0.22s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@keyframes screenThump1 {
+  0% { transform: scale(1) translateY(0); }
+  40% { transform: scale(0.976) translateY(5px); }
+  100% { transform: scale(1) translateY(0); }
+}
+
+@keyframes screenThump2 {
+  0% { transform: scale(1) translateY(0); }
+  35% { transform: scale(0.962) translateY(7px); }
+  100% { transform: scale(1) translateY(0); }
+}
+
+/* Fullscreen Ambient Warm Hug Glow Overlay Container */
 .screen-warmth-overlay {
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 9998;
   opacity: 0;
-  transition: opacity 0.5s ease-out;
-  background: radial-gradient(circle at center, transparent 35%, rgba(255, 59, 105, 0.28) 75%, rgba(255, 122, 0, 0.38) 100%);
-  box-shadow: inset 0 0 100px rgba(255, 59, 105, 0.35);
-}
-
-.screen-warmth-overlay.warmth-active {
-  opacity: 1;
+  overflow: hidden;
+  transition: opacity 0.4s ease-out;
 }
 
 .screen-warmth-overlay.warmth-holding {
   opacity: 1;
-  background: radial-gradient(circle at center, transparent 25%, rgba(255, 59, 105, 0.38) 70%, rgba(255, 122, 0, 0.5) 100%);
-  box-shadow: inset 0 0 130px rgba(255, 59, 105, 0.5);
-  transition: opacity 0.2s ease-in;
+}
+
+.screen-warmth-overlay.warmth-active {
+  opacity: 1;
+  animation: screenWarmthBloom 2.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes screenWarmthBloom {
+  0% { opacity: 1; filter: brightness(1.25); }
+  25% { opacity: 1; filter: brightness(1.15); }
+  100% { opacity: 0; filter: brightness(1); }
+}
+
+/* Dynamic Edge Vignette (Swells progressively with hug charge) */
+.screen-warmth-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at center,
+    transparent calc(65% - var(--hug-charge) * 35%),
+    rgba(255, 59, 105, calc(var(--hug-charge) * 0.35 + 0.05)) calc(80% - var(--hug-charge) * 15%),
+    rgba(255, 122, 0, calc(var(--hug-charge) * 0.48 + 0.1)) 100%
+  );
+  box-shadow: inset 0 0 calc(var(--hug-charge) * 140px + 20px) rgba(255, 42, 84, calc(var(--hug-charge) * 0.65 + 0.15)),
+              inset 0 0 calc(var(--hug-charge) * 60px) rgba(255, 207, 54, calc(var(--hug-charge) * 0.5));
+  transition: background 0.08s linear, box-shadow 0.08s linear;
+}
+
+/* Screen-Level Giant Hugging Arms */
+.screen-hug-arm {
+  position: absolute;
+  top: 50%;
+  width: 140px;
+  height: 320px;
+  pointer-events: none;
+  z-index: 5;
+  transition: transform 0.12s linear, opacity 0.25s ease;
+  filter: drop-shadow(4px 4px 0px rgba(30, 30, 36, 0.5));
+}
+
+.screen-arm-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.screen-hug-arm-left {
+  left: 0;
+  /* At charge 0%: hidden off-screen left. At charge 100%: wraps 95px in onto screen! */
+  transform: translateY(-50%) translateX(calc(-100% + var(--hug-charge) * 95px)) rotate(calc(-12deg + var(--hug-charge) * 14deg));
+  transform-origin: left center;
+}
+
+.screen-hug-arm-right {
+  right: 0;
+  /* At charge 0%: hidden off-screen right. At charge 100%: wraps 95px in onto screen! */
+  transform: translateY(-50%) translateX(calc(100% - var(--hug-charge) * 95px)) rotate(calc(12deg - var(--hug-charge) * 14deg));
+  transform-origin: right center;
+}
+
+/* On 100% Celebration Embrace Climax */
+.screen-warmth-overlay.warmth-active .screen-hug-arm-left {
+  animation: screenArmClimaxLeft 2.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.screen-warmth-overlay.warmth-active .screen-hug-arm-right {
+  animation: screenArmClimaxRight 2.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes screenArmClimaxLeft {
+  0% { transform: translateY(-50%) translateX(-5px) rotate(2deg); opacity: 1; }
+  35% { transform: translateY(-50%) translateX(25px) rotate(8deg); opacity: 1; }
+  75% { transform: translateY(-50%) translateX(20px) rotate(6deg); opacity: 0.8; }
+  100% { transform: translateY(-50%) translateX(-120%) rotate(-10deg); opacity: 0; }
+}
+
+@keyframes screenArmClimaxRight {
+  0% { transform: translateY(-50%) translateX(5px) rotate(-2deg); opacity: 1; }
+  35% { transform: translateY(-50%) translateX(-25px) rotate(-8deg); opacity: 1; }
+  75% { transform: translateY(-50%) translateX(-20px) rotate(-6deg); opacity: 0.8; }
+  100% { transform: translateY(-50%) translateX(120%) rotate(10deg); opacity: 0; }
+}
+
+/* Fullscreen Heartbeat Shockwave Ring (Triggers on 100% completion) */
+.screen-shockwave-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  margin-top: -20px;
+  margin-left: -20px;
+  border-radius: 50%;
+  border: 8px solid #FF2A54;
+  box-shadow: 0 0 50px #FF7A00, inset 0 0 40px #FFCF36;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 8;
+}
+
+.screen-shockwave-ring.fire-shockwave-1 {
+  animation: shockwavePulse1 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.screen-shockwave-ring.fire-shockwave-2 {
+  animation: shockwavePulse2 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes shockwavePulse1 {
+  0% {
+    transform: scale(0.2);
+    opacity: 1;
+    border-width: 14px;
+    border-color: #FF2A54;
+  }
+  100% {
+    transform: scale(38);
+    opacity: 0;
+    border-width: 1px;
+    border-color: #FFCF36;
+  }
+}
+
+@keyframes shockwavePulse2 {
+  0% {
+    transform: scale(0.2);
+    opacity: 1;
+    border-width: 18px;
+    border-color: #FFCF36;
+  }
+  100% {
+    transform: scale(45);
+    opacity: 0;
+    border-width: 2px;
+    border-color: #FF7A00;
+  }
 }
 
 /* Floating Emoji Particles */
@@ -1343,6 +1510,355 @@ body {
   font-weight: 700;
   color: var(--ink-dark);
   text-align: center;
+}
+
+/* ===================================================
+   ANIMATED SCRIBBLY HEART POPUP (On Hug Completion)
+=================================================== */
+.hug-popup-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(18, 12, 28, 0.65);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hug-popup-backdrop.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.hug-popup-container {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Floating Orbiters (Stars, Emojis, Doodle Arrow) */
+.hug-popup-orbiters {
+  position: absolute;
+  inset: -20px -25px -20px -25px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.hug-orb {
+  position: absolute;
+  font-size: 26px;
+  filter: drop-shadow(2px 2px 0px var(--ink-dark));
+  animation: orbFloat 2.8s infinite ease-in-out;
+}
+
+.orb-tl { top: 12px; left: 8px; animation-delay: 0s; font-size: 30px; }
+.orb-tr { top: 8px; right: 14px; animation-delay: 0.6s; font-size: 28px; }
+.orb-bl { bottom: 25px; left: 6px; animation-delay: 1.2s; font-size: 26px; }
+.orb-br { bottom: 30px; right: 10px; animation-delay: 1.8s; font-size: 28px; }
+.orb-sparkle { top: 48%; right: -18px; animation-delay: 0.9s; font-size: 24px; }
+
+@keyframes orbFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+  50% { transform: translateY(-8px) rotate(14deg) scale(1.15); }
+}
+
+.hug-doodle-arrow {
+  position: absolute;
+  top: -12px;
+  left: 20px;
+  width: 65px;
+  height: 48px;
+  transform: rotate(-15deg);
+  animation: doodleWiggle 3s infinite ease-in-out;
+}
+
+@keyframes doodleWiggle {
+  0%, 100% { transform: rotate(-15deg) scale(1); }
+  50% { transform: rotate(-8deg) scale(1.08); }
+}
+
+/* Main Popup Card */
+.hug-popup-card {
+  position: relative;
+  width: 100%;
+  background: #FFFDF8;
+  background-image: radial-gradient(#F780B6 0.75px, transparent 0.75px);
+  background-size: 14px 14px;
+  border: 3.5px solid var(--ink-dark);
+  border-radius: 32px;
+  box-shadow: 8px 10px 0px var(--ink-dark), 0 20px 45px rgba(255, 42, 84, 0.35);
+  padding: 24px 22px 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transform: scale(0.25) rotate(-14deg);
+  opacity: 0;
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+}
+
+.hug-popup-card.popping-in {
+  transform: scale(1) rotate(-1.5deg);
+  opacity: 1;
+  animation: popupCardGentlePulse 3s infinite ease-in-out;
+}
+
+@keyframes popupCardGentlePulse {
+  0%, 100% { transform: scale(1) rotate(-1.5deg); }
+  50% { transform: scale(1.02) rotate(0.5deg); }
+}
+
+.hug-popup-card.popping-out {
+  transform: scale(0.4) rotate(12deg) translateY(20px);
+  opacity: 0;
+  transition: transform 0.28s cubic-bezier(0.4, 0, 1, 1), opacity 0.25s ease;
+}
+
+/* Scribbly Hand-Drawn Close Button */
+.hug-popup-close {
+  position: absolute;
+  top: -12px;
+  right: -10px;
+  width: 36px;
+  height: 36px;
+  background: var(--yellow-main);
+  border: var(--border-ink);
+  border-radius: var(--radius-pill);
+  box-shadow: 2px 3px 0px var(--ink-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 20;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.hug-popup-close:hover {
+  transform: scale(1.15) rotate(90deg);
+  background: #FF5C8A;
+  color: #FFFFFF;
+}
+
+.hug-popup-close:active {
+  transform: scale(0.95);
+}
+
+/* Giant Beating Heart Emblem */
+.hug-popup-heart-emblem-wrap {
+  position: relative;
+  margin-top: -56px;
+  margin-bottom: 8px;
+  width: 96px;
+  height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.hug-popup-heart-shadow {
+  position: absolute;
+  width: 90px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(30, 30, 36, 0.4);
+  top: 10px;
+  left: 6px;
+  filter: blur(4px);
+  z-index: 1;
+}
+
+.hug-popup-heart-emblem {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  animation: heartEmblemBeat 1.4s infinite cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-origin: center center;
+}
+
+.heart-badge-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(3px 4px 0px var(--ink-dark));
+}
+
+@keyframes heartEmblemBeat {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  25% { transform: scale(1.18) rotate(-4deg); }
+  45% { transform: scale(1.08) rotate(3deg); }
+  65% { transform: scale(1.22) rotate(-2deg); }
+}
+
+.hug-popup-emojis-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -46%);
+  font-size: 24px;
+  letter-spacing: 2px;
+  filter: drop-shadow(1px 1px 0px rgba(0, 0, 0, 0.3));
+  pointer-events: none;
+}
+
+/* Fun Scribbly Header Pill */
+.hug-popup-tag-wrap {
+  margin-bottom: 6px;
+}
+
+.hug-popup-tag {
+  display: inline-block;
+  background: var(--badge-yellow);
+  border: var(--border-ink-thin);
+  border-radius: var(--radius-pill);
+  box-shadow: 2px 2px 0px var(--ink-dark);
+  padding: 3px 12px;
+  font-family: var(--font-display);
+  font-size: 11.5px;
+  font-weight: 900;
+  color: var(--ink-dark);
+  letter-spacing: 0.75px;
+  transform: rotate(-2deg);
+}
+
+/* Big Bold Punchy Title */
+.hug-popup-title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--ink-dark);
+  line-height: 1.15;
+  margin: 4px 0 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Scribbly Hand-Drawn Wavy Underline */
+.hug-popup-scribble-line {
+  width: 160px;
+  height: 14px;
+  margin: 0 auto 10px;
+}
+
+.scribble-wave-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(1px 1.5px 0px var(--ink-dark));
+}
+
+/* Handwritten Dora Whisper Box */
+.hug-popup-msg-box {
+  position: relative;
+  background: #FFF5F8;
+  border: 2px dashed rgba(255, 42, 84, 0.45);
+  border-radius: 18px;
+  padding: 12px 18px 10px;
+  margin: 4px 0 14px;
+  width: 100%;
+}
+
+.quote-mark {
+  font-family: var(--font-scribble);
+  font-size: 28px;
+  font-weight: 700;
+  color: #FF5C8A;
+  line-height: 0;
+  position: absolute;
+}
+
+.quote-start { top: 12px; left: 8px; }
+.quote-end { bottom: 4px; right: 8px; }
+
+.hug-popup-msg {
+  font-family: var(--font-scribble);
+  font-size: 22.5px;
+  font-weight: 700;
+  color: #1E1E24;
+  line-height: 1.32;
+  margin: 0;
+}
+
+/* Scribbly Stamp / Guarantee Badge */
+.hug-popup-stamp-wrap {
+  margin-bottom: 16px;
+}
+
+.hug-popup-stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 42, 84, 0.08);
+  border: 2px dashed #FF2A54;
+  border-radius: 10px;
+  padding: 4px 14px;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 900;
+  color: #FF2A54;
+  letter-spacing: 0.8px;
+  transform: rotate(-3.5deg);
+  box-shadow: 1.5px 1.5px 0px rgba(255, 42, 84, 0.25);
+}
+
+.stamp-star {
+  font-size: 10px;
+  color: #FF7A00;
+}
+
+/* Interactive Action / Dismiss Button */
+.hug-popup-btn {
+  background: linear-gradient(180deg, #FF5C8A 0%, #FF2A54 100%);
+  border: 2.5px solid var(--ink-dark);
+  border-radius: var(--radius-pill);
+  box-shadow: 3.5px 4.5px 0px var(--ink-dark);
+  padding: 12px 24px;
+  font-family: var(--font-display);
+  font-size: 14.5px;
+  font-weight: 900;
+  color: #FFFFFF;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.hug-popup-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 4px 6px 0px var(--ink-dark);
+}
+
+.hug-popup-btn:active {
+  transform: translateY(2px);
+  box-shadow: 1.5px 2px 0px var(--ink-dark);
+}
+
+@media (max-width: 480px) {
+  .hug-popup-card {
+    padding: 20px 16px 18px;
+    border-radius: 26px;
+  }
+  .hug-popup-title {
+    font-size: 21px;
+  }
+  .hug-popup-msg {
+    font-size: 20px;
+  }
+  .orb-tl, .orb-tr, .orb-bl, .orb-br {
+    font-size: 22px;
+  }
+  .hug-doodle-arrow {
+    display: none;
+  }
 }
 
 /* ===================================================

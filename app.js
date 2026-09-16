@@ -88,6 +88,52 @@ class HyroxApp {
     this.holdStartTime = 0;
     this.activePointerId = null;
 
+    // Creative, Fun & Modern Scribbly Heart Popup Messages on Hug Completion (5 rotating variations)
+    this.hugVariations = [
+      {
+        tag: "⚡ DORA TURBO BATTERY",
+        emojis: "⚡💖⚡",
+        title: "10,000% RECHARGED!",
+        msg: "Bhondu's heart is now loaded with infinite beast-mode cuddle energy!",
+        stamp: "MAX TURBO POWER 🚀",
+        btnText: "SEND ANOTHER HUG! 🥰"
+      },
+      {
+        tag: "🧸 MAXIMUM SQUEEZE",
+        emojis: "🫂🐻✨",
+        title: "1,000,000 TONS OF LOVE!",
+        msg: "Dora's arms are officially locked around you until race day finishes!",
+        stamp: "SUPER SNUGGLY 🧸",
+        btnText: "SQUEEZE TIGHTER! 💕"
+      },
+      {
+        tag: "🛡️ RACE-DAY BUFF",
+        emojis: "🛡️🔥⭐",
+        title: "BURPEE-PROOF SHIELD!",
+        msg: "No sled is heavy enough and no turf is tough enough for my Bhondu now!",
+        stamp: "100% UNSTOPPABLE 💪",
+        btnText: "KEEP CRUSHING IT! ⚡"
+      },
+      {
+        tag: "🥤 VIP FINISH LINE PERK",
+        emojis: "🥤🍓💘",
+        title: "UNLIMITED CUDDLE PASS!",
+        msg: "Entitles Bhondu to endless mango smoothies and unlimited Dora foot rubs!",
+        stamp: "LIFETIME VIP 👑",
+        btnText: "REDEEM MORE WARMTH! 🍓"
+      },
+      {
+        tag: "👑 NO.1 FAN FOREVER",
+        emojis: "🏆💖🥰",
+        title: "OFFICIALLY DORA'S HERO!",
+        msg: "Finish line or not, in Dora's eyes you've already won the whole universe, meri jaan!",
+        stamp: "GOLD STANDARD 🥇",
+        btnText: "BEST ATHLETE EVER! 👑"
+      }
+    ];
+    this.hugVariationIdx = 0;
+    this.hugPopupTimeout = null;
+
     this.initAudio();
     this.bindEvents();
     this.initConfetti();
@@ -271,96 +317,428 @@ class HyroxApp {
     } catch (e) {}
   }
 
-  // Continuous Sustained Hug Rumble Engine (Runs continuously while button is held with zero audio pauses)
-  startContinuousHugRumble() {
+  // =========================================================================
+  // MULTI-LAYERED HUG WEB AUDIO SYNTHESIZER (100% CODE-SYNTHESIZED, ZERO FILES)
+  // =========================================================================
+
+  /**
+   * Single unified play function that safely unlocks browser audio context on user interaction
+   * and dispatches charging, cancel, or 100% completion impact layers.
+   * @param {'start'|'stop'|'impact'} action
+   * @param {number} durationSec - Crescendo duration parameter (default 3.5s)
+   */
+  playHugSFX(action, durationSec = 3.5) {
+    this.resumeAudio();
+    if (!this.soundEnabled || !this.audioCtx) return;
+
+    if (action === 'start' || action === 'charge') {
+      this.startHugChargingSFX(durationSec);
+    } else if (action === 'stop' || action === 'cancel') {
+      this.stopHugChargingSFX();
+    } else if (action === 'impact' || action === 'complete') {
+      this.stopHugChargingSFX();
+      this.playHugCompletionImpact();
+    }
+  }
+
+  /**
+   * The Charging Phase Layers (0% to 99% crescendo over 3-5 seconds):
+   * - Layer A (The Organic Fabric Whoosh): White noise generator -> dynamically opening low-pass filter (100Hz -> 1200Hz)
+   * - Layer B (The Deep Core Glow): Low triangle wave oscillator sliding 100Hz -> 200Hz with volume swell
+   * - Layer C (The Melodic Shimmer): Soft sine chord pad + emotional rising arpeggio adding glowing warmth
+   */
+  startHugChargingSFX(durationSec = 3.5) {
+    if (!this.soundEnabled) return;
+    this.resumeAudio();
+    if (!this.audioCtx) return;
+
+    // Dispose any previous charging nodes to avoid overlap
+    this.stopHugChargingSFX();
+
+    try {
+      const now = this.audioCtx.currentTime;
+      const sampleRate = this.audioCtx.sampleRate || 44100;
+
+      // Master Gain for charging phase (enables clean anti-click disposal)
+      const chargingMasterGain = this.audioCtx.createGain();
+      chargingMasterGain.gain.setValueAtTime(1.0, now);
+      chargingMasterGain.connect(this.audioCtx.destination);
+
+      const activeNodes = {
+        masterGain: chargingMasterGain,
+        sources: [],
+        oscs: [],
+        gains: [],
+        filters: [],
+        stopped: false
+      };
+
+      // -----------------------------------------------------------------------
+      // LAYER A: THE ORGANIC FABRIC WHOOSH
+      // Simulates soft, texturally warm rustle of open arms coming together
+      // White noise generator routed through dynamically opening low-pass filter (100Hz -> 1200Hz)
+      // -----------------------------------------------------------------------
+      const bufferLength = Math.floor(sampleRate * Math.max(durationSec + 0.5, 3.0));
+      const noiseBuffer = this.audioCtx.createBuffer(1, bufferLength, sampleRate);
+      const noiseData = noiseBuffer.getChannelData(0);
+
+      // Warm organic noise with soft texture
+      let prevNoise = 0.0;
+      for (let i = 0; i < bufferLength; i++) {
+        const white = Math.random() * 2 - 1;
+        prevNoise = (prevNoise * 0.35) + (white * 0.65);
+        noiseData[i] = prevNoise;
+      }
+
+      const noiseSource = this.audioCtx.createBufferSource();
+      noiseSource.buffer = noiseBuffer;
+      noiseSource.loop = true;
+
+      const fabricFilter = this.audioCtx.createBiquadFilter();
+      fabricFilter.type = 'lowpass';
+      fabricFilter.Q.setValueAtTime(1.1, now);
+      // Sweep dynamically upward from 100Hz to 1200Hz
+      fabricFilter.frequency.setValueAtTime(100, now);
+      fabricFilter.frequency.exponentialRampToValueAtTime(1200, now + durationSec);
+
+      const fabricGain = this.audioCtx.createGain();
+      fabricGain.gain.setValueAtTime(0.001, now);
+      // Swell in volume as arms sweep closer
+      fabricGain.gain.exponentialRampToValueAtTime(0.25, now + durationSec);
+
+      noiseSource.connect(fabricFilter);
+      fabricFilter.connect(fabricGain);
+      fabricGain.connect(chargingMasterGain);
+
+      noiseSource.start(now);
+      activeNodes.sources.push(noiseSource);
+      activeNodes.filters.push(fabricFilter);
+      activeNodes.gains.push(fabricGain);
+
+      // -----------------------------------------------------------------------
+      // LAYER B: THE DEEP CORE GLOW
+      // Low triangle wave oscillator sliding up in frequency (from 100Hz to 200Hz)
+      // Creates a warm, grounding base hum that swells in volume
+      // -----------------------------------------------------------------------
+      const coreOsc = this.audioCtx.createOscillator();
+      coreOsc.type = 'triangle';
+      coreOsc.frequency.setValueAtTime(100, now);
+      coreOsc.frequency.exponentialRampToValueAtTime(200, now + durationSec);
+
+      const coreGain = this.audioCtx.createGain();
+      coreGain.gain.setValueAtTime(0.001, now);
+      coreGain.gain.exponentialRampToValueAtTime(0.36, now + durationSec);
+
+      coreOsc.connect(coreGain);
+      coreGain.connect(chargingMasterGain);
+
+      coreOsc.start(now);
+      activeNodes.oscs.push(coreOsc);
+      activeNodes.gains.push(coreGain);
+
+      // -----------------------------------------------------------------------
+      // LAYER C: THE MELODIC SHIMMER
+      // Emotional glowing warmth: rising chord pad + subtle ascending sine arpeggio
+      // -----------------------------------------------------------------------
+      const shimmerMaster = this.audioCtx.createGain();
+      shimmerMaster.gain.setValueAtTime(0.001, now);
+      shimmerMaster.gain.exponentialRampToValueAtTime(0.32, now + durationSec);
+      shimmerMaster.connect(chargingMasterGain);
+      activeNodes.gains.push(shimmerMaster);
+
+      // C1: Warm glowing chord pad (F3, A3, C4, E4)
+      const chordFrequencies = [174.61, 220.00, 261.63, 329.63];
+      chordFrequencies.forEach((freq, idx) => {
+        const osc = this.audioCtx.createOscillator();
+        const noteGain = this.audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, now);
+
+        noteGain.gain.setValueAtTime(0.001, now);
+        noteGain.gain.exponentialRampToValueAtTime(0.08 / (idx * 0.25 + 1), now + durationSec);
+
+        osc.connect(noteGain);
+        noteGain.connect(shimmerMaster);
+
+        osc.start(now);
+        activeNodes.oscs.push(osc);
+        activeNodes.gains.push(noteGain);
+      });
+
+      // C2: Rising gentle sine wave arpeggio (ascending glowing warmth)
+      const arpeggioNotes = [
+        { timeRatio: 0.06, freq: 261.63 }, // C4
+        { timeRatio: 0.20, freq: 329.63 }, // E4
+        { timeRatio: 0.35, freq: 392.00 }, // G4
+        { timeRatio: 0.50, freq: 440.00 }, // A4
+        { timeRatio: 0.63, freq: 523.25 }, // C5
+        { timeRatio: 0.75, freq: 659.25 }, // E5
+        { timeRatio: 0.86, freq: 783.99 }, // G5
+        { timeRatio: 0.95, freq: 880.00 }  // A5
+      ];
+
+      arpeggioNotes.forEach(note => {
+        const noteStart = now + note.timeRatio * durationSec;
+        if (noteStart < now + durationSec) {
+          const arpOsc = this.audioCtx.createOscillator();
+          const arpGain = this.audioCtx.createGain();
+          arpOsc.type = 'sine';
+          arpOsc.frequency.setValueAtTime(note.freq, noteStart);
+
+          arpGain.gain.setValueAtTime(0.0001, noteStart);
+          arpGain.gain.linearRampToValueAtTime(0.12, noteStart + 0.04);
+          arpGain.gain.exponentialRampToValueAtTime(0.0001, noteStart + 0.38);
+
+          arpOsc.connect(arpGain);
+          arpGain.connect(shimmerMaster);
+
+          arpOsc.start(noteStart);
+          arpOsc.stop(noteStart + 0.40);
+
+          activeNodes.oscs.push(arpOsc);
+          activeNodes.gains.push(arpGain);
+        }
+      });
+
+      this.hugChargingGraph = activeNodes;
+    } catch (e) {
+      console.warn("Failed to start hug charging SFX", e);
+    }
+  }
+
+  /**
+   * Handles clean nodes disposal on stop to avoid memory leaks.
+   * Cancels scheduled ramps with smooth 50ms anti-pop fade, then disconnects all nodes.
+   */
+  stopHugChargingSFX() {
+    if (!this.hugChargingGraph) return;
+    const graph = this.hugChargingGraph;
+    this.hugChargingGraph = null;
+    if (graph.stopped) return;
+    graph.stopped = true;
+
+    try {
+      if (this.audioCtx && graph.masterGain) {
+        const now = this.audioCtx.currentTime;
+        graph.masterGain.gain.cancelScheduledValues(now);
+        graph.masterGain.gain.setValueAtTime(graph.masterGain.gain.value, now);
+        graph.masterGain.gain.linearRampToValueAtTime(0.0001, now + 0.05);
+      }
+
+      setTimeout(() => {
+        try {
+          graph.sources.forEach(src => {
+            try { src.stop(); src.disconnect(); } catch (e) {}
+          });
+          graph.oscs.forEach(osc => {
+            try { osc.stop(); osc.disconnect(); } catch (e) {}
+          });
+          graph.gains.forEach(gain => {
+            try { gain.disconnect(); } catch (e) {}
+          });
+          graph.filters.forEach(filter => {
+            try { filter.disconnect(); } catch (e) {}
+          });
+          if (graph.masterGain) {
+            try { graph.masterGain.disconnect(); } catch (e) {}
+          }
+        } catch (e) {}
+      }, 70);
+    } catch (e) {}
+  }
+
+  /**
+   * The 100% Impact Layers (Triggered together at completion):
+   * - Layer D (The Deep Heartbeat Release): Low-frequency double thud (sine wave at 50Hz, quickly dropping pitch)
+   * - Layer E (The Bright Chime): Delicate, resonant crystal bell (sine wave at 880Hz with long, smooth decay)
+   */
+  playHugCompletionImpact() {
     if (!this.soundEnabled) return;
     this.resumeAudio();
     if (!this.audioCtx) return;
 
     try {
-      this.stopContinuousHugRumble();
-
       const now = this.audioCtx.currentTime;
-      this.hugRumbleMasterGain = this.audioCtx.createGain();
-      // Start immediately with strong physical excursion gain so chassis vibrates in hand
-      this.hugRumbleMasterGain.gain.setValueAtTime(0.95, now);
+      const nodesToDispose = [];
 
-      // Primary heavy physical vibration driver (76Hz triangle wave drives mobile speaker magnets hard)
-      this.hugOsc1 = this.audioCtx.createOscillator();
-      this.hugOsc1.type = 'triangle';
-      this.hugOsc1.frequency.setValueAtTime(76, now);
+      // Impact Master Gain
+      const impactMaster = this.audioCtx.createGain();
+      impactMaster.gain.setValueAtTime(1.0, now);
+      impactMaster.connect(this.audioCtx.destination);
+      nodesToDispose.push(impactMaster);
 
-      // Harmonic driver (adds rich saw harmonics to physically shake the chassis)
-      this.hugOsc2 = this.audioCtx.createOscillator();
-      this.hugOsc2.type = 'sawtooth';
-      this.hugOsc2.frequency.setValueAtTime(82, now);
+      // -----------------------------------------------------------------------
+      // LAYER D: THE DEEP HEARTBEAT RELEASE
+      // Low-frequency double thud (sine wave at 50Hz quickly dropping pitch)
+      // Representing the physical embrace
+      // -----------------------------------------------------------------------
+      // Thud 1 (Lub) at t = 0
+      const thud1Osc = this.audioCtx.createOscillator();
+      const thud1Gain = this.audioCtx.createGain();
+      thud1Osc.type = 'sine';
+      thud1Osc.frequency.setValueAtTime(50, now);
+      thud1Osc.frequency.exponentialRampToValueAtTime(22, now + 0.12);
 
-      const osc2Gain = this.audioCtx.createGain();
-      osc2Gain.gain.setValueAtTime(0.45, now);
+      thud1Gain.gain.setValueAtTime(0.85, now);
+      thud1Gain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
 
-      // Sub-harmonic driver (pumps the speaker diaphragm excursion)
-      this.hugOsc3 = this.audioCtx.createOscillator();
-      this.hugOsc3.type = 'triangle';
-      this.hugOsc3.frequency.setValueAtTime(152, now);
+      thud1Osc.connect(thud1Gain);
+      thud1Gain.connect(impactMaster);
+      thud1Osc.start(now);
+      thud1Osc.stop(now + 0.16);
 
-      const osc3Gain = this.audioCtx.createGain();
-      osc3Gain.gain.setValueAtTime(0.25, now);
+      nodesToDispose.push(thud1Osc, thud1Gain);
 
-      const filter = this.audioCtx.createBiquadFilter();
-      filter.type = 'lowpass';
-      filter.frequency.setValueAtTime(240, now);
+      // Thud 2 (Dub) at t = 0.16s (slightly heavier chest embrace)
+      const t2 = now + 0.16;
+      const thud2Osc = this.audioCtx.createOscillator();
+      const thud2Gain = this.audioCtx.createGain();
+      thud2Osc.type = 'sine';
+      thud2Osc.frequency.setValueAtTime(48, t2);
+      thud2Osc.frequency.exponentialRampToValueAtTime(20, t2 + 0.14);
 
-      this.hugOsc1.connect(filter);
-      this.hugOsc2.connect(osc2Gain);
-      osc2Gain.connect(filter);
-      this.hugOsc3.connect(osc3Gain);
-      osc3Gain.connect(filter);
+      thud2Gain.gain.setValueAtTime(0.95, t2);
+      thud2Gain.gain.exponentialRampToValueAtTime(0.001, t2 + 0.20);
 
-      filter.connect(this.hugRumbleMasterGain);
-      this.hugRumbleMasterGain.connect(this.audioCtx.destination);
+      thud2Osc.connect(thud2Gain);
+      thud2Gain.connect(impactMaster);
+      thud2Osc.start(t2);
+      thud2Osc.stop(t2 + 0.22);
 
-      this.hugOsc1.start(now);
-      this.hugOsc2.start(now);
-      this.hugOsc3.start(now);
+      nodesToDispose.push(thud2Osc, thud2Gain);
+
+      // -----------------------------------------------------------------------
+      // LAYER E: THE BRIGHT CHIME
+      // Delicate, resonant crystal bell (sine wave at 880Hz with long, smooth decay)
+      // Leaves a positive, premium emotional trailing tail
+      // -----------------------------------------------------------------------
+      // Fundamental 880Hz (A5)
+      const chimeOsc = this.audioCtx.createOscillator();
+      const chimeGain = this.audioCtx.createGain();
+      chimeOsc.type = 'sine';
+      chimeOsc.frequency.setValueAtTime(880, now);
+
+      chimeGain.gain.setValueAtTime(0.0001, now);
+      chimeGain.gain.linearRampToValueAtTime(0.34, now + 0.006);
+      chimeGain.gain.exponentialRampToValueAtTime(0.0001, now + 2.8);
+
+      chimeOsc.connect(chimeGain);
+      chimeGain.connect(impactMaster);
+      chimeOsc.start(now);
+      chimeOsc.stop(now + 2.85);
+
+      nodesToDispose.push(chimeOsc, chimeGain);
+
+      // Crystal Overtone 1 (1760Hz - Octave bell shimmer)
+      const overtone1Osc = this.audioCtx.createOscillator();
+      const overtone1Gain = this.audioCtx.createGain();
+      overtone1Osc.type = 'sine';
+      overtone1Osc.frequency.setValueAtTime(1760, now);
+
+      overtone1Gain.gain.setValueAtTime(0.0001, now);
+      overtone1Gain.gain.linearRampToValueAtTime(0.10, now + 0.005);
+      overtone1Gain.gain.exponentialRampToValueAtTime(0.0001, now + 1.8);
+
+      overtone1Osc.connect(overtone1Gain);
+      overtone1Gain.connect(impactMaster);
+      overtone1Osc.start(now);
+      overtone1Osc.stop(now + 1.85);
+
+      nodesToDispose.push(overtone1Osc, overtone1Gain);
+
+      // Crystal Overtone 2 (2640Hz - Pure crystal glass sparkle)
+      const overtone2Osc = this.audioCtx.createOscillator();
+      const overtone2Gain = this.audioCtx.createGain();
+      overtone2Osc.type = 'sine';
+      overtone2Osc.frequency.setValueAtTime(2640, now);
+
+      overtone2Gain.gain.setValueAtTime(0.0001, now);
+      overtone2Gain.gain.linearRampToValueAtTime(0.045, now + 0.004);
+      overtone2Gain.gain.exponentialRampToValueAtTime(0.0001, now + 1.2);
+
+      overtone2Osc.connect(overtone2Gain);
+      overtone2Gain.connect(impactMaster);
+      overtone2Osc.start(now);
+      overtone2Osc.stop(now + 1.25);
+
+      nodesToDispose.push(overtone2Osc, overtone2Gain);
+
+      // Clean node disposal after audio decay completes to prevent memory leaks
+      setTimeout(() => {
+        nodesToDispose.forEach(node => {
+          try { node.disconnect(); } catch (e) {}
+        });
+      }, 3000);
+
     } catch (e) {
-      console.warn("Continuous rumble start failed", e);
+      console.warn("Failed to play hug completion impact SFX", e);
     }
   }
 
-  setHugRumbleIntensity(pct) {
-    if (!this.hugRumbleMasterGain || !this.audioCtx) return;
-    try {
-      const now = this.audioCtx.currentTime;
-      const targetGain = Math.min(1.35, 0.95 + (pct / 100) * 0.40);
-      this.hugRumbleMasterGain.gain.cancelScheduledValues(now);
-      this.hugRumbleMasterGain.gain.setValueAtTime(targetGain, now);
+  // =========================================================================
+  // ANIMATED SCRIBBLY HEART POPUP (On Hug Completion)
+  // =========================================================================
 
-      if (this.hugOsc1) {
-        this.hugOsc1.frequency.setValueAtTime(76 + (pct / 100) * 14, now);
-      }
-      if (this.hugOsc2) {
-        this.hugOsc2.frequency.setValueAtTime(82 + (pct / 100) * 14, now);
-      }
-    } catch (e) {}
+  showHugHeartPopup() {
+    const backdrop = document.getElementById('hug-popup-backdrop');
+    const card = document.getElementById('hug-popup-card');
+    const tag = document.getElementById('hug-popup-tag');
+    const emojis = document.getElementById('hug-popup-emojis');
+    const title = document.getElementById('hug-popup-title');
+    const msg = document.getElementById('hug-popup-msg');
+    const stamp = document.getElementById('hug-popup-stamp-text');
+    const btnText = document.getElementById('hug-popup-btn-text');
+
+    if (!backdrop || !card) return;
+
+    // Pick next creative variation
+    const data = this.hugVariations[this.hugVariationIdx];
+    this.hugVariationIdx = (this.hugVariationIdx + 1) % this.hugVariations.length;
+
+    if (tag) tag.textContent = data.tag;
+    if (emojis) emojis.textContent = data.emojis;
+    if (title) title.textContent = data.title;
+    if (msg) msg.textContent = data.msg;
+    if (stamp) stamp.textContent = data.stamp;
+    if (btnText) btnText.textContent = data.btnText;
+
+    // Show backdrop and trigger bouncy spring entrance
+    backdrop.classList.add('visible');
+    backdrop.setAttribute('aria-hidden', 'false');
+    card.classList.remove('popping-out');
+    void card.offsetWidth; // Force reflow
+    card.classList.add('popping-in');
+
+    // Extra burst of floating heart particles around the popup center
+    const cx = window.innerWidth / 2;
+    const cy = window.innerHeight / 2;
+    this.burstHearts(cx, cy, 12);
+
+    // Auto-dismiss after 6.5s if untouched
+    clearTimeout(this.hugPopupTimeout);
+    this.hugPopupTimeout = setTimeout(() => {
+      this.closeHugHeartPopup();
+    }, 6500);
   }
 
-  stopContinuousHugRumble() {
-    if (!this.audioCtx) return;
-    try {
-      const now = this.audioCtx.currentTime;
-      if (this.hugRumbleMasterGain) {
-        this.hugRumbleMasterGain.gain.cancelScheduledValues(now);
-        this.hugRumbleMasterGain.gain.linearRampToValueAtTime(0.001, now + 0.05);
+  closeHugHeartPopup() {
+    const backdrop = document.getElementById('hug-popup-backdrop');
+    const card = document.getElementById('hug-popup-card');
+    if (!backdrop || !backdrop.classList.contains('visible')) return;
+
+    clearTimeout(this.hugPopupTimeout);
+    if (card) {
+      card.classList.remove('popping-in');
+      card.classList.add('popping-out');
+    }
+
+    setTimeout(() => {
+      if (backdrop) {
+        backdrop.classList.remove('visible');
+        backdrop.setAttribute('aria-hidden', 'true');
       }
-      setTimeout(() => {
-        try {
-          if (this.hugOsc1) { this.hugOsc1.stop(); this.hugOsc1.disconnect(); this.hugOsc1 = null; }
-          if (this.hugOsc2) { this.hugOsc2.stop(); this.hugOsc2.disconnect(); this.hugOsc2 = null; }
-          if (this.hugOsc3) { this.hugOsc3.stop(); this.hugOsc3.disconnect(); this.hugOsc3 = null; }
-          if (this.hugRumbleMasterGain) { this.hugRumbleMasterGain.disconnect(); this.hugRumbleMasterGain = null; }
-        } catch (e) {}
-      }, 60);
-    } catch (e) {}
+      if (card) card.classList.remove('popping-out');
+    }, 280);
   }
 
   // --- Dedicated Continuous Vibration Methods (ZERO PAUSES) ---
@@ -692,8 +1070,8 @@ class HyroxApp {
     const hugPctBadge = document.getElementById('hug-pct-badge');
     const warmthOverlay = document.getElementById('warmth-overlay');
 
-    const HUG_FULL_MS = 2200; // 2.2s for a deep, comforting long warm hug
-    const MIN_HOLD_MS = 1500; // Must hold for at least 1.5s to count (tapping prevented!)
+    const HUG_FULL_MS = 3500; // 3.5s for rich, multi-layered crescendo (within requested 3-5 seconds)
+    const MIN_HOLD_MS = 3000; // Must hold at least 3.0s to complete full hug
 
     const updateWhisper = () => {
       this.whisperIdx = (this.whisperIdx + 1) % this.doraWhispers.length;
@@ -725,13 +1103,12 @@ class HyroxApp {
     if (hugBtn) {
       hugBtn.addEventListener('contextmenu', (e) => e.preventDefault());
 
-      // Touchstart guarantee on iOS Safari to unlock Web Audio on physical contact
+      // Touchstart guarantee on iOS Safari to safely unlock Web Audio on physical contact
       hugBtn.addEventListener('touchstart', () => {
         this.resumeAudio();
       }, { passive: true });
 
       hugBtn.addEventListener('pointerdown', (e) => {
-        this.resumeAudio();
         this.holdPressActive = true;
         this.holdStartTime = Date.now();
 
@@ -748,15 +1125,18 @@ class HyroxApp {
         if (hugZone) hugZone.classList.add('holding');
         if (warmthOverlay) warmthOverlay.classList.add('warmth-holding');
 
-        // 1) Start continuous acoustic physical rumble through speakers
-        this.startContinuousHugRumble();
+        // Full-screen tactile squeeze and holding state
+        document.body.classList.add('screen-hug-holding');
+        document.documentElement.style.setProperty('--hug-charge', '0');
 
-        // 2) Immediate continuous solid hardware motor vibration (ZERO PAUSES while holding!)
-        this.startContinuousHoldVibration();
+        // Start synchronized multi-layered charging SFX (Layer A: Fabric Whoosh, Layer B: Core Glow, Layer C: Melodic Shimmer)
+        const durationSec = HUG_FULL_MS / 1000;
+        this.playHugSFX('start', durationSec);
 
-        let lastRefreshTime = Date.now();
+        // Optional subtle haptic start
+        this.triggerIOSTaptic();
 
-        // Smoothly charge the hug progress and maintain continuous solid vibration
+        // Smoothly charge progress and sync phase text to audio crescendo
         this.hugPulseInterval = setInterval(() => {
           if (!this.holdPressActive) return;
           const elapsed = Date.now() - this.holdStartTime;
@@ -764,38 +1144,37 @@ class HyroxApp {
           if (hugFill) hugFill.style.width = `${pct}%`;
           if (hugPctBadge) hugPctBadge.textContent = `${pct}%`;
 
-          // Dynamically ramp the acoustic rumble motor volume and frequency
-          this.setHugRumbleIntensity(pct);
+          // Update full-screen CSS custom property to dynamically drive screen vignette and arms
+          const progressRatio = (pct / 100).toFixed(3);
+          document.documentElement.style.setProperty('--hug-charge', progressRatio);
 
-          // Keep physical hardware vibration 100% continuous without pauses while holding
-          const nowTime = Date.now();
-          if (nowTime - lastRefreshTime >= 400) {
-            lastRefreshTime = nowTime;
-            this.keepContinuousHoldVibration();
-          }
-
-          // Progressive phase feedback
+          // Progressive phase feedback synchronized to audio layers
           if (pct < 25) {
             if (hugBtnText) hugBtnText.textContent = 'Dora is reaching out...';
-            if (hugMeterText) hugMeterText.textContent = 'Arms reaching out...';
+            if (hugMeterText) hugMeterText.textContent = 'Soft fabric rustle begins...';
           } else if (pct < 55) {
             if (hugBtnText) hugBtnText.textContent = 'Wrapping you up warm...';
-            if (hugMeterText) hugMeterText.textContent = 'Wrapping around you warm...';
-          } else if (pct < 80) {
+            if (hugMeterText) hugMeterText.textContent = 'Deep core warmth rising...';
+          } else if (pct < 85) {
             if (hugBtnText) hugBtnText.textContent = 'Squeezing super tight...';
-            if (hugMeterText) hugMeterText.textContent = 'Squeezing tight with love...';
+            if (hugMeterText) hugMeterText.textContent = 'Melodic shimmer crescendo...';
           } else if (pct < 100) {
-            if (hugBtnText) hugBtnText.textContent = 'Almost there... keep holding!';
-            if (hugMeterText) hugMeterText.textContent = 'Peak warmth incoming...';
+            if (hugBtnText) hugBtnText.textContent = 'Almost 100% warmth...';
+            if (hugMeterText) hugMeterText.textContent = 'Peak harmony swelling...';
           } else {
-            // 100% Fully Powered Warm Hug!
+            // 100% Fully Charged Warm Hug!
             hugBtn.classList.add('fully-charged');
             if (hugBtnText) hugBtnText.textContent = '100% WARMTH! Release now!';
-            if (hugMeterText) hugMeterText.textContent = 'Release to receive full hug!';
-            this.keepContinuousHoldVibration();
+            if (hugMeterText) hugMeterText.textContent = 'Release for heartbeat embrace!';
           }
 
-          // Warm emoji stream floating up during hold
+          // Auto-trigger completion if user holds slightly past 100%
+          if (elapsed >= HUG_FULL_MS + 250) {
+            handleRelease();
+            return;
+          }
+
+          // Warm emoji stream floating up from button
           const rect = hugBtn.getBoundingClientRect();
           const holdEmojis = ['💖', '🥰', '🫂', '✨'];
           this.createHeartParticle(
@@ -803,6 +1182,27 @@ class HyroxApp {
             rect.top + 10,
             holdEmojis[Math.floor(Math.random() * holdEmojis.length)]
           );
+
+          // Ambient full-screen floating particles (sparks drifting from edges across viewport)
+          if (Math.random() < 0.60) {
+            const side = Math.floor(Math.random() * 4);
+            let px, py;
+            if (side === 0) { // Left edge
+              px = 15 + Math.random() * 40;
+              py = Math.random() * window.innerHeight;
+            } else if (side === 1) { // Right edge
+              px = window.innerWidth - 15 - Math.random() * 40;
+              py = Math.random() * window.innerHeight;
+            } else if (side === 2) { // Bottom edge
+              px = Math.random() * window.innerWidth;
+              py = window.innerHeight - 25 - Math.random() * 40;
+            } else { // Top edge
+              px = Math.random() * window.innerWidth;
+              py = 30 + Math.random() * 40;
+            }
+            const ambientEmojis = ['💖', '✨', '🥰', '⭐', '🌸'];
+            this.createHeartParticle(px, py, ambientEmojis[Math.floor(Math.random() * ambientEmojis.length)]);
+          }
         }, 50);
       });
 
@@ -826,8 +1226,6 @@ class HyroxApp {
         this.activePointerId = null;
 
         clearInterval(this.hugPulseInterval);
-        this.stopContinuousHugRumble();
-        this.stopContinuousHoldVibration();
 
         hugBtn.classList.remove('squeezing', 'fully-charged');
         if (hugZone) hugZone.classList.remove('holding');
@@ -835,15 +1233,21 @@ class HyroxApp {
 
         const elapsed = Date.now() - this.holdStartTime;
 
-        // DID NOT HOLD LONG ENOUGH -> NO HUG INCREMENT (TAPPING PREVENTED!)
+        // DID NOT HOLD LONG ENOUGH -> CANCEL CHARGING SFX & SHAKE
         if (elapsed < MIN_HOLD_MS) {
+          this.playHugSFX('stop'); // Clean anti-click disposal of charging audio graph
+
+          // Reset full-screen squeeze and charge smoothly
+          document.body.classList.remove('screen-hug-holding');
+          document.documentElement.style.setProperty('--hug-charge', '0');
+
           if (hugFill) hugFill.style.width = '0%';
           if (hugPctBadge) hugPctBadge.textContent = '0%';
           hugBtn.classList.add('shaking');
           setTimeout(() => hugBtn.classList.remove('shaking'), 450);
 
           if (hugBtnText) hugBtnText.textContent = 'Hold longer for a real hug! 🫂';
-          if (hugMeterText) hugMeterText.textContent = 'Must hold for a deep hug!';
+          if (hugMeterText) hugMeterText.textContent = 'Hold 3-4s to hear the full crescendo!';
           this.playSound('boing');
 
           clearTimeout(this.hugResetTimer);
@@ -855,7 +1259,7 @@ class HyroxApp {
           return;
         }
 
-        // HELD LONG ENOUGH -> CELEBRATE FULL WARM HUG!
+        // HELD TO COMPLETION -> FULL-SCREEN PHYSICAL EMBRACE & SHOCKWAVES!
         this.hugCount++;
         if (hugCounter) {
           hugCounter.textContent = `${this.hugCount} warm hug${this.hugCount === 1 ? '' : 's'} sent!`;
@@ -873,29 +1277,101 @@ class HyroxApp {
         if (hugMeterText) hugMeterText.textContent = "Wrapped in Dora's love!";
         if (hugPctBadge) hugPctBadge.textContent = '100% \u2713';
 
-        // SOLID CONTINUOUS CELEBRATION VIBRATION: unbroken rumble with ZERO pauses!
-        this.celebrateHugVibration();
-        this.playSound('warmHug');
+        // Play 100% Impact Layers simultaneously: Layer D (Heartbeat Thud) + Layer E (Crystal Chime)
+        this.playHugSFX('impact');
         triggerHugGlow(true);
 
+        // --- FULL-SCREEN VISCERAL HEARTBEAT SHOCKWAVES ---
+        document.body.classList.remove('screen-hug-holding');
+        document.body.classList.add('screen-heartbeat-thump-1');
+        setTimeout(() => document.body.classList.remove('screen-heartbeat-thump-1'), 160);
+
+        const shockwaveEl = document.getElementById('screen-shockwave');
+        if (shockwaveEl) {
+          shockwaveEl.classList.remove('fire-shockwave-1', 'fire-shockwave-2');
+          void shockwaveEl.offsetWidth; // Reflow
+          shockwaveEl.classList.add('fire-shockwave-1');
+        }
+
+        // Second Thud physical screen pulse (synced with Dub at t=160ms)
+        setTimeout(() => {
+          document.body.classList.add('screen-heartbeat-thump-2');
+          setTimeout(() => document.body.classList.remove('screen-heartbeat-thump-2'), 220);
+
+          if (shockwaveEl) {
+            shockwaveEl.classList.remove('fire-shockwave-1');
+            void shockwaveEl.offsetWidth;
+            shockwaveEl.classList.add('fire-shockwave-2');
+          }
+        }, 160);
+
+        // Full-screen burst of hearts across the entire display
         const rect = hugBtn.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
 
         this.burstHearts(centerX, centerY, 22);
-        this.triggerConfetti(55);
+        // Additional screen-wide bursts across viewport
+        this.burstHearts(window.innerWidth * 0.2, window.innerHeight * 0.35, 8);
+        this.burstHearts(window.innerWidth * 0.8, window.innerHeight * 0.35, 8);
+        this.burstHearts(window.innerWidth * 0.5, window.innerHeight * 0.65, 12);
+        this.triggerConfetti(65);
         updateWhisper();
+
+        // Trigger Big, Modern, Scribbly Animated Heart Popup with 5 Creative Variations!
+        setTimeout(() => {
+          this.showHugHeartPopup();
+        }, 420);
 
         clearTimeout(this.hugResetTimer);
         this.hugResetTimer = setTimeout(() => {
+          document.documentElement.style.setProperty('--hug-charge', '0');
           if (hugBtnText) hugBtnText.textContent = 'Press & Hold for a Warm Hug';
           if (hugMeterText) hugMeterText.textContent = 'Hold down to feel the squeeze...';
           if (hugPctBadge) hugPctBadge.textContent = '0%';
-        }, 2500);
+        }, 2800);
       };
 
       hugBtn.addEventListener('pointerup', handleRelease);
       hugBtn.addEventListener('pointercancel', handleRelease);
+
+      // Animated Scribbly Heart Popup Dismiss Handlers
+      const popupBackdrop = document.getElementById('hug-popup-backdrop');
+      const popupClose = document.getElementById('hug-popup-close');
+      const popupActionBtn = document.getElementById('hug-popup-action-btn');
+
+      if (popupClose) {
+        popupClose.addEventListener('click', (e) => {
+          e.stopPropagation();
+          this.playSound('pop');
+          this.triggerHaptic(20);
+          this.closeHugHeartPopup();
+        });
+      }
+
+      if (popupActionBtn) {
+        popupActionBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          this.playSound('pop');
+          this.triggerHaptic(25);
+          this.closeHugHeartPopup();
+        });
+      }
+
+      if (popupBackdrop) {
+        popupBackdrop.addEventListener('click', (e) => {
+          if (e.target === popupBackdrop) {
+            this.playSound('pop');
+            this.closeHugHeartPopup();
+          }
+        });
+      }
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          this.closeHugHeartPopup();
+        }
+      });
 
       // Keyboard support: holding Space or Enter
       hugBtn.addEventListener('keydown', (e) => {

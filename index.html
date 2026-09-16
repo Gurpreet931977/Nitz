@@ -22,8 +22,125 @@
   <!-- Canvas Confetti Container -->
   <canvas id="confetti-canvas"></canvas>
 
-  <!-- Fullscreen Ambient Warm Hug Glow Overlay -->
-  <div class="screen-warmth-overlay" id="warmth-overlay"></div>
+  <!-- Fullscreen Ambient Warm Hug Experience Overlay -->
+  <div class="screen-warmth-overlay" id="warmth-overlay" aria-hidden="true">
+    <!-- Dynamic Full-Screen Edge Vignette (Swells progressively with hug charge) -->
+    <div class="screen-warmth-vignette" id="screen-warmth-vignette"></div>
+
+    <!-- Screen-Level Giant Hugging Arms (Wrap in from viewport edges during hold) -->
+    <div class="screen-hug-arm screen-hug-arm-left" id="screen-arm-left">
+      <svg viewBox="0 0 120 280" class="screen-arm-svg">
+        <path d="M-10,30 C35,20 95,65 110,140 C120,195 85,245 40,265 C15,275 -10,260 -10,260 Z"
+              fill="#FFE0EB" stroke="#1E1E24" stroke-width="4.5" stroke-linejoin="round"/>
+        <path d="M15,55 C55,75 80,120 70,170" fill="none" stroke="#FF5C8A" stroke-width="3.5" stroke-linecap="round"/>
+        <circle cx="85" cy="140" r="14" fill="#FFA4CD" stroke="#1E1E24" stroke-width="3"/>
+        <text x="79" y="146" font-size="14">💖</text>
+      </svg>
+    </div>
+
+    <div class="screen-hug-arm screen-hug-arm-right" id="screen-arm-right">
+      <svg viewBox="0 0 120 280" class="screen-arm-svg">
+        <path d="M130,30 C85,20 25,65 10,140 C0,195 35,245 80,265 C105,275 130,260 130,260 Z"
+              fill="#FFE0EB" stroke="#1E1E24" stroke-width="4.5" stroke-linejoin="round"/>
+        <path d="M105,55 C65,75 40,120 50,170" fill="none" stroke="#FF5C8A" stroke-width="3.5" stroke-linecap="round"/>
+        <circle cx="35" cy="140" r="14" fill="#FFA4CD" stroke="#1E1E24" stroke-width="3"/>
+        <text x="29" y="146" font-size="14">💖</text>
+      </svg>
+    </div>
+
+    <!-- Fullscreen Heartbeat Shockwave Ring (Triggers on 100% Impact) -->
+    <div class="screen-shockwave-ring" id="screen-shockwave"></div>
+  </div>
+
+  <!-- Animated Big Scribbly Heart Popup (Celebrated on Hug Completion) -->
+  <div class="hug-popup-backdrop" id="hug-popup-backdrop" aria-hidden="true">
+    <div class="hug-popup-container">
+      
+      <!-- Big Scribbly Orbiters around the heart badge -->
+      <div class="hug-popup-orbiters" aria-hidden="true">
+        <span class="hug-orb orb-tl">⭐</span>
+        <span class="hug-orb orb-tr">✨</span>
+        <span class="hug-orb orb-bl">💖</span>
+        <span class="hug-orb orb-br">🐾</span>
+        <span class="hug-orb orb-sparkle">🌸</span>
+        <svg class="hug-doodle-arrow" viewBox="0 0 70 50">
+          <path d="M8,38 Q35,6 60,22" fill="none" stroke="#1E1E24" stroke-width="3" stroke-linecap="round" stroke-dasharray="5 4"/>
+          <path d="M50,14 L62,23 L51,30" fill="none" stroke="#1E1E24" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <!-- Main Scribbly Heart Card -->
+      <div class="hug-popup-card" id="hug-popup-card" role="dialog" aria-modal="true" aria-label="Warm Hug Message">
+        
+        <!-- Scribbly Hand-drawn Close Button -->
+        <button class="hug-popup-close" id="hug-popup-close" aria-label="Close message">
+          <svg viewBox="0 0 24 24" class="c-icon c-icon-sm">
+            <path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+
+        <!-- Top Giant Layered Heart Mascot with Beating Wings -->
+        <div class="hug-popup-heart-emblem-wrap">
+          <div class="hug-popup-heart-shadow"></div>
+          <div class="hug-popup-heart-emblem" id="hug-popup-heart-emblem">
+            <svg viewBox="0 0 100 90" class="heart-badge-svg">
+              <defs>
+                <linearGradient id="popHeartGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#FF5C8A" />
+                  <stop offset="60%" stop-color="#FF2A54" />
+                  <stop offset="100%" stop-color="#FF7A00" />
+                </linearGradient>
+              </defs>
+              <path d="M50,82 C20,60 5,42 5,24 C5,11 15,2 27,2 C37,2 45,8 50,16 C55,8 63,2 73,2 C85,2 95,11 95,24 C95,42 80,60 50,82 Z"
+                    fill="url(#popHeartGrad)" stroke="#1E1E24" stroke-width="3.5" stroke-linejoin="round"/>
+              <path d="M16,22 C14,13 22,8 30,9" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <div class="hug-popup-emojis-badge" id="hug-popup-emojis">⚡💖⚡</div>
+          </div>
+        </div>
+
+        <!-- Fun Scribbly Header Pill -->
+        <div class="hug-popup-tag-wrap">
+          <span class="hug-popup-tag" id="hug-popup-tag">⚡ DORA TURBO BATTERY</span>
+        </div>
+
+        <!-- Big Bold Title -->
+        <h2 class="hug-popup-title" id="hug-popup-title">10,000% RECHARGED!</h2>
+
+        <!-- Scribbly Hand-Drawn Wavy Underline -->
+        <div class="hug-popup-scribble-line" aria-hidden="true">
+          <svg viewBox="0 0 180 18" preserveAspectRatio="none" class="scribble-wave-svg">
+            <path d="M4,10 Q25,2 45,10 T85,10 T125,10 T165,10" fill="none" stroke="#FFCF36" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <!-- Handwritten Creative Dora Whisper Note -->
+        <div class="hug-popup-msg-box">
+          <span class="quote-mark quote-start">“</span>
+          <p class="hug-popup-msg" id="hug-popup-msg">
+            Bhondu's heart is now loaded with infinite beast-mode cuddle energy!
+          </p>
+          <span class="quote-mark quote-end">”</span>
+        </div>
+
+        <!-- Scribbly Stamp / Guarantee Badge -->
+        <div class="hug-popup-stamp-wrap">
+          <div class="hug-popup-stamp">
+            <span class="stamp-star">★</span>
+            <span id="hug-popup-stamp-text">MAX TURBO POWER 🚀</span>
+            <span class="stamp-star">★</span>
+          </div>
+        </div>
+
+        <!-- Interactive Action / Dismiss Button -->
+        <button class="hug-popup-btn" id="hug-popup-action-btn">
+          <span id="hug-popup-btn-text">SEND ANOTHER HUG! 🥰</span>
+          <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="currentColor" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        </button>
+
+      </div>
+    </div>
+  </div>
 
   <!-- Top Floating Controls -->
   <header class="top-nav">
@@ -311,7 +428,7 @@
 
             <p class="hug-hint">
               <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="#FF2A54" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-              <strong>Feel the real hug:</strong> Keep holding to feel the heartbeat rumble vibrate in your hands!
+              <strong>Feel the real hug:</strong> Press &amp; hold to build the warm crescendo &amp; hear the heartbeat embrace!
             </p>
           </div>
         </section>
