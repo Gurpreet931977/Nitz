@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#FAF8F5">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <title>Super Nitz & The HYROX Quest | Pro Athlete Edition 🏃‍♀️💖</title>
+  <title>Super Nitz & The HYROX Quest | Pro Athlete Edition</title>
   
   <!-- Modern Google Fonts: Plus Jakarta Sans, Outfit, & Caveat -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,91 +52,132 @@
     <div class="screen-shockwave-ring" id="screen-shockwave"></div>
   </div>
 
-  <!-- Animated Big Scribbly Heart Popup (Celebrated on Hug Completion) -->
+  <!-- Animated Big Scribbly Heart-Shaped Popup (Celebrated on Hug Completion) -->
   <div class="hug-popup-backdrop" id="hug-popup-backdrop" aria-hidden="true">
     <div class="hug-popup-container">
       
-      <!-- Big Scribbly Orbiters around the heart badge -->
+      <!-- Big Scribbly Vector SVG Orbiters around the heart (Zero emojis) -->
       <div class="hug-popup-orbiters" aria-hidden="true">
-        <span class="hug-orb orb-tl">⭐</span>
-        <span class="hug-orb orb-tr">✨</span>
-        <span class="hug-orb orb-bl">💖</span>
-        <span class="hug-orb orb-br">🐾</span>
-        <span class="hug-orb orb-sparkle">🌸</span>
+        <!-- 4-Point Sparkle Star (Top Left) -->
+        <span class="hug-orb orb-tl">
+          <svg viewBox="0 0 24 24" class="orb-svg"><path fill="#FFCF36" stroke="#1E1E24" stroke-width="1.8" d="M12 0L14.8 9.2L24 12L14.8 14.8L12 24L9.2 14.8L0 12L9.2 9.2z"/></svg>
+        </span>
+        <!-- Neo-Pop 5-Point Star (Top Right) -->
+        <span class="hug-orb orb-tr">
+          <svg viewBox="0 0 24 24" class="orb-svg"><path fill="#FF7A00" stroke="#1E1E24" stroke-width="1.8" d="M12 2l2.9 6.8L22 9.8l-5.3 4.6 1.6 7.2L12 17.8 5.7 21.6l1.6-7.2L2 9.8l7.1-1z"/></svg>
+        </span>
+        <!-- Mini Heart Sticker (Bottom Left) -->
+        <span class="hug-orb orb-bl">
+          <svg viewBox="0 0 24 24" class="orb-svg"><path fill="#FF2A54" stroke="#1E1E24" stroke-width="1.8" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        </span>
+        <!-- Neo-Pop Sparkle Cross (Bottom Right) -->
+        <span class="hug-orb orb-br">
+          <svg viewBox="0 0 24 24" class="orb-svg"><path fill="#FF5C8A" stroke="#1E1E24" stroke-width="1.8" d="M12 1L14 10L23 12L14 14L12 23L10 14L1 12L10 10z"/></svg>
+        </span>
+        <!-- Scribbly Doodle Arrow -->
         <svg class="hug-doodle-arrow" viewBox="0 0 70 50">
           <path d="M8,38 Q35,6 60,22" fill="none" stroke="#1E1E24" stroke-width="3" stroke-linecap="round" stroke-dasharray="5 4"/>
           <path d="M50,14 L62,23 L51,30" fill="none" stroke="#1E1E24" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
 
-      <!-- Main Scribbly Heart Card -->
-      <div class="hug-popup-card" id="hug-popup-card" role="dialog" aria-modal="true" aria-label="Warm Hug Message">
+      <!-- TRUE GIANT HEART-SHAPED POPUP CARD -->
+      <div class="hug-heart-shape-card" id="hug-popup-card" role="dialog" aria-modal="true" aria-label="Warm Hug Message">
         
-        <!-- Scribbly Hand-drawn Close Button -->
+        <!-- Scribbly Hand-drawn Close Button (at top lobe edge) -->
         <button class="hug-popup-close" id="hug-popup-close" aria-label="Close message">
           <svg viewBox="0 0 24 24" class="c-icon c-icon-sm">
             <path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
           </svg>
         </button>
 
-        <!-- Top Giant Layered Heart Mascot with Beating Wings -->
-        <div class="hug-popup-heart-emblem-wrap">
-          <div class="hug-popup-heart-shadow"></div>
-          <div class="hug-popup-heart-emblem" id="hug-popup-heart-emblem">
-            <svg viewBox="0 0 100 90" class="heart-badge-svg">
-              <defs>
-                <linearGradient id="popHeartGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#FF5C8A" />
-                  <stop offset="60%" stop-color="#FF2A54" />
-                  <stop offset="100%" stop-color="#FF7A00" />
-                </linearGradient>
-              </defs>
-              <path d="M50,82 C20,60 5,42 5,24 C5,11 15,2 27,2 C37,2 45,8 50,16 C55,8 63,2 73,2 C85,2 95,11 95,24 C95,42 80,60 50,82 Z"
-                    fill="url(#popHeartGrad)" stroke="#1E1E24" stroke-width="3.5" stroke-linejoin="round"/>
-              <path d="M16,22 C14,13 22,8 30,9" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+        <!-- Giant Chubby Heart Shape SVG Shell with Ink Border & Hard Shadow -->
+        <svg viewBox="0 0 460 420" class="heart-shell-svg" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="heartShellGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#FFFDF9" />
+              <stop offset="45%" stop-color="#FFF0F5" />
+              <stop offset="100%" stop-color="#FFE0EB" />
+            </linearGradient>
+            <filter id="heartShellShadow" x="-15%" y="-15%" width="135%" height="135%">
+              <feDropShadow dx="8" dy="10" stdDeviation="0" flood-color="#1E1E24" />
+            </filter>
+          </defs>
+          <!-- Chubby Heart Path with 5px ink outline -->
+          <path d="M 230,388 
+                   C 115,296 18,212 18,122 
+                   C 18,54 70,16 135,16 
+                   C 176,16 214,38 230,76 
+                   C 246,38 284,16 325,16 
+                   C 390,16 442,54 442,122 
+                   C 442,212 345,296 230,388 Z"
+                fill="url(#heartShellGrad)"
+                stroke="#1E1E24"
+                stroke-width="5"
+                stroke-linejoin="round"
+                filter="url(#heartShellShadow)"/>
+          <!-- Scribbly Inner Stitching / Outline -->
+          <path d="M 230,366 
+                   C 126,282 34,204 34,124 
+                   C 34,66 78,32 135,32 
+                   C 172,32 205,52 222,86 
+                   L 230,102 
+                   L 238,86 
+                   C 255,52 288,32 325,32 
+                   C 382,32 426,66 426,124 
+                   C 426,204 334,282 230,366 Z"
+                fill="none"
+                stroke="#FF5C8A"
+                stroke-width="2.5"
+                stroke-dasharray="7 5"
+                stroke-linecap="round"/>
+        </svg>
+
+        <!-- Inner Content positioned comfortably in heart belly -->
+        <div class="hug-heart-content">
+          <!-- Top Clean Vector Theme Icon (SVG based, NO emojis!) -->
+          <div class="hug-heart-icon-badge" id="hug-popup-icon-wrap">
+            <svg viewBox="0 0 48 48" class="theme-svg">
+              <circle cx="24" cy="24" r="22" fill="#FFE866" stroke="#1E1E24" stroke-width="2.5"/>
+              <path d="M26 6L12 26h11l-2 16 16-22H24l2-14z" fill="#FF7A00" stroke="#1E1E24" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M25 8L15 24h9l-1 12 11-16h-9l2-12z" fill="#FFCF36"/>
             </svg>
-            <div class="hug-popup-emojis-badge" id="hug-popup-emojis">⚡💖⚡</div>
           </div>
-        </div>
 
-        <!-- Fun Scribbly Header Pill -->
-        <div class="hug-popup-tag-wrap">
-          <span class="hug-popup-tag" id="hug-popup-tag">⚡ DORA TURBO BATTERY</span>
-        </div>
+          <!-- Scribbly Tag Pill -->
+          <div class="hug-popup-tag-wrap">
+            <span class="hug-popup-tag" id="hug-popup-tag">DORA TURBO BATTERY</span>
+          </div>
 
-        <!-- Big Bold Title -->
-        <h2 class="hug-popup-title" id="hug-popup-title">10,000% RECHARGED!</h2>
+          <!-- Bold Title -->
+          <h2 class="hug-popup-title" id="hug-popup-title">10,000% RECHARGED!</h2>
 
-        <!-- Scribbly Hand-Drawn Wavy Underline -->
-        <div class="hug-popup-scribble-line" aria-hidden="true">
-          <svg viewBox="0 0 180 18" preserveAspectRatio="none" class="scribble-wave-svg">
-            <path d="M4,10 Q25,2 45,10 T85,10 T125,10 T165,10" fill="none" stroke="#FFCF36" stroke-width="4" stroke-linecap="round"/>
-          </svg>
-        </div>
+          <!-- Hand-drawn Scribble Wavy Underline -->
+          <div class="hug-popup-scribble-line" aria-hidden="true">
+            <svg viewBox="0 0 160 16" preserveAspectRatio="none" class="scribble-wave-svg">
+              <path d="M4,9 Q25,2 45,9 T85,9 T125,9 T156,9" fill="none" stroke="#FFCF36" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+          </div>
 
-        <!-- Handwritten Creative Dora Whisper Note -->
-        <div class="hug-popup-msg-box">
-          <span class="quote-mark quote-start">“</span>
+          <!-- Handwritten Dora Love Quote -->
           <p class="hug-popup-msg" id="hug-popup-msg">
-            Bhondu's heart is now loaded with infinite beast-mode cuddle energy!
+            “Bhondu's heart is now loaded with infinite beast-mode cuddle energy!”
           </p>
-          <span class="quote-mark quote-end">”</span>
-        </div>
 
-        <!-- Scribbly Stamp / Guarantee Badge -->
-        <div class="hug-popup-stamp-wrap">
-          <div class="hug-popup-stamp">
-            <span class="stamp-star">★</span>
-            <span id="hug-popup-stamp-text">MAX TURBO POWER 🚀</span>
-            <span class="stamp-star">★</span>
+          <!-- Scribbly Stamp Badge -->
+          <div class="hug-popup-stamp-wrap">
+            <div class="hug-popup-stamp">
+              <span class="stamp-star">★</span>
+              <span id="hug-popup-stamp-text">MAX TURBO POWER</span>
+              <span class="stamp-star">★</span>
+            </div>
+          </div>
+
+          <!-- Subtle auto-dismiss reading progress indicator -->
+          <div class="hug-popup-timer-bar" aria-hidden="true">
+            <div class="hug-popup-timer-fill" id="hug-popup-timer-fill"></div>
           </div>
         </div>
-
-        <!-- Interactive Action / Dismiss Button -->
-        <button class="hug-popup-btn" id="hug-popup-action-btn">
-          <span id="hug-popup-btn-text">SEND ANOTHER HUG! 🥰</span>
-          <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="currentColor" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-        </button>
 
       </div>
     </div>
@@ -311,7 +352,7 @@
 
             <div class="bib-number">#01</div>
             <h1 class="bib-name">SUPER NITZ</h1>
-            <p class="bib-sub">aka <em>"Meri Pyaari Bhondu"</em> 🐾</p>
+            <p class="bib-sub">aka <em>"Meri Pyaari Bhondu"</em></p>
 
             <div class="bib-stats">
               <div class="stat-item">
@@ -538,13 +579,13 @@
       <!-- Station Progress Bar -->
       <div class="quest-progress-wrap">
         <div class="progress-bar-bg">
-          <div class="progress-bar-fill" id="quest-progress-fill" style="width: 12%;"></div>
+          <div class="progress-bar-fill" id="quest-progress-fill" style="width: 0%;"></div>
         </div>
         <div class="progress-label">
-          <span id="progress-station-count">Station 1 of 8</span>
+          <span id="progress-station-count">Completed: 0 of 8 Stations</span>
           <span id="energy-count">
             <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="#FFA800" d="M11 21h-1l1-7H7.5c-.88 0-.33-.75-.31-.78C8.48 10.94 10.42 7.54 13 3h1l-1 7h3.5c.49 0 .56.33.47.51l-.07.15C12.9 17.55 11 21 11 21z"/></svg>
-            100 Energy Points
+            0 Energy Points
           </span>
         </div>
       </div>
@@ -553,7 +594,7 @@
       <div class="stations-list">
 
         <!-- Station 1: SkiErg -->
-        <article class="station-card completed" id="st-1" data-station="1">
+        <article class="station-card" id="st-1" data-station="1">
           <div class="station-header">
             <div class="station-badge">1</div>
             <div class="station-info">
@@ -566,7 +607,7 @@
                 <svg class="station-title-icon" viewBox="0 0 36 36" aria-label="SkiErg Icon"><rect x="6" y="4" width="24" height="6" rx="3" fill="#FFCF36" stroke="#1E1E24" stroke-width="2.5"/><path d="M12 10v16M24 10v16" stroke="#1E1E24" stroke-width="2.5" stroke-dasharray="2 2"/><rect x="8" y="24" width="8" height="5" rx="2.5" fill="#FF5C8A" stroke="#1E1E24" stroke-width="2"/><rect x="20" y="24" width="8" height="5" rx="2.5" fill="#FF5C8A" stroke="#1E1E24" stroke-width="2"/></svg>
               </h3>
             </div>
-            <span class="station-status-pill">Unlocked</span>
+            <span class="station-status-pill">Ready to Play</span>
           </div>
           <div class="station-body">
             <!-- Official Movement Standards & Penalty Traps -->
@@ -576,7 +617,10 @@
                 <p>Feet must remain on the black base plate at all times. Heels may lift during the pull, but toes/feet cannot step onto the gym floor.</p>
               </div>
               <div class="rule-row penalty-row">
-                <span class="rule-badge penalty-badge">⚠️ JUDGE PENALTY TRAP</span>
+                <span class="rule-badge penalty-badge">
+                  <svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="#FFA800" d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+                  JUDGE PENALTY TRAP
+                </span>
                 <p>Stepping off the machine or dropping handles before the judge verbally confirms 1,000m results in a 15-second penalty or uncounted meters!</p>
               </div>
             </div>
@@ -594,7 +638,7 @@
         </article>
 
         <!-- Station 2: Sled Push (Line Clearance & Penalty Simulator) -->
-        <article class="station-card" id="st-2" data-station="2">
+        <article class="station-card locked" id="st-2" data-station="2">
           <div class="station-header">
             <div class="station-badge">2</div>
             <div class="station-info">
@@ -607,9 +651,18 @@
                 <svg class="station-title-icon" viewBox="0 0 36 36" aria-label="Sled Push Icon"><path d="M4 28h28c1.5 0 2.5-1 2.5-2.5" stroke="#1E1E24" stroke-width="2.5" stroke-linecap="round" fill="none"/><rect x="7" y="22" width="22" height="5" rx="2" fill="#FFCF36" stroke="#1E1E24" stroke-width="2"/><line x1="11" y1="6" x2="11" y2="22" stroke="#1E1E24" stroke-width="2.5" stroke-linecap="round"/><line x1="25" y1="6" x2="25" y2="22" stroke="#1E1E24" stroke-width="2.5" stroke-linecap="round"/><rect x="14" y="14" width="8" height="8" rx="2" fill="#FF5C8A" stroke="#1E1E24" stroke-width="2"/></svg>
               </h3>
             </div>
-            <span class="station-status-pill">Penalty Simulator!</span>
+            <span class="station-status-pill pill-locked">
+              <svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+              Locked
+            </span>
           </div>
           <div class="station-body">
+            <div class="station-locked-overlay">
+              <div class="station-locked-banner">
+                <svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                <span>Complete Station 1 to unlock!</span>
+              </div>
+            </div>
             <div class="hyrox-rules-card">
               <div class="rule-row">
                 <span class="rule-badge standard-badge">✓ OFFICIAL STANDARD</span>
@@ -675,7 +728,7 @@
         </article>
 
         <!-- Station 3: Sled Pull -->
-        <article class="station-card" id="st-3" data-station="3">
+        <article class="station-card locked" id="st-3" data-station="3">
           <div class="station-header">
             <div class="station-badge">3</div>
             <div class="station-info">
@@ -688,9 +741,18 @@
                 <svg class="station-title-icon" viewBox="0 0 36 36" aria-label="Sled Pull Rope Icon"><path d="M5 26c5-4 7 4 12 0s7-4 12 0 3 2 4 4" fill="none" stroke="#FFCF36" stroke-width="3" stroke-linecap="round"/><path d="M5 26c5-4 7 4 12 0s7-4 12 0 3 2 4 4" fill="none" stroke="#1E1E24" stroke-width="1.5" stroke-dasharray="2 3"/><rect x="6" y="8" width="10" height="12" rx="3" fill="#38BDF8" stroke="#1E1E24" stroke-width="2"/><path d="M16 14h14" stroke="#1E1E24" stroke-width="2.5" stroke-linecap="round"/></svg>
               </h3>
             </div>
-            <span class="station-status-pill">Ready</span>
+            <span class="station-status-pill pill-locked">
+              <svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+              Locked
+            </span>
           </div>
           <div class="station-body">
+            <div class="station-locked-overlay">
+              <div class="station-locked-banner">
+                <svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                <span>Complete Station 2 to unlock!</span>
+              </div>
+            </div>
             <div class="hyrox-rules-card">
               <div class="rule-row">
                 <span class="rule-badge standard-badge">✓ OFFICIAL STANDARD</span>
@@ -718,7 +780,7 @@
         </article>
 
         <!-- Station 4: Burpee Broad Jumps (Chest & 2-Foot Landing Simulator) -->
-        <article class="station-card" id="st-4" data-station="4">
+        <article class="station-card locked" id="st-4" data-station="4">
           <div class="station-header">
             <div class="station-badge">4</div>
             <div class="station-info">
@@ -731,9 +793,18 @@
                 <svg class="station-title-icon" viewBox="0 0 36 36" aria-label="Burpee Broad Jump Icon"><path d="M6 28 C 12 10, 24 10, 30 28" fill="none" stroke="#38BDF8" stroke-width="2.5" stroke-dasharray="3 3"/><circle cx="22" cy="11" r="3.5" fill="#FF5C8A" stroke="#1E1E24" stroke-width="1.5"/><path d="M19 15l4 4 6-2M18 19l-4 3-4-2M21 21l3 7M17 21l-3 7" stroke="#1E1E24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </h3>
             </div>
-            <span class="station-status-pill">Penalty Simulator!</span>
+            <span class="station-status-pill pill-locked">
+              <svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+              Locked
+            </span>
           </div>
           <div class="station-body">
+            <div class="station-locked-overlay">
+              <div class="station-locked-banner">
+                <svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                <span>Complete Station 3 to unlock!</span>
+              </div>
+            </div>
             <div class="hyrox-rules-card">
               <div class="rule-row">
                 <span class="rule-badge standard-badge">✓ OFFICIAL STANDARD</span>
@@ -834,7 +905,7 @@
         </div>
 
         <!-- Station 5: Rowing -->
-        <article class="station-card" id="st-5" data-station="5">
+        <article class="station-card locked" id="st-5" data-station="5">
           <div class="station-header">
             <div class="station-badge">5</div>
             <div class="station-info">
@@ -847,9 +918,18 @@
                 <svg class="station-title-icon" viewBox="0 0 36 36" aria-label="Rowing Machine Icon"><circle cx="9" cy="23" r="6" fill="#FFCF36" stroke="#1E1E24" stroke-width="2"/><line x1="9" y1="25" x2="31" y2="25" stroke="#1E1E24" stroke-width="2.5" stroke-linecap="round"/><rect x="20" y="21" width="6" height="4" rx="1.5" fill="#FF5C8A" stroke="#1E1E24" stroke-width="1.5"/><line x1="9" y1="19" x2="18" y2="15" stroke="#1E1E24" stroke-width="2"/><line x1="17" y1="13" x2="19" y2="17" stroke="#38BDF8" stroke-width="2.5" stroke-linecap="round"/></svg>
               </h3>
             </div>
-            <span class="station-status-pill">Ready</span>
+            <span class="station-status-pill pill-locked">
+              <svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+              Locked
+            </span>
           </div>
           <div class="station-body">
+            <div class="station-locked-overlay">
+              <div class="station-locked-banner">
+                <svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                <span>Complete Station 4 to unlock!</span>
+              </div>
+            </div>
             <div class="hyrox-rules-card">
               <div class="rule-row">
                 <span class="rule-badge standard-badge">✓ OFFICIAL STANDARD</span>
@@ -877,7 +957,7 @@
         </article>
 
         <!-- Station 6: Farmers Carry -->
-        <article class="station-card" id="st-6" data-station="6">
+        <article class="station-card locked" id="st-6" data-station="6">
           <div class="station-header">
             <div class="station-badge">6</div>
             <div class="station-info">
@@ -890,9 +970,18 @@
                 <svg class="station-title-icon" viewBox="0 0 36 36" aria-label="Farmers Carry Icon"><rect x="7" y="15" width="10" height="13" rx="4" fill="#FFCF36" stroke="#1E1E24" stroke-width="2"/><path d="M9 15V10a3 3 0 0 1 6 0v5" fill="none" stroke="#1E1E24" stroke-width="2" stroke-linecap="round"/><rect x="20" y="15" width="10" height="13" rx="4" fill="#38BDF8" stroke="#1E1E24" stroke-width="2"/><path d="M22 15V10a3 3 0 0 1 6 0v5" fill="none" stroke="#1E1E24" stroke-width="2" stroke-linecap="round"/></svg>
               </h3>
             </div>
-            <span class="station-status-pill">Ready</span>
+            <span class="station-status-pill pill-locked">
+              <svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+              Locked
+            </span>
           </div>
           <div class="station-body">
+            <div class="station-locked-overlay">
+              <div class="station-locked-banner">
+                <svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                <span>Complete Station 5 to unlock!</span>
+              </div>
+            </div>
             <div class="hyrox-rules-card">
               <div class="rule-row">
                 <span class="rule-badge standard-badge">✓ OFFICIAL STANDARD</span>
@@ -920,7 +1009,7 @@
         </article>
 
         <!-- Station 7: Sandbag Lunges -->
-        <article class="station-card" id="st-7" data-station="7">
+        <article class="station-card locked" id="st-7" data-station="7">
           <div class="station-header">
             <div class="station-badge">7</div>
             <div class="station-info">
@@ -933,9 +1022,18 @@
                 <svg class="station-title-icon" viewBox="0 0 36 36" aria-label="Sandbag Lunges Icon"><rect x="6" y="12" width="24" height="11" rx="5" fill="#FFA800" stroke="#1E1E24" stroke-width="2.2"/><path d="M11 12V8h4v4M21 12V8h4v4" fill="none" stroke="#1E1E24" stroke-width="2" stroke-linecap="round"/><rect x="14" y="15" width="8" height="5" rx="1.5" fill="#FFFFFF" stroke="#1E1E24" stroke-width="1.2"/></svg>
               </h3>
             </div>
-            <span class="station-status-pill">Ready</span>
+            <span class="station-status-pill pill-locked">
+              <svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+              Locked
+            </span>
           </div>
           <div class="station-body">
+            <div class="station-locked-overlay">
+              <div class="station-locked-banner">
+                <svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                <span>Complete Station 6 to unlock!</span>
+              </div>
+            </div>
             <div class="hyrox-rules-card">
               <div class="rule-row">
                 <span class="rule-badge standard-badge">✓ OFFICIAL STANDARD</span>
@@ -963,7 +1061,7 @@
         </article>
 
         <!-- Station 8: Wall Balls (Squat Depth & Target Simulator) -->
-        <article class="station-card" id="st-8" data-station="8">
+        <article class="station-card locked" id="st-8" data-station="8">
           <div class="station-header">
             <div class="station-badge">8</div>
             <div class="station-info">
@@ -976,9 +1074,18 @@
                 <svg class="station-title-icon" viewBox="0 0 36 36" aria-label="Wall Balls Icon"><circle cx="10" cy="28" r="6" fill="#FF5C8A" stroke="#1E1E24" stroke-width="2"/><circle cx="10" cy="28" r="2.5" fill="#FFFFFF" opacity="0.7"/><rect x="24" y="4" width="6" height="6" rx="1.5" fill="#FFCF36" stroke="#1E1E24" stroke-width="1.5"/><path d="M13 25 L27 7" stroke="#1E1E24" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="2 3"/></svg>
               </h3>
             </div>
-            <span class="station-status-pill">Final Boss Simulator!</span>
+            <span class="station-status-pill pill-locked">
+              <svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+              Locked
+            </span>
           </div>
           <div class="station-body">
+            <div class="station-locked-overlay">
+              <div class="station-locked-banner">
+                <svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                <span>Complete Station 7 to unlock!</span>
+              </div>
+            </div>
             <div class="hyrox-rules-card">
               <div class="rule-row">
                 <span class="rule-badge standard-badge">✓ OFFICIAL STANDARD</span>
@@ -1006,9 +1113,9 @@
               <!-- Live Squat Depth Gauge Indicator -->
               <div class="squat-depth-gauge">
                 <div class="depth-bar-track">
-                  <div class="depth-zone zone-shallow">Shallow ❌</div>
-                  <div class="depth-zone zone-parallel">Parallel ⚠️</div>
-                  <div class="depth-zone zone-deep">BELOW PARALLEL ✓</div>
+                  <div class="depth-zone zone-shallow">Shallow</div>
+                  <div class="depth-zone zone-parallel">Parallel</div>
+                  <div class="depth-zone zone-deep">BELOW PARALLEL</div>
                   <div class="depth-indicator-needle" id="depth-needle"></div>
                 </div>
               </div>

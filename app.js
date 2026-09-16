@@ -88,47 +88,42 @@ class HyroxApp {
     this.holdStartTime = 0;
     this.activePointerId = null;
 
-    // Creative, Fun & Modern Scribbly Heart Popup Messages on Hug Completion (5 rotating variations)
+    // Creative, Fun & Modern Scribbly Heart Popup Messages on Hug Completion (5 rotating variations with custom vector SVGs)
     this.hugVariations = [
       {
-        tag: "⚡ DORA TURBO BATTERY",
-        emojis: "⚡💖⚡",
+        tag: "DORA TURBO BATTERY",
+        svgIcon: `<svg viewBox="0 0 48 48" class="theme-svg"><circle cx="24" cy="24" r="22" fill="#FFE866" stroke="#1E1E24" stroke-width="2.5"/><path d="M26 6L12 26h11l-2 16 16-22H24l2-14z" fill="#FF7A00" stroke="#1E1E24" stroke-width="2" stroke-linejoin="round"/><path d="M25 8L15 24h9l-1 12 11-16h-9l2-12z" fill="#FFCF36"/></svg>`,
         title: "10,000% RECHARGED!",
-        msg: "Bhondu's heart is now loaded with infinite beast-mode cuddle energy!",
-        stamp: "MAX TURBO POWER 🚀",
-        btnText: "SEND ANOTHER HUG! 🥰"
+        msg: "“Bhondu's heart is now loaded with infinite beast-mode cuddle energy!”",
+        stamp: "MAX TURBO POWER"
       },
       {
-        tag: "🧸 MAXIMUM SQUEEZE",
-        emojis: "🫂🐻✨",
+        tag: "MAXIMUM SQUEEZE",
+        svgIcon: `<svg viewBox="0 0 48 48" class="theme-svg"><circle cx="12" cy="14" r="8" fill="#F4A261" stroke="#1E1E24" stroke-width="2.5"/><circle cx="12" cy="14" r="4.5" fill="#FFB4A2"/><circle cx="36" cy="14" r="8" fill="#F4A261" stroke="#1E1E24" stroke-width="2.5"/><circle cx="36" cy="14" r="4.5" fill="#FFB4A2"/><circle cx="24" cy="27" r="18" fill="#F4A261" stroke="#1E1E24" stroke-width="2.5"/><ellipse cx="24" cy="31" rx="10" ry="8" fill="#FFF0ED" stroke="#1E1E24" stroke-width="2"/><ellipse cx="24" cy="28" rx="4" ry="2.5" fill="#1E1E24"/><path d="M24 30.5v3m-2.5 0a2.5 2.5 0 0 0 5 0" fill="none" stroke="#1E1E24" stroke-width="2" stroke-linecap="round"/><circle cx="17" cy="23" r="2.5" fill="#1E1E24"/><circle cx="31" cy="23" r="2.5" fill="#1E1E24"/><circle cx="17.8" cy="22.2" r="0.8" fill="#FFF"/><circle cx="31.8" cy="22.2" r="0.8" fill="#FFF"/><ellipse cx="13" cy="28" rx="2.5" ry="1.5" fill="#FF708F"/><ellipse cx="35" cy="28" rx="2.5" ry="1.5" fill="#FF708F"/></svg>`,
         title: "1,000,000 TONS OF LOVE!",
-        msg: "Dora's arms are officially locked around you until race day finishes!",
-        stamp: "SUPER SNUGGLY 🧸",
-        btnText: "SQUEEZE TIGHTER! 💕"
+        msg: "“Dora's arms are officially locked around you until race day finishes!”",
+        stamp: "SUPER SNUGGLY SQUEEZE"
       },
       {
-        tag: "🛡️ RACE-DAY BUFF",
-        emojis: "🛡️🔥⭐",
+        tag: "RACE-DAY BUFF",
+        svgIcon: `<svg viewBox="0 0 48 48" class="theme-svg"><circle cx="24" cy="24" r="22" fill="#E8F4FD" stroke="#1E1E24" stroke-width="2.5"/><path d="M24 8L10 14v11c0 10.5 6 15.5 14 17 8-1.5 14-6.5 14-17V14L24 8z" fill="#3A86FF" stroke="#1E1E24" stroke-width="2.5" stroke-linejoin="round"/><path d="M24 16c-2.8-3.2-8.5-.8-8.5 3.5 0 4.8 8.5 9.5 8.5 9.5s8.5-4.7 8.5-9.5c0-4.3-5.7-6.7-8.5-3.5z" fill="#FFE866" stroke="#1E1E24" stroke-width="1.8"/><path d="M22 18l-1.5 4h3l-1 5 4-6h-3l1.5-3z" fill="#FF2A54"/></svg>`,
         title: "BURPEE-PROOF SHIELD!",
-        msg: "No sled is heavy enough and no turf is tough enough for my Bhondu now!",
-        stamp: "100% UNSTOPPABLE 💪",
-        btnText: "KEEP CRUSHING IT! ⚡"
+        msg: "“No sled is heavy enough and no turf is tough enough for my Bhondu now!”",
+        stamp: "100% UNSTOPPABLE"
       },
       {
-        tag: "🥤 VIP FINISH LINE PERK",
-        emojis: "🥤🍓💘",
+        tag: "VIP FINISH LINE PERK",
+        svgIcon: `<svg viewBox="0 0 48 48" class="theme-svg"><circle cx="24" cy="24" r="22" fill="#FFF2F6" stroke="#1E1E24" stroke-width="2.5"/><path d="M28 6l-3 8" stroke="#FF5C8A" stroke-width="3" stroke-linecap="round"/><ellipse cx="24" cy="16" rx="13" ry="3.5" fill="#FF8FAB" stroke="#1E1E24" stroke-width="2"/><path d="M12 16l3.5 22h17l3.5-22z" fill="#FF5C8A" stroke="#1E1E24" stroke-width="2.5" stroke-linejoin="round"/><path d="M14 20l2.5 16h15l2.5-16c-3 1.5-7-1-10 1s-7-1-10-1z" fill="#FFB3C6"/><path d="M24 25c-1.3-1.6-4-.4-4 1.7 0 2.4 4 4.8 4 4.8s4-2.4 4-4.8c0-2.1-2.7-3.3-4-1.7z" fill="#FFE866" stroke="#1E1E24" stroke-width="1.2"/></svg>`,
         title: "UNLIMITED CUDDLE PASS!",
-        msg: "Entitles Bhondu to endless mango smoothies and unlimited Dora foot rubs!",
-        stamp: "LIFETIME VIP 👑",
-        btnText: "REDEEM MORE WARMTH! 🍓"
+        msg: "“Entitles Bhondu to endless mango smoothies and unlimited Dora foot rubs!”",
+        stamp: "LIFETIME VIP PASS"
       },
       {
-        tag: "👑 NO.1 FAN FOREVER",
-        emojis: "🏆💖🥰",
+        tag: "NO.1 FAN FOREVER",
+        svgIcon: `<svg viewBox="0 0 48 48" class="theme-svg"><circle cx="24" cy="24" r="22" fill="#FFF9E6" stroke="#1E1E24" stroke-width="2.5"/><path d="M17 40h14v-3H17v3zm2-3l1.5-6h7l1.5 6H19z" fill="#FF9E00" stroke="#1E1E24" stroke-width="2" stroke-linejoin="round"/><path d="M14 16H9c0 7 4 9 7 9.5M34 16h5c0 7-4 9-7 9.5" fill="none" stroke="#1E1E24" stroke-width="2.5" stroke-linecap="round"/><path d="M14 12h20v11c0 6-4 10-10 10s-10-4-10-10V12z" fill="#FFCF36" stroke="#1E1E24" stroke-width="2.5" stroke-linejoin="round"/><path d="M24 16.5l1.2 2.8 3 .4-2.2 2 .6 3-2.6-1.5-2.6 1.5.6-3-2.2-2 3-.4z" fill="#FF2A54" stroke="#1E1E24" stroke-width="1"/></svg>`,
         title: "OFFICIALLY DORA'S HERO!",
-        msg: "Finish line or not, in Dora's eyes you've already won the whole universe, meri jaan!",
-        stamp: "GOLD STANDARD 🥇",
-        btnText: "BEST ATHLETE EVER! 👑"
+        msg: "“Finish line or not, in Dora's eyes you've already won the whole universe, meri jaan!”",
+        stamp: "GOLD STANDARD LOVE"
       }
     ];
     this.hugVariationIdx = 0;
@@ -683,11 +678,11 @@ class HyroxApp {
     const backdrop = document.getElementById('hug-popup-backdrop');
     const card = document.getElementById('hug-popup-card');
     const tag = document.getElementById('hug-popup-tag');
-    const emojis = document.getElementById('hug-popup-emojis');
+    const iconWrap = document.getElementById('hug-popup-icon-wrap');
     const title = document.getElementById('hug-popup-title');
     const msg = document.getElementById('hug-popup-msg');
     const stamp = document.getElementById('hug-popup-stamp-text');
-    const btnText = document.getElementById('hug-popup-btn-text');
+    const timerFill = document.getElementById('hug-popup-timer-fill');
 
     if (!backdrop || !card) return;
 
@@ -696,29 +691,35 @@ class HyroxApp {
     this.hugVariationIdx = (this.hugVariationIdx + 1) % this.hugVariations.length;
 
     if (tag) tag.textContent = data.tag;
-    if (emojis) emojis.textContent = data.emojis;
+    if (iconWrap && data.svgIcon) iconWrap.innerHTML = data.svgIcon;
     if (title) title.textContent = data.title;
     if (msg) msg.textContent = data.msg;
     if (stamp) stamp.textContent = data.stamp;
-    if (btnText) btnText.textContent = data.btnText;
 
-    // Show backdrop and trigger bouncy spring entrance
+    // Reset reading timer fill bar animation
+    if (timerFill) {
+      timerFill.style.animation = 'none';
+      void timerFill.offsetWidth; // force reflow
+      timerFill.style.animation = '';
+    }
+
+    // Show backdrop and trigger bouncy spring entrance immediately
     backdrop.classList.add('visible');
     backdrop.setAttribute('aria-hidden', 'false');
     card.classList.remove('popping-out');
     void card.offsetWidth; // Force reflow
     card.classList.add('popping-in');
 
-    // Extra burst of floating heart particles around the popup center
+    // Extra burst of floating heart particles around the heart popup
     const cx = window.innerWidth / 2;
     const cy = window.innerHeight / 2;
-    this.burstHearts(cx, cy, 12);
+    this.burstHearts(cx, cy, 14);
 
-    // Auto-dismiss after 6.5s if untouched
+    // Auto-dismiss smoothly after reading duration (3.8s) - no buttons needed!
     clearTimeout(this.hugPopupTimeout);
     this.hugPopupTimeout = setTimeout(() => {
       this.closeHugHeartPopup();
-    }, 6500);
+    }, 3800);
   }
 
   closeHugHeartPopup() {
@@ -1318,10 +1319,10 @@ class HyroxApp {
         this.triggerConfetti(65);
         updateWhisper();
 
-        // Trigger Big, Modern, Scribbly Animated Heart Popup with 5 Creative Variations!
+        // Trigger Big, Modern, Scribbly Animated Heart Popup immediately on impact!
         setTimeout(() => {
           this.showHugHeartPopup();
-        }, 420);
+        }, 30);
 
         clearTimeout(this.hugResetTimer);
         this.hugResetTimer = setTimeout(() => {
@@ -1335,10 +1336,9 @@ class HyroxApp {
       hugBtn.addEventListener('pointerup', handleRelease);
       hugBtn.addEventListener('pointercancel', handleRelease);
 
-      // Animated Scribbly Heart Popup Dismiss Handlers
+      // Animated Scribbly Heart Popup Dismiss Handlers (read & auto-dismiss, or tap anywhere to close early)
       const popupBackdrop = document.getElementById('hug-popup-backdrop');
       const popupClose = document.getElementById('hug-popup-close');
-      const popupActionBtn = document.getElementById('hug-popup-action-btn');
 
       if (popupClose) {
         popupClose.addEventListener('click', (e) => {
@@ -1349,21 +1349,10 @@ class HyroxApp {
         });
       }
 
-      if (popupActionBtn) {
-        popupActionBtn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          this.playSound('pop');
-          this.triggerHaptic(25);
-          this.closeHugHeartPopup();
-        });
-      }
-
       if (popupBackdrop) {
         popupBackdrop.addEventListener('click', (e) => {
-          if (e.target === popupBackdrop) {
-            this.playSound('pop');
-            this.closeHugHeartPopup();
-          }
+          this.playSound('pop');
+          this.closeHugHeartPopup();
         });
       }
 

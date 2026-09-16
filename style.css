@@ -1513,22 +1513,23 @@ body.screen-heartbeat-thump-2 {
 }
 
 /* ===================================================
-   ANIMATED SCRIBBLY HEART POPUP (On Hug Completion)
+   ANIMATED SCRIBBLY HEART-SHAPED POPUP (On Hug Completion)
 =================================================== */
 .hug-popup-backdrop {
   position: fixed;
   inset: 0;
   z-index: 99999;
-  background: rgba(18, 12, 28, 0.65);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(18, 10, 24, 0.68);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 16px;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .hug-popup-backdrop.visible {
@@ -1542,9 +1543,11 @@ body.screen-heartbeat-thump-2 {
   max-width: 440px;
   display: flex;
   justify-content: center;
+  align-items: center;
+  cursor: default;
 }
 
-/* Floating Orbiters (Stars, Emojis, Doodle Arrow) */
+/* Floating Vector SVG Orbiters around the heart */
 .hug-popup-orbiters {
   position: absolute;
   inset: -20px -25px -20px -25px;
@@ -1554,26 +1557,32 @@ body.screen-heartbeat-thump-2 {
 
 .hug-orb {
   position: absolute;
-  font-size: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   filter: drop-shadow(2px 2px 0px var(--ink-dark));
-  animation: orbFloat 2.8s infinite ease-in-out;
+  animation: orbFloat 2.6s infinite ease-in-out;
 }
 
-.orb-tl { top: 12px; left: 8px; animation-delay: 0s; font-size: 30px; }
-.orb-tr { top: 8px; right: 14px; animation-delay: 0.6s; font-size: 28px; }
-.orb-bl { bottom: 25px; left: 6px; animation-delay: 1.2s; font-size: 26px; }
-.orb-br { bottom: 30px; right: 10px; animation-delay: 1.8s; font-size: 28px; }
-.orb-sparkle { top: 48%; right: -18px; animation-delay: 0.9s; font-size: 24px; }
+.hug-orb .orb-svg {
+  width: 32px;
+  height: 32px;
+}
+
+.orb-tl { top: 18px; left: 8px; animation-delay: 0s; }
+.orb-tr { top: 12px; right: 12px; animation-delay: 0.5s; }
+.orb-bl { bottom: 35px; left: 16px; animation-delay: 1.1s; }
+.orb-br { bottom: 42px; right: 18px; animation-delay: 1.6s; }
 
 @keyframes orbFloat {
   0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
-  50% { transform: translateY(-8px) rotate(14deg) scale(1.15); }
+  50% { transform: translateY(-9px) rotate(16deg) scale(1.18); }
 }
 
 .hug-doodle-arrow {
   position: absolute;
-  top: -12px;
-  left: 20px;
+  top: -8px;
+  left: 28px;
   width: 65px;
   height: 48px;
   transform: rotate(-15deg);
@@ -1582,57 +1591,66 @@ body.screen-heartbeat-thump-2 {
 
 @keyframes doodleWiggle {
   0%, 100% { transform: rotate(-15deg) scale(1); }
-  50% { transform: rotate(-8deg) scale(1.08); }
+  50% { transform: rotate(-6deg) scale(1.08); }
 }
 
-/* Main Popup Card */
-.hug-popup-card {
+/* TRUE GIANT HEART-SHAPED CARD */
+.hug-heart-shape-card {
   position: relative;
-  width: 100%;
-  background: #FFFDF8;
-  background-image: radial-gradient(#F780B6 0.75px, transparent 0.75px);
-  background-size: 14px 14px;
-  border: 3.5px solid var(--ink-dark);
-  border-radius: 32px;
-  box-shadow: 8px 10px 0px var(--ink-dark), 0 20px 45px rgba(255, 42, 84, 0.35);
-  padding: 24px 22px 22px;
+  width: 92vw;
+  max-width: 440px;
+  aspect-ratio: 460 / 420;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  text-align: center;
-  transform: scale(0.25) rotate(-14deg);
+  justify-content: center;
+  transform-origin: center center;
+  transform: scale(0.05) rotate(-22deg);
   opacity: 0;
-  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s ease;
 }
 
-.hug-popup-card.popping-in {
+/* Instant, Explosive, Engaging Bouncy Pop Entrance! */
+.hug-heart-shape-card.popping-in {
   transform: scale(1) rotate(-1.5deg);
   opacity: 1;
-  animation: popupCardGentlePulse 3s infinite ease-in-out;
+  animation: heartPopupLivingBeat 2.4s infinite ease-in-out;
 }
 
-@keyframes popupCardGentlePulse {
+@keyframes heartPopupLivingBeat {
   0%, 100% { transform: scale(1) rotate(-1.5deg); }
-  50% { transform: scale(1.02) rotate(0.5deg); }
+  35% { transform: scale(1.03) rotate(0deg); }
+  50% { transform: scale(1.01) rotate(-1deg); }
+  65% { transform: scale(1.04) rotate(0.5deg); }
 }
 
-.hug-popup-card.popping-out {
-  transform: scale(0.4) rotate(12deg) translateY(20px);
+.hug-heart-shape-card.popping-out {
+  transform: scale(0.4) translateY(-50px) rotate(-12deg);
   opacity: 0;
-  transition: transform 0.28s cubic-bezier(0.4, 0, 1, 1), opacity 0.25s ease;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
 }
 
-/* Scribbly Hand-Drawn Close Button */
+/* Giant Chubby Heart SVG Shell */
+.heart-shell-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Scribbly Hand-Drawn Close Button at Top Lobe Edge */
 .hug-popup-close {
   position: absolute;
-  top: -12px;
-  right: -10px;
-  width: 36px;
-  height: 36px;
+  top: 14px;
+  right: 28px;
+  width: 34px;
+  height: 34px;
   background: var(--yellow-main);
   border: var(--border-ink);
   border-radius: var(--radius-pill);
-  box-shadow: 2px 3px 0px var(--ink-dark);
+  box-shadow: 2px 2px 0px var(--ink-dark);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1651,67 +1669,44 @@ body.screen-heartbeat-thump-2 {
   transform: scale(0.95);
 }
 
-/* Giant Beating Heart Emblem */
-.hug-popup-heart-emblem-wrap {
-  position: relative;
-  margin-top: -56px;
-  margin-bottom: 8px;
-  width: 96px;
-  height: 88px;
+/* Inner Content positioned right in the Heart Belly */
+.hug-heart-content {
+  position: absolute;
+  inset: 52px 42px 45px 42px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 5;
+  pointer-events: auto;
+}
+
+/* Clean Vector Theme Icon Badge */
+.hug-heart-icon-badge {
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 5;
+  margin-bottom: 4px;
+  filter: drop-shadow(2px 2.5px 0px var(--ink-dark));
+  animation: iconBounce 1.8s infinite ease-in-out;
 }
 
-.hug-popup-heart-shadow {
-  position: absolute;
-  width: 90px;
-  height: 80px;
-  border-radius: 50%;
-  background: rgba(30, 30, 36, 0.4);
-  top: 10px;
-  left: 6px;
-  filter: blur(4px);
-  z-index: 1;
-}
-
-.hug-popup-heart-emblem {
-  position: relative;
+.hug-heart-icon-badge .theme-svg {
   width: 100%;
   height: 100%;
-  z-index: 2;
-  animation: heartEmblemBeat 1.4s infinite cubic-bezier(0.34, 1.56, 0.64, 1);
-  transform-origin: center center;
 }
 
-.heart-badge-svg {
-  width: 100%;
-  height: 100%;
-  filter: drop-shadow(3px 4px 0px var(--ink-dark));
+@keyframes iconBounce {
+  0%, 100% { transform: scale(1) translateY(0); }
+  50% { transform: scale(1.1) translateY(-3px); }
 }
 
-@keyframes heartEmblemBeat {
-  0%, 100% { transform: scale(1) rotate(0deg); }
-  25% { transform: scale(1.18) rotate(-4deg); }
-  45% { transform: scale(1.08) rotate(3deg); }
-  65% { transform: scale(1.22) rotate(-2deg); }
-}
-
-.hug-popup-emojis-badge {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -46%);
-  font-size: 24px;
-  letter-spacing: 2px;
-  filter: drop-shadow(1px 1px 0px rgba(0, 0, 0, 0.3));
-  pointer-events: none;
-}
-
-/* Fun Scribbly Header Pill */
+/* Scribbly Header Pill */
 .hug-popup-tag-wrap {
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .hug-popup-tag {
@@ -1719,142 +1714,129 @@ body.screen-heartbeat-thump-2 {
   background: var(--badge-yellow);
   border: var(--border-ink-thin);
   border-radius: var(--radius-pill);
-  box-shadow: 2px 2px 0px var(--ink-dark);
-  padding: 3px 12px;
+  box-shadow: 1.5px 1.5px 0px var(--ink-dark);
+  padding: 2.5px 12px;
   font-family: var(--font-display);
-  font-size: 11.5px;
+  font-size: 11px;
   font-weight: 900;
   color: var(--ink-dark);
-  letter-spacing: 0.75px;
+  letter-spacing: 0.8px;
   transform: rotate(-2deg);
 }
 
 /* Big Bold Punchy Title */
 .hug-popup-title {
   font-family: var(--font-display);
-  font-size: 24px;
+  font-size: 21px;
   font-weight: 900;
   color: var(--ink-dark);
   line-height: 1.15;
-  margin: 4px 0 2px;
+  margin: 2px 0 3px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 /* Scribbly Hand-Drawn Wavy Underline */
 .hug-popup-scribble-line {
-  width: 160px;
-  height: 14px;
-  margin: 0 auto 10px;
+  width: 140px;
+  height: 12px;
+  margin: 0 auto 6px;
 }
 
 .scribble-wave-svg {
   width: 100%;
   height: 100%;
-  filter: drop-shadow(1px 1.5px 0px var(--ink-dark));
+  filter: drop-shadow(1px 1px 0px var(--ink-dark));
 }
 
-/* Handwritten Dora Whisper Box */
-.hug-popup-msg-box {
-  position: relative;
-  background: #FFF5F8;
-  border: 2px dashed rgba(255, 42, 84, 0.45);
-  border-radius: 18px;
-  padding: 12px 18px 10px;
-  margin: 4px 0 14px;
-  width: 100%;
-}
-
-.quote-mark {
-  font-family: var(--font-scribble);
-  font-size: 28px;
-  font-weight: 700;
-  color: #FF5C8A;
-  line-height: 0;
-  position: absolute;
-}
-
-.quote-start { top: 12px; left: 8px; }
-.quote-end { bottom: 4px; right: 8px; }
-
+/* Handwritten Dora Whisper Note */
 .hug-popup-msg {
   font-family: var(--font-scribble);
-  font-size: 22.5px;
+  font-size: 21px;
   font-weight: 700;
   color: #1E1E24;
-  line-height: 1.32;
-  margin: 0;
+  line-height: 1.25;
+  margin: 0 0 8px;
+  max-width: 290px;
 }
 
-/* Scribbly Stamp / Guarantee Badge */
+/* Scribbly Stamp Badge */
 .hug-popup-stamp-wrap {
-  margin-bottom: 16px;
+  margin-bottom: 6px;
 }
 
 .hug-popup-stamp {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   background: rgba(255, 42, 84, 0.08);
-  border: 2px dashed #FF2A54;
-  border-radius: 10px;
-  padding: 4px 14px;
+  border: 1.75px dashed #FF2A54;
+  border-radius: 8px;
+  padding: 3px 12px;
   font-family: var(--font-display);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 900;
   color: #FF2A54;
-  letter-spacing: 0.8px;
+  letter-spacing: 0.75px;
   transform: rotate(-3.5deg);
   box-shadow: 1.5px 1.5px 0px rgba(255, 42, 84, 0.25);
 }
 
 .stamp-star {
-  font-size: 10px;
+  font-size: 9px;
   color: #FF7A00;
 }
 
-/* Interactive Action / Dismiss Button */
-.hug-popup-btn {
-  background: linear-gradient(180deg, #FF5C8A 0%, #FF2A54 100%);
-  border: 2.5px solid var(--ink-dark);
-  border-radius: var(--radius-pill);
-  box-shadow: 3.5px 4.5px 0px var(--ink-dark);
-  padding: 12px 24px;
-  font-family: var(--font-display);
-  font-size: 14.5px;
-  font-weight: 900;
-  color: #FFFFFF;
-  letter-spacing: 0.5px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  transition: transform 0.12s ease, box-shadow 0.12s ease;
+/* Subtle Auto-Dismiss Reading Progress Indicator */
+.hug-popup-timer-bar {
+  width: 80px;
+  height: 4px;
+  background: rgba(255, 42, 84, 0.16);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-top: 3px;
 }
 
-.hug-popup-btn:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 4px 6px 0px var(--ink-dark);
+.hug-popup-timer-fill {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #FFCF36, #FF2A54);
+  border-radius: 99px;
+  transform-origin: left center;
 }
 
-.hug-popup-btn:active {
-  transform: translateY(2px);
-  box-shadow: 1.5px 2px 0px var(--ink-dark);
+.hug-heart-shape-card.popping-in .hug-popup-timer-fill {
+  animation: readingTimerShrink 3.8s linear forwards;
+}
+
+@keyframes readingTimerShrink {
+  0% { transform: scaleX(1); }
+  100% { transform: scaleX(0); }
 }
 
 @media (max-width: 480px) {
-  .hug-popup-card {
-    padding: 20px 16px 18px;
-    border-radius: 26px;
+  .hug-heart-shape-card {
+    max-width: 375px;
+  }
+  .hug-heart-content {
+    inset: 44px 28px 36px 28px;
   }
   .hug-popup-title {
-    font-size: 21px;
+    font-size: 18.5px;
   }
   .hug-popup-msg {
-    font-size: 20px;
+    font-size: 18.5px;
+    max-width: 250px;
   }
-  .orb-tl, .orb-tr, .orb-bl, .orb-br {
-    font-size: 22px;
+  .hug-popup-close {
+    top: 10px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+  }
+  .orb-svg {
+    width: 24px;
+    height: 24px;
   }
   .hug-doodle-arrow {
     display: none;
@@ -2195,6 +2177,110 @@ body.screen-heartbeat-thump-2 {
 
 .station-card.completed .station-status-pill {
   background: var(--mint-pop);
+}
+
+/* Locked Station State */
+.station-card.locked {
+  background: #F4F1EA;
+  border-color: #C8C4B8;
+  box-shadow: 2px 2px 0px rgba(30, 30, 36, 0.35);
+  position: relative;
+  transition: all 0.25s ease;
+}
+
+.station-card.locked .station-badge {
+  background: #E2DFD6;
+  color: #8E8A80;
+  border-color: #A8A49A;
+  box-shadow: 1px 1px 0px rgba(30, 30, 36, 0.25);
+}
+
+.station-card.locked .station-name {
+  color: #636159;
+}
+
+.station-card.locked .station-status-pill.pill-locked {
+  background: #E8E5DC;
+  color: #6C685E;
+  border-color: #BDB9AF;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.station-card.locked .station-body {
+  position: relative;
+}
+
+.station-card.locked .station-body > *:not(.station-locked-overlay) {
+  pointer-events: none;
+  filter: grayscale(80%) opacity(0.35);
+  user-select: none;
+}
+
+.station-locked-overlay {
+  display: none;
+}
+
+.station-card.locked .station-locked-overlay {
+  display: flex;
+  position: absolute;
+  inset: 0;
+  z-index: 15;
+  align-items: center;
+  justify-content: center;
+  background: rgba(244, 241, 234, 0.7);
+  backdrop-filter: blur(1.5px);
+  border-radius: var(--radius-inner);
+  cursor: pointer;
+  pointer-events: auto !important;
+  padding: 12px;
+}
+
+.station-locked-banner {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #FFFFFF;
+  border: var(--border-ink-thin);
+  box-shadow: 2.5px 3px 0px var(--ink-dark);
+  border-radius: var(--radius-pill);
+  padding: 9px 18px;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--ink-dark);
+  letter-spacing: 0.2px;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.station-card.locked:hover .station-locked-banner {
+  transform: scale(1.03);
+  background: #FFFDF0;
+}
+
+/* Shake Animation when attempting to access locked station */
+.station-card.station-shake {
+  animation: cardShake 0.4s ease-in-out;
+}
+
+@keyframes cardShake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px) rotate(-0.5deg); }
+  40% { transform: translateX(6px) rotate(0.5deg); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+/* Smooth celebratory pop when station is unlocked */
+.station-card.just-unlocked {
+  animation: stationUnlockPop 0.85s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes stationUnlockPop {
+  0% { transform: scale(0.96); box-shadow: 0 0 0 rgba(255, 207, 54, 0); }
+  50% { transform: scale(1.02); box-shadow: 0 0 24px rgba(255, 207, 54, 0.9), 4px 4px 0px var(--ink-dark); border-color: #FF7A00; }
+  100% { transform: scale(1); box-shadow: var(--shadow-hard); }
 }
 
 /* Inner Pastel Secret Tip Box */
