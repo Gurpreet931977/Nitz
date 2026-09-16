@@ -446,6 +446,8 @@ class HyroxApp {
 
     const resetNoButton = () => {
       noAttempts = 0;
+      const arena = document.getElementById('gift-btn-arena');
+      if (arena) arena.classList.remove('dodging');
       if (giftNoBtn) {
         giftNoBtn.textContent = 'NO 🙈';
         giftNoBtn.style.transform = 'translate(0px, 0px) scale(1)';
@@ -462,6 +464,9 @@ class HyroxApp {
     const dodgeNoButton = (e) => {
       if (e) e.preventDefault();
       noAttempts++;
+
+      const arena = document.getElementById('gift-btn-arena');
+      if (arena) arena.classList.add('dodging');
 
       this.resumeAudio();
       this.playSound('boing');
@@ -483,25 +488,25 @@ class HyroxApp {
         giftHintText.textContent = hintPleadingMessages[noAttempts % hintPleadingMessages.length];
       }
 
-      // Grow the YES button
-      const scale = 1 + Math.min(noAttempts * 0.16, 0.9);
+      // Grow the YES button on top
+      const scale = 1 + Math.min(noAttempts * 0.14, 0.7);
       if (giftYesBtn) {
         giftYesBtn.style.setProperty('--yes-scale', scale);
         giftYesBtn.style.transform = `scale(${scale})`;
       }
 
-      // Playfully dodge the NO button within card boundaries
+      // Playfully dodge the NO button below YES without ever colliding or hiding behind
       if (giftNoBtn) {
-        const arena = document.getElementById('gift-btn-arena');
-        const arenaRect = arena ? arena.getBoundingClientRect() : { width: 300, height: 80 };
-        const maxRangeX = Math.min(80, arenaRect.width * 0.22);
-        const maxRangeY = 35;
+        const dodgeOffsets = [
+          { x: -35, y: 0 },
+          { x: 38, y: 3 },
+          { x: -45, y: -2 },
+          { x: 42, y: 4 }
+        ];
+        const offset = dodgeOffsets[(noAttempts - 1) % dodgeOffsets.length];
+        const shrink = Math.max(0.82, 1 - noAttempts * 0.04);
 
-        const randX = (Math.random() > 0.5 ? 1 : -1) * (25 + Math.random() * maxRangeX);
-        const randY = (Math.random() > 0.5 ? 1 : -1) * (15 + Math.random() * maxRangeY);
-        const shrink = Math.max(0.75, 1 - noAttempts * 0.05);
-
-        giftNoBtn.style.transform = `translate(${randX}px, ${randY}px) scale(${shrink})`;
+        giftNoBtn.style.transform = `translate(${offset.x}px, ${offset.y}px) scale(${shrink})`;
       }
     };
 
@@ -656,10 +661,15 @@ class HyroxApp {
         // 1) Start continuous acoustic physical rumble through speakers (buzzes phone chassis)
         this.startContinuousHugRumble();
 
-        // 2) Immediate strong physical actuator impact on contact
+        // 2) Immediate continuous solid hardware motor vibration (ZERO PAUSES while holding!)
+        if ('vibrate' in navigator) {
+          try {
+            navigator.vibrate(10000); // 10-second continuous solid hold
+          } catch (e) {}
+        }
         this.triggerHeartbeatHaptic(1);
 
-        let lastVibrateTime = Date.now();
+        let lastRefreshTime = Date.now();
         let lastBeatTier = 0;
 
         // Smoothly charge the hug progress and escalate vibrations continuously
@@ -673,34 +683,17 @@ class HyroxApp {
           // Dynamically ramp the acoustic rumble motor volume and frequency
           this.setHugRumbleIntensity(pct);
 
-          // ---- Continuous escalating hardware vibration (pattern loop approach) ----
-          // We schedule a new vibration pattern each ~interval so the phone *never* stops.
-          // Navigator.vibrate() with a pattern auto-stops at end; re-calling keeps it going.
+          // Keep physical hardware vibration 100% continuous without pauses while holding
           const nowTime = Date.now();
-
-          // Interval tightens as pct rises: 260ms (start) -> 90ms (at 100%)
-          const pulseIntervalMs = Math.max(90, 260 - (pct * 1.7));
-
-          if (nowTime - lastVibrateTime >= pulseIntervalMs) {
-            lastVibrateTime = nowTime;
-            if ('vibrate' in navigator) {
-              try {
-                if (pct >= 100) {
-                  // Full-power: continuous double-thump at maximum phone motor strength
-                  navigator.vibrate([300, 40, 300]);
-                } else if (pct >= 75) {
-                  // Heavy rapid pulses  
-                  const on = Math.round(120 + pct * 1.2);
-                  navigator.vibrate([on, 35, on]);
-                } else if (pct >= 45) {
-                  // Growing double-tap pattern
-                  const on = Math.round(80 + pct * 1.0);
-                  navigator.vibrate([on, 45, Math.round(on * 0.8)]);
-                } else {
-                  // Gentle single pulse rising
-                  navigator.vibrate(Math.round(60 + pct * 0.9));
-                }
-              } catch (err) {}
+          if (pct < 100) {
+            // Re-arm solid continuous vibration every 750ms so the motor never cuts out
+            if (nowTime - lastRefreshTime >= 750) {
+              lastRefreshTime = nowTime;
+              if ('vibrate' in navigator) {
+                try {
+                  navigator.vibrate(5000);
+                } catch (err) {}
+              }
             }
           }
 
@@ -730,19 +723,17 @@ class HyroxApp {
               this.triggerHeartbeatHaptic(3);
             }
           } else {
-            // 100% Fully Powered Warm Hug! - continuous max-power rumble
+            // 100% Fully Powered Warm Hug! - Immediate MAX-IMPACT slam
             hugBtn.classList.add('fully-charged');
             if (hugBtnText) hugBtnText.textContent = '100% WARMTH! Release now!';
             if (hugMeterText) hugMeterText.textContent = 'Release to receive full hug!';
             if (lastBeatTier < 4) {
               lastBeatTier = 4;
-              // Fire max-impact blast immediately when 100% is first reached
+              // Immediate powerful dual-slam impact on 100%
               if ('vibrate' in navigator) {
                 try {
-                  navigator.vibrate([
-                    500, 30, 500, 30, 500, 30, 500
-                  ]);
-                } catch(e) {}
+                  navigator.vibrate([180, 20, 300, 25, 5000]);
+                } catch (e) {}
               }
               this.triggerHeartbeatHaptic(4);
             }
@@ -766,6 +757,13 @@ class HyroxApp {
         clearInterval(this.hugPulseInterval);
         this.stopContinuousHugRumble();
 
+        // Immediately silence hardware motor
+        if ('vibrate' in navigator) {
+          try {
+            navigator.vibrate(0);
+          } catch (e) {}
+        }
+
         hugBtn.classList.remove('squeezing', 'fully-charged');
         if (hugZone) hugZone.classList.remove('holding');
         if (warmthOverlay) warmthOverlay.classList.remove('warmth-holding');
@@ -782,7 +780,7 @@ class HyroxApp {
           if (hugBtnText) hugBtnText.textContent = 'Hold longer for a real hug! 🫂';
           if (hugMeterText) hugMeterText.textContent = 'Must hold for a deep hug!';
           if ('vibrate' in navigator) {
-            try { navigator.vibrate([120, 60, 120]); } catch (e) {}
+            try { navigator.vibrate([60, 40, 60]); } catch (e) {}
           }
           this.playSound('boing');
 
@@ -868,7 +866,7 @@ class HyroxApp {
       });
     }
 
-    // Checklist checkboxes
+    // Interactive Checklist Tracker
     const checkboxes = document.querySelectorAll('.doodle-checkbox');
     const checklistStatus = document.getElementById('checklist-status');
     checkboxes.forEach(cb => {
@@ -902,17 +900,17 @@ class HyroxApp {
         this.triggerHaptic(25);
 
         const percent = Math.min(100, (this.sledTaps / this.sledMax) * 100);
-        sledFill.style.width = `${percent}%`;
-        sledRunner.style.left = `calc(${percent}% * 0.72 + 10px)`;
-        sledTaps.textContent = this.sledTaps;
+        if (sledFill) sledFill.style.width = `${percent}%`;
+        if (sledRunner) sledRunner.style.left = `calc(${percent}% * 0.72 + 10px)`;
+        if (sledTaps) sledTaps.textContent = this.sledTaps;
 
         const rect = sledBtn.getBoundingClientRect();
-        this.createHeartParticle(rect.left + rect.width / 2, rect.top, '🔥');
+        this.burstHearts(rect.left + rect.width / 2, rect.top, 2);
 
         if (this.sledTaps >= this.sledMax) {
-          sledMsg.textContent = '⚡ All 4 skids have crossed the white boundary line! Now tap "Turn Sled Around"!';
+          if (sledMsg) sledMsg.textContent = '⚡ All 4 skids have crossed the white boundary line! Now tap "Turn Sled Around"!';
         } else {
-          sledMsg.textContent = `Pushing across turf... (${this.sledTaps}/${this.sledMax} lengths)`;
+          if (sledMsg) sledMsg.textContent = `Pushing across turf... (${this.sledTaps}/${this.sledMax} lengths)`;
         }
       });
     }
@@ -924,20 +922,21 @@ class HyroxApp {
           // EARLY TURN PENALTY!
           this.playSound('boing');
           this.triggerHaptic(60);
-          sledMsg.textContent = '⚠️ NO REP! Rear skids haven\'t cleared the white tape! In HYROX, all 4 skids must completely cross before turning!';
+          if (sledMsg) sledMsg.textContent = "⚠️ NO REP! Rear skids haven't cleared the white tape! In HYROX, all 4 skids must completely cross before turning!";
           // Penalty: Sled pushed back 2 steps
           this.sledTaps = Math.max(0, this.sledTaps - 2);
           const percent = Math.min(100, (this.sledTaps / this.sledMax) * 100);
-          sledFill.style.width = `${percent}%`;
-          sledRunner.style.left = `calc(${percent}% * 0.72 + 10px)`;
-          sledTaps.textContent = this.sledTaps;
+          if (sledFill) sledFill.style.width = `${percent}%`;
+          if (sledRunner) sledRunner.style.left = `calc(${percent}% * 0.72 + 10px)`;
+          if (sledTaps) sledTaps.textContent = this.sledTaps;
         } else {
           // Clean turn validated!
           this.sledDone = true;
-          sledTurnBtn.innerHTML = '✅ CLEAN TURN VALIDATED!';
+          sledTurnBtn.classList.add('completed-game');
+          sledTurnBtn.innerHTML = '<span>✅ CLEAN TURN VALIDATED!</span>';
           sledBtn.classList.add('completed-game');
-          sledBtn.innerHTML = '✅ 50m SLED CRUSHED!';
-          sledMsg.textContent = '✅ GOOD REP! All 4 skids cleared the line cleanly! Zero penalty minutes for Bhondu! 💥';
+          sledBtn.innerHTML = '<span>✅ 50m SLED CRUSHED!</span>';
+          if (sledMsg) sledMsg.textContent = '✅ GOOD REP! All 4 skids cleared the line cleanly! Zero penalty minutes for Bhondu! 💥';
           this.stampStation(2);
           this.playSound('fanfare');
           const rect = sledTurnBtn.getBoundingClientRect();
@@ -963,13 +962,13 @@ class HyroxApp {
         this.triggerHaptic(30);
 
         burpeeDropBtn.classList.add('chest-touched');
-        burpeeDropBtn.innerHTML = '✓ Chest on Turf!';
+        burpeeDropBtn.innerHTML = '<svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span>Chest on Turf!</span>';
         if (chestTouchIndicator) {
           chestTouchIndicator.textContent = 'Chest on Turf: YES ✓';
           chestTouchIndicator.classList.add('active');
         }
-        burpeeJumper.style.transform = 'translateY(12px) scale(1.15, 0.8)';
-        burpeeMsg.textContent = 'Chest touch verified by judge! Now tap "2. Two-Foot Leap"!';
+        if (burpeeJumper) burpeeJumper.style.transform = 'translateY(12px) scale(1.15, 0.8)';
+        if (burpeeMsg) burpeeMsg.textContent = 'Chest touch verified by judge! Now tap "2. Two-Foot Leap"!';
       });
     }
 
@@ -981,7 +980,7 @@ class HyroxApp {
           // NO REP: Jumped without chest on turf
           this.playSound('boing');
           this.triggerHaptic(60);
-          burpeeMsg.textContent = '⚠️ NO REP! Chest didn\'t touch the turf! Both hands and chest must make full turf contact before jumping!';
+          if (burpeeMsg) burpeeMsg.textContent = "⚠️ NO REP! Chest didn't touch the turf! Both hands and chest must make full turf contact before jumping!";
           return;
         }
 
@@ -990,7 +989,7 @@ class HyroxApp {
         chestTouched = false;
         if (burpeeDropBtn) {
           burpeeDropBtn.classList.remove('chest-touched');
-          burpeeDropBtn.innerHTML = '⬇️ 1. Drop Chest to Turf';
+          burpeeDropBtn.innerHTML = '<svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"/></svg><span>1. Drop Chest to Turf</span>';
         }
         if (chestTouchIndicator) {
           chestTouchIndicator.textContent = 'Chest on Turf: NO ❌';
@@ -1001,28 +1000,34 @@ class HyroxApp {
         this.triggerHaptic(35);
 
         // Leap animation
-        burpeeJumper.style.transform = 'translateY(-26px) scale(1.35) rotate(-10deg)';
-        setTimeout(() => {
-          burpeeJumper.style.transform = 'translateY(0px) scale(1) rotate(0deg)';
-        }, 240);
+        if (burpeeJumper) {
+          burpeeJumper.style.transform = 'translateY(-26px) scale(1.35) rotate(-10deg)';
+          setTimeout(() => {
+            if (burpeeJumper) burpeeJumper.style.transform = 'translateY(0px) scale(1) rotate(0deg)';
+          }, 240);
 
-        const percent = (this.burpeeJumps / this.burpeeMax) * 100;
-        burpeeJumper.style.left = `calc(${percent}% * 0.75 + 15px)`;
-        burpeeJumpsEl.textContent = this.burpeeJumps;
+          const percent = (this.burpeeJumps / this.burpeeMax) * 100;
+          burpeeJumper.style.left = `calc(${percent * 0.72}% + 14px)`;
+        }
+        if (burpeeJumpsEl) burpeeJumpsEl.textContent = this.burpeeJumps;
 
         const rect = burpeeJumpBtn.getBoundingClientRect();
-        this.createHeartParticle(rect.left + rect.width / 2, rect.top, '🐸');
+        this.burstHearts(rect.left + rect.width / 2, rect.top, 2);
 
         if (this.burpeeJumps >= this.burpeeMax) {
           this.burpeeDone = true;
           burpeeJumpBtn.classList.add('completed-game');
-          burpeeJumpBtn.innerHTML = '✅ 80m JUMPS COMPLETED!';
-          burpeeMsg.textContent = '✅ GOOD REP! 80m burpee broad jumps conquered with flawless movement standards! 🌟';
+          burpeeJumpBtn.innerHTML = '<span>✅ 80m JUMPS COMPLETED!</span>';
+          if (burpeeDropBtn) {
+            burpeeDropBtn.classList.add('completed-game');
+            burpeeDropBtn.innerHTML = '<span>✅ 4 REPS DONE</span>';
+          }
+          if (burpeeMsg) burpeeMsg.textContent = '✅ GOOD REP! 80m burpee broad jumps conquered with flawless movement standards! 🌟';
           this.stampStation(4);
           this.playSound('fanfare');
           this.burstHearts(rect.left + rect.width / 2, rect.top, 10);
         } else {
-          burpeeMsg.textContent = `Step ${this.burpeeJumps}/4 completed! Tap "Drop Chest to Turf" for the next rep!`;
+          if (burpeeMsg) burpeeMsg.textContent = `Step ${this.burpeeJumps}/4 completed! Tap "Drop Chest to Turf" for the next rep!`;
         }
       });
     }
@@ -1073,16 +1078,16 @@ class HyroxApp {
 
         if (squatIsDeep) {
           wbSquatToggle.classList.add('deep-active');
-          wbSquatToggle.innerHTML = '✓ Squat Deep (Below Parallel)';
+          wbSquatToggle.innerHTML = '<svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span>Squat Deep ✓</span>';
           if (depthNeedle) depthNeedle.style.left = '80%';
           if (athleteSquatEmoji) athleteSquatEmoji.classList.add('squatting-deep');
-          wbMsg.textContent = 'Hip crease is below knee line (valid rep depth)! Now tap "2. Toss to Target!"';
+          if (wbMsg) wbMsg.textContent = 'Hip crease is below knee line (valid rep depth)! Now tap "2. Toss to Target!"';
         } else {
           wbSquatToggle.classList.remove('deep-active');
-          wbSquatToggle.innerHTML = '🏋️ 1. Squat Deep (Below Parallel)';
+          wbSquatToggle.innerHTML = '<svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z"/></svg><span>1. Squat Deep (Below Parallel)</span>';
           if (depthNeedle) depthNeedle.style.left = '18%';
           if (athleteSquatEmoji) athleteSquatEmoji.classList.remove('squatting-deep');
-          wbMsg.textContent = 'Standing upright. Tap "Squat Deep" before tossing!';
+          if (wbMsg) wbMsg.textContent = 'Standing upright. Tap "Squat Deep" before tossing!';
         }
       });
     }
@@ -1096,7 +1101,7 @@ class HyroxApp {
           this.playSound('boing');
           this.triggerHaptic(60);
           if (depthNeedle) depthNeedle.style.left = '18%';
-          wbMsg.textContent = '⚠️ NO REP! Squat too shallow! In HYROX, hip crease must break parallel below the knee line on every rep!';
+          if (wbMsg) wbMsg.textContent = '⚠️ NO REP! Squat too shallow! In HYROX, hip crease must break parallel below the knee line on every rep!';
           return;
         }
 
@@ -1106,20 +1111,22 @@ class HyroxApp {
         this.triggerHaptic(40);
 
         // Projectile animation
-        wbBall.classList.add('tossed');
-        setTimeout(() => {
-          wbBall.classList.remove('tossed');
-        }, 350);
+        if (wbBall) {
+          wbBall.classList.add('tossed');
+          setTimeout(() => {
+            if (wbBall) wbBall.classList.remove('tossed');
+          }, 350);
+        }
 
-        wbHitsEl.textContent = this.wallBallHits;
+        if (wbHitsEl) wbHitsEl.textContent = this.wallBallHits;
         const rect = wbBtn.getBoundingClientRect();
-        this.createHeartParticle(rect.left + rect.width / 2, rect.top, '🎯');
+        this.burstHearts(rect.left + rect.width / 2, rect.top, 3);
 
         // Reset squat depth for next rep
         squatIsDeep = false;
         if (wbSquatToggle) {
           wbSquatToggle.classList.remove('deep-active');
-          wbSquatToggle.innerHTML = '🏋️ 1. Squat Deep (Below Parallel)';
+          wbSquatToggle.innerHTML = '<svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z"/></svg><span>1. Squat Deep (Below Parallel)</span>';
         }
         if (depthNeedle) depthNeedle.style.left = '18%';
         if (athleteSquatEmoji) athleteSquatEmoji.classList.remove('squatting-deep');
@@ -1127,18 +1134,23 @@ class HyroxApp {
         if (this.wallBallHits >= this.wallBallMax) {
           this.wallBallDone = true;
           wbBtn.classList.add('completed-game');
-          wbBtn.innerHTML = '🏆 100 WALL BALLS CRUSHED!';
-          wbMsg.textContent = '✅ FINAL BOSS DOWN! Flawless squat depth, zero no-reps, and the Red Carpet awaits our Champion! 👑';
+          wbBtn.innerHTML = '<span>🏆 100 WALL BALLS CRUSHED!</span>';
+          if (wbSquatToggle) {
+            wbSquatToggle.classList.add('completed-game');
+            wbSquatToggle.innerHTML = '<span>✅ SQUATS CLEAN</span>';
+          }
+          if (wbMsg) wbMsg.textContent = '✅ FINAL BOSS DOWN! Flawless squat depth, zero no-reps, and the Red Carpet awaits our Champion! 👑';
           this.stampStation(8);
           this.playSound('fanfare');
           this.triggerConfetti(65);
 
           // Smooth scroll down to the finish line arch
           setTimeout(() => {
-            document.getElementById('finish-section').scrollIntoView({ behavior: 'smooth' });
+            const finishSec = document.getElementById('finish-section');
+            if (finishSec) finishSec.scrollIntoView({ behavior: 'smooth' });
           }, 650);
         } else {
-          wbMsg.textContent = `Rep ${this.wallBallHits}/3 counted! Squat deep below parallel for rep ${this.wallBallHits + 1}!`;
+          if (wbMsg) wbMsg.textContent = `Rep ${this.wallBallHits}/3 counted! Squat deep below parallel for rep ${this.wallBallHits + 1}!`;
         }
       });
     }
@@ -1340,6 +1352,11 @@ class HyroxApp {
       const pill = card.querySelector('.station-status-pill');
       if (pill) {
         pill.innerHTML = '✅ Stamped!';
+      }
+      const stampBtn = card.querySelector('.stamp-btn');
+      if (stampBtn) {
+        stampBtn.classList.add('completed-stamp');
+        stampBtn.innerHTML = '<svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span>✅ Stamped & Verified!</span>';
       }
     }
 
