@@ -8,8 +8,8 @@ class HyroxApp {
     this.soundEnabled = true;
     this.audioCtx = null;
     this.hugCount = 0;
-    this.energyScore = 100;
-    this.completedStations = new Set([1]); // Station 1 unlocked initially
+    this.energyScore = 0;
+    this.completedStations = new Set(); // Station 1 unlocked initially, stations 2-8 locked
     this.totalStations = 8;
     
     // Mini game states
@@ -27,46 +27,46 @@ class HyroxApp {
 
     // Deeply Loving, Motivating & Race-Day Pep Talks from Dora (Zero em-dashes)
     this.pepQuotes = [
-      { text: "Bhondu, remember how hard you trained for this! Take a deep breath, keep that cute chin up, and show that turf what you are made of!", tag: "👑 CHAMPION MINDSET", emoji: "⭐" },
-      { text: "Even if your legs feel heavy, remember: you are 90% determination, 10% pure cuteness, and 100% unstoppable!", tag: "⚡ BEAST MODE", emoji: "🔥" },
-      { text: "I am cheering for you so loud, even the judges in the Roxzone can hear my heart beating for you, meri jaan!", tag: "💖 PURE LOVE", emoji: "🥰" },
-      { text: "Pacing is key, meri Bhondu! Smooth running, steady stations, and that signature mischievous smile that lights up my whole world!", tag: "🏃 PACING WISDOM", emoji: "👟" },
-      { text: "Fun fact: When you cross the finish line, you officially get 10,000 Dora points, endless fruit smoothies, and unlimited foot rubs forever!", tag: "🥰 CHEEKY DORA", emoji: "🍓" },
-      { text: "Look at that runner bib: #01 Athlete! You are already my champion, now just go out there and have the time of your life!", tag: "👑 CHAMPION MINDSET", emoji: "🥇" },
-      { text: "Thakna mana hai, haar maanna impossible hai, and looking insanely adorable while lifting heavy is your superpower!", tag: "⚡ BEAST MODE", emoji: "💪" },
-      { text: "Whenever you feel the burn, imagine each repetition is a warm squeeze from me waiting to scoop you up at the finish line!", tag: "💖 PURE LOVE", emoji: "🫂" },
-      { text: "Wall balls? Sleds? SkiErg? Nothing in this arena is as fierce as my Bhondu when she sets her mind to conquer something!", tag: "⚡ BEAST MODE", emoji: "🦁" },
-      { text: "Breathe in bravery, breathe out nerves. You are doing something 99% of people only dream of doing. I could not be prouder of you!", tag: "🌟 COURAGE", emoji: "✨" },
-      { text: "Tu meri sabse strong, sabse fearless, aur sabse pyaari rockstar hai. Jab tu turf par utarti hai, arena roshan ho jata hai!", tag: "💖 PURE LOVE", emoji: "💖" },
-      { text: "Every drop of sweat today is proof of your dedication. Run like the wind, breathe deep, and know Dora's eyes are always watching you with pure awe.", tag: "🏃 PACING WISDOM", emoji: "💨" },
-      { text: "Whenever self-doubt whispers in your ear, remember: Dora believes in you 1000 times more than you can ever doubt yourself!", tag: "🌟 COURAGE", emoji: "🛡️" },
-      { text: "Station 4, Station 6, Station 8: take it one station at a time, Bhondu! Don't race the whole clock, just win the rep right in front of you!", tag: "⏱️ SUB-1.5H MISSION", emoji: "🎯" },
-      { text: "Teri yeh fighting spirit dekh kar mera dil har roz tere pyaar mein dubara girta hai. Go shine today, my brave superhero!", tag: "💖 PURE LOVE", emoji: "💘" },
-      { text: "Feeling that lactic acid burn? That is just your inner beast waking up! Smile at the pain and keep those feet dancing!", tag: "⚡ BEAST MODE", emoji: "🔥" },
-      { text: "Finish line par clock time jo bhi dikhaye, meri nazar mein tu pehle hi gold standard set kar chuki hai. Bas enjoy kar aur udaan bhar!", tag: "👑 CHAMPION MINDSET", emoji: "👑" },
-      { text: "Sub-1.5 hours is not just a dream, it is the result of every early morning and every rep you did. It belongs to you, Bhondu!", tag: "⏱️ SUB-1.5H MISSION", emoji: "⏱️" },
-      { text: "Your legs are strong, your lungs are ready, your heart is pure gold, and you have Dora cheering in your corner forever!", tag: "💖 PURE LOVE", emoji: "❤️" },
-      { text: "When the sled feels heavy, lean in lower, drive through the turf, and whisper: 'Dora is waiting with the warmest hug!'", tag: "🚜 SLED POWER", emoji: "🏋️‍♀️" },
-      { text: "Bhondu, you are not just participating today, you are writing your own inspiring story. Hold your head high and own every single meter!", tag: "🌟 COURAGE", emoji: "📖" },
-      { text: "If you need strength in the middle of a run, take a deep breath and feel my hand in yours. I am right there running alongside your spirit!", tag: "💖 PURE LOVE", emoji: "🤝" },
-      { text: "No one has your heart, no one has your grit, and definitely no one looks that cute while conquering 8 kilometers of sheer grind!", tag: "🥰 CHEEKY DORA", emoji: "🐰" },
-      { text: "Remember to relax your shoulders, unclench your jaw, and let your rhythm take over. Flow like water, strike like lightning!", tag: "🏃 PACING WISDOM", emoji: "⚡" },
-      { text: "Tu meri favorite human hai aur hamesha rahegi. Win or learn, you are my ultimate hero, meri jaan!", tag: "💖 PURE LOVE", emoji: "🌹" },
-      { text: "The pain is temporary, but the feeling of conquering HYROX and hearing your name called will last forever. Go get it, champ!", tag: "👑 CHAMPION MINDSET", emoji: "🏆" },
-      { text: "Whenever you pass a cheering crowd, remember the loudest cheer in that entire building is coming straight from Dora's soul for you!", tag: "💖 PURE LOVE", emoji: "📢" },
-      { text: "Burpees getting spicy? Count to four: hands down, chest flat, pop up, leap! Robotic perfection, just like we practiced!", tag: "🐸 BURPEE RHYTHM", emoji: "🐸" },
-      { text: "Dora's official race contract: After this, all grocery carrying, heavy lifting, and cooking duties are 100% mine for the next month!", tag: "🥰 CHEEKY DORA", emoji: "🥐" },
-      { text: "You turned fear into focus and sweat into strength. Look at how far you have come, Bhondu. Now go claim your victory lap!", tag: "🌟 COURAGE", emoji: "🌈" },
-      { text: "Sub-90 minutes is calling your name! Keep those transitions sharp, breathe through the nose, and keep that fiery spirit blazing!", tag: "⏱️ SUB-1.5H MISSION", emoji: "🚀" },
-      { text: "Tu fearless hai, tu powerful hai, aur tu meri sabse pyari Bhondu hai. Bas dil khol ke daud, baaki sab Dora sambhal lega!", tag: "💖 PURE LOVE", emoji: "✨" },
-      { text: "Every wall ball that hits the center of the target is a kiss from Dora waiting for you at the finish arch!", tag: "🎯 TARGET LOCK", emoji: "💋" },
-      { text: "Never look at what others are doing. This is YOUR race, YOUR pace, and YOUR moment to shine bright like the sun!", tag: "👑 CHAMPION MINDSET", emoji: "☀️" },
-      { text: "One kilometer at a time, one rep at a time. Before you know it, you will hear the finish crowd roaring for Super Nitz!", tag: "🏃 PACING WISDOM", emoji: "🏁" },
-      { text: "Bhondu, jab tu thakne lage, bas aankhein band karke sochna: Dora finish line par khada hai, dono baazu khole hue, sirf tere liye!", tag: "💖 PURE LOVE", emoji: "🫂" },
-      { text: "You have survived 100% of your hardest training days, and today you are going to thrive. Trust yourself like I trust you!", tag: "🌟 COURAGE", emoji: "💎" },
-      { text: "When you feel like stopping, remember why you started. Every step is bringing you closer to glory, and Dora is so proud!", tag: "👑 CHAMPION MINDSET", emoji: "🔥" },
-      { text: "Dora's promise: No matter how sweaty or exhausted you are at the end, the biggest, warmest bear hug is waiting right for you!", tag: "💖 PURE LOVE", emoji: "🧸" },
-      { text: "Head up, shoulders back, smile on your face. You are the baddest, bravest, and most beautiful athlete in this entire arena!", tag: "👑 CHAMPION MINDSET", emoji: "🌸" }
+      { text: "Bhondu, remember how hard you trained for this! Take a deep breath, keep that cute chin up, and show that turf what you are made of!", tag: "CHAMPION MINDSET", emoji: "⭐" },
+      { text: "Even if your legs feel heavy, remember: you are 90% determination, 10% pure cuteness, and 100% unstoppable!", tag: "BEAST MODE", emoji: "🔥" },
+      { text: "I am cheering for you so loud, even the judges in the Roxzone can hear my heart beating for you, meri jaan!", tag: "PURE LOVE", emoji: "🥰" },
+      { text: "Pacing is key, meri Bhondu! Smooth running, steady stations, and that signature mischievous smile that lights up my whole world!", tag: "PACING WISDOM", emoji: "👟" },
+      { text: "Fun fact: When you cross the finish line, you officially get 10,000 Dora points, endless fruit smoothies, and unlimited foot rubs forever!", tag: "CHEEKY DORA", emoji: "🍓" },
+      { text: "Look at that runner bib: #01 Athlete! You are already my champion, now just go out there and have the time of your life!", tag: "CHAMPION MINDSET", emoji: "🥇" },
+      { text: "Thakna mana hai, haar maanna impossible hai, and looking insanely adorable while lifting heavy is your superpower!", tag: "BEAST MODE", emoji: "💪" },
+      { text: "Whenever you feel the burn, imagine each repetition is a warm squeeze from me waiting to scoop you up at the finish line!", tag: "PURE LOVE", emoji: "🫂" },
+      { text: "Wall balls? Sleds? SkiErg? Nothing in this arena is as fierce as my Bhondu when she sets her mind to conquer something!", tag: "BEAST MODE", emoji: "🦁" },
+      { text: "Breathe in bravery, breathe out nerves. You are doing something 99% of people only dream of doing. I could not be prouder of you!", tag: "COURAGE", emoji: "✨" },
+      { text: "Tu meri sabse strong, sabse fearless, aur sabse pyaari rockstar hai. Jab tu turf par utarti hai, arena roshan ho jata hai!", tag: "PURE LOVE", emoji: "💖" },
+      { text: "Every drop of sweat today is proof of your dedication. Run like the wind, breathe deep, and know Dora's eyes are always watching you with pure awe.", tag: "PACING WISDOM", emoji: "💨" },
+      { text: "Whenever self-doubt whispers in your ear, remember: Dora believes in you 1000 times more than you can ever doubt yourself!", tag: "COURAGE", emoji: "🛡️" },
+      { text: "Station 4, Station 6, Station 8: take it one station at a time, Bhondu! Don't race the whole clock, just win the rep right in front of you!", tag: "SUB-1.5H MISSION", emoji: "🎯" },
+      { text: "Teri yeh fighting spirit dekh kar mera dil har roz tere pyaar mein dubara girta hai. Go shine today, my brave superhero!", tag: "PURE LOVE", emoji: "💘" },
+      { text: "Feeling that lactic acid burn? That is just your inner beast waking up! Smile at the pain and keep those feet dancing!", tag: "BEAST MODE", emoji: "🔥" },
+      { text: "Finish line par clock time jo bhi dikhaye, meri nazar mein tu pehle hi gold standard set kar chuki hai. Bas enjoy kar aur udaan bhar!", tag: "CHAMPION MINDSET", emoji: "👑" },
+      { text: "Sub-1.5 hours is not just a dream, it is the result of every early morning and every rep you did. It belongs to you, Bhondu!", tag: "SUB-1.5H MISSION", emoji: "⏱️" },
+      { text: "Your legs are strong, your lungs are ready, your heart is pure gold, and you have Dora cheering in your corner forever!", tag: "PURE LOVE", emoji: "❤️" },
+      { text: "When the sled feels heavy, lean in lower, drive through the turf, and whisper: 'Dora is waiting with the warmest hug!'", tag: "SLED POWER", emoji: "🏋️‍♀️" },
+      { text: "Bhondu, you are not just participating today, you are writing your own inspiring story. Hold your head high and own every single meter!", tag: "COURAGE", emoji: "📖" },
+      { text: "If you need strength in the middle of a run, take a deep breath and feel my hand in yours. I am right there running alongside your spirit!", tag: "PURE LOVE", emoji: "🤝" },
+      { text: "No one has your heart, no one has your grit, and definitely no one looks that cute while conquering 8 kilometers of sheer grind!", tag: "CHEEKY DORA", emoji: "🐰" },
+      { text: "Remember to relax your shoulders, unclench your jaw, and let your rhythm take over. Flow like water, strike like lightning!", tag: "PACING WISDOM", emoji: "⚡" },
+      { text: "Tu meri favorite human hai aur hamesha rahegi. Win or learn, you are my ultimate hero, meri jaan!", tag: "PURE LOVE", emoji: "🌹" },
+      { text: "The pain is temporary, but the feeling of conquering HYROX and hearing your name called will last forever. Go get it, champ!", tag: "CHAMPION MINDSET", emoji: "🏆" },
+      { text: "Whenever you pass a cheering crowd, remember the loudest cheer in that entire building is coming straight from Dora's soul for you!", tag: "PURE LOVE", emoji: "📢" },
+      { text: "Burpees getting spicy? Count to four: hands down, chest flat, pop up, leap! Robotic perfection, just like we practiced!", tag: "BURPEE RHYTHM", emoji: "🐸" },
+      { text: "Dora's official race contract: After this, all grocery carrying, heavy lifting, and cooking duties are 100% mine for the next month!", tag: "CHEEKY DORA", emoji: "🥐" },
+      { text: "You turned fear into focus and sweat into strength. Look at how far you have come, Bhondu. Now go claim your victory lap!", tag: "COURAGE", emoji: "🌈" },
+      { text: "Sub-90 minutes is calling your name! Keep those transitions sharp, breathe through the nose, and keep that fiery spirit blazing!", tag: "SUB-1.5H MISSION", emoji: "🚀" },
+      { text: "Tu fearless hai, tu powerful hai, aur tu meri sabse pyari Bhondu hai. Bas dil khol ke daud, baaki sab Dora sambhal lega!", tag: "PURE LOVE", emoji: "✨" },
+      { text: "Every wall ball that hits the center of the target is a kiss from Dora waiting for you at the finish arch!", tag: "TARGET LOCK", emoji: "💋" },
+      { text: "Never look at what others are doing. This is YOUR race, YOUR pace, and YOUR moment to shine bright like the sun!", tag: "CHAMPION MINDSET", emoji: "☀️" },
+      { text: "One kilometer at a time, one rep at a time. Before you know it, you will hear the finish crowd roaring for Super Nitz!", tag: "PACING WISDOM", emoji: "🏁" },
+      { text: "Bhondu, jab tu thakne lage, bas aankhein band karke sochna: Dora finish line par khada hai, dono baazu khole hue, sirf tere liye!", tag: "PURE LOVE", emoji: "🫂" },
+      { text: "You have survived 100% of your hardest training days, and today you are going to thrive. Trust yourself like I trust you!", tag: "COURAGE", emoji: "💎" },
+      { text: "When you feel like stopping, remember why you started. Every step is bringing you closer to glory, and Dora is so proud!", tag: "CHAMPION MINDSET", emoji: "🔥" },
+      { text: "Dora's promise: No matter how sweaty or exhausted you are at the end, the biggest, warmest bear hug is waiting right for you!", tag: "PURE LOVE", emoji: "🧸" },
+      { text: "Head up, shoulders back, smile on your face. You are the baddest, bravest, and most beautiful athlete in this entire arena!", tag: "CHAMPION MINDSET", emoji: "🌸" }
     ];
 
     // Real Warm Hug states and Dora whispers
@@ -88,7 +88,7 @@ class HyroxApp {
     this.holdStartTime = 0;
     this.activePointerId = null;
 
-    // Creative, Fun & Modern Scribbly Heart Popup Messages on Hug Completion (5 rotating variations with custom vector SVGs)
+    // Creative, Fun & Modern Scribbly Heart Popup Messages on Hug Completion (4 rotating variations with custom vector SVGs)
     this.hugVariations = [
       {
         tag: "DORA TURBO BATTERY",
@@ -96,13 +96,6 @@ class HyroxApp {
         title: "10,000% RECHARGED!",
         msg: "“Bhondu's heart is now loaded with infinite beast-mode cuddle energy!”",
         stamp: "MAX TURBO POWER"
-      },
-      {
-        tag: "MAXIMUM SQUEEZE",
-        svgIcon: `<svg viewBox="0 0 48 48" class="theme-svg"><circle cx="12" cy="14" r="8" fill="#F4A261" stroke="#1E1E24" stroke-width="2.5"/><circle cx="12" cy="14" r="4.5" fill="#FFB4A2"/><circle cx="36" cy="14" r="8" fill="#F4A261" stroke="#1E1E24" stroke-width="2.5"/><circle cx="36" cy="14" r="4.5" fill="#FFB4A2"/><circle cx="24" cy="27" r="18" fill="#F4A261" stroke="#1E1E24" stroke-width="2.5"/><ellipse cx="24" cy="31" rx="10" ry="8" fill="#FFF0ED" stroke="#1E1E24" stroke-width="2"/><ellipse cx="24" cy="28" rx="4" ry="2.5" fill="#1E1E24"/><path d="M24 30.5v3m-2.5 0a2.5 2.5 0 0 0 5 0" fill="none" stroke="#1E1E24" stroke-width="2" stroke-linecap="round"/><circle cx="17" cy="23" r="2.5" fill="#1E1E24"/><circle cx="31" cy="23" r="2.5" fill="#1E1E24"/><circle cx="17.8" cy="22.2" r="0.8" fill="#FFF"/><circle cx="31.8" cy="22.2" r="0.8" fill="#FFF"/><ellipse cx="13" cy="28" rx="2.5" ry="1.5" fill="#FF708F"/><ellipse cx="35" cy="28" rx="2.5" ry="1.5" fill="#FF708F"/></svg>`,
-        title: "1,000,000 TONS OF LOVE!",
-        msg: "“Dora's arms are officially locked around you until race day finishes!”",
-        stamp: "SUPER SNUGGLY SQUEEZE"
       },
       {
         tag: "RACE-DAY BUFF",
@@ -131,6 +124,7 @@ class HyroxApp {
 
     this.initAudio();
     this.bindEvents();
+    this.initStations();
     this.initConfetti();
     this.updateProgress();
   }
@@ -710,16 +704,18 @@ class HyroxApp {
     void card.offsetWidth; // Force reflow
     card.classList.add('popping-in');
 
+    this.playSound('pop');
+
     // Extra burst of floating heart particles around the heart popup
     const cx = window.innerWidth / 2;
     const cy = window.innerHeight / 2;
     this.burstHearts(cx, cy, 14);
 
-    // Auto-dismiss smoothly after reading duration (3.8s) - no buttons needed!
+    // Auto-dismiss smoothly after reading duration (6.5s) - plenty of time to enjoy!
     clearTimeout(this.hugPopupTimeout);
     this.hugPopupTimeout = setTimeout(() => {
       this.closeHugHeartPopup();
-    }, 3800);
+    }, 6500);
   }
 
   closeHugHeartPopup() {
@@ -1126,8 +1122,6 @@ class HyroxApp {
         if (hugZone) hugZone.classList.add('holding');
         if (warmthOverlay) warmthOverlay.classList.add('warmth-holding');
 
-        // Full-screen tactile squeeze and holding state
-        document.body.classList.add('screen-hug-holding');
         document.documentElement.style.setProperty('--hug-charge', '0');
 
         // Start synchronized multi-layered charging SFX (Layer A: Fabric Whoosh, Layer B: Core Glow, Layer C: Melodic Shimmer)
@@ -1238,8 +1232,6 @@ class HyroxApp {
         if (elapsed < MIN_HOLD_MS) {
           this.playHugSFX('stop'); // Clean anti-click disposal of charging audio graph
 
-          // Reset full-screen squeeze and charge smoothly
-          document.body.classList.remove('screen-hug-holding');
           document.documentElement.style.setProperty('--hug-charge', '0');
 
           if (hugFill) hugFill.style.width = '0%';
@@ -1276,16 +1268,11 @@ class HyroxApp {
 
         if (hugBtnText) hugBtnText.textContent = 'Warm Hug Sent with All My Love!';
         if (hugMeterText) hugMeterText.textContent = "Wrapped in Dora's love!";
-        if (hugPctBadge) hugPctBadge.textContent = '100% \u2713';
+        if (hugPctBadge) hugPctBadge.textContent = '100% ✓';
 
         // Play 100% Impact Layers simultaneously: Layer D (Heartbeat Thud) + Layer E (Crystal Chime)
         this.playHugSFX('impact');
         triggerHugGlow(true);
-
-        // --- FULL-SCREEN VISCERAL HEARTBEAT SHOCKWAVES ---
-        document.body.classList.remove('screen-hug-holding');
-        document.body.classList.add('screen-heartbeat-thump-1');
-        setTimeout(() => document.body.classList.remove('screen-heartbeat-thump-1'), 160);
 
         const shockwaveEl = document.getElementById('screen-shockwave');
         if (shockwaveEl) {
@@ -1296,9 +1283,6 @@ class HyroxApp {
 
         // Second Thud physical screen pulse (synced with Dub at t=160ms)
         setTimeout(() => {
-          document.body.classList.add('screen-heartbeat-thump-2');
-          setTimeout(() => document.body.classList.remove('screen-heartbeat-thump-2'), 220);
-
           if (shockwaveEl) {
             shockwaveEl.classList.remove('fire-shockwave-1');
             void shockwaveEl.offsetWidth;
@@ -1338,19 +1322,18 @@ class HyroxApp {
 
       // Animated Scribbly Heart Popup Dismiss Handlers (read & auto-dismiss, or tap anywhere to close early)
       const popupBackdrop = document.getElementById('hug-popup-backdrop');
-      const popupClose = document.getElementById('hug-popup-close');
+      const popupCard = document.getElementById('hug-popup-card');
 
-      if (popupClose) {
-        popupClose.addEventListener('click', (e) => {
-          e.stopPropagation();
+      if (popupBackdrop) {
+        popupBackdrop.addEventListener('click', () => {
           this.playSound('pop');
-          this.triggerHaptic(20);
           this.closeHugHeartPopup();
         });
       }
 
-      if (popupBackdrop) {
-        popupBackdrop.addEventListener('click', (e) => {
+      if (popupCard) {
+        popupCard.addEventListener('click', (e) => {
+          e.stopPropagation();
           this.playSound('pop');
           this.closeHugHeartPopup();
         });
@@ -1434,7 +1417,7 @@ class HyroxApp {
           // EARLY TURN PENALTY!
           this.playSound('boing');
           this.triggerHaptic(60);
-          if (sledMsg) sledMsg.textContent = "⚠️ NO REP! Rear skids haven't cleared the white tape! In HYROX, all 4 skids must completely cross before turning!";
+          if (sledMsg) sledMsg.textContent = "NO REP! Rear skids haven't cleared the white tape! In HYROX, all 4 skids must completely cross before turning!";
           // Penalty: Sled pushed back 2 steps
           this.sledTaps = Math.max(0, this.sledTaps - 2);
           const percent = Math.min(100, (this.sledTaps / this.sledMax) * 100);
@@ -1445,10 +1428,10 @@ class HyroxApp {
           // Clean turn validated!
           this.sledDone = true;
           sledTurnBtn.classList.add('completed-game');
-          sledTurnBtn.innerHTML = '<span>✅ CLEAN TURN VALIDATED!</span>';
+          sledTurnBtn.innerHTML = '<svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span>CLEAN TURN VALIDATED</span>';
           sledBtn.classList.add('completed-game');
-          sledBtn.innerHTML = '<span>✅ 50m SLED CRUSHED!</span>';
-          if (sledMsg) sledMsg.textContent = '✅ GOOD REP! All 4 skids cleared the line cleanly! Zero penalty minutes for Bhondu! 💥';
+          sledBtn.innerHTML = '<svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span>50m SLED CRUSHED</span>';
+          if (sledMsg) sledMsg.textContent = 'GOOD REP! All 4 skids cleared the line cleanly! Zero penalty minutes for Bhondu!';
           this.stampStation(2);
           this.playSound('fanfare');
           const rect = sledTurnBtn.getBoundingClientRect();
@@ -1474,9 +1457,9 @@ class HyroxApp {
         this.triggerHaptic(30);
 
         burpeeDropBtn.classList.add('chest-touched');
-        burpeeDropBtn.innerHTML = '<svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span>Chest on Turf!</span>';
+        burpeeDropBtn.innerHTML = '<svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span>Chest on Turf</span>';
         if (chestTouchIndicator) {
-          chestTouchIndicator.textContent = 'Chest on Turf: YES ✓';
+          chestTouchIndicator.textContent = 'Chest on Turf: YES';
           chestTouchIndicator.classList.add('active');
         }
         if (burpeeJumper) burpeeJumper.style.transform = 'translateY(12px) scale(1.15, 0.8)';
@@ -1492,7 +1475,7 @@ class HyroxApp {
           // NO REP: Jumped without chest on turf
           this.playSound('boing');
           this.triggerHaptic(60);
-          if (burpeeMsg) burpeeMsg.textContent = "⚠️ NO REP! Chest didn't touch the turf! Both hands and chest must make full turf contact before jumping!";
+          if (burpeeMsg) burpeeMsg.textContent = "NO REP! Chest didn't touch the turf! Both hands and chest must make full turf contact before jumping!";
           return;
         }
 
@@ -1504,7 +1487,7 @@ class HyroxApp {
           burpeeDropBtn.innerHTML = '<svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"/></svg><span>1. Drop Chest to Turf</span>';
         }
         if (chestTouchIndicator) {
-          chestTouchIndicator.textContent = 'Chest on Turf: NO ❌';
+          chestTouchIndicator.textContent = 'Chest on Turf: NO';
           chestTouchIndicator.classList.remove('active');
         }
 
@@ -1529,12 +1512,12 @@ class HyroxApp {
         if (this.burpeeJumps >= this.burpeeMax) {
           this.burpeeDone = true;
           burpeeJumpBtn.classList.add('completed-game');
-          burpeeJumpBtn.innerHTML = '<span>✅ 80m JUMPS COMPLETED!</span>';
+          burpeeJumpBtn.innerHTML = '<svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span>80m JUMPS COMPLETED</span>';
           if (burpeeDropBtn) {
             burpeeDropBtn.classList.add('completed-game');
-            burpeeDropBtn.innerHTML = '<span>✅ 4 REPS DONE</span>';
+            burpeeDropBtn.innerHTML = '<svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span>4 REPS DONE</span>';
           }
-          if (burpeeMsg) burpeeMsg.textContent = '✅ GOOD REP! 80m burpee broad jumps conquered with flawless movement standards! 🌟';
+          if (burpeeMsg) burpeeMsg.textContent = 'GOOD REP! 80m burpee broad jumps conquered with flawless movement standards!';
           this.stampStation(4);
           this.playSound('fanfare');
           this.burstHearts(rect.left + rect.width / 2, rect.top, 10);
@@ -1555,7 +1538,7 @@ class HyroxApp {
         this.triggerHaptic(80);
         if (archResult) {
           archResult.className = 'arch-quiz-result penalty-flash';
-          archResult.textContent = '🚨 2-MINUTE TIME PENALTY! (Disaster for Sub-1.5h!) Exiting through the IN arch is an automatic 2-minute penalty. ALWAYS exit through the OUT arch!';
+          archResult.textContent = '2-MINUTE TIME PENALTY! Exiting through the IN arch is an automatic 2-minute penalty. ALWAYS exit through the OUT arch!';
         }
       });
     }
@@ -1566,7 +1549,7 @@ class HyroxApp {
         this.triggerHaptic(35);
         if (archResult) {
           archResult.className = 'arch-quiz-result success-flash';
-          archResult.textContent = '✅ PERFECT NAVIGATION! You exited cleanly through the OUT arch. 0 penalty seconds, Sub-1.5h pacing protected!';
+          archResult.textContent = 'PERFECT NAVIGATION! You exited cleanly through the OUT arch. 0 penalty seconds, Sub-1.5h pacing protected!';
         }
       });
     }
@@ -1590,7 +1573,7 @@ class HyroxApp {
 
         if (squatIsDeep) {
           wbSquatToggle.classList.add('deep-active');
-          wbSquatToggle.innerHTML = '<svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span>Squat Deep ✓</span>';
+          wbSquatToggle.innerHTML = '<svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span>Squat Deep</span>';
           if (depthNeedle) depthNeedle.style.left = '80%';
           if (athleteSquatEmoji) athleteSquatEmoji.classList.add('squatting-deep');
           if (wbMsg) wbMsg.textContent = 'Hip crease is below knee line (valid rep depth)! Now tap "2. Toss to Target!"';
@@ -1613,7 +1596,7 @@ class HyroxApp {
           this.playSound('boing');
           this.triggerHaptic(60);
           if (depthNeedle) depthNeedle.style.left = '18%';
-          if (wbMsg) wbMsg.textContent = '⚠️ NO REP! Squat too shallow! In HYROX, hip crease must break parallel below the knee line on every rep!';
+          if (wbMsg) wbMsg.textContent = 'NO REP! Squat too shallow! In HYROX, hip crease must break parallel below the knee line on every rep!';
           return;
         }
 
@@ -1646,12 +1629,12 @@ class HyroxApp {
         if (this.wallBallHits >= this.wallBallMax) {
           this.wallBallDone = true;
           wbBtn.classList.add('completed-game');
-          wbBtn.innerHTML = '<span>🏆 100 WALL BALLS CRUSHED!</span>';
+          wbBtn.innerHTML = '<svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span>100 WALL BALLS CRUSHED</span>';
           if (wbSquatToggle) {
             wbSquatToggle.classList.add('completed-game');
-            wbSquatToggle.innerHTML = '<span>✅ SQUATS CLEAN</span>';
+            wbSquatToggle.innerHTML = '<svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span>SQUATS CLEAN</span>';
           }
-          if (wbMsg) wbMsg.textContent = '✅ FINAL BOSS DOWN! Flawless squat depth, zero no-reps, and the Red Carpet awaits our Champion! 👑';
+          if (wbMsg) wbMsg.textContent = 'FINAL BOSS DOWN! Flawless squat depth, zero no-reps, and the Red Carpet awaits our Champion!';
           this.stampStation(8);
           this.playSound('fanfare');
           this.triggerConfetti(65);
@@ -1838,7 +1821,7 @@ class HyroxApp {
 
     const item = this.pepQuotes[newIdx];
     const text = typeof item === 'string' ? item : item.text;
-    const tag = (typeof item === 'object' && item.tag) ? item.tag : '💖 DORA\'S LOVE';
+    const tag = (typeof item === 'object' && item.tag) ? item.tag : 'DORA\'S LOVE';
     const emoji = (typeof item === 'object' && item.emoji) ? item.emoji : '🌟';
 
     pepMessageText.classList.remove('quote-pop');
@@ -1850,7 +1833,69 @@ class HyroxApp {
     if (pepTagPill) pepTagPill.textContent = tag;
   }
 
+  initStations() {
+    const stationsList = document.querySelector('.stations-list');
+    if (!stationsList) return;
+
+    // Check if any stations are completed and ensure their next stations are unlocked
+    for (let i = 1; i <= this.totalStations; i++) {
+      if (this.completedStations.has(i) && i < this.totalStations) {
+        this.unlockStation(i + 1);
+      }
+    }
+
+    // Direct click listeners on all stamp buttons to guarantee execution
+    document.querySelectorAll('.stamp-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const card = btn.closest('.station-card');
+        if (card) {
+          const sNum = parseInt(card.getAttribute('data-station'), 10);
+          if (!isNaN(sNum)) {
+            this.stampStation(sNum);
+          }
+        }
+      });
+    });
+
+    // Tapping on locked stations gives playful shake OR unlocks if prerequisite is done!
+    stationsList.addEventListener('click', (e) => {
+      const lockedCard = e.target.closest('.station-card.locked');
+      if (lockedCard) {
+        e.preventDefault();
+        e.stopPropagation();
+        const sNum = parseInt(lockedCard.getAttribute('data-station'), 10);
+        if (sNum === 1 || this.completedStations.has(sNum - 1)) {
+          // Self-healing: prerequisite is done! Unlock it now!
+          this.unlockStation(sNum);
+        } else {
+          this.shakeLockedStation(lockedCard);
+        }
+      }
+    });
+  }
+
+  shakeLockedStation(card) {
+    this.playSound('boing');
+    this.triggerHaptic(45);
+    card.classList.remove('station-shake');
+    void card.offsetWidth; // Force reflow
+    card.classList.add('station-shake');
+    setTimeout(() => {
+      card.classList.remove('station-shake');
+    }, 450);
+  }
+
   stampStation(num) {
+    num = parseInt(num, 10);
+    if (isNaN(num)) return;
+
+    // Sequential prerequisite check: previous station must be completed!
+    if (num > 1 && !this.completedStations.has(num - 1)) {
+      const card = document.getElementById(`st-${num}`);
+      if (card) this.shakeLockedStation(card);
+      return;
+    }
+
     if (!this.completedStations.has(num)) {
       this.completedStations.add(num);
       this.energyScore += 50;
@@ -1860,19 +1905,84 @@ class HyroxApp {
 
     const card = document.getElementById(`st-${num}`);
     if (card) {
+      card.classList.remove('locked');
       card.classList.add('completed');
       const pill = card.querySelector('.station-status-pill');
       if (pill) {
-        pill.innerHTML = '✅ Stamped!';
+        pill.className = 'station-status-pill pill-stamped';
+        pill.innerHTML = '<svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Stamped & Completed';
       }
       const stampBtn = card.querySelector('.stamp-btn');
       if (stampBtn) {
         stampBtn.classList.add('completed-stamp');
-        stampBtn.innerHTML = '<svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span>✅ Stamped & Verified!</span>';
+        stampBtn.innerHTML = '<svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span>Stamped & Verified</span>';
       }
+      const rect = card.getBoundingClientRect();
+      this.burstHearts(rect.left + rect.width / 2, rect.top + 40, 5);
     }
 
     this.updateProgress();
+
+    // Progression: Unlock next station and smoothly move to it
+    if (num < this.totalStations) {
+      const nextNum = num + 1;
+      this.unlockStation(nextNum);
+    } else if (num === this.totalStations) {
+      this.triggerAllStationsCompleted();
+    }
+  }
+
+  unlockStation(num) {
+    num = parseInt(num, 10);
+    if (isNaN(num)) return;
+
+    const card = document.getElementById(`st-${num}`);
+    if (!card) return;
+
+    card.classList.remove('locked');
+    card.classList.add('just-unlocked');
+
+    // Remove the locked overlay so it NEVER blocks interactions
+    const overlay = card.querySelector('.station-locked-overlay');
+    if (overlay) {
+      overlay.style.display = 'none';
+      overlay.remove();
+    }
+
+    const pill = card.querySelector('.station-status-pill');
+    if (pill) {
+      pill.className = 'station-status-pill';
+      if (num === 2 || num === 4 || num === 8) {
+        pill.innerHTML = '<svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/></svg> Ready to Play!';
+      } else {
+        pill.innerHTML = '<svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Ready to Stamp';
+      }
+    }
+
+    // Play subtle fanfare sound
+    setTimeout(() => {
+      this.playSound('fanfare');
+    }, 150);
+
+    // Smoothly scroll athlete to the newly unlocked next station
+    setTimeout(() => {
+      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const rect = card.getBoundingClientRect();
+      this.burstHearts(rect.left + rect.width / 2, rect.top + 35, 6);
+    }, 350);
+
+    setTimeout(() => {
+      card.classList.remove('just-unlocked');
+    }, 1400);
+  }
+
+  triggerAllStationsCompleted() {
+    this.playSound('fanfare');
+    this.triggerConfetti(90);
+    setTimeout(() => {
+      const finishSec = document.getElementById('finish-section');
+      if (finishSec) finishSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 700);
   }
 
   updateProgress() {
@@ -1885,7 +1995,9 @@ class HyroxApp {
 
     if (fill) fill.style.width = `${pct}%`;
     if (stationCount) stationCount.textContent = `Completed: ${count} of ${this.totalStations} Stations`;
-    if (energyCount) energyCount.innerHTML = `⚡ ${this.energyScore} Energy Points`;
+    if (energyCount) {
+      energyCount.innerHTML = `<svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="#FFA800" d="M11 21h-1l1-7H7.5c-.88 0-.33-.75-.31-.78C8.48 10.94 10.42 7.54 13 3h1l-1 7h3.5c.49 0 .56.33.47.51l-.07.15C12.9 17.55 11 21 11 21z"/></svg> ${this.energyScore} Energy Points`;
+    }
   }
 
   // Built-in Mobile Canvas Confetti
@@ -1954,9 +2066,15 @@ class HyroxApp {
   }
 }
 
-// Instantiate on load
+// Instantiate on load or immediately if DOM is already ready
 let app;
-window.addEventListener('DOMContentLoaded', () => {
+function launchApp() {
   app = new HyroxApp();
   window.app = app;
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', launchApp);
+} else {
+  launchApp();
+}

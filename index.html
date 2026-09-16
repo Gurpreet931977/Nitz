@@ -83,16 +83,9 @@
 
       <!-- TRUE GIANT HEART-SHAPED POPUP CARD -->
       <div class="hug-heart-shape-card" id="hug-popup-card" role="dialog" aria-modal="true" aria-label="Warm Hug Message">
-        
-        <!-- Scribbly Hand-drawn Close Button (at top lobe edge) -->
-        <button class="hug-popup-close" id="hug-popup-close" aria-label="Close message">
-          <svg viewBox="0 0 24 24" class="c-icon c-icon-sm">
-            <path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
-          </svg>
-        </button>
 
         <!-- Giant Chubby Heart Shape SVG Shell with Ink Border & Hard Shadow -->
-        <svg viewBox="0 0 460 420" class="heart-shell-svg" preserveAspectRatio="none" aria-hidden="true">
+        <svg viewBox="0 0 460 420" class="heart-shell-svg" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
           <defs>
             <linearGradient id="heartShellGrad" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stop-color="#FFFDF9" />
@@ -104,28 +97,28 @@
             </filter>
           </defs>
           <!-- Chubby Heart Path with 5px ink outline -->
-          <path d="M 230,388 
-                   C 115,296 18,212 18,122 
-                   C 18,54 70,16 135,16 
-                   C 176,16 214,38 230,76 
-                   C 246,38 284,16 325,16 
-                   C 390,16 442,54 442,122 
-                   C 442,212 345,296 230,388 Z"
+          <path d="M 230,396 
+                   C 112,308 12,220 12,124 
+                   C 12,50 68,12 136,12 
+                   C 178,12 214,34 230,72 
+                   C 246,34 282,12 324,12 
+                   C 392,12 448,50 448,124 
+                   C 448,220 348,308 230,396 Z"
                 fill="url(#heartShellGrad)"
                 stroke="#1E1E24"
                 stroke-width="5"
                 stroke-linejoin="round"
                 filter="url(#heartShellShadow)"/>
           <!-- Scribbly Inner Stitching / Outline -->
-          <path d="M 230,366 
-                   C 126,282 34,204 34,124 
-                   C 34,66 78,32 135,32 
-                   C 172,32 205,52 222,86 
-                   L 230,102 
-                   L 238,86 
-                   C 255,52 288,32 325,32 
-                   C 382,32 426,66 426,124 
-                   C 426,204 334,282 230,366 Z"
+          <path d="M 230,370 
+                   C 124,290 32,210 32,124 
+                   C 32,62 76,28 136,28 
+                   C 172,28 206,48 222,82 
+                   L 230,98 
+                   L 238,82 
+                   C 254,48 288,28 324,28 
+                   C 384,28 428,62 428,124 
+                   C 428,210 336,290 230,370 Z"
                 fill="none"
                 stroke="#FF5C8A"
                 stroke-width="2.5"
@@ -154,8 +147,8 @@
 
           <!-- Hand-drawn Scribble Wavy Underline -->
           <div class="hug-popup-scribble-line" aria-hidden="true">
-            <svg viewBox="0 0 160 16" preserveAspectRatio="none" class="scribble-wave-svg">
-              <path d="M4,9 Q25,2 45,9 T85,9 T125,9 T156,9" fill="none" stroke="#FFCF36" stroke-width="4" stroke-linecap="round"/>
+            <svg viewBox="0 0 140 14" preserveAspectRatio="none" class="scribble-wave-svg">
+              <path d="M4,7 Q25,1 45,7 T85,7 T125,7 T136,7" fill="none" stroke="#FFCF36" stroke-width="3.5" stroke-linecap="round"/>
             </svg>
           </div>
 
@@ -163,20 +156,6 @@
           <p class="hug-popup-msg" id="hug-popup-msg">
             “Bhondu's heart is now loaded with infinite beast-mode cuddle energy!”
           </p>
-
-          <!-- Scribbly Stamp Badge -->
-          <div class="hug-popup-stamp-wrap">
-            <div class="hug-popup-stamp">
-              <span class="stamp-star">★</span>
-              <span id="hug-popup-stamp-text">MAX TURBO POWER</span>
-              <span class="stamp-star">★</span>
-            </div>
-          </div>
-
-          <!-- Subtle auto-dismiss reading progress indicator -->
-          <div class="hug-popup-timer-bar" aria-hidden="true">
-            <div class="hug-popup-timer-fill" id="hug-popup-timer-fill"></div>
-          </div>
         </div>
 
       </div>
@@ -1207,8 +1186,8 @@
       <!-- THE SECRET SEALED ENVELOPE SURPRISE -->
       <div class="secret-letter-section">
         <div class="letter-intro">
-          <span class="secret-tag">🔐 TOP SECRET & JUST FOR YOU</span>
-          <h3 class="secret-heading">A Sealed Letter For Your Heart 💌</h3>
+          <span class="secret-tag">TOP SECRET &amp; JUST FOR YOU</span>
+          <h3 class="secret-heading">A Sealed Letter For Your Heart</h3>
           <p class="secret-desc">Tap the wax seal to break it open and read what I wrote for you...</p>
         </div>
 
@@ -1216,7 +1195,9 @@
           <div class="envelope-flap" id="envelope-flap"></div>
           <div class="envelope-pocket">
             <div class="wax-seal" id="wax-seal" role="button" aria-label="Open Love Letter">
-              <span class="seal-heart">💖</span>
+              <span class="seal-heart">
+                <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="#FFFFFF" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+              </span>
               <span class="seal-text">OPEN</span>
             </div>
           </div>
@@ -1226,18 +1207,18 @@
             <div class="letter-paper">
               <div class="letter-washi"></div>
               <div class="letter-header">
-                <span class="letter-date">Race Day • Always &amp; Forever 💌</span>
+                <span class="letter-date">Race Day • Always &amp; Forever</span>
                 <h4 class="letter-to">Hey Nitz (my favourite Bhondu),</h4>
               </div>
               <div class="letter-body">
                 <p>
-                  Okay so, I don't even know where to start because I'm just SO proud of you right now it's actually crazy. Like, you picked up this whole HYROX thing, trained for it, and now you're here actually doing it. That's not small. That's genuinely one of the coolest things ever. 💪
+                  Okay so, I don't even know where to start because I'm just SO proud of you right now it's actually crazy. Like, you picked up this whole HYROX thing, trained for it, and now you're here actually doing it. That's not small. That's genuinely one of the coolest things ever.
                 </p>
                 <p>
-                  I know there were days where the training felt rough, where your legs hurt and you just wanted to skip it. But you didn't. And that grit you showed every single time? That's exactly why you're going to absolutely smash this race today. ❤️
+                  I know there were days where the training felt rough, where your legs hurt and you just wanted to skip it. But you didn't. And that grit you showed every single time? That's exactly why you're going to absolutely smash this race today.
                 </p>
                 <p>
-                  Whatever the clock says when you cross that finish line, please know this: <strong>you've already won, just by being out there and giving it your all.</strong> I couldn't be more in your corner even if I tried. You're incredible, honestly. 🥰
+                  Whatever the clock says when you cross that finish line, please know this: <strong>you've already won, just by being out there and giving it your all.</strong> I couldn't be more in your corner even if I tried. You're incredible, honestly.
                 </p>
                 <p>
                   Now go run your heart out, enjoy every single moment of it, and when you're done I'll be right there with a massive hug and whatever snack you're craving. You've got this, all the way!
@@ -1245,7 +1226,7 @@
               </div>
               <div class="letter-sign">
                 <p>With all the love in the world,</p>
-                <h5>Your Dora 💖</h5>
+                <h5>Your Dora</h5>
               </div>
               <div class="letter-footer-doodle">
                 <span>(Go break that sub-1.5 hrs, Bhondu! You're made for this!)</span>
@@ -1315,17 +1296,19 @@
     <div class="pep-sheet">
       <div class="sheet-handle"></div>
       <div class="sheet-header">
-        <span class="sheet-badge">EMERGENCY BHONDU PEP-TALK 💊💖</span>
+        <span class="sheet-badge">EMERGENCY PEP-TALK</span>
         <button class="sheet-close" id="pep-close" aria-label="Close Pep Talk">✕</button>
       </div>
       
       <div class="pep-content-box">
-        <div class="pep-card-doodle" id="pep-card-doodle">🌟</div>
-        <span class="pep-tag-pill" id="pep-tag-pill">💖 PURE LOVE</span>
+        <div class="pep-card-doodle" id="pep-card-doodle">
+          <svg class="c-icon c-icon-lg" viewBox="0 0 24 24"><path fill="#FFCF36" d="M12 2l2.6 6.8L22 12l-7.4 3.2L12 22l-2.6-6.8L2 12l7.4-3.2z"/></svg>
+        </div>
+        <span class="pep-tag-pill" id="pep-tag-pill">PURE LOVE</span>
         <p class="pep-message" id="pep-message-text">
           "Bhondu, remember how hard you trained for this! Take a deep breath, keep that cute chin up, and conquer the next kilometer!"
         </p>
-        <span class="pep-author">Dora, cheering from the depths of his heart ❤️</span>
+        <span class="pep-author">Dora, cheering from the depths of his heart</span>
       </div>
 
       <div class="pep-actions">
@@ -1359,7 +1342,7 @@
         
         <h2 class="rules-modal-title" id="rules-modal-title">Official HYROX DOs, DON'Ts &amp; Penalties</h2>
         <p class="rules-modal-subtitle">
-          Super simple, easy-to-read rules so you never get a judge penalty and smash your sub-1.5 hour finish! ⏱️⚡
+          Super simple, easy-to-read rules so you never get a judge penalty and smash your sub-1.5 hour finish!
         </p>
 
         <!-- Filter Tabs -->
@@ -1393,21 +1376,23 @@
         <!-- CARD 1: RUNNING TRACK -->
         <article class="rule-bible-card" data-category="track">
           <div class="bible-card-header">
-            <span class="bible-card-badge">🏃 GENERAL TRACK</span>
+            <span class="bible-card-badge">GENERAL TRACK</span>
             <h3 class="bible-card-title">1km Running Laps (8 Times Total)</h3>
           </div>
           <div class="bible-split-grid">
             <div class="bible-box do-box">
-              <span class="box-tag do-tag">✓ DO (The Simple Rule)</span>
+              <span class="box-tag do-tag">DO (The Simple Rule)</span>
               <p>Run counter-clockwise in your lane. Look at the big electronic screen on every lap to count your laps (usually 2 to 3 laps = 1km). Only head into the Roxzone when your bib confirms all laps are done!</p>
             </div>
             <div class="bible-box dont-box">
-              <span class="box-tag dont-tag">❌ DON'T (The Trap)</span>
+              <span class="box-tag dont-tag">DON'T (The Trap)</span>
               <p>Never guess your lap count! Never cut track corners, and never run across the workout station floor to take a shortcut.</p>
             </div>
           </div>
           <div class="bible-penalty-banner">
-            <span class="penalty-icon">🚨</span>
+            <span class="penalty-icon">
+              <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="#FFA800" d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+            </span>
             <div class="penalty-text">
               <strong>PENALTY IF BROKEN:</strong> Missing 1 lap adds a brutal <strong>+3:00 to +5:00 minutes</strong> penalty to your official time. Missing multiple laps gets you disqualified!
             </div>
@@ -1420,21 +1405,23 @@
         <!-- CARD 2: ROXZONE ARCHES -->
         <article class="rule-bible-card" data-category="track">
           <div class="bible-card-header">
-            <span class="bible-card-badge">🥤 ROXZONE TRANSITIONS</span>
+            <span class="bible-card-badge">ROXZONE TRANSITIONS</span>
             <h3 class="bible-card-title">The IN and OUT Arch Rule</h3>
           </div>
           <div class="bible-split-grid">
             <div class="bible-box do-box">
-              <span class="box-tag do-tag">✓ DO (The Simple Rule)</span>
+              <span class="box-tag do-tag">DO (The Simple Rule)</span>
               <p>Always enter the Roxzone under the giant arch marked <strong>"IN"</strong>. When you finish your station and run back out, always exit under the arch marked <strong>"OUT"</strong>.</p>
             </div>
             <div class="bible-box dont-box">
-              <span class="box-tag dont-tag">❌ DON'T (The Trap)</span>
+              <span class="box-tag dont-tag">DON'T (The Trap)</span>
               <p>Never exit through the IN arch, and never enter through the OUT arch! Also, do not take water bottles or snacks from friends outside the race boundary.</p>
             </div>
           </div>
           <div class="bible-penalty-banner">
-            <span class="penalty-icon">🚨</span>
+            <span class="penalty-icon">
+              <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="#FFA800" d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+            </span>
             <div class="penalty-text">
               <strong>PENALTY IF BROKEN:</strong> Going through the wrong arch triggers an automatic <strong>+2:00 MINUTE TIME PENALTY</strong>! Outside pacing or personal drinks can get you disqualified.
             </div>
@@ -1447,21 +1434,23 @@
         <!-- CARD 3: SKIERG -->
         <article class="rule-bible-card" data-category="stations-1-4">
           <div class="bible-card-header">
-            <span class="bible-card-badge">🎿 STATION 1</span>
+            <span class="bible-card-badge">STATION 1 • SKIERG</span>
             <h3 class="bible-card-title">1,000m SkiErg</h3>
           </div>
           <div class="bible-split-grid">
             <div class="bible-box do-box">
-              <span class="box-tag do-tag">✓ DO (The Simple Rule)</span>
+              <span class="box-tag do-tag">DO (The Simple Rule)</span>
               <p>Keep both feet firmly on the black base plate the whole time. Keep pulling until the screen says 1,000m, then wait for the judge's thumbs-up.</p>
             </div>
             <div class="bible-box dont-box">
-              <span class="box-tag dont-tag">❌ DON'T (The Trap)</span>
+              <span class="box-tag dont-tag">DON'T (The Trap)</span>
               <p>Do not step off onto the floor while pulling. Do not drop the handles or unhook them before the judge confirms 1,000m.</p>
             </div>
           </div>
           <div class="bible-penalty-banner">
-            <span class="penalty-icon">⚠️</span>
+            <span class="penalty-icon">
+              <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="#FFA800" d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+            </span>
             <div class="penalty-text">
               <strong>PENALTY IF BROKEN:</strong> Stepping onto the gym floor triggers a <strong>+15-second penalty</strong>. Dropping handles early means uncounted meters and you must pull more!
             </div>
@@ -1474,21 +1463,23 @@
         <!-- CARD 4: SLED PUSH -->
         <article class="rule-bible-card" data-category="stations-1-4">
           <div class="bible-card-header">
-            <span class="bible-card-badge">🚜 STATION 2</span>
+            <span class="bible-card-badge">STATION 2 • SLED PUSH</span>
             <h3 class="bible-card-title">50m Sled Push (4x 12.5m)</h3>
           </div>
           <div class="bible-split-grid">
             <div class="bible-box do-box">
-              <span class="box-tag do-tag">✓ DO (The Simple Rule)</span>
+              <span class="box-tag do-tag">DO (The Simple Rule)</span>
               <p>Push with your hands on the vertical poles in your lane. Push the sled until ALL FOUR metal skids completely clear the white line at the end of the 12.5m lane.</p>
             </div>
             <div class="bible-box dont-box">
-              <span class="box-tag dont-tag">❌ DON'T (The Trap)</span>
+              <span class="box-tag dont-tag">DON'T (The Trap)</span>
               <p>Never turn the sled around early! If the back skids are still touching the white tape, do NOT turn around. Never lean your chest or knees on top of the sled.</p>
             </div>
           </div>
           <div class="bible-penalty-banner">
-            <span class="penalty-icon">⚠️</span>
+            <span class="penalty-icon">
+              <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="#FFA800" d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+            </span>
             <div class="penalty-text">
               <strong>PENALTY IF BROKEN:</strong> Instant <strong>NO REP!</strong> The judge will make you push the sled back behind the line before you are allowed to turn it around, wasting huge energy!
             </div>
@@ -1501,21 +1492,23 @@
         <!-- CARD 5: SLED PULL -->
         <article class="rule-bible-card" data-category="stations-1-4">
           <div class="bible-card-header">
-            <span class="bible-card-badge">🪢 STATION 3</span>
+            <span class="bible-card-badge">STATION 3 • SLED PULL</span>
             <h3 class="bible-card-title">50m Sled Pull (4x 12.5m)</h3>
           </div>
           <div class="bible-split-grid">
             <div class="bible-box do-box">
-              <span class="box-tag do-tag">✓ DO (The Simple Rule)</span>
+              <span class="box-tag do-tag">DO (The Simple Rule)</span>
               <p>Stand completely inside your taped athlete box on the floor. Pull the rope hand-over-hand until the sled crosses the line. Feed the slack rope neatly between your legs.</p>
             </div>
             <div class="bible-box dont-box">
-              <span class="box-tag dont-tag">❌ DON'T (The Trap)</span>
+              <span class="box-tag dont-tag">DON'T (The Trap)</span>
               <p>Do not let your shoes step on or outside the tape lines. Never wrap the rope around your wrists, hands, waist, or body.</p>
             </div>
           </div>
           <div class="bible-penalty-banner">
-            <span class="penalty-icon">⚠️</span>
+            <span class="penalty-icon">
+              <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="#FFA800" d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+            </span>
             <div class="penalty-text">
               <strong>PENALTY IF BROKEN:</strong> Stepping outside the box adds <strong>+15 seconds</strong> per step. Wrapping the rope around your body is a major safety violation and can cause disqualification!
             </div>
@@ -1528,21 +1521,23 @@
         <!-- CARD 6: BURPEE BROAD JUMP -->
         <article class="rule-bible-card" data-category="stations-1-4">
           <div class="bible-card-header">
-            <span class="bible-card-badge">🐸 STATION 4</span>
+            <span class="bible-card-badge">STATION 4 • BURPEE BROAD JUMPS</span>
             <h3 class="bible-card-title">80m Burpee Broad Jumps</h3>
           </div>
           <div class="bible-split-grid">
             <div class="bible-box do-box">
-              <span class="box-tag do-tag">✓ DO (The Simple Rule)</span>
+              <span class="box-tag do-tag">DO (The Simple Rule)</span>
               <p>Place hands on the floor, drop chest and tummy flat to touch the turf. Stand up and jump forward taking off on TWO feet and landing on TWO feet at the same time.</p>
             </div>
             <div class="bible-box dont-box">
-              <span class="box-tag dont-tag">❌ DON'T (The Trap)</span>
+              <span class="box-tag dont-tag">DON'T (The Trap)</span>
               <p>Never jump before your chest hits the floor. Never gallop, step into the jump, jump off one foot, or land one foot at a time. Hands cannot be placed ahead of your feet on the next rep.</p>
             </div>
           </div>
           <div class="bible-penalty-banner">
-            <span class="penalty-icon">⚠️</span>
+            <span class="penalty-icon">
+              <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="#FFA800" d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+            </span>
             <div class="penalty-text">
               <strong>PENALTY IF BROKEN:</strong> Instant <strong>NO REP!</strong> You have to redo the entire jump from where you started. No-reps here will crush your stamina!
             </div>
@@ -1555,21 +1550,23 @@
         <!-- CARD 7: ROWING -->
         <article class="rule-bible-card" data-category="stations-5-8">
           <div class="bible-card-header">
-            <span class="bible-card-badge">🚣‍♀️ STATION 5</span>
+            <span class="bible-card-badge">STATION 5 • ROWING</span>
             <h3 class="bible-card-title">1,000m Rowing</h3>
           </div>
           <div class="bible-split-grid">
             <div class="bible-box do-box">
-              <span class="box-tag do-tag">✓ DO (The Simple Rule)</span>
+              <span class="box-tag do-tag">DO (The Simple Rule)</span>
               <p>Strap your feet into the footplates FIRST before grabbing the handle. Choose your damper setting, row until 1,000m is reached, and wait for the judge to check.</p>
             </div>
             <div class="bible-box dont-box">
-              <span class="box-tag dont-tag">❌ DON'T (The Trap)</span>
+              <span class="box-tag dont-tag">DON'T (The Trap)</span>
               <p>Do not touch the handle before your feet are strapped in. Do not change the damper setting after stroke 1. Do not release the handle before 1,000m is verified.</p>
             </div>
           </div>
           <div class="bible-penalty-banner">
-            <span class="penalty-icon">⚠️</span>
+            <span class="penalty-icon">
+              <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="#FFA800" d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+            </span>
             <div class="penalty-text">
               <strong>PENALTY IF BROKEN:</strong> Early handle release or unstrapping triggers a <strong>+15-second penalty</strong> or extra uncounted meters.
             </div>
@@ -1582,21 +1579,23 @@
         <!-- CARD 8: FARMERS CARRY -->
         <article class="rule-bible-card" data-category="stations-5-8">
           <div class="bible-card-header">
-            <span class="bible-card-badge">🛍️ STATION 6</span>
+            <span class="bible-card-badge">STATION 6 • FARMERS CARRY</span>
             <h3 class="bible-card-title">200m Farmers Carry (2x 16kg)</h3>
           </div>
           <div class="bible-split-grid">
             <div class="bible-box do-box">
-              <span class="box-tag do-tag">✓ DO (The Simple Rule)</span>
+              <span class="box-tag do-tag">DO (The Simple Rule)</span>
               <p>Carry one kettlebell in each hand with your arms hanging straight down at your sides. If your grip gets tired, put them down cleanly and pick them up from the same spot.</p>
             </div>
             <div class="bible-box dont-box">
-              <span class="box-tag dont-tag">❌ DON'T (The Trap)</span>
+              <span class="box-tag dont-tag">DON'T (The Trap)</span>
               <p>Never rest the kettlebells on your thighs, hips, waist, or stomach while walking or resting. Never throw or kick the kettlebells forward when dropping them.</p>
             </div>
           </div>
           <div class="bible-penalty-banner">
-            <span class="penalty-icon">⚠️</span>
+            <span class="penalty-icon">
+              <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="#FFA800" d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+            </span>
             <div class="penalty-text">
               <strong>PENALTY IF BROKEN:</strong> Resting kettlebells on your body or throwing them forward adds a <strong>+15-second penalty</strong>!
             </div>
@@ -1609,21 +1608,23 @@
         <!-- CARD 9: SANDBAG LUNGES -->
         <article class="rule-bible-card" data-category="stations-5-8">
           <div class="bible-card-header">
-            <span class="bible-card-badge">🎒 STATION 7</span>
+            <span class="bible-card-badge">STATION 7 • SANDBAG LUNGES</span>
             <h3 class="bible-card-title">100m Sandbag Lunges (11kg)</h3>
           </div>
           <div class="bible-split-grid">
             <div class="bible-box do-box">
-              <span class="box-tag do-tag">✓ DO (The Simple Rule)</span>
+              <span class="box-tag do-tag">DO (The Simple Rule)</span>
               <p>Rest the sandbag across your shoulders behind your neck. On every forward lunge, your back knee must visibly touch the turf. Stand completely straight up before the next step.</p>
             </div>
             <div class="bible-box dont-box">
-              <span class="box-tag dont-tag">❌ DON'T (The Trap)</span>
+              <span class="box-tag dont-tag">DON'T (The Trap)</span>
               <p>Never let your knee hover in the air without touching the turf! Never drop the sandbag off your back onto the floor. Do not take extra running/walking steps without lunging.</p>
             </div>
           </div>
           <div class="bible-penalty-banner">
-            <span class="penalty-icon">⚠️</span>
+            <span class="penalty-icon">
+              <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="#FFA800" d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+            </span>
             <div class="penalty-text">
               <strong>PENALTY IF BROKEN:</strong> Instant <strong>NO REP!</strong> If your back knee does not kiss the turf, or you don't stand all the way up, the step does not count and must be repeated.
             </div>
@@ -1636,21 +1637,23 @@
         <!-- CARD 10: WALL BALLS -->
         <article class="rule-bible-card" data-category="stations-5-8">
           <div class="bible-card-header">
-            <span class="bible-card-badge">🎯 STATION 8</span>
+            <span class="bible-card-badge">STATION 8 • WALL BALLS</span>
             <h3 class="bible-card-title">Wall Balls (75 or 100 Reps, 4kg)</h3>
           </div>
           <div class="bible-split-grid">
             <div class="bible-box do-box">
-              <span class="box-tag do-tag">✓ DO (The Simple Rule)</span>
+              <span class="box-tag do-tag">DO (The Simple Rule)</span>
               <p>Squat deep so your hip crease drops below the top of your knees (below parallel) on every single rep! Throw the ball so it hits the center of the 2.70m target disc.</p>
             </div>
             <div class="bible-box dont-box">
-              <span class="box-tag dont-tag">❌ DON'T (The Trap)</span>
+              <span class="box-tag dont-tag">DON'T (The Trap)</span>
               <p>Never do half-squats or parallel squats! Never let the ball hit below the target disc or hit the floor without catching/resetting.</p>
             </div>
           </div>
           <div class="bible-penalty-banner">
-            <span class="penalty-icon">⚠️</span>
+            <span class="penalty-icon">
+              <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="#FFA800" d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+            </span>
             <div class="penalty-text">
               <strong>PENALTY IF BROKEN:</strong> The #1 Judge Trap: <strong>NO REP!</strong> Judges will not count any rep where your hips don't drop below the knees. Doing 20 no-reps here is pure heartbreak!
             </div>
@@ -1663,7 +1666,7 @@
         <!-- CARD 11: PENALTY MATRIX -->
         <article class="rule-bible-card penalty-matrix-card" data-category="penalties">
           <div class="bible-card-header">
-            <span class="bible-card-badge">⏱️ TIME MATRIX</span>
+            <span class="bible-card-badge">PENALTY TIME MATRIX</span>
             <h3 class="bible-card-title">Official HYROX Penalty Time Additions (At A Glance)</h3>
           </div>
           <div class="penalty-table-wrap">
@@ -1730,7 +1733,7 @@
             </table>
           </div>
           <div class="bible-dora-tip">
-            <strong>Dora's Gold Rule:</strong> <em>"Bhondu, a clean rep done 1 second slower is 100 times better than a fast rep that gets NO REPPED! Steady, clean, and you'll easily break 90 minutes! 💖"</em>
+            <strong>Dora's Gold Rule:</strong> <em>"Bhondu, a clean rep done 1 second slower is 100 times better than a fast rep that gets NO REPPED! Steady, clean, and you'll easily break 90 minutes!"</em>
           </div>
         </article>
 

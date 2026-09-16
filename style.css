@@ -97,38 +97,6 @@ body {
   --hug-charge: 0;
 }
 
-/* Whole-page tactile squeeze when holding hug button */
-body {
-  transition: transform 0.15s ease-out;
-}
-
-body.screen-hug-holding {
-  /* Gently cushions and squeezes entire viewport inward like a physical hug */
-  transform: scale(calc(1 - var(--hug-charge) * 0.024));
-  transform-origin: center center;
-}
-
-/* Double Heartbeat Physical Screen Shockwave Animations */
-body.screen-heartbeat-thump-1 {
-  animation: screenThump1 0.16s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-body.screen-heartbeat-thump-2 {
-  animation: screenThump2 0.22s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-@keyframes screenThump1 {
-  0% { transform: scale(1) translateY(0); }
-  40% { transform: scale(0.976) translateY(5px); }
-  100% { transform: scale(1) translateY(0); }
-}
-
-@keyframes screenThump2 {
-  0% { transform: scale(1) translateY(0); }
-  35% { transform: scale(0.962) translateY(7px); }
-  100% { transform: scale(1) translateY(0); }
-}
-
 /* Fullscreen Ambient Warm Hug Glow Overlay Container */
 .screen-warmth-overlay {
   position: fixed;
@@ -1598,36 +1566,78 @@ body.screen-heartbeat-thump-2 {
 .hug-heart-shape-card {
   position: relative;
   width: 92vw;
-  max-width: 440px;
+  max-width: 420px;
   aspect-ratio: 460 / 420;
   display: flex;
   align-items: center;
   justify-content: center;
-  transform-origin: center center;
-  transform: scale(0.05) rotate(-22deg);
+  transform-origin: 50% 55%;
+  transform: scale(0.05) rotate(-24deg);
   opacity: 0;
   cursor: pointer;
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s ease;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 }
 
-/* Instant, Explosive, Engaging Bouncy Pop Entrance! */
+/* Instant, Bouncy, Springy Cartoon Pop Entrance! */
 .hug-heart-shape-card.popping-in {
-  transform: scale(1) rotate(-1.5deg);
-  opacity: 1;
-  animation: heartPopupLivingBeat 2.4s infinite ease-in-out;
+  animation: heartSpringPopIn 0.54s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
+             heartPlayfulBeat 2.6s 0.54s infinite ease-in-out;
 }
 
-@keyframes heartPopupLivingBeat {
-  0%, 100% { transform: scale(1) rotate(-1.5deg); }
-  35% { transform: scale(1.03) rotate(0deg); }
-  50% { transform: scale(1.01) rotate(-1deg); }
-  65% { transform: scale(1.04) rotate(0.5deg); }
+@keyframes heartSpringPopIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.05) rotate(-26deg) translateY(60px);
+  }
+  48% {
+    opacity: 1;
+    transform: scale(1.15) rotate(4.5deg) translateY(-14px);
+  }
+  70% {
+    transform: scale(0.94) rotate(-2.5deg) translateY(5px);
+  }
+  86% {
+    transform: scale(1.04) rotate(1.2deg) translateY(-2px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(-1deg) translateY(0);
+  }
+}
+
+@keyframes heartPlayfulBeat {
+  0%, 100% {
+    transform: scale(1) rotate(-1deg) translateY(0);
+  }
+  26% {
+    transform: scale(1.035) rotate(0.8deg) translateY(-4px);
+  }
+  44% {
+    transform: scale(1.015) rotate(-0.5deg) translateY(-1px);
+  }
+  62% {
+    transform: scale(1.04) rotate(1deg) translateY(-5px);
+  }
 }
 
 .hug-heart-shape-card.popping-out {
-  transform: scale(0.4) translateY(-50px) rotate(-12deg);
-  opacity: 0;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
+  animation: heartSpringPopOut 0.28s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes heartSpringPopOut {
+  0% {
+    opacity: 1;
+    transform: scale(1) rotate(-1deg);
+  }
+  30% {
+    transform: scale(1.08) rotate(3deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.1) rotate(-18deg) translateY(35px);
+  }
 }
 
 /* Giant Chubby Heart SVG Shell */
@@ -1640,52 +1650,25 @@ body.screen-heartbeat-thump-2 {
   pointer-events: none;
 }
 
-/* Scribbly Hand-Drawn Close Button at Top Lobe Edge */
-.hug-popup-close {
-  position: absolute;
-  top: 14px;
-  right: 28px;
-  width: 34px;
-  height: 34px;
-  background: var(--yellow-main);
-  border: var(--border-ink);
-  border-radius: var(--radius-pill);
-  box-shadow: 2px 2px 0px var(--ink-dark);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 20;
-  transition: transform 0.15s ease, background 0.15s ease;
-}
-
-.hug-popup-close:hover {
-  transform: scale(1.15) rotate(90deg);
-  background: #FF5C8A;
-  color: #FFFFFF;
-}
-
-.hug-popup-close:active {
-  transform: scale(0.95);
-}
-
 /* Inner Content positioned right in the Heart Belly */
 .hug-heart-content {
   position: absolute;
-  inset: 52px 42px 45px 42px;
+  inset: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 44px 44px 72px 44px; /* 72px bottom clearance keeps all content safe from the bottom V point! */
   text-align: center;
   z-index: 5;
   pointer-events: auto;
+  box-sizing: border-box;
 }
 
 /* Clean Vector Theme Icon Badge */
 .hug-heart-icon-badge {
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1721,26 +1704,27 @@ body.screen-heartbeat-thump-2 {
   font-weight: 900;
   color: var(--ink-dark);
   letter-spacing: 0.8px;
-  transform: rotate(-2deg);
+  transform: rotate(-1.5deg);
 }
 
 /* Big Bold Punchy Title */
 .hug-popup-title {
   font-family: var(--font-display);
-  font-size: 21px;
+  font-size: 20px;
   font-weight: 900;
   color: var(--ink-dark);
-  line-height: 1.15;
-  margin: 2px 0 3px;
+  line-height: 1.18;
+  margin: 2px 0 4px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.4px;
+  max-width: 270px;
 }
 
 /* Scribbly Hand-Drawn Wavy Underline */
 .hug-popup-scribble-line {
-  width: 140px;
-  height: 12px;
-  margin: 0 auto 6px;
+  width: 120px;
+  height: 10px;
+  margin: 0 auto 8px;
 }
 
 .scribble-wave-svg {
@@ -1756,83 +1740,34 @@ body.screen-heartbeat-thump-2 {
   font-weight: 700;
   color: #1E1E24;
   line-height: 1.25;
-  margin: 0 0 8px;
-  max-width: 290px;
-}
-
-/* Scribbly Stamp Badge */
-.hug-popup-stamp-wrap {
-  margin-bottom: 6px;
-}
-
-.hug-popup-stamp {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  background: rgba(255, 42, 84, 0.08);
-  border: 1.75px dashed #FF2A54;
-  border-radius: 8px;
-  padding: 3px 12px;
-  font-family: var(--font-display);
-  font-size: 10px;
-  font-weight: 900;
-  color: #FF2A54;
-  letter-spacing: 0.75px;
-  transform: rotate(-3.5deg);
-  box-shadow: 1.5px 1.5px 0px rgba(255, 42, 84, 0.25);
-}
-
-.stamp-star {
-  font-size: 9px;
-  color: #FF7A00;
-}
-
-/* Subtle Auto-Dismiss Reading Progress Indicator */
-.hug-popup-timer-bar {
-  width: 80px;
-  height: 4px;
-  background: rgba(255, 42, 84, 0.16);
-  border-radius: 99px;
-  overflow: hidden;
-  margin-top: 3px;
-}
-
-.hug-popup-timer-fill {
-  height: 100%;
-  width: 100%;
-  background: linear-gradient(90deg, #FFCF36, #FF2A54);
-  border-radius: 99px;
-  transform-origin: left center;
-}
-
-.hug-heart-shape-card.popping-in .hug-popup-timer-fill {
-  animation: readingTimerShrink 3.8s linear forwards;
-}
-
-@keyframes readingTimerShrink {
-  0% { transform: scaleX(1); }
-  100% { transform: scaleX(0); }
+  margin: 0;
+  max-width: 260px;
 }
 
 @media (max-width: 480px) {
   .hug-heart-shape-card {
-    max-width: 375px;
+    max-width: 360px;
   }
   .hug-heart-content {
-    inset: 44px 28px 36px 28px;
+    padding: 38px 30px 62px 30px;
+  }
+  .hug-heart-icon-badge {
+    width: 38px;
+    height: 38px;
+    margin-bottom: 2px;
   }
   .hug-popup-title {
-    font-size: 18.5px;
+    font-size: 17.5px;
+    max-width: 230px;
   }
   .hug-popup-msg {
-    font-size: 18.5px;
-    max-width: 250px;
+    font-size: 18px;
+    max-width: 220px;
   }
-  .hug-popup-close {
-    top: 10px;
-    right: 20px;
-    width: 30px;
-    height: 30px;
+  .hug-popup-scribble-line {
+    width: 100px;
+    height: 8px;
+    margin-bottom: 6px;
   }
   .orb-svg {
     width: 24px;
