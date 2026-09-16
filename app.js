@@ -104,11 +104,38 @@ class HyroxApp {
     } catch (e) {
       console.warn("Web Audio API not supported", e);
     }
+
+    // Global iOS Safari user-gesture unlockers (unlocks Web Audio on first touch/click)
+    const unlockAudio = () => {
+      this.resumeAudio();
+    };
+    ['touchstart', 'touchend', 'pointerdown', 'click'].forEach(evt => {
+      window.addEventListener(evt, unlockAudio, { capture: true, passive: true });
+    });
   }
 
   resumeAudio() {
-    if (this.audioCtx && this.audioCtx.state === 'suspended') {
-      this.audioCtx.resume();
+    if (!this.audioCtx) {
+      try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (AudioContext) this.audioCtx = new AudioContext();
+      } catch (e) {}
+    }
+    if (this.audioCtx) {
+      if (this.audioCtx.state === 'suspended') {
+        this.audioCtx.resume();
+      }
+      // Safari silent buffer kick-start to unlock audio hardware output pipeline
+      try {
+        if (!this._audioUnlocked) {
+          const buf = this.audioCtx.createBuffer(1, 1, 22050);
+          const src = this.audioCtx.createBufferSource();
+          src.buffer = buf;
+          src.connect(this.audioCtx.destination);
+          src.start(0);
+          this._audioUnlocked = true;
+        }
+      } catch (e) {}
     }
   }
 
@@ -192,10 +219,23 @@ class HyroxApp {
     }
   }
 
+  // Trigger iOS Native Taptic Engine (Works on iOS 18+ Safari via switch hack)
+  triggerIOSTaptic() {
+    try {
+      if (!this.iosSwitchEl) {
+        this.iosSwitchEl = document.getElementById('ios-taptic-switch');
+      }
+      if (this.iosSwitchEl) {
+        this.iosSwitchEl.click();
+      }
+    } catch (e) {}
+  }
+
   // Acoustic Sub-Bass Physical Rumble Engine (Physically vibrates mobile phone bodies on iPhone + Android)
-  playHapticRumble(intensity = 1.0, duration = 0.35, freq = 65) {
-    if (!this.soundEnabled || !this.audioCtx) return;
+  playHapticRumble(intensity = 1.0, duration = 0.35, freq = 74) {
+    if (!this.soundEnabled) return;
     this.resumeAudio();
+    if (!this.audioCtx) return;
 
     try {
       const now = this.audioCtx.currentTime;
@@ -205,19 +245,18 @@ class HyroxApp {
       const filter = this.audioCtx.createBiquadFilter();
 
       filter.type = 'lowpass';
-      filter.frequency.setValueAtTime(180, now);
+      filter.frequency.setValueAtTime(220, now);
 
       osc1.type = 'triangle';
       osc1.frequency.setValueAtTime(freq, now);
-      osc1.frequency.exponentialRampToValueAtTime(Math.max(38, freq * 0.65), now + duration);
+      osc1.frequency.exponentialRampToValueAtTime(Math.max(42, freq * 0.7), now + duration);
 
-      osc2.type = 'sine';
-      osc2.frequency.setValueAtTime(freq * 1.08, now);
-      osc2.frequency.exponentialRampToValueAtTime(Math.max(35, freq * 0.60), now + duration);
+      osc2.type = 'sawtooth';
+      osc2.frequency.setValueAtTime(freq * 1.06, now);
+      osc2.frequency.exponentialRampToValueAtTime(Math.max(40, freq * 0.65), now + duration);
 
-      const peak = Math.min(1.0, 0.75 * intensity);
-      gain.gain.setValueAtTime(0.001, now);
-      gain.gain.linearRampToValueAtTime(peak, now + 0.02);
+      const peak = Math.min(1.4, 0.95 * intensity);
+      gain.gain.setValueAtTime(peak, now);
       gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
 
       osc1.connect(filter);
@@ -234,37 +273,55 @@ class HyroxApp {
 
   // Continuous Sustained Hug Rumble Engine (Runs continuously while button is held with zero audio pauses)
   startContinuousHugRumble() {
-    if (!this.soundEnabled || !this.audioCtx) return;
+    if (!this.soundEnabled) return;
     this.resumeAudio();
+    if (!this.audioCtx) return;
 
     try {
       this.stopContinuousHugRumble();
 
       const now = this.audioCtx.currentTime;
       this.hugRumbleMasterGain = this.audioCtx.createGain();
-      this.hugRumbleMasterGain.gain.setValueAtTime(0.001, now);
-      this.hugRumbleMasterGain.gain.linearRampToValueAtTime(0.48, now + 0.08);
+      // Start immediately with strong physical excursion gain so chassis vibrates in hand
+      this.hugRumbleMasterGain.gain.setValueAtTime(0.95, now);
 
-      // Warm low-frequency oscillators for continuous organic physical resonance
+      // Primary heavy physical vibration driver (76Hz triangle wave drives mobile speaker magnets hard)
       this.hugOsc1 = this.audioCtx.createOscillator();
       this.hugOsc1.type = 'triangle';
-      this.hugOsc1.frequency.setValueAtTime(65, now);
+      this.hugOsc1.frequency.setValueAtTime(76, now);
 
+      // Harmonic driver (adds rich saw harmonics to physically shake the chassis)
       this.hugOsc2 = this.audioCtx.createOscillator();
-      this.hugOsc2.type = 'sine';
-      this.hugOsc2.frequency.setValueAtTime(70, now);
+      this.hugOsc2.type = 'sawtooth';
+      this.hugOsc2.frequency.setValueAtTime(82, now);
+
+      const osc2Gain = this.audioCtx.createGain();
+      osc2Gain.gain.setValueAtTime(0.45, now);
+
+      // Sub-harmonic driver (pumps the speaker diaphragm excursion)
+      this.hugOsc3 = this.audioCtx.createOscillator();
+      this.hugOsc3.type = 'triangle';
+      this.hugOsc3.frequency.setValueAtTime(152, now);
+
+      const osc3Gain = this.audioCtx.createGain();
+      osc3Gain.gain.setValueAtTime(0.25, now);
 
       const filter = this.audioCtx.createBiquadFilter();
       filter.type = 'lowpass';
-      filter.frequency.setValueAtTime(160, now);
+      filter.frequency.setValueAtTime(240, now);
 
       this.hugOsc1.connect(filter);
-      this.hugOsc2.connect(filter);
+      this.hugOsc2.connect(osc2Gain);
+      osc2Gain.connect(filter);
+      this.hugOsc3.connect(osc3Gain);
+      osc3Gain.connect(filter);
+
       filter.connect(this.hugRumbleMasterGain);
       this.hugRumbleMasterGain.connect(this.audioCtx.destination);
 
       this.hugOsc1.start(now);
       this.hugOsc2.start(now);
+      this.hugOsc3.start(now);
     } catch (e) {
       console.warn("Continuous rumble start failed", e);
     }
@@ -274,15 +331,15 @@ class HyroxApp {
     if (!this.hugRumbleMasterGain || !this.audioCtx) return;
     try {
       const now = this.audioCtx.currentTime;
-      const targetGain = Math.min(0.85, 0.48 + (pct / 100) * 0.37);
+      const targetGain = Math.min(1.35, 0.95 + (pct / 100) * 0.40);
       this.hugRumbleMasterGain.gain.cancelScheduledValues(now);
-      this.hugRumbleMasterGain.gain.linearRampToValueAtTime(targetGain, now + 0.04);
+      this.hugRumbleMasterGain.gain.setValueAtTime(targetGain, now);
 
       if (this.hugOsc1) {
-        this.hugOsc1.frequency.setValueAtTime(65 + (pct / 100) * 15, now);
+        this.hugOsc1.frequency.setValueAtTime(76 + (pct / 100) * 14, now);
       }
       if (this.hugOsc2) {
-        this.hugOsc2.frequency.setValueAtTime(70 + (pct / 100) * 15, now);
+        this.hugOsc2.frequency.setValueAtTime(82 + (pct / 100) * 14, now);
       }
     } catch (e) {}
   }
@@ -299,6 +356,7 @@ class HyroxApp {
         try {
           if (this.hugOsc1) { this.hugOsc1.stop(); this.hugOsc1.disconnect(); this.hugOsc1 = null; }
           if (this.hugOsc2) { this.hugOsc2.stop(); this.hugOsc2.disconnect(); this.hugOsc2 = null; }
+          if (this.hugOsc3) { this.hugOsc3.stop(); this.hugOsc3.disconnect(); this.hugOsc3 = null; }
           if (this.hugRumbleMasterGain) { this.hugRumbleMasterGain.disconnect(); this.hugRumbleMasterGain = null; }
         } catch (e) {}
       }, 60);
@@ -307,14 +365,19 @@ class HyroxApp {
 
   // --- Dedicated Continuous Vibration Methods (ZERO PAUSES) ---
   startContinuousHoldVibration() {
+    // 1) Android / Chrome hardware vibration motor (solid 10s duration)
     if ('vibrate' in navigator) {
       try {
         navigator.vibrate(10000);
       } catch (e) {}
     }
+
+    // 2) iOS Safari native Taptic Engine contact click
+    this.triggerIOSTaptic();
   }
 
   keepContinuousHoldVibration() {
+    // Re-arm Android vibration every 400ms so it never cuts out
     if ('vibrate' in navigator) {
       try {
         navigator.vibrate(4000);
@@ -323,12 +386,20 @@ class HyroxApp {
   }
 
   celebrateHugVibration() {
+    // 1) Android hardware motor (solid 1.5s continuous)
     if ('vibrate' in navigator) {
       try {
-        // Continuous, unbroken 1.5s celebratory rumble with ZERO pauses
         navigator.vibrate(1500);
       } catch (e) {}
     }
+
+    // 2) iOS native Taptic Engine celebratory pulse
+    this.triggerIOSTaptic();
+    setTimeout(() => this.triggerIOSTaptic(), 140);
+    setTimeout(() => this.triggerIOSTaptic(), 280);
+
+    // 3) Powerful sustained physical chassis rumble for iPhone & Android (1.2s solid unbroken)
+    this.playHapticRumble(1.4, 1.2, 74);
   }
 
   stopContinuousHoldVibration() {
@@ -345,11 +416,13 @@ class HyroxApp {
         navigator.vibrate(ms);
       } catch (e) {}
     }
+    this.triggerIOSTaptic();
+    this.playHapticRumble(0.7, 0.08, 80);
   }
 
   // General single-pulse haptics for buttons and mini-games (never interrupts hold)
   triggerHeartbeatHaptic(level = 1) {
-    if (this.holdPressActive) return; // Do not interrupt hold with pulse patterns
+    if (this.holdPressActive) return;
 
     if ('vibrate' in navigator) {
       try {
@@ -365,15 +438,17 @@ class HyroxApp {
       } catch (e) {}
     }
 
+    this.triggerIOSTaptic();
+
     // Acoustic Speaker Transducer Physical Rumble
     if (level === 1) {
-      this.playHapticRumble(0.85, 0.25, 68);
+      this.playHapticRumble(0.85, 0.25, 76);
     } else if (level === 2) {
-      this.playHapticRumble(1.0, 0.36, 60);
+      this.playHapticRumble(1.0, 0.36, 70);
     } else if (level === 3) {
-      this.playHapticRumble(1.3, 0.45, 52);
+      this.playHapticRumble(1.3, 0.45, 64);
     } else if (level >= 4) {
-      this.playHapticRumble(1.8, 0.90, 44);
+      this.playHapticRumble(1.8, 0.90, 58);
     }
   }
 
@@ -617,8 +692,8 @@ class HyroxApp {
     const hugPctBadge = document.getElementById('hug-pct-badge');
     const warmthOverlay = document.getElementById('warmth-overlay');
 
-    const HUG_FULL_MS = 2600; // 2.6s for a deep, comforting long warm hug
-    const MIN_HOLD_MS = 2100; // Must hold for at least 2.1s to count (tapping prevented!)
+    const HUG_FULL_MS = 2200; // 2.2s for a deep, comforting long warm hug
+    const MIN_HOLD_MS = 1500; // Must hold for at least 1.5s to count (tapping prevented!)
 
     const updateWhisper = () => {
       this.whisperIdx = (this.whisperIdx + 1) % this.doraWhispers.length;
@@ -650,15 +725,20 @@ class HyroxApp {
     if (hugBtn) {
       hugBtn.addEventListener('contextmenu', (e) => e.preventDefault());
 
+      // Touchstart guarantee on iOS Safari to unlock Web Audio on physical contact
+      hugBtn.addEventListener('touchstart', () => {
+        this.resumeAudio();
+      }, { passive: true });
+
       hugBtn.addEventListener('pointerdown', (e) => {
-        e.preventDefault();
+        this.resumeAudio();
+        this.holdPressActive = true;
+        this.holdStartTime = Date.now();
+
         try {
           hugBtn.setPointerCapture(e.pointerId);
           this.activePointerId = e.pointerId;
         } catch (err) {}
-        this.resumeAudio();
-        this.holdPressActive = true;
-        this.holdStartTime = Date.now();
 
         clearInterval(this.hugPulseInterval);
         clearTimeout(this.hugResetTimer);
