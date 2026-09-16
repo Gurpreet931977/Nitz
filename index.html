@@ -184,9 +184,9 @@
               <svg class="c-pin-svg" viewBox="0 0 24 24"><circle cx="12" cy="10" r="7" fill="#FFCF36" stroke="#1E1E24" stroke-width="2.5"/><circle cx="12" cy="10" r="3" fill="#FFA800"/><path d="M12 17v5" stroke="#1E1E24" stroke-width="2.5" stroke-linecap="round"/></svg>
             </div>
 
-            <div class="bib-header-row">
+            <div class="bib-header">
               <span class="bib-badge">★ PRO ATHLETE</span>
-              <span class="bib-division">HYROX WOMEN OPEN</span>
+              <span class="bib-event">HYROX 2026</span>
             </div>
 
             <div class="bib-number">#01</div>
@@ -229,6 +229,14 @@
               <div class="aura-ring ring-3"></div>
             </div>
 
+            <!-- Decorative Floating Stickers (Placed in hug-zone so they are never clipped) -->
+            <span class="hug-floating-sticker sticker-tl" aria-hidden="true">
+              <svg class="c-sparkle-svg" viewBox="0 0 24 24" width="22" height="22"><path fill="#FFCF36" d="M12 0L14.8 9.2L24 12L14.8 14.8L12 24L9.2 14.8L0 12L9.2 9.2z"/></svg>
+            </span>
+            <span class="hug-floating-sticker sticker-br" aria-hidden="true">
+              <svg class="c-sparkle-svg" viewBox="0 0 24 24" width="18" height="18"><path fill="#FFA800" d="M12 2l2.6 6.8L22 12l-7.4 3.2L12 22l-2.6-6.8L2 12l7.4-3.2z"/></svg>
+            </span>
+
             <!-- Giant Plush Tactile Hug Button -->
             <button class="hug-button" id="hug-btn" role="button" aria-label="Hold to Receive a Real Warm Hug from Dora">
               <!-- Background Warm Liquid Fill -->
@@ -241,43 +249,43 @@
               <div class="hug-arm hug-arm-left" aria-hidden="true">
                 <svg viewBox="0 0 36 44" class="arm-svg">
                   <path d="M4,12 C10,4 26,6 32,18 C28,26 16,34 6,28 C2,25 2,18 4,12 Z" fill="#FFE0EB" stroke="#1E1E24" stroke-width="2.5" stroke-linejoin="round"/>
-                  <!-- Cute sleeve cuff -->
                   <path d="M2,14 C6,10 12,12 10,22" fill="none" stroke="#FF5C8A" stroke-width="2.5" stroke-linecap="round"/>
                 </svg>
               </div>
 
               <!-- Content Layout Core -->
               <div class="hug-btn-core">
-                <!-- Icon with Heartbeat Pulse -->
-                <div class="hug-icon-badge">
-                  <span class="hug-beating-heart" id="hug-beating-icon">
-                    <svg class="c-icon c-icon-lg" viewBox="0 0 24 24"><path fill="#FF2A54" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                <!-- Top Row: Tag Pill + Real-time Hug Counter -->
+                <div class="hug-top-row">
+                  <span class="hug-mini-pill">
+                    <svg class="c-icon c-icon-xs" viewBox="0 0 24 24" width="10" height="10"><path fill="#FF2A54" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                    DORA'S BIG WARM HUG
                   </span>
-                  <div class="hug-heartbeat-ring"></div>
+                  <div class="hug-counter-wrap">
+                    <span class="hug-counter-icon">
+                      <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="#FF2A54" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                    </span>
+                    <span class="hug-counter-badge" id="hug-counter">0 hugs sent</span>
+                  </div>
                 </div>
 
-                <!-- Text & Real-Time Status -->
-                <div class="hug-btn-text-wrap">
-                  <div class="hug-tag-row">
-                    <span class="hug-mini-pill">
-                      <svg class="c-icon c-icon-xs" viewBox="0 0 24 24" width="10" height="10"><path fill="#FF2A54" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                      DORA'S BIG WARM HUG
+                <!-- Main Row: Heart Icon + Title & Meter + Percentage -->
+                <div class="hug-main-row">
+                  <div class="hug-icon-badge">
+                    <span class="hug-beating-heart" id="hug-beating-icon">
+                      <svg class="c-icon c-icon-lg" viewBox="0 0 24 24"><path fill="#FF2A54" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
                     </span>
-                    <span class="hug-hold-pill">HOLD TO SQUEEZE</span>
+                    <div class="hug-heartbeat-ring"></div>
                   </div>
-                  <h3 class="hug-main-title" id="hug-btn-text">Press &amp; Hold for a Warm Hug</h3>
-                  <div class="hug-status-row">
+
+                  <div class="hug-title-group">
+                    <h3 class="hug-main-title" id="hug-btn-text">Press &amp; Hold for a Warm Hug</h3>
                     <span class="hug-meter-text" id="hug-meter-text">Hold down to feel the squeeze...</span>
+                  </div>
+
+                  <div class="hug-pct-wrap">
                     <span class="hug-pct-badge" id="hug-pct-badge">0%</span>
                   </div>
-                </div>
-
-                <!-- Counter Badge -->
-                <div class="hug-counter-wrap">
-                  <span class="hug-counter-icon">
-                    <svg class="c-icon c-icon-sm" viewBox="0 0 24 24"><path fill="#FF2A54" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                  </span>
-                  <span class="hug-counter-badge" id="hug-counter">0 hugs sent</span>
                 </div>
               </div>
 
@@ -285,18 +293,9 @@
               <div class="hug-arm hug-arm-right" aria-hidden="true">
                 <svg viewBox="0 0 36 44" class="arm-svg">
                   <path d="M32,12 C26,4 10,6 4,18 C8,26 20,34 30,28 C34,25 34,18 32,12 Z" fill="#FFE0EB" stroke="#1E1E24" stroke-width="2.5" stroke-linejoin="round"/>
-                  <!-- Cute sleeve cuff -->
                   <path d="M34,14 C30,10 24,12 26,22" fill="none" stroke="#FF5C8A" stroke-width="2.5" stroke-linecap="round"/>
                 </svg>
               </div>
-
-              <!-- Decorative Floating Stickers -->
-              <span class="hug-floating-sticker sticker-tl" aria-hidden="true">
-                <svg class="c-sparkle-svg" viewBox="0 0 24 24" width="22" height="22"><path fill="#FFCF36" d="M12 0L14.8 9.2L24 12L14.8 14.8L12 24L9.2 14.8L0 12L9.2 9.2z"/></svg>
-              </span>
-              <span class="hug-floating-sticker sticker-br" aria-hidden="true">
-                <svg class="c-sparkle-svg" viewBox="0 0 24 24" width="18" height="18"><path fill="#FFA800" d="M12 2l2.6 6.8L22 12l-7.4 3.2L12 22l-2.6-6.8L2 12l7.4-3.2z"/></svg>
-              </span>
             </button>
 
             <!-- Dora Whisper Speech Bubble -->
@@ -1136,7 +1135,7 @@
           Super simple, easy-to-read rules so you never get a judge penalty and smash your sub-1.5 hour finish! ⏱️⚡
         </p>
 
-        <!-- Category Tabs -->
+        <!-- Filter Tabs -->
         <div class="rules-tabs-bar" role="tablist">
           <button class="rules-tab-btn active" data-tab="all" role="tab" aria-selected="true">
             <svg class="c-icon c-icon-xs" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l2.6 6.8L22 12l-7.4 3.2L12 22l-2.6-6.8L2 12l7.4-3.2z"/></svg>
